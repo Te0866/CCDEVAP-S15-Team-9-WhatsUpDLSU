@@ -23,10 +23,10 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
             redirectPath = "../student-side-main/dashboard.html";
             break;
         case "admin-login.html":
-            redirectPath = "../admin-side-main/dashboard.html";
+            redirectPath = "../admin-side-main/admin-dashboard.html";
             break;
         case "officer-login.html":
-            redirectPath = "../org-side-main/dashboard.html";
+            redirectPath = "../org-side-main/officer-dashboard.html";
             break;
     }
 
