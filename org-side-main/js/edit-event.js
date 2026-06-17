@@ -12,7 +12,6 @@ document.addEventListener("click",(e)=>{
     }
 });
 
-/* Upload */
 
 const uploadBox = document.querySelector(".upload-box");
 const fileInput = document.getElementById("eventImage");
@@ -21,7 +20,6 @@ uploadBox.addEventListener("click",()=>{
     fileInput.click();
 });
 
-/* Remove file */
 
 const removeFile = document.getElementById("removeFile");
 removeFile.addEventListener("click",(e)=>{
@@ -29,13 +27,11 @@ removeFile.addEventListener("click",(e)=>{
     document.querySelector(".file-chip").remove();
 });
 
-/* Submit */
 
 document.getElementById("submitBtn").addEventListener("click",()=>{
     alert("Event updated successfully!");
 });
 
-/* Delete */
 
 document.getElementById("deleteBtn").addEventListener("click",()=>{
     const confirmed =confirm("Delete this event?");
