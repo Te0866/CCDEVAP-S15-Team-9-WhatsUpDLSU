@@ -1,4 +1,3 @@
-/* DROPDOWN */
 
 const profileBtn = document.getElementById("profileBtn");
 const dropdownMenu = document.getElementById("dropdownMenu");
@@ -14,7 +13,6 @@ document.addEventListener("click", (e) => {
     }
 });
 
-/* Pie Chart */
 
 const ctx = document.getElementById("dashboardChart");
 
