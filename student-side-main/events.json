@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Animusika",
+    "category": "Non-Academic",
+    "date": "2026-06-15",
+    "startTime": "08:00",
+    "endTime": "18:00",
+    "venue": "Cory Aquino Democratic Space",
+    "status": "Upcoming",
+    "registration": "Open",
+    "organizer": "DLSU USG",
+    "description": "The annual culminating concert of the Manila Campus' University Vision-Mission Week",
+    "images": ["img/animusika1.jpg", "img/animusika2.jpg"]
+  },
+  {
+    "id": 2,
+    "title": "Leadership Seminar",
+    "category": "Career",
+    "date": "2026-06-15",
+    "startTime": "13:00",
+    "endTime": "16:00",
+    "venue": "Yuchengco Hall",
+    "status": "Upcoming",
+    "registration": "Open",
+    "organizer": "Business Society",
+    "description": "Leadership training seminar.",
+    "images": ["img/leadership1.jpg", "img/leadership2.jpg"]
+  },
+  {
+    "id": 3,
+    "title": "Inter-University InfoSec Conference",
+    "category": "Academic",
+    "date": "2026-06-20",
+    "startTime": "10:00",
+    "endTime": "15:00",
+    "venue": "Gokongwei Hall",
+    "status": "Upcoming",
+    "registration": "Closed",
+    "organizer": "ROOTCON",
+    "description": "An InfoSec conference co-hosted with ROOTCON, featuring talks on ethical hacking, exploit development, and malware analysis, capped off with a Capture the Flag (CTF) competition open to students.",
+    "images": ["img/expo1.jpg", "img/expo2.jpg"]
+  }
+]

@@ -1,0 +1,301 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#eef7ec;
+    font-family:Arial,sans-serif;
+}
+
+/* Navigation */
+
+.navbar{
+    background:#087f5b;
+    height:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-placeholder{
+    width:40px;
+    height:40px;
+    background:white;
+    border-radius:50%;
+}
+
+.logo-text{
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.nav-links{
+    display:flex;
+    gap:10px;
+}
+
+.nav-tab{
+    color:white;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.nav-tab:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.active{
+    background:#3f3f3f;
+}
+
+/* Profile */
+
+.profile-section{
+    position:relative;
+}
+
+.profile-btn{
+    background:black;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px 18px;
+    cursor:pointer;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:55px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:12px;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:.25s;
+    z-index:100;
+}
+
+.dropdown-menu.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.dropdown-menu button{
+    border:none;
+    background:#f2f2f2;
+    border-radius:10px;
+    padding:12px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.dropdown-menu button:hover{
+    background:#e3e3e3;
+}
+
+/* Page */
+
+.edit-page{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px;
+}
+
+/* Forms */
+
+.form-container{
+    width:700px;
+    max-width:90%;
+    background:#087f5b;
+    border-radius:25px;
+    padding:35px;
+    margin:0 auto;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    color:white;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:12px;
+    font-size:15px;
+}
+
+.form-group textarea{
+    resize:vertical;
+}
+
+
+
+.input-icon{
+    position:relative;
+}
+
+.input-icon span{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* Upload */
+
+.upload-box{
+    background:white;
+    border-radius:15px;
+    min-height:150px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    padding:15px;
+}
+
+.upload-icon{
+    font-size:40px;
+}
+
+.upload-box input{
+    display:none;
+}
+
+
+
+.file-chip{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#f2f2f2;
+    border-radius:20px;
+    padding:8px 14px;
+    margin-bottom:10px;
+}
+
+.file-chip button{
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:14px;
+}
+
+
+
+.button-group{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.delete-btn,
+.submit-btn{
+    border:none;
+    border-radius:999px;
+    padding:12px 30px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.delete-btn{
+    background:#dc3545;
+    color:white;
+}
+
+.delete-btn:hover{
+    transform:translateY(-2px);
+}
+
+.submit-btn{
+    background:#087f5b;
+    color:white;
+}
+
+.submit-btn:hover{
+    background:#066347;
+    transform:translateY(-2px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+    
+    /* Navigation */
+
+    .navbar{
+        padding:0 15px;
+    }
+
+    .logo-text{
+        font-size:18px;
+    }
+
+    .nav-links{
+        gap:5px;
+    }
+
+    .nav-tab{
+        padding:8px 10px;
+        font-size:14px;
+    }
+
+    .form-container{
+        width:100%;
+        padding:25px;
+    }
+
+    .button-group{
+        flex-direction:column;
+        width:100%;
+        max-width:300px;
+    }
+
+    .delete-btn,
+    .submit-btn{
+        width:100%;
+    }
+}

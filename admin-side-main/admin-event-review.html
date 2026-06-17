@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Review</title>
+
+        <link rel="stylesheet" href="css/admin-event-review.css">
+        <link rel="stylesheet" href="css/darkmode.css">
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="logo-placeholder"></div>
+                <span class="logo-text"> WhatsUpDLSU </span>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="admin-dashboard.html" class="nav-tab active"> Manage </a>
+                    <a href="admin-create.html" class="nav-tab"> Create </a>
+                </div>
+
+                <div class="profile-section">
+                    <button class="profile-btn" id="profileBtn"> Moderator ▼ </button>
+
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
+                        <button> EDIT USER DETAILS </button>
+                        <button onclick="location.href='admin-login.html'"> LOG OUT </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <main class="review-page">
+            <section class="event-panel">
+                <div class="event-info">
+                    <h1>Animusika</h1>
+
+                    <div class="details">
+                        <p><strong>Category:</strong> Arts & Culture</p>
+                        <p><strong>Duration:</strong> 8:00 AM - 6:00 PM</p>
+                        <p><strong>Venue:</strong> Henry Sy Hall</p>
+                        <p><strong>Status:</strong> Upcoming</p>
+                        <p><strong>Registration:</strong> Open</p>
+                        <p><strong>Organizer:</strong> DLSU USG</p>
+                    </div>
+
+                    <div class="description">
+                        <h3>Description:</h3>
+                        <p> The Quick Brown Fox Jumps Over The Lazy Dog </p>
+                    </div>
+                </div>
+
+                <div class="image-column">
+                    <div class="image-box"> Event Image 1 </div>
+                    <div class="image-box"> Event Image 2 </div>
+                </div>
+            </section>
+
+            <aside class="action-panel">
+                <button class="approve-btn" id="approveBtn"> Approve </button>
+                <button class="reject-btn" id="rejectBtn"> Reject </button>
+
+                <div class="remarks-section">
+                    <h3>Remarks</h3>
+                    <textarea placeholder="Enter remarks here..."></textarea>
+                </div>
+
+                <button class="back-btn" onclick="location.href='admin-dashboard.html'"> Back </button>
+            </aside>
+        </main>
+
+        <script src="js/admin-event-review.js"></script>
+        <script src="js/darkmode.js"></script>
+
+    </body>
+</html>

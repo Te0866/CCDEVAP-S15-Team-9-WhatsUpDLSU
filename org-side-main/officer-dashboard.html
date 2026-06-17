@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsUpDLSU - Officer Dashboard</title>
+    <link rel="stylesheet" href="css/officer-dashboard.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo-placeholder"></div>
+            <span class="logo-text"> WhatsUpDLSU </span>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="officer-dashboard.html" class="nav-tab active"> Home </a>
+                <a href="create.html" class="nav-tab"> Create </a>
+                <a href="manage.html" class="nav-tab"> Manage </a>
+            </div>
+
+            <div class="profile-section">
+                <button class="profile-btn" id="profileBtn"> OrgName ▼ </button>
+
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
+                    <button onclick="location.href='edit-profile.html'"> EDIT USER DETAILS </button>
+                    <button onclick="location.href='index.html'"> LOG OUT </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="left-column">
+            <section class="banner">
+                <h1> Welcome, OrgName! </h1>
+                <p> Manage your events and track submissions. </p>
+            </section>
+
+            <section class="events-container">
+                <h2> Events </h2>
+
+                <div class="carousel">
+                    <button class="arrow-btn"> &lt; </button>
+                    <div class="event-card">
+                        <h3> Animusika </h3>
+                        <p> December 11, 2026 </p>
+                    </div>
+
+                    <div class="event-card">
+                        <h3> Animusika </h3>
+                        <p> December 11, 2026 </p>
+                    </div>
+
+                    <div class="event-card">
+                        <h3> Animusika </h3>
+                        <p> December 11, 2026 </p>
+                    </div>
+
+                    <button class="arrow-btn"> &gt; </button>
+                </div>
+            </section>
+        </div>
+
+        <div class="right-column">
+            <section class="chart-container">
+                <canvas id="dashboardChart"></canvas>
+            </section>
+
+            <section class="category-box">
+                <h2> Data </h2>
+
+                <div class="category-item">
+                    <span class="color-box blue"></span>
+                    Active Events
+                </div>
+
+                <div class="category-item">
+                    <span class="color-box purple"></span>
+                    Pending Approval
+                </div>
+
+                <div class="category-item">
+                    <span class="color-box yellow"></span>
+                    Past Events
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/officer-dashboard.js"></script>
+    <script src="js/darkmode.js"></script>
+
+</body>
+</html>

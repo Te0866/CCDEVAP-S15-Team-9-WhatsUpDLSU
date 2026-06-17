@@ -1,0 +1,279 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#eef7ec;
+}
+
+/* Navigation */
+
+.navbar{
+    background:#087f5b;
+    height:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-placeholder{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:white;
+}
+
+.logo-text{
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.nav-links{
+    display:flex;
+    gap:10px;
+}
+
+.nav-tab{
+    text-decoration:none;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+}
+
+.active{
+    background:#3f3f3f;
+}
+
+/* Drop down */
+
+.profile-section{
+    position:relative;
+}
+
+.profile-btn{
+    background:black;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px 18px;
+    cursor:pointer;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:55px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:12px;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:.25s;
+}
+
+.dropdown-menu.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.dropdown-menu button{
+    border:none;
+    background:#f2f2f2;
+    border-radius:10px;
+    padding:12px;
+    cursor:pointer;
+}
+
+/* Forms */
+
+.create-page{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:40px;
+}
+
+.form-container{
+    width:700px;
+    max-width:90%;
+    background:#087f5b;
+    border-radius:25px;
+    padding:35px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    color:white;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:12px;
+}
+
+.input-icon{
+    position:relative;
+}
+
+.input-icon span{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.upload-box{
+    background:white;
+    border-radius:15px;
+    min-height:140px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+}
+
+.upload-icon{
+    font-size:40px;
+}
+
+.upload-box input{
+    display:none;
+}
+
+.button-group{
+    margin-top:20px;
+    display:flex;
+    gap:15px;
+}
+
+.submit-btn,
+.clear-btn{
+    border:none;
+    border-radius:999px;
+    padding:12px 28px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.submit-btn{
+    background:#087f5b;
+    color:white;
+}
+
+.clear-btn{
+    background:white;
+    color:#087f5b;
+}
+
+@media(max-width: 768px){
+
+    /* Navigation */
+
+    .navbar{
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .nav-left,
+    .nav-right{
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-tab{
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    /* Forms */
+
+    .create-page{
+        margin-top: 20px;
+        padding: 0 10px;
+    }
+
+    .form-container{
+        width: 100%;
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .form-group label{
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+        font-size: 16px;
+    }
+
+    .upload-box{
+        min-height: 120px;
+    }
+
+    /* Buttons */
+
+    .button-group{
+        flex-direction: center;
+    }
+
+    .submit-btn{
+        width: 100%;
+    }
+
+    .clear-btn{
+        width: 100%;
+    }
+
+    /* Dropdown */
+
+    .dropdown-menu{
+        width: 180px;
+    }
+}

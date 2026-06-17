@@ -1,0 +1,81 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#eef7ec;
+    font-family:'Segoe UI',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.register-page{
+    width:100%;
+    max-width:700px;
+    text-align:center;
+    padding:20px;
+}
+
+.site-title{
+    color:#087f5b;
+    margin-bottom:10px;
+}
+
+.site-description{
+    margin-bottom:25px;
+    color:#444;
+}
+
+.register-container{
+    background:#087f5b;
+    border-radius:25px;
+    padding:35px;
+    text-align:left;
+}
+
+.register-container h2{
+    color:white;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    color:white;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.form-group input{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:12px;
+}
+
+.create-btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    margin-top:10px;
+    background:white;
+    color:#087f5b;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-link{
+    display:block;
+    margin-top:15px;
+    color:#087f5b;
+    text-decoration:none;
+}

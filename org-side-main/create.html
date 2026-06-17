@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create Event</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/create.css">
+        <link rel="stylesheet" href="css/darkmode.css">
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="logo-placeholder"></div>
+                <span class="logo-text"> WhatsUpDLSU </span>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="officer-dashboard.html" class="nav-tab"> Home </a>
+                    <a href="create.html" class="nav-tab active"> Create </a>
+                    <a href="manage.html" class="nav-tab"> Manage </a>
+                </div>
+
+                <div class="profile-section">
+                    <button class="profile-btn" id="profileBtn"> OrgName ▼ </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
+                        <button onclick="location.href='edit-profile.html'"> EDIT USER DETAILS </button>
+                        <button onclick="location.href='index.html'"> LOG OUT </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="create-page">
+            <div class="form-container">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter event name" >
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <div class="input-icon">
+                        <input type="date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Start Time</label>
+                    <div class="input-icon">
+                        <input type="time">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>End Time</label>
+                    <div class="input-icon">
+                        <input type="time">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select>
+                        <option> Select Category </option>
+                        <option> Academic </option>
+                        <option> Non-Academic </option>
+                        <option>Career</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" placeholder="Enter venue">
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="4" placeholder="Enter event description" ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Image Upload</label>
+                    <div class="upload-box">
+                        <div class="upload-icon"> 📁 </div>
+                        <p> Click to upload or drag and drop</p>
+                        <input type="file" id="eventImage" >
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="submit-btn" id="submitBtn"> Submit </button>
+                <button class="clear-btn" id="clearBtn"> Clear Form </button>
+            </div>
+
+        </main>
+        
+        <script src="js/create.js"></script>
+        <script src="js/darkmode.js"></script>
+
+    </body>
+</html>

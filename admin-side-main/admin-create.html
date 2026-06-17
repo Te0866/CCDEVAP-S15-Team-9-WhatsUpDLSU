@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create Organization</title>
+
+        <link rel="stylesheet" href="css/admin-create.css">
+        <link rel="stylesheet" href="css/darkmode.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="logo-placeholder"></div>
+                <span class="logo-text">
+                    WhatsUpDLSU
+                </span>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="admin-dashboard.html" class="nav-tab"> Manage </a>
+                    <a href="admin-create.html" class="nav-tab active"> Create </a>
+                </div>
+
+                <div class="profile-section">
+                    <button class="profile-btn" id="profileBtn"> Moderator ▼ </button>
+
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
+                        <button>EDIT USER DETAILS</button>
+                        <button onclick="location.href='admin-login.html'"> LOG OUT </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <main class="create-page">
+            <div class="form-container">
+                <div class="form-group">
+                    <label>Username</label>
+
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="Enter username">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" placeholder="Enter password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Organization Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="Enter organization name">
+                    </div>
+                </div>
+            </div>
+
+            <button class="create-btn" id="createBtn"> Create </button>
+        </main>
+
+        <script src="js/admin-create.js"></script>
+        <script src="js/darkmode.js"></script>
+
+    </body>
+</html>

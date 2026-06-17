@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Event</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/edit-event.css">
+        <link rel="stylesheet" href="css/darkmode.css">
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="logo-placeholder"></div>
+                <span class="logo-text"> WhatsUpDLSU </span>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="officer-dashboard.html" class="nav-tab"> Home </a>
+                    <a href="create.html" class="nav-tab"> Create </a>
+                    <a href="manage.html" class="nav-tab active"> Manage </a>
+                </div>
+
+                <div class="profile-section">
+                    <button class="profile-btn" id="profileBtn"> OrgName ▼ </button>
+
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
+                        <button onclick="location.href='edit-profile.html'"> EDIT USER DETAILS </button>
+                        <button onclick="location.href='index.html'"> LOG OUT </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="edit-page">
+            <div class="form-container">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" value="Animusika 2026" >
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <div class="input-icon">
+                        <input type="date" value="2026-12-11" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Start Time</label>
+                    <div class="input-icon">
+                        <input type="time" value="08:00" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>End Time</label>
+                    <div class="input-icon">
+                        <input type="time" value="18:00" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select>
+                        <option selected> Academic </option>
+                        <option> Non-Academic </option>
+                        <option> Career </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" value="Henry Sy Hall" >
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="4">Pre-filled with existing data</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Image Upload</label>
+                    <div class="upload-box">
+                        <div class="file-chip"> Example_Image.jpg
+                            <button id="removeFile"> ✕ </button>
+                        </div>
+
+                        <div class="upload-icon"> 📁 </div>
+                        <p> Click to upload or drag and drop </p>
+                        <input type="file" id="eventImage">
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="delete-btn" id="deleteBtn"> Delete </button>
+                <button class="submit-btn" id="submitBtn"> Submit</button>
+            </div>
+        </main>
+
+        <script src="js/edit-event.js"></script>
+        <script src="js/darkmode.js"></script>
+
+    </body>
+</html>
