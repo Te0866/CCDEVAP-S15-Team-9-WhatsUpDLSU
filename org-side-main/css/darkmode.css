@@ -3,13 +3,11 @@ body.dark-mode{
     color:white;
 }
 
-/* Navigation */
 
 body.dark-mode .navbar{
     background:#1e1e1e;
 }
 
-/* Panels */
 
 body.dark-mode .banner,
 body.dark-mode .carousel-section,
