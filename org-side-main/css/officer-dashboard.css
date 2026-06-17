@@ -9,7 +9,6 @@ body{
     background:#eef7ec;
 }
 
-/* Navigation */
 
 .navbar{
     background:#087f5b;
@@ -105,7 +104,6 @@ body{
     cursor:pointer;
 }
 
-/* Dashboard */
 
 .dashboard{
     width:95%;
@@ -118,7 +116,6 @@ body{
     gap:25px;
 }
 
-/* Left side */
 
 .banner{
     background:#087f5b;
@@ -171,7 +168,6 @@ body{
     text-align:center;
 }
 
-/* Right side */
 
 .chart-container{
     height:220px;
@@ -229,8 +225,6 @@ body{
 }
 
 @media (max-width: 768px){
-    
-    /* Navigation */
 
     .navbar{
         flex-direction: column;
