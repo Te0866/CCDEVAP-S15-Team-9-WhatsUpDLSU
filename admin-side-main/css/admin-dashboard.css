@@ -479,7 +479,6 @@ body{
         background:#ff0000;
     }
 
-    /* Ensure all cards in same column are equal */
     .status-column .event-card {
         margin-bottom:8px;
     }
