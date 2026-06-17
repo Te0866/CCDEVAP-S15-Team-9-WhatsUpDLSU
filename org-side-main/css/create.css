@@ -25,11 +25,11 @@ body{
     gap:12px;
 }
 
-.logo-placeholder{
-    width:40px;
-    height:40px;
+.logo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
     border-radius:50%;
-    background:white;
 }
 
 .logo-text{
