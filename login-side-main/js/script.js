@@ -16,7 +16,6 @@ toggleButton.addEventListener("click",() => {
 
 document.getElementById("loginForm").addEventListener("submit", (event) => {
     event.preventDefault();
-    alert("Login successful.");
     const page = window.location.pathname.split("/").pop();
 console.log(window.location.pathname);
 console.log(page);
