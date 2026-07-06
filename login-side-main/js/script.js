@@ -19,7 +19,7 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
 
     let redirectPath;
     switch (page) {
-        case "student-login.html":
+        case "login.html":
             redirectPath = "../student-side-main/dashboard.html";
             break;
         case "admin-login.html":
