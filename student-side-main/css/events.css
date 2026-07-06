@@ -230,7 +230,23 @@ body{
 }
 
 
+.comments-btn{
+    margin-top:15px;
+    align-self:center;
+    border:none;
+    border-radius:999px;
+    padding:14px 40px;
+    background:#ffffff;
+    color:#087f5b;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
 
+.comments-btn:hover{
+    transform:translateY(-2px);
+}
 .interested-btn{
     margin-top:auto;
     align-self:center;
