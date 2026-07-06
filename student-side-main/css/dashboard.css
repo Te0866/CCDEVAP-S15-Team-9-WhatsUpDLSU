@@ -208,16 +208,18 @@ body{
     height:220px;
     background:transparent;
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
+    gap:10px;
 }
 
-.chart-title {
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: inherit;
+.chart-title{
+    text-align:center;
+    font-size:1.1rem;
+    font-weight:600;
+    color:#333;
+    margin:0;
 }
 
 #studentChart{
@@ -379,10 +381,19 @@ body{
     }
 
     .chart-container{
-        flex:1;
-        height:auto;
-        padding:0;
-    }
+    flex:1;
+    height:auto;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.chart-title{
+    font-size:14px;
+}
 
     #studentChart{
         width:100% !important;
