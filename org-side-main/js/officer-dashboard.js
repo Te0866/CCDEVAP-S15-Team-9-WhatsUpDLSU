@@ -28,7 +28,12 @@ new Chart(ctx, {
     options: {
         plugins: {
             legend: {
-                display:false
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Event Status Overview",
+                font: { size: 16 }
             }
         }
     }
