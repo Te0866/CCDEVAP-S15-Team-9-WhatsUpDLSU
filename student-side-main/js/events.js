@@ -170,7 +170,7 @@ function renderCommentsCarousel(comments) {
         commentsIntervalId = setInterval(() => {
             currentCommentIndex = (currentCommentIndex + 1) % comments.length;
             updateCommentsTrack();
-        }, 5000); // change interval (ms) as you like
+        }, 3000 ); // just change if you want comments to go faster (ms)
     }
 }
 
