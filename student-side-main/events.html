@@ -107,11 +107,30 @@
                         <div class="carousel-track" id="commentsTrack"></div>
                         <div class="carousel-dots" id="commentsDots"></div>
                     </div>
+                    <button id="postCommentBtn" class="post-comment-btn">Post Comment</button>
                 </div>
             </section>
 
         </main>
 
+        <div class="modal-overlay" id="commentModalOverlay">
+            <div class="modal-box">
+                <h3>Post a Comment</h3>
+                <form id="commentForm">
+                    <label for="commentName">Name</label>
+                    <input type="text" id="commentName" name="author" placeholder="Your name" required>
+
+                    <label for="commentMessage">Message</label>
+                    <textarea id="commentMessage" name="text" placeholder="Write your comment..." rows="4" required></textarea>
+
+                    <div class="modal-actions">
+                        <button type="button" id="cancelCommentBtn" class="modal-cancel-btn">Cancel</button>
+                        <button type="submit" class="modal-submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         <script src="js/events.js"></script>
         <script src="js/darkmode.js"></script>
     </body>
