@@ -74,7 +74,7 @@ function showEventDetail(event) {
     renderCommentsCarousel(event.comments);
 }
 
-/* TEST CAROUSEL */
+/* carousel stuff is down here in case I can't find it */
 
 let currentImageIndex = 0;
 let currentCommentIndex = 0;
@@ -182,7 +182,7 @@ function updateCommentsTrack() {
     });
 }
 
-/* TEST CAROUSEL */
+/* carousel stuff is up here in case I can't find it */
 
 function formatTime(time24) {
     const [hour, minute] = time24.split(':');
