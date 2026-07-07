@@ -25,6 +25,23 @@ togglePassword.addEventListener("click", () => {
     }
 });
 
+const profileImage = document.getElementById("profileImage");
+const profilePreview = document.getElementById("profilePreview");
+
+profileImage.addEventListener("change", () => {
+    const file = profileImage.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        profilePreview.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+});
+
 document.getElementById("updateBtn").addEventListener("click", () => {
     alert("Profile updated successfully.");
 });
