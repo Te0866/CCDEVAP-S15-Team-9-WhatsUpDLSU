@@ -230,24 +230,6 @@ body{
     line-height:1.8;
 }
 
-
-.comments-btn{
-    margin-top:15px;
-    align-self:center;
-    border:none;
-    border-radius:999px;
-    padding:14px 40px;
-    background:#ffffff;
-    color:#087f5b;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.comments-btn:hover{
-    transform:translateY(-2px);
-}
 .interested-btn{
     margin-top:auto;
     align-self:center;
@@ -324,6 +306,8 @@ body{
     font-size:15px;
     cursor:pointer;
 }
+
+/* carousel stuff */
 
 .carousel{
     position:relative;
@@ -420,6 +404,105 @@ body{
 .comment-author{
     font-weight:600;
     font-size:0.9rem;
+}
+
+/* post comment stuff */
+
+.post-comment-btn{
+    margin-top:15px;
+    border:none;
+    border-radius:999px;
+    padding:12px 30px;
+    background:white;
+    color:#087f5b;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    align-self:center;
+    transition:.2s;
+}
+
+.post-comment-btn:hover{
+    transform:translateY(-2px);
+}
+
+.modal-overlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:90%;
+    max-width:400px;
+    border-radius:20px;
+    padding:25px;
+    color:#087f5b;
+}
+
+.modal-box h3{
+    margin-bottom:15px;
+}
+
+.modal-box form{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.modal-box label{
+    font-size:13px;
+    font-weight:600;
+    margin-top:8px;
+}
+
+.modal-box input,
+.modal-box textarea{
+    border:1px solid #ccc;
+    border-radius:10px;
+    padding:10px;
+    font-family:inherit;
+    font-size:14px;
+    resize:vertical;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:15px;
+}
+
+.modal-cancel-btn,
+.modal-submit-btn{
+    border:none;
+    border-radius:999px;
+    padding:10px 20px;
+    font-weight:600;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.modal-cancel-btn{
+    background:#e7e7e7;
+    color:#333;
+}
+
+.modal-submit-btn{
+    background:#087f5b;
+    color:white;
 }
 
 @media(max-width:1000px){
