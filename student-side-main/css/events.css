@@ -253,7 +253,8 @@ body{
     display:flex;
     flex-direction:column;
     gap:20px;
-    overflow: hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
     min-width: 0;
 }
 
@@ -312,7 +313,7 @@ body{
 .carousel{
     position:relative;
     flex:1;
-    min-height:200px;
+    min-height:140px;
     background:white;
     border-radius:20px;
     overflow:hidden;
@@ -419,6 +420,7 @@ body{
     font-weight:600;
     cursor:pointer;
     align-self:center;
+    flex-shrink:0;
     transition:.2s;
 }
 
