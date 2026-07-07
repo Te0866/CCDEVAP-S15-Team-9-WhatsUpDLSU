@@ -26,25 +26,6 @@ body{
     align-items:center;
     gap:12px;
 }
-.logo-section{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-}
-
-.back-btn{
-    background:none;
-    border:none;
-    color:white;
-    cursor:pointer;
-    font-size:14px;
-    text-align:left;
-    padding:0;
-}
-
-.back-btn:hover{
-    text-decoration:underline;
-}
 
 .logo{
     width:100%;
