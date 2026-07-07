@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsUpDLSU - Officer Dashboard</title>
+    <link rel="stylesheet" href="css/officer-dashboard.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <div><img class="logo" src="img/WhatsUpDLSULogo.png" alt="Logo"></div>
+            <span class="logo-text"> WhatsUpDLSU </span>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="officer-dashboard.html" class="nav-tab active"> Home </a>
+                <a href="create.html" class="nav-tab"> Create </a>
+                <a href="manage.html" class="nav-tab"> Manage </a>
+            </div>
+
+            <div class="profile-section">
+                <button class="profile-btn" id="profileBtn"> OrgName ▼ </button>
+
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <button onclick="location.href='edit-organization.html'"> EDIT ORGANIZATION DETAILS </button>
+                    <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
+                    <button onclick="window.location.href='../login-side-main/officer-login.html'"> LOG OUT </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+
+        <section class="banner">
+            <div class="banner-text">
+                <h1> Welcome, OrgName! </h1>
+                <p> Manage your events and track submissions. </p>
+            </div>
+            <button class="create-btn" onclick="location.href='create.html'"> + Create event </button>
+        </section>
+
+        <section class="stats-row">
+            <div class="stat-card">
+                <span class="stat-label"> Active events </span>
+                <span class="stat-value" id="statActive"> 12 </span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label"> Pending approval </span>
+                <span class="stat-value" id="statPending"> 3 </span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label"> Past events </span>
+                <span class="stat-value" id="statPast"> 5 </span>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+
+            <div class="left-column">
+                <section class="events-container">
+                    <div class="events-header">
+                        <h2> Events </h2>
+
+                        <div class="carousel-controls">
+                            <button class="carousel-arrow" id="eventsPrevBtn" aria-label="Previous events" onclick="scrollEvents(-1)">&#8249;</button>
+                            <button class="carousel-arrow" id="eventsNextBtn" aria-label="Next events" onclick="scrollEvents(1)">&#8250;</button>
+                        </div>
+                    </div>
+
+                    <div class="event-grid" id="eventGrid">
+                        <div class="event-card" onclick="location.href='manage.html'">
+                            <h3> Animusika </h3>
+                            <p> Dec 11, 2026 </p>
+                            <span class="tag tag-academic"> Academic </span>
+                        </div>
+
+                        <div class="event-card" onclick="location.href='manage.html'">
+                            <h3> Leadership seminar </h3>
+                            <p> Dec 14, 2026 </p>
+                            <span class="tag tag-career"> Career </span>
+                        </div>
+
+                        <div class="event-card" onclick="location.href='manage.html'">
+                            <h3> Hackathon </h3>
+                            <p> Dec 20, 2026 </p>
+                            <span class="tag tag-academic"> Academic </span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="activity-box">
+                    <h2> Recent activity </h2>
+
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <span class="activity-icon icon-approved">✓</span>
+                            <div class="activity-text">
+                                <p> <strong> Leadership seminar </strong> was approved </p>
+                                <span class="activity-time"> 2 days ago </span>
+                            </div>
+                        </li>
+
+                        <li class="activity-item">
+                            <span class="activity-icon icon-pending">⏱</span>
+                            <div class="activity-text">
+                                <p> <strong> Hackathon </strong> submitted for review </p>
+                                <span class="activity-time"> 3 days ago </span>
+                            </div>
+                        </li>
+
+                        <li class="activity-item">
+                            <span class="activity-icon icon-rejected">✕</span>
+                            <div class="activity-text">
+                                <p> <strong> Research expo </strong> was rejected </p>
+                                <span class="activity-time"> 5 days ago </span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="right-column">
+                <section class="chart-box">
+                    <h2> Event status overview </h2>
+                    <div class="chart-wrap">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+
+                    <div class="legend">
+                        <span class="legend-item"><span class="color-box blue"></span> Active</span>
+                        <span class="legend-item"><span class="color-box purple"></span> Pending</span>
+                        <span class="legend-item"><span class="color-box yellow"></span> Past</span>
+                    </div>
+                </section>
+
+                <section class="chart-box">
+                    <h2> Events by category </h2>
+                    <div class="chart-wrap">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/officer-dashboard.js"></script>
+    <script src="js/darkmode.js"></script>
+
+</body>
+</html>
