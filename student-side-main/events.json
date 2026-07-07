@@ -11,7 +11,12 @@
     "registration": "Open",
     "organizer": "DLSU USG",
     "description": "The annual culminating concert of the Manila Campus' University Vision-Mission Week",
-    "images": ["img/animusika1.jpg", "img/animusika2.jpg"]
+    "images": ["img/animusika1.jpg", "img/animusika2.jpg"],
+    "comments": [
+      { "author": "Juan D.", "text": "Best concert of the year!" },
+      { "author": "Maria S.", "text": "The lineup looks amazing, can't wait!" },
+      { "author": "Carlo T.", "text": "Is there still a way to register?" }
+    ]
   },
   {
     "id": 2,
@@ -25,7 +30,10 @@
     "registration": "Open",
     "organizer": "Business Society",
     "description": "Leadership training seminar.",
-    "images": ["img/leadership1.jpg", "img/leadership2.jpg"]
+    "images": ["img/leadership1.jpg", "img/leadership2.jpg"],
+    "comments": [
+      { "author": "Angela P.", "text": "Learned a lot from last year's session." }
+    ]
   },
   {
     "id": 3,
@@ -39,6 +47,7 @@
     "registration": "Closed",
     "organizer": "ROOTCON",
     "description": "An InfoSec conference co-hosted with ROOTCON, featuring talks on ethical hacking, exploit development, and malware analysis, capped off with a Capture the Flag (CTF) competition open to students.",
-    "images": ["img/expo1.jpg", "img/expo2.jpg"]
+    "images": ["img/expo1.jpg", "img/expo2.jpg"],
+    "comments": []
   }
 ]
