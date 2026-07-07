@@ -70,15 +70,119 @@ function showEventDetail(event) {
     document.getElementById('organizer').textContent = event.organizer;
     document.getElementById('description').textContent = event.description;
 
-    const imageBoxes = document.querySelectorAll('.image-box');
-    imageBoxes.forEach((box, i) => {
-        if (event.images[i]) {
-            box.innerHTML = `<img src="${event.images[i]}" alt="${event.title} image ${i+1}">`;
-        } else {
-            box.innerHTML = '';
-        }
+    renderImageCarousel(event.images);
+    renderCommentsCarousel(event.comments);
+}
+
+/* TEST CAROUSEL */
+
+let currentImageIndex = 0;
+let currentCommentIndex = 0;
+let commentsIntervalId = null;
+
+function renderImageCarousel(images) {
+    const track = document.getElementById('imageTrack');
+    const dotsContainer = document.getElementById('imageDots');
+    const prevBtn = document.getElementById('imgPrev');
+    const nextBtn = document.getElementById('imgNext');
+    track.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    currentImageIndex = 0;
+
+    if (!images || images.length === 0) {
+        track.innerHTML = '<div class="carousel-slide">No images</div>';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        return;
+    }
+
+    images.forEach((src, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `<img src="${src}" alt="Event image ${i + 1}">`;
+        track.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToImage(i));
+        dotsContainer.appendChild(dot);
+    });
+
+    const showControls = images.length > 1;
+    prevBtn.style.display = showControls ? 'flex' : 'none';
+    nextBtn.style.display = showControls ? 'flex' : 'none';
+    dotsContainer.style.display = showControls ? 'flex' : 'none';
+
+    updateImageTrack();
+}
+
+function goToImage(index) {
+    const track = document.getElementById('imageTrack');
+    const total = track.children.length;
+    currentImageIndex = (index + total) % total;
+    updateImageTrack();
+}
+
+function updateImageTrack() {
+    const track = document.getElementById('imageTrack');
+    track.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+    document.querySelectorAll('#imageDots .dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentImageIndex);
     });
 }
+
+document.getElementById('imgPrev').addEventListener('click', () => goToImage(currentImageIndex - 1));
+document.getElementById('imgNext').addEventListener('click', () => goToImage(currentImageIndex + 1));
+
+function renderCommentsCarousel(comments) {
+    const track = document.getElementById('commentsTrack');
+    const dotsContainer = document.getElementById('commentsDots');
+    track.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    currentCommentIndex = 0;
+
+    if (commentsIntervalId) {
+        clearInterval(commentsIntervalId);
+        commentsIntervalId = null;
+    }
+
+    if (!comments || comments.length === 0) {
+        track.innerHTML = '<div class="carousel-slide comment-slide"><p class="comment-text">No comments yet.</p></div>';
+        return;
+    }
+
+    comments.forEach((c) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide comment-slide';
+        slide.innerHTML = `<p class="comment-text">"${c.text}"</p><p class="comment-author">- ${c.author}</p>`;
+        track.appendChild(slide);
+    });
+
+    comments.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dotsContainer.appendChild(dot);
+    });
+
+    updateCommentsTrack();
+
+    if (comments.length > 1) {
+        commentsIntervalId = setInterval(() => {
+            currentCommentIndex = (currentCommentIndex + 1) % comments.length;
+            updateCommentsTrack();
+        }, 5000); // change interval (ms) as you like
+    }
+}
+
+function updateCommentsTrack() {
+    const track = document.getElementById('commentsTrack');
+    track.style.transform = `translateX(-${currentCommentIndex * 100}%)`;
+    document.querySelectorAll('#commentsDots .dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentCommentIndex);
+    });
+}
+
+/* TEST CAROUSEL */
 
 function formatTime(time24) {
     const [hour, minute] = time24.split(':');
