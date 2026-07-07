@@ -93,12 +93,20 @@
                     </div>
 
                     <button id="interestedBtn" class="interested-btn"> Interested! </button>
-                    <button id="commentsBtn" class="comments-btn">Comments</button>
                 </div>
 
                 <div class="image-column">
-                    <div class="image-box"> Event Image 1 </div>
-                    <div class="image-box"> Event Image 2 </div>
+                    <div class="carousel image-carousel">
+                        <div class="carousel-track" id="imageTrack"></div>
+                            <button class="carousel-btn prev" id="imgPrev">&#10094;</button>
+                            <button class="carousel-btn next" id="imgNext">&#10095;</button>
+                            <div class="carousel-dots" id="imageDots"></div>
+                        </div>
+    
+                    <div class="carousel comments-carousel">
+                        <div class="carousel-track" id="commentsTrack"></div>
+                        <div class="carousel-dots" id="commentsDots"></div>
+                    </div>
                 </div>
             </section>
 
