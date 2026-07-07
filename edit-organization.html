@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>WhatsUpDLSU - Edit Organization</title>
+
+    <link rel="stylesheet" href="css/edit-organization.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="nav-left">
+            <div class="logo-placeholder"></div>
+            <span class="logo-text">WhatsUpDLSU</span>
+        </div>
+
+        <div class="nav-right">
+
+            <div class="nav-links">
+                <a href="officer-dashboard.html" class="nav-tab active">Home</a>
+                <a href="create.html" class="nav-tab">Create</a>
+                <a href="manage.html" class="nav-tab">Manage</a>
+            </div>
+
+            <div class="profile-section">
+
+                <button class="profile-btn" id="profileBtn">
+                    OrgName ▼
+                </button>
+
+                <div class="dropdown-menu" id="dropdownMenu">
+
+                    <button class="dark-mode-btn">
+                        DARK/LIGHT MODE
+                    </button>
+
+                    <button>
+                        EDIT ORGANIZATION DETAILS
+                    </button>
+
+                    <button onclick="location.href='index.html'">
+                        LOG OUT
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <main class="profile-page">
+
+        <div class="profile-container">
+
+            <div class="form-group">
+
+                <label>Organization Name</label>
+
+                <div class="input-wrapper">
+
+                    <input type="text" value="SAMPLE DATA">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Username</label>
+
+                <div class="input-wrapper">
+
+                    <input type="email" value="SAMPLE DATA@dlsu.edu.ph">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <div class="input-wrapper">
+
+                    <input type="password" value="password123">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Contact Person</label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        value="SAMPLE DATA">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Contact Number</label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        value="SAMPLE DATA 09171234567">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Organization Description</label>
+
+                <textarea rows="4">SAMPLE DATA Official student government of the College of Computer Studies.
+                </textarea>
+
+            </div>
+
+        </div>
+
+        <button class="update-btn">
+            UPDATE
+        </button>
+
+    </main>
+
+    <script src="js/edit-organization.js"></script>
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>
