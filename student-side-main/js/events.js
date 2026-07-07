@@ -205,3 +205,75 @@ document.getElementById("interestedBtn").addEventListener("click", () => {
         alert("Already added!");
     }
 });
+
+/* post comment stuff is down here in case I can't find it */
+
+const commentModalOverlay = document.getElementById('commentModalOverlay');
+const commentForm = document.getElementById('commentForm');
+const postCommentBtn = document.getElementById('postCommentBtn');
+const cancelCommentBtn = document.getElementById('cancelCommentBtn');
+
+postCommentBtn.addEventListener('click', () => {
+    commentModalOverlay.classList.add('show');
+});
+
+cancelCommentBtn.addEventListener('click', closeCommentModal);
+
+commentModalOverlay.addEventListener('click', (e) => {
+    if (e.target === commentModalOverlay) closeCommentModal();
+});
+
+function closeCommentModal() {
+    commentModalOverlay.classList.remove('show');
+    commentForm.reset();
+}
+
+commentForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const newComment = {
+        event_id: selectedEvent.id,
+        author: document.getElementById('commentName').value.trim(),
+        text: document.getElementById('commentMessage').value.trim(),
+        // A real timestamp should be generated server-side on insert;
+        // this is just a placeholder for local/dev use.
+        created_at: new Date().toISOString()
+    };
+
+    if (!newComment.author || !newComment.text) return;
+
+    try {
+        // --- PHP integration point ---
+        // Once your backend exists, this will POST the comment to be
+        // saved (e.g. in a database) and should return the saved
+        // comment (or the full updated list) as JSON.
+        const response = await fetch('submit_comment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newComment)
+        });
+
+        if (!response.ok) throw new Error('Server responded with an error');
+
+        // Expecting the PHP endpoint to respond with the saved comment,
+        // e.g. { "author": "...", "text": "..." }
+        const savedComment = await response.json();
+        addCommentLocally(savedComment);
+
+    } catch (err) {
+        // No backend yet (or it failed) — fall back to updating
+        // locally so the UI still works during development.
+        console.warn('submit_comment.php not available yet, adding comment locally:', err);
+        addCommentLocally({ author: newComment.author, text: newComment.text });
+    }
+
+    closeCommentModal();
+});
+
+function addCommentLocally(comment) {
+    if (!selectedEvent.comments) selectedEvent.comments = [];
+    selectedEvent.comments.push(comment);
+    renderCommentsCarousel(selectedEvent.comments);
+}
+
+/* post comment stuff is up here in case I can't find it */
