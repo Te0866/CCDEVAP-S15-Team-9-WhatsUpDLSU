@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>WhatsUpDLSU - Events</title>
+        <link rel="stylesheet" href="css/darkmode.css">
+        <link rel="stylesheet" href="css/events.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+
+        <nav class="navbar">
+            <div class="nav-left">
+                <div><img class="logo" src="img/WhatsUpDLSULogo.png" alt="Logo"></div>
+                <span class="logo-text">WhatsUpDLSU</span>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="dashboard.html" class="nav-tab">Home</a>
+                    <a href="events.html" class="nav-tab active">Events</a>
+                    <a href="calendar.html" class="nav-tab">Calendar</a>
+                </div>
+
+                <div class="profile-section">
+                    <button class="profile-btn" id="profileBtn">
+                        <img src="img/default-profile.png" alt="Profile" class="profile-pic">
+                    </button>
+
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <button type="button" class="dark-mode-btn"> DARK/LIGHT MODE </button>
+
+                        <button onclick="location.href='edit-profile.html'"> EDIT USER DETAILS </button>
+                        <button onclick="window.location.href='../login-side-main/student-login.html'"> LOG OUT </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Search Events" class="search-input" >
+            <input type="date" class="filter-box" >
+
+            <select class="filter-box">
+                <option>All</option>
+                <option>Academic</option>
+                <option>Career</option>
+                <option>Non-academic</option>
+            </select>
+
+            <select class="filter-box">
+                <option>Newest</option>
+                <option>Oldest</option>
+            </select>
+
+        </section>
+
+        <main class="events-layout">
+            <aside class="event-sidebar" id="eventSidebar"></aside>
+            <section class="event-detail">
+
+                <div class="event-info">
+                    <h1 id="eventTitle">Placeholder</h1>
+                    <div class="details">
+                        <p><strong>Category:</strong>
+                            <span id="category">Placeholder</span>
+                        </p>
+
+                        <p><strong>Duration:</strong>
+                            <span id="duration">Placeholder</span>
+                        </p>
+
+                        <p><strong>Venue:</strong>
+                            <span id="venue">Placeholder</span>
+                        </p>
+
+                        <p><strong>Status:</strong>
+                            <span id="status">Placeholder</span>
+                        </p>
+
+                        <p><strong>Registration:</strong>
+                            <span id="registration">Placeholder</span>
+                        </p>
+
+                        <p><strong>Organizer:</strong>
+                            <span id="organizer">Placeholder</span>
+                        </p>
+
+                    </div>
+
+                    <div class="description">
+                        <h3>Description:</h3>
+                        <p id="description"> Placeholder </p>
+                    </div>
+
+                    <button id="interestedBtn" class="interested-btn"> Interested! </button>
+                </div>
+
+                <div class="image-column">
+                    <div class="carousel image-carousel">
+                        <div class="carousel-track" id="imageTrack"></div>
+                            <button class="carousel-btn prev" id="imgPrev">&#10094;</button>
+                            <button class="carousel-btn next" id="imgNext">&#10095;</button>
+                            <div class="carousel-dots" id="imageDots"></div>
+                        </div>
+    
+                    <div class="carousel comments-carousel">
+                        <div class="carousel-track" id="commentsTrack"></div>
+                        <div class="carousel-dots" id="commentsDots"></div>
+                    </div>
+                    <button id="postCommentBtn" class="post-comment-btn">Post Comment</button>
+                </div>
+            </section>
+
+        </main>
+
+        <div class="modal-overlay" id="commentModalOverlay">
+            <div class="modal-box">
+                <h3>Post a Comment</h3>
+                <form id="commentForm">
+                    <div class="commenter-row">
+                        <span>Posting as: <strong id="commenterName">Student</strong></span>
+                        <label class="anon-toggle">
+                            <input type="checkbox" id="anonToggle">
+                            Post Anonymously?
+                        </label>
+                    </div>
+
+                    <label for="commentMessage">Message</label>
+                    <textarea id="commentMessage" name="text" placeholder="Write your comment..." rows="4" required></textarea>
+
+                    <div class="modal-actions">
+                        <button type="button" id="cancelCommentBtn" class="modal-cancel-btn">Cancel</button>
+                        <button type="submit" class="modal-submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <script src="js/events.js"></script>
+        <script src="js/darkmode.js"></script>
+    </body>
+</html>
