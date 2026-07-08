@@ -277,6 +277,29 @@ body{
     margin-bottom:5px;
 }
 
+.calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.month-btn{
+    background:#087f5b;
+    color:white;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.2s;
+}
+
+.month-btn:hover{
+    background:#066447;
+}
+
 @media screen and (max-width:768px){
 
     body{
@@ -563,4 +586,14 @@ body{
     .career{
         background:#3498db;
     }
+}
+
+.calendar-header{
+    margin-bottom:10px;
+}
+
+.month-btn{
+    width:35px;
+    height:35px;
+    font-size:16px;
 }
