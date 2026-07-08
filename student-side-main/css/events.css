@@ -607,12 +607,13 @@ body{
 }
 
     .search-section{
-        width:100%;
-        margin:10px 0;
-        display:grid;
-        grid-template-columns:2fr 1fr 1fr 1fr;
-        gap:6px;
-    }
+    width:100%;
+    margin:0 0 15px 0;
+    padding:0;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:10px;
+}
 
     .search-input{
         height:40px;
