@@ -18,8 +18,8 @@
 
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="admin-dashboard.html" class="nav-tab active"> Manage </a>
-                    <a href="admin-create.html" class="nav-tab"> Create </a>
+                    <a href="admin-dashboard.html" class="nav-tab active"> Manage Events </a>
+                    <a href="account-management.html" class="nav-tab"> Account Management </a>
                 </div>
 
                 <div class="profile-section">
@@ -54,45 +54,92 @@
         </section>
 
         <main class="manage-container">
+            <div class="table-wrapper">
+                <table class="events-table">
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Category</th>
+                            <th>Duration</th>
+                            <th>Venue</th>
+                            <th>Organizer</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-            <div class="status-column">
-                <div class="column-header pending-header"> Pending </div> 
-                <div class="event-card pending">
-                    <h3>Next Event</h3>
-                    <p>Status: Pending</p>
-                </div>
+                    <tbody id="eventsTableBody">
+                        <tr class="event-row" data-status="pending">
+                            <td data-label="Event Name">Animusika</td>
+                            <td data-label="Category">Non-Academic</td>
+                            <td data-label="Duration">8:00 AM - 6:00 PM</td>
+                            <td data-label="Venue">Cory Aquino Democratic Space</td>
+                            <td data-label="Organizer">DLSU USG</td>
+                            <td data-label="Status"><span class="status-badge pending">Pending</span></td>
+                            <td data-label="Actions" class="actions-cell">
+                                <button class="view-btn" onclick="location.href='admin-event-review.html'"> View </button>
+                                <button class="approve-btn"> Approve </button>
+                                <button class="reject-btn"> Reject </button>
+                            </td>
+                        </tr>
 
-                <div class="event-card pending">
-                    <h3>Next Event</h3>
-                    <p>Status: Pending</p>
-                </div>
-            </div>
+                        <tr class="event-row" data-status="pending">
+                            <td data-label="Event Name">Leadership Seminar</td>
+                            <td data-label="Category">Career</td>
+                            <td data-label="Duration">1:00 PM - 4:00 PM</td>
+                            <td data-label="Venue">Yuchengco Hall</td>
+                            <td data-label="Organizer">Business Society</td>
+                            <td data-label="Status"><span class="status-badge pending">Pending</span></td>
+                            <td data-label="Actions" class="actions-cell">
+                                <button class="view-btn" onclick="location.href='admin-event-review.html'"> View </button>
+                                <button class="approve-btn"> Approve </button>
+                                <button class="reject-btn"> Reject </button>
+                            </td>
+                        </tr>
 
+                        <tr class="event-row" data-status="approved">
+                            <td data-label="Event Name">Inter-University InfoSec Conference</td>
+                            <td data-label="Category">Academic</td>
+                            <td data-label="Duration">10:00 AM - 3:00 PM</td>
+                            <td data-label="Venue">Gokongwei Hall</td>
+                            <td data-label="Organizer">ROOTCON</td>
+                            <td data-label="Status"><span class="status-badge approved">Approved</span></td>
+                            <td data-label="Actions" class="actions-cell">
+                                <button class="view-btn" onclick="location.href='admin-event-review.html'"> View </button>
+                                <button class="approve-btn"> Approve </button>
+                                <button class="reject-btn"> Reject </button>
+                            </td>
+                        </tr>
 
-            <div class="status-column">
-                <div class="column-header approved-header"> Approved </div>
-                <div class="event-card approved">
-                    <h3>Next Event</h3>
-                    <p>Status: Approved</p>
-                </div>
+                        <tr class="event-row" data-status="approved">
+                            <td data-label="Event Name">Research Expo</td>
+                            <td data-label="Category">Academic</td>
+                            <td data-label="Duration">9:00 AM - 5:00 PM</td>
+                            <td data-label="Venue">Andrew Hall</td>
+                            <td data-label="Organizer">College of Science</td>
+                            <td data-label="Status"><span class="status-badge approved">Approved</span></td>
+                            <td data-label="Actions" class="actions-cell">
+                                <button class="view-btn" onclick="location.href='admin-event-review.html'"> View </button>
+                                <button class="approve-btn"> Approve </button>
+                                <button class="reject-btn"> Reject </button>
+                            </td>
+                        </tr>
 
-                <div class="event-card approved">
-                    <h3>Next Event</h3>
-                    <p>Status: Approved</p>
-                </div>
-            </div>
-
-            <div class="status-column">
-                <div class="column-header rejected-header"> Rejected </div>
-                <div class="event-card rejected">
-                    <h3>Next Event</h3>
-                    <p>Status: Rejected</p>
-                </div>
-
-                <div class="event-card rejected">
-                    <h3>Next Event</h3>
-                    <p>Status: Rejected</p>
-                </div>
+                        <tr class="event-row" data-status="rejected">
+                            <td data-label="Event Name">Hackathon</td>
+                            <td data-label="Category">Non-Academic</td>
+                            <td data-label="Duration">8:00 AM - 8:00 PM</td>
+                            <td data-label="Venue">Gokongwei Hall</td>
+                            <td data-label="Organizer">Computer Society</td>
+                            <td data-label="Status"><span class="status-badge rejected">Rejected</span></td>
+                            <td data-label="Actions" class="actions-cell">
+                                <button class="view-btn" onclick="location.href='admin-event-review.html'"> View </button>
+                                <button class="approve-btn"> Approve </button>
+                                <button class="reject-btn"> Reject </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </main>
 
