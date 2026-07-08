@@ -382,15 +382,6 @@ body{
     display:block;
 }
  
-    .profile-btn::after{
-        content:"▼";
-        font-size:14px;
-        border:none;
-        color:white;
-        position:static;
-        transform:none;
-    }
-
        .dropdown-menu {
         position: absolute;
         right: 0;
