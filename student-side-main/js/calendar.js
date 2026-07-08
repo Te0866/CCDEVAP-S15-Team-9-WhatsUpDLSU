@@ -189,32 +189,6 @@ function openModal(day){
 
 }
 document.getElementById("prevMonth").onclick = () => {
-
-    currentMonth--;
-
-    if(currentMonth < 0){
-        currentMonth = 11;
-        currentYear--;
-    }
-
-    renderCalendar();
-
-};
-
-document.getElementById("nextMonth").onclick = () => {
-
-    currentMonth++;
-
-    if(currentMonth > 11){
-        currentMonth = 0;
-        currentYear++;
-    }
-
-    renderCalendar();
-
-};
-document.getElementById("prevMonth").onclick = () => {
-
     modal.classList.remove("show");
 
     currentMonth--;
@@ -228,7 +202,6 @@ document.getElementById("prevMonth").onclick = () => {
 };
 
 document.getElementById("nextMonth").onclick = () => {
-
     modal.classList.remove("show");
 
     currentMonth++;
@@ -240,4 +213,15 @@ document.getElementById("nextMonth").onclick = () => {
 
     renderCalendar();
 };
+
+closeBtn.onclick = () => {
+    modal.classList.remove("show");
+};
+
+window.onclick = (e) => {
+    if (e.target === modal) {
+        modal.classList.remove("show");
+    }
+};
+
 renderCalendar();
