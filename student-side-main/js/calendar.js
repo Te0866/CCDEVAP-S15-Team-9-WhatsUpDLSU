@@ -96,12 +96,12 @@ for(let i=0;i<firstDay;i++){
     grid.appendChild(blank);
 }
 
-for(let day=1; day<=daysInMonth; day++){
+for(let day = 1; day <= daysInMonth; day++){
 
     const cell = document.createElement("div");
     cell.classList.add("day-cell");
 
-    if(day===today.getDate()){
+    if(day === today.getDate()){
         cell.classList.add("today");
     }
 
@@ -109,30 +109,33 @@ for(let day=1; day<=daysInMonth; day++){
 
     if(events[day]){
 
-    events[day].forEach(event=>{
+        events[day].forEach(event => {
 
-        const dot=document.createElement("div");
-        dot.classList.add("event-dot");
+            const dot = document.createElement("div");
+            dot.classList.add("event-dot");
 
-        if(event.category==="Academic")
-            dot.classList.add("green");
+            if(event.category === "Academic")
+                dot.classList.add("green");
 
-        if(event.category==="Non-Academic")
-            dot.classList.add("yellow");
+            if(event.category === "Non-Academic")
+                dot.classList.add("yellow");
 
-        if(event.category==="Career")
-            dot.classList.add("blue");
+            if(event.category === "Career")
+                dot.classList.add("blue");
 
-        cell.appendChild(dot);
+            cell.appendChild(dot);
+
+        });
+
+    }
+
+    cell.addEventListener("click", () => {
+        openModal(day);
     });
 
+    grid.appendChild(cell);
 }
-    cell.addEventListener("click", ()=>{
-
-    openModal(day);
-
-});
-    const modal = document.getElementById("eventModal");
+const modal = document.getElementById("eventModal");
 const modalDate = document.getElementById("modalDate");
 const modalEvents = document.getElementById("modalEvents");
 const closeBtn = document.querySelector(".close-btn");
@@ -141,20 +144,16 @@ function openModal(day){
 
     modal.classList.add("show");
 
-    modalDate.textContent =
-        `${months[month]} ${day}, ${year}`;
+    modalDate.textContent = `${months[month]} ${day}, ${year}`;
 
     modalEvents.innerHTML = "";
 
     if(!events[day]){
-
-        modalEvents.innerHTML =
-        "<p>No events scheduled.</p>";
-
+        modalEvents.innerHTML = "<p>No events scheduled.</p>";
         return;
     }
 
-    events[day].forEach(event=>{
+    events[day].forEach(event => {
 
         modalEvents.innerHTML += `
             <div class="event-card">
@@ -164,18 +163,17 @@ function openModal(day){
                 <p><strong>Location:</strong> ${event.location}</p>
             </div>
         `;
+
     });
 
 }
 
-closeBtn.onclick = ()=>{
+closeBtn.onclick = () => {
     modal.classList.remove("show");
 };
 
-window.onclick = (e)=>{
-    if(e.target===modal){
+window.onclick = (e) => {
+    if(e.target === modal){
         modal.classList.remove("show");
     }
 };
-    grid.appendChild(cell);
-}
