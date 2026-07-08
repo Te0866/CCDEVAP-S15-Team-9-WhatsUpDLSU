@@ -279,18 +279,6 @@ body{
 
 
 
-@media(max-width:1000px){
-
-    .dashboard-layout{
-        grid-template-columns:1fr;
-    }
-
-    .nav-right{
-        flex-wrap:wrap;
-        justify-content:flex-end;
-    }
-}
-
 @media screen and (max-width:768px){
 
     body{
@@ -300,39 +288,15 @@ body{
 
 
     .navbar{
-    height:50px;
-    padding:0 8px;
-    background:#ece8e3;
-    border:1px solid #444;
+        height:50px;
+        padding:0 8px;
+        background:#ece8e3;
+        border:1px solid #444;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
 
-    display:flex;
-    align-items:center;
-}
-    .nav-right{
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-}
-
-.profile-section{
-    display:flex;
-    align-items:center;
-}
-
-.profile-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:0;
-    margin:0;
-    line-height:0;
-}
-    
     .logo-placeholder{
         width:22px;
         height:22px;
@@ -346,19 +310,29 @@ body{
     }
 
     .nav-right{
-        gap:0;
+        display:flex;
+        align-items:center;
+        gap:6px;
     }
 
     .nav-links{
-        gap:0;
+        display:flex;
+        align-items:center;
+        gap:6px;
     }
 
     .nav-tab{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        height:36px;
+        padding:0 16px;
+
         background:#d8d8d8;
         color:black;
-        border-radius:0;
-        padding:15px 24px;
-        font-size:14px;
+        border-radius:6px;
+        font-size:13px;
         font-weight:600;
     }
 
@@ -366,6 +340,37 @@ body{
         background:#9f9f9f;
         color:black;
     }
+
+    .profile-section{
+        display:flex;
+        align-items:center;
+    }
+
+    .profile-btn{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:0;
+        margin:0;
+        background:none;
+        border:none;
+        line-height:0;
+        cursor:pointer;
+    }
+
+    .profile-btn::after{
+        display:none;
+    }
+
+    .profile-pic{
+        width:36px;
+        height:36px;
+        border-radius:50%;
+        object-fit:cover;
+        border:2px solid white;
+        display:block;
+    }
+
 
     .dashboard-layout{
         display:flex;
@@ -375,12 +380,11 @@ body{
     }
 
     .left-column{
-        display:flex;
-        flex-direction:column;
+        display:contents;
     }
 
-
     .banner{
+        order:1;
         padding:18px;
         border-radius:20px;
     }
@@ -398,28 +402,29 @@ body{
         max-width:100%;
     }
 
-
     .right-column{
+        order:2;
         display:flex;
         flex-direction:row;
         align-items:center;
         gap:0;
     }
 
-    .chart-container{
-    flex:1;
-    height:auto;
-    padding:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-}
 
-.chart-title{
-    font-size:14px;
-}
+    .chart-container{
+        flex:1;
+        height:auto;
+        padding:0;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:8px;
+    }
+
+    .chart-title{
+        font-size:14px;
+    }
 
     #studentChart{
         width:100% !important;
@@ -427,6 +432,7 @@ body{
         max-width:140px;
         max-height:140px;
     }
+
 
     .category-box{
         flex:1;
@@ -438,15 +444,15 @@ body{
     .category-box h2{
         font-family:Georgia, serif;
         font-size:14px;
-        margin-bottom:10px;
         text-align:center;
+        margin-bottom:10px;
     }
 
     .category-item{
-        border-radius:999px;
         padding:8px 12px;
-        font-size:14px;
         margin-bottom:8px;
+        border-radius:999px;
+        font-size:14px;
     }
 
     .color{
@@ -456,11 +462,12 @@ body{
 
 
     .carousel-section{
-        padding:18px;
-        border-radius:0;
-        margin-top:0;
+        order:3;
         width:75%;
         align-self:center;
+        margin-top:0;
+        padding:18px;
+        border-radius:0;
     }
 
     .carousel-section h2{
@@ -474,13 +481,13 @@ body{
     }
 
     .arrow{
-        background:none;
+        width:auto;
+        height:auto;
         border:none;
+        background:none;
         color:black;
         font-size:30px;
         font-weight:bold;
-        width:auto;
-        height:auto;
     }
 
     #interestedEventsContainer{
@@ -492,9 +499,9 @@ body{
     .event-card{
         width:135px;
         height:165px;
+        padding:15px;
         border-radius:28px;
         text-align:center;
-        padding:15px;
     }
 
     .event-card h3{
@@ -506,28 +513,4 @@ body{
     .event-card p{
         font-size:12px;
     }
-    #interestedEventsContainer{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-.dashboard-layout{
-    display:flex;
-    flex-direction:column;
-}
-
-.left-column{
-    display:contents;
-}
-.banner{
-    order:1;
-}
-
-.right-column{
-    order:2;
-}
-
-.carousel-section{
-    order:3;
-}
 }
