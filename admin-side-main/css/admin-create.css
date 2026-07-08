@@ -106,12 +106,37 @@ body{
     cursor:pointer;
 }
 
+.top-bar{
+    width:95%;
+    margin:20px auto 0;
+}
+
+.back-btn{
+    background:#087f5b;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px 18px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.back-btn:hover{
+    background:#066647;
+}
 
 .create-page{
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin-top:60px;
+    margin-top:30px;
+}
+
+.form-title{
+    color:#087f5b;
+    margin-bottom:20px;
+    text-align:center;
 }
 
 
@@ -229,7 +254,11 @@ body{
     }
 
     .create-page{
-        margin-top:30px;
+        margin-top:20px;
+    }
+
+    .form-title{
+        font-size:22px;
     }
 
     .form-container{
