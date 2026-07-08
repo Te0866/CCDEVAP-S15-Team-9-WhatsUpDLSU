@@ -20,9 +20,9 @@
             <div class="nav-right">
 
                 <div class="nav-links">
-                    <a href="dashboard.html" class="nav-tab">Home</a>
-                    <a href="events.html" class="nav-tab">Events</a>
-                    <a href="calendar.html" class="nav-tab">Calendar</a>
+                    <a href="dashboard.php" class="nav-tab">Home</a>
+                    <a href="events.php" class="nav-tab">Events</a>
+                    <a href="calendar.php" class="nav-tab">Calendar</a>
                 </div>
 
                 <div class="profile-section">
@@ -39,7 +39,7 @@
             </div>
         </nav>
 <div class="back-container">
-    <button class="back-btn" onclick="window.location.href='dashboard.html'">
+    <button class="back-btn" onclick="window.location.href='dashboard.php'">
         Back
     </button>
 </div>
