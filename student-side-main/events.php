@@ -18,9 +18,9 @@
 
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="dashboard.html" class="nav-tab">Home</a>
-                    <a href="events.html" class="nav-tab active">Events</a>
-                    <a href="calendar.html" class="nav-tab">Calendar</a>
+                    <a href="dashboard.php" class="nav-tab">Home</a>
+                    <a href="events.php" class="nav-tab active">Events</a>
+                    <a href="calendar.php" class="nav-tab">Calendar</a>
                 </div>
 
                 <div class="profile-section">
@@ -32,7 +32,7 @@
                         <button type="button" class="dark-mode-btn"> DARK/LIGHT MODE </button>
 
                         <button onclick="location.href='edit-profile.html'"> EDIT USER DETAILS </button>
-                        <button onclick="window.location.href='../login-side-main/student-login.html'"> LOG OUT </button>
+                        <button onclick="window.location.href='../login-side-main/student-login.php'"> LOG OUT </button>
                     </div>
                 </div>
             </div>
