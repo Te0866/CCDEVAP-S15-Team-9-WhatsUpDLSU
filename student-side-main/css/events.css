@@ -586,24 +586,25 @@ body{
     }
 
     .profile-btn{
-        width:40px;
-        height:40px;
-        padding:0;
-        font-size:0;
-        border-radius:6px;
-        position:relative;
-    }
-
-    .profile-btn::after{
-        content:"";
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        border-left:6px solid transparent;
-        border-right:6px solid transparent;
-        border-top:8px solid #00a651;
-    }
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: auto;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+    
+.profile-pic{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid white;
+    display:block;
+}
 
     .search-section{
         width:100%;
