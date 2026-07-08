@@ -107,7 +107,7 @@ body{
     width:95%;
     margin:30px auto;
     display:grid;
-    grid-template-columns:3fr 1fr;
+    grid-template-columns:1fr 3fr;
     gap:25px;
 }
 
@@ -143,15 +143,81 @@ body{
     gap:20px;
 }
 
-.image-box{
-    height:220px;
+.carousel{
+    position:relative;
+    height:320px;
     background:white;
-    color:#555;
     border-radius:15px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+}
+
+.carousel-track{
+    display:flex;
+    width:100%;
+    height:100%;
+    transition:transform 0.4s ease;
+}
+
+.carousel-slide{
+    flex:0 0 100%;
+    height:100%;
     display:flex;
     justify-content:center;
     align-items:center;
+    color:#555;
     font-weight:bold;
+}
+
+.carousel-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.carousel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.4);
+    color:white;
+    border:none;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+}
+
+.carousel-btn.prev{ left:10px; }
+.carousel-btn.next{ right:10px; }
+
+.carousel-dots{
+    position:absolute;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:6px;
+    z-index:2;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    border:none;
+    background:rgba(0,0,0,0.25);
+    cursor:pointer;
+    padding:0;
+}
+
+.dot.active{
+    background:#087f5b;
 }
 
 .action-panel{
@@ -170,20 +236,20 @@ body{
     cursor:pointer;
 }
 
+.back-btn{
+    background:#087f5b;
+    color:white;
+}
+
 .approve-btn{
     background:#28a745;
     color:white;
+    margin-top:auto;
 }
 
 .reject-btn{
     background:#dc3545;
     color:white;
-}
-
-.back-btn{
-    background:#087f5b;
-    color:white;
-    margin-top:auto;
 }
 
 .remarks-section{
@@ -261,6 +327,11 @@ body{
         gap:20px;
         border-radius:30px;
         padding:20px;
+        order:1;
+    }
+
+    .action-panel{
+        order:2;
     }
 
     .event-info h1{
@@ -290,30 +361,39 @@ body{
     }
 
     .image-column{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:10px;
+        display:flex;
+        flex-direction:column;
     }
 
-    .image-box{
-        height:140px;
+    .carousel{
+        height:200px;
     }
 
-        .action-panel {
+    .action-panel {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px;
+        order:2;
     }
 
-.remarks-section{
-    grid-column:1 / -1;
-    order:4;
-}
+    .back-btn{
+        margin-top:0;
+        order:1;
+    }
 
-.back-btn{
-    margin-top:0;
-    order:3;
-}
+    .approve-btn{
+        order:2;
+        margin-top:0;
+    }
+
+    .reject-btn{
+        order:3;
+    }
+
+    .remarks-section{
+        grid-column:1 / -1;
+        order:4;
+    }
 
     .approve-btn{
         border:2px solid #4cff7d;
