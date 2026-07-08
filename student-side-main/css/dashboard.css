@@ -341,13 +341,28 @@ body{
     }
 
     .profile-btn{
-        width:42px;
-        height:42px;
-        padding:0;
-        font-size:0;
-        border-radius:0;
-    }
+    background:transparent;
+    border:none;
+    padding:0;
+    width:auto;
+    min-height:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+    .profile-btn::after{
+    display:none;
+}
 
+.profile-pic{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid white;
+    display:block;
+}
 
     .dashboard-layout{
         display:flex;
