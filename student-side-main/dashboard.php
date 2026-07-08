@@ -22,9 +22,9 @@
             <div class="nav-right">
 
                 <div class="nav-links">
-                    <a href="dashboard.html" class="nav-tab active">Home</a>
-                    <a href="events.html" class="nav-tab">Events</a>
-                    <a href="calendar.html" class="nav-tab">Calendar</a>
+                    <a href="dashboard.php" class="nav-tab active">Home</a>
+                    <a href="events.php" class="nav-tab">Events</a>
+                    <a href="calendar.php" class="nav-tab">Calendar</a>
                 </div>
 
                 <div class="profile-section">
@@ -34,7 +34,7 @@
 
                     <div class="dropdown-menu" id="dropdownMenu">
                         <button type="button" class="dark-mode-btn"> DARK/LIGHT MODE </button>
-                        <button onclick="window.location.href='edit-profile.html'"> EDIT USER DETAILS </button>
+                        <button onclick="window.location.href='edit-profile.php'"> EDIT USER DETAILS </button>
                         <button onclick="window.location.href='../login-side-main/login.html'"> LOG OUT </button>
                     </div>
                 </div>
@@ -79,15 +79,15 @@
 
                 <div class="category-box">
                     <h2>Browse by Category</h2>
-                    <div class="category-item" onclick="location.href='events.html?category=Academic'">
+                    <div class="category-item" onclick="location.href='events.php?category=Academic'">
                         <span class="color academic"></span>
                         Academic
                     </div>
-                    <div class="category-item" onclick="location.href='events.html?category=Non-Academic'">
+                    <div class="category-item" onclick="location.href='events.php?category=Non-Academic'">
                         <span class="color nonacademic"></span>
                         Non-academic
                     </div>
-                    <div class="category-item" onclick="location.href='events.html?category=Career'">
+                    <div class="category-item" onclick="location.href='events.php?category=Career'">
                         <span class="color career"></span>
                         Career
                     </div>
