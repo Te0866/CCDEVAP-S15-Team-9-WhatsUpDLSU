@@ -15,12 +15,7 @@
                 <span class="logo-text">WhatsUpDLSU</span>
             </div>
 
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="dashboard.php" class="nav-tab">Home</a>
-                    <a href="events.php" class="nav-tab">Events</a>
-                    <a href="calendar.php" class="nav-tab active">Calendar</a>
-                </div>
+            
 
                 <div class="profile-section">
                     <button class="profile-btn" id="profileBtn">
