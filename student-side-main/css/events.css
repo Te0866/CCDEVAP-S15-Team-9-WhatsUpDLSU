@@ -512,6 +512,27 @@ body{
     color:white;
 }
 
+.commenter-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.anon-toggle{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+}
+
+.anon-toggle input{
+    cursor:pointer;
+}
+
 @media(max-width:1000px){
 
     .events-layout{
