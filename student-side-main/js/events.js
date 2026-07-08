@@ -212,8 +212,21 @@ const commentModalOverlay = document.getElementById('commentModalOverlay');
 const commentForm = document.getElementById('commentForm');
 const postCommentBtn = document.getElementById('postCommentBtn');
 const cancelCommentBtn = document.getElementById('cancelCommentBtn');
+const commenterNameEl = document.getElementById('commenterName');
+const anonToggle = document.getElementById('anonToggle');
+
+function getLoggedInUsername() {
+    // TODO: once PHP sessions/login are in place, replace this with
+    // whatever mechanism actually identifies the logged-in student
+    // (e.g. a value rendered server-side into the page, or a session
+    // check endpoint) rather than localStorage.
+    const stored = localStorage.getItem('loggedInUser');
+    return stored || 'Student Name';
+}
 
 postCommentBtn.addEventListener('click', () => {
+    commenterNameEl.textContent = getLoggedInUsername();
+    anonToggle.checked = false;
     commentModalOverlay.classList.add('show');
 });
 
@@ -231,22 +244,25 @@ function closeCommentModal() {
 commentForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const isAnonymous = anonToggle.checked;
+    const username = getLoggedInUsername();
+
     const newComment = {
         event_id: selectedEvent.id,
-        author: document.getElementById('commentName').value.trim(),
+        author: isAnonymous ? 'Anonymous' : username,
+        // Keep the real username server-side even when posted anonymously,
+        // so moderators/admins can still trace it back if needed. The
+        // PHP endpoint should store this separately and never expose it
+        // in public-facing comment reads when is_anonymous is true.
+        posted_by: username,
+        is_anonymous: isAnonymous,
         text: document.getElementById('commentMessage').value.trim(),
-        // A real timestamp should be generated server-side on insert;
-        // this is just a placeholder for local/dev use.
         created_at: new Date().toISOString()
     };
 
-    if (!newComment.author || !newComment.text) return;
+    if (!newComment.text) return;
 
     try {
-        // --- PHP integration point ---
-        // Once your backend exists, this will POST the comment to be
-        // saved (e.g. in a database) and should return the saved
-        // comment (or the full updated list) as JSON.
         const response = await fetch('submit_comment.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -255,14 +271,10 @@ commentForm.addEventListener('submit', async (e) => {
 
         if (!response.ok) throw new Error('Server responded with an error');
 
-        // Expecting the PHP endpoint to respond with the saved comment,
-        // e.g. { "author": "...", "text": "..." }
         const savedComment = await response.json();
         addCommentLocally(savedComment);
 
     } catch (err) {
-        // No backend yet (or it failed) — fall back to updating
-        // locally so the UI still works during development.
         console.warn('submit_comment.php not available yet, adding comment locally:', err);
         addCommentLocally({ author: newComment.author, text: newComment.text });
     }
