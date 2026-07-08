@@ -119,8 +119,13 @@
             <div class="modal-box">
                 <h3>Post a Comment</h3>
                 <form id="commentForm">
-                    <label for="commentName">Name</label>
-                    <input type="text" id="commentName" name="author" placeholder="Your name" required>
+                    <div class="commenter-row">
+                        <span>Posting as: <strong id="commenterName">Student</strong></span>
+                        <label class="anon-toggle">
+                            <input type="checkbox" id="anonToggle">
+                            Post Anonymously?
+                        </label>
+                    </div>
 
                     <label for="commentMessage">Message</label>
                     <textarea id="commentMessage" name="text" placeholder="Write your comment..." rows="4" required></textarea>
