@@ -18,8 +18,8 @@
 
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="admin-dashboard.html" class="nav-tab active"> Manage </a>
-                    <a href="admin-create.html" class="nav-tab"> Create </a>
+                    <a href="admin-dashboard.html" class="nav-tab active"> Manage Events </a>
+                    <a href="account-management.html" class="nav-tab"> Account Management </a>
                 </div>
 
                 <div class="profile-section">
@@ -27,7 +27,6 @@
 
                     <div class="dropdown-menu" id="dropdownMenu">
                         <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
-                        <button> EDIT USER DETAILS </button>
                         <button onclick="window.location.href='../login-side-main/admin-login.html'"> LOG OUT </button>
                     </div>
                 </div>
@@ -36,6 +35,18 @@
 
 
         <main class="review-page">
+            <aside class="action-panel">
+                <button class="back-btn" onclick="location.href='admin-dashboard.html'"> Back </button>
+
+                <div class="remarks-section">
+                    <h3>Remarks</h3>
+                    <textarea placeholder="Enter remarks here..."></textarea>
+                </div>
+
+                <button class="approve-btn" id="approveBtn"> Approve </button>
+                <button class="reject-btn" id="rejectBtn"> Reject </button>
+            </aside>
+
             <section class="event-panel">
                 <div class="event-info">
                     <h1>Animusika</h1>
@@ -56,22 +67,14 @@
                 </div>
 
                 <div class="image-column">
-                    <div class="image-box"> Event Image 1 </div>
-                    <div class="image-box"> Event Image 2 </div>
+                    <div class="carousel image-carousel">
+                        <div class="carousel-track" id="imageTrack"></div>
+                        <button class="carousel-btn prev" id="imgPrev">&#10094;</button>
+                        <button class="carousel-btn next" id="imgNext">&#10095;</button>
+                        <div class="carousel-dots" id="imageDots"></div>
+                    </div>
                 </div>
             </section>
-
-            <aside class="action-panel">
-                <button class="approve-btn" id="approveBtn"> Approve </button>
-                <button class="reject-btn" id="rejectBtn"> Reject </button>
-
-                <div class="remarks-section">
-                    <h3>Remarks</h3>
-                    <textarea placeholder="Enter remarks here..."></textarea>
-                </div>
-
-                <button class="back-btn" onclick="location.href='admin-dashboard.html'"> Back </button>
-            </aside>
         </main>
 
         <script src="js/admin-event-review.js"></script>
