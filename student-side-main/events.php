@@ -31,7 +31,7 @@
                     <div class="dropdown-menu" id="dropdownMenu">
                         <button type="button" class="dark-mode-btn"> DARK/LIGHT MODE </button>
 
-                        <button onclick="location.href='edit-profile.html'"> EDIT USER DETAILS </button>
+                        <button onclick="location.href='edit-profile.php'"> EDIT USER DETAILS </button>
                         <button onclick="window.location.href='../login-side-main/student-login.php'"> LOG OUT </button>
                     </div>
                 </div>
