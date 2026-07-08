@@ -60,8 +60,8 @@ document.addEventListener("click", (e) => {
 const grid = document.getElementById("calendarGrid");
 const monthTitle = document.getElementById("monthTitle");
 const today = new Date();
-const month = today.getMonth();
-const year = today.getFullYear();
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
 
 const months = [
     "January","February","March",
@@ -70,70 +70,90 @@ const months = [
     "October","November","December"
 ];
 
-monthTitle.textContent =
-`${months[month]} ${year}`;
+function renderCalendar(){
 
-const daysHeader = ["Su","Mo","Tu","We","Th","Fr","Sa"];
+    grid.innerHTML = "";
 
-daysHeader.forEach((day,index)=>{
+    monthTitle.textContent =
+        `${months[currentMonth]} ${currentYear}`;
 
-    const div = document.createElement("div");
-    div.classList.add("day-header");
+    const daysHeader = ["Su","Mo","Tu","We","Th","Fr","Sa"];
 
-    if(index===0){
-        div.classList.add("sunday");
-    }
+    daysHeader.forEach((day,index)=>{
 
-    div.textContent = day;
-    grid.appendChild(div);
-});
+        const div = document.createElement("div");
+        div.classList.add("day-header");
 
-const firstDay = new Date(year,month,1).getDay();
-const daysInMonth = new Date(year,month+1,0).getDate();
+        if(index===0){
+            div.classList.add("sunday");
+        }
 
-for(let i=0;i<firstDay;i++){
-    const blank = document.createElement("div");
-    grid.appendChild(blank);
-}
+        div.textContent = day;
+        grid.appendChild(div);
 
-for(let day = 1; day <= daysInMonth; day++){
-
-    const cell = document.createElement("div");
-    cell.classList.add("day-cell");
-
-    if(day === today.getDate()){
-        cell.classList.add("today");
-    }
-
-    cell.innerHTML = `<div class="day-number">${day}</div>`;
-
-    if(events[day]){
-
-        events[day].forEach(event => {
-
-            const dot = document.createElement("div");
-            dot.classList.add("event-dot");
-
-            if(event.category === "Academic")
-                dot.classList.add("green");
-
-            if(event.category === "Non-Academic")
-                dot.classList.add("yellow");
-
-            if(event.category === "Career")
-                dot.classList.add("blue");
-
-            cell.appendChild(dot);
-
-        });
-
-    }
-
-    cell.addEventListener("click", () => {
-        openModal(day);
     });
 
-    grid.appendChild(cell);
+    const firstDay =
+        new Date(currentYear,currentMonth,1).getDay();
+
+    const daysInMonth =
+        new Date(currentYear,currentMonth+1,0).getDate();
+
+    for(let i=0;i<firstDay;i++){
+
+        const blank=document.createElement("div");
+        grid.appendChild(blank);
+
+    }
+
+    for(let day=1;day<=daysInMonth;day++){
+
+        const cell=document.createElement("div");
+        cell.classList.add("day-cell");
+
+        if(
+            day===today.getDate() &&
+            currentMonth===today.getMonth() &&
+            currentYear===today.getFullYear()
+        ){
+            cell.classList.add("today");
+        }
+
+        cell.innerHTML=`<div class="day-number">${day}</div>`;
+
+        // Show events only in the current month/year
+        if(
+            currentMonth===today.getMonth() &&
+            currentYear===today.getFullYear() &&
+            events[day]
+        ){
+
+            events[day].forEach(event=>{
+
+                const dot=document.createElement("div");
+                dot.classList.add("event-dot");
+
+                if(event.category==="Academic")
+                    dot.classList.add("green");
+
+                if(event.category==="Non-Academic")
+                    dot.classList.add("yellow");
+
+                if(event.category==="Career")
+                    dot.classList.add("blue");
+
+                cell.appendChild(dot);
+
+            });
+
+        }
+
+        cell.addEventListener("click",()=>openModal(day));
+
+        grid.appendChild(cell);
+
+    }
+
 }
 const modal = document.getElementById("eventModal");
 const modalDate = document.getElementById("modalDate");
@@ -144,11 +164,12 @@ function openModal(day){
 
     modal.classList.add("show");
 
-    modalDate.textContent = `${months[month]} ${day}, ${year}`;
+    modalDate.textContent =`${months[currentMonth]} ${day}, ${currentYear}`;
 
     modalEvents.innerHTML = "";
 
-    if(!events[day]){
+    if(
+    currentMonth!==today.getMonth() || currentYear!==today.getFullYear() ||!events[day]){
         modalEvents.innerHTML = "<p>No events scheduled.</p>";
         return;
     }
@@ -167,13 +188,55 @@ function openModal(day){
     });
 
 }
+document.getElementById("prevMonth").onclick = () => {
 
-closeBtn.onclick = () => {
-    modal.classList.remove("show");
+    currentMonth--;
+
+    if(currentMonth < 0){
+        currentMonth = 11;
+        currentYear--;
+    }
+
+    renderCalendar();
+
 };
 
-window.onclick = (e) => {
-    if(e.target === modal){
-        modal.classList.remove("show");
+document.getElementById("nextMonth").onclick = () => {
+
+    currentMonth++;
+
+    if(currentMonth > 11){
+        currentMonth = 0;
+        currentYear++;
     }
+
+    renderCalendar();
+
+};
+document.getElementById("prevMonth").onclick = () => {
+
+    modal.classList.remove("show");
+
+    currentMonth--;
+
+    if(currentMonth < 0){
+        currentMonth = 11;
+        currentYear--;
+    }
+
+    renderCalendar();
+};
+
+document.getElementById("nextMonth").onclick = () => {
+
+    modal.classList.remove("show");
+
+    currentMonth++;
+
+    if(currentMonth > 11){
+        currentMonth = 0;
+        currentYear++;
+    }
+
+    renderCalendar();
 };
