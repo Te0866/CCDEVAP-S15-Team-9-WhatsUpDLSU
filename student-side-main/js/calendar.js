@@ -240,3 +240,4 @@ document.getElementById("nextMonth").onclick = () => {
 
     renderCalendar();
 };
+renderCalendar();
