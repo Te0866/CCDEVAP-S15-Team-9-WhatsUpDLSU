@@ -363,22 +363,24 @@ body{
     }
 
     .profile-btn{
-        width:100%;
-        height:auto;
-        padding:10px 5px;
-        font-size:0;
-        border-radius:6px;
-        background:black;
-        color:white;
-        border:none;
-        cursor:pointer;
-        position:relative;
-        min-height:40px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: auto;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+    .profile-pic{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid white;
+    display:block;
+}
  
     .profile-btn::after{
         content:"▼";
