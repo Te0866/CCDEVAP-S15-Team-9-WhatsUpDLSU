@@ -1,4 +1,3 @@
-console.log("qwerty");
 
 const passwordInput = document.getElementById("password");
 const toggleButton = document.getElementById("togglePassword");
@@ -22,7 +21,7 @@ console.log(page);
     let redirectPath;
     switch (page) {
         case "login.html":
-            redirectPath = "../student-side-main/dashboard.html";
+            redirectPath = "../student-side-main/dashboard.php";
             break;
         case "admin-login.html":
             redirectPath = "../admin-side-main/admin-dashboard.html";
