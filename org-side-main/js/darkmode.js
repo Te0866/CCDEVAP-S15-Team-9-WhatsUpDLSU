@@ -2,7 +2,6 @@ if(localStorage.getItem("theme") === "dark"){
     document.body.classList.add("dark-mode");
 }
 
-
 const darkButtons = document.querySelectorAll(".dark-mode-btn");
 
 darkButtons.forEach(button => {

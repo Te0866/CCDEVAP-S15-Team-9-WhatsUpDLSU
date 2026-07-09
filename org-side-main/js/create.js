@@ -1,4 +1,3 @@
-
 const profileBtn = document.getElementById("profileBtn");
 const dropdownMenu = document.getElementById("dropdownMenu");
 
@@ -13,8 +12,6 @@ document.addEventListener("click",(e)=>{
     }
 });
 
-
-
 const uploadBox = document.querySelector(".upload-box");
 const fileInput = document.getElementById("eventImage");
 
@@ -22,7 +19,7 @@ uploadBox.addEventListener("click",()=>{
     fileInput.click();
 });
 
-const form = document.querySelector(".form-container");
+const form = document.querySelector(".form-card");
 
 document.getElementById("clearBtn").addEventListener("click",()=>{
     form.querySelectorAll("input, textarea, select").forEach(field=>{
