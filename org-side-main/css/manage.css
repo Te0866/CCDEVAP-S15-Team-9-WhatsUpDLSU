@@ -105,9 +105,14 @@ body{
     cursor:pointer;
 }
 
-.top-bar{
-    width:100%;
-    padding:20px 30px 0;
+.header-row{
+    width:95%;
+    margin:20px auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .back-btn{
@@ -126,14 +131,13 @@ body{
 }
 
 .page-title{
+    flex:1;
+    margin:0;
+    text-align:center;
+
     font-size:32px;
     font-weight:bold;
     color:#087f5b;
-    margin-bottom:30px;
-    margin-top:20px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
 }
 
 .search-section{
@@ -165,7 +169,6 @@ body{
 .manage-container{
     width:95%;
     margin:25px auto;
-
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:20px;
@@ -176,11 +179,9 @@ body{
     border-radius:18px;
     padding:20px;
     border-left:6px solid #087f5b;
-
     display:flex;
     flex-direction:column;
     gap:18px;
-
     transition:.2s;
 }
 
@@ -274,6 +275,69 @@ body{
     background:#06694b;
 }
 
+/* ---------- STATUS SUMMARY ---------- */
+
+.stats-container{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.stat-pill{
+    background:white;
+    border-radius:999px;
+    padding:10px 18px;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    border-left:5px solid;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+
+    transition:.2s;
+}
+
+.stat-pill:hover{
+    transform:translateY(-2px);
+}
+
+.stat-number{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.stat-label{
+    font-size:14px;
+    font-weight:600;
+    color:#555;
+}
+
+.stat-pill.pending{
+    border-color:#6c757d;
+}
+
+.stat-pill.pending .stat-number{
+    color:#6c757d;
+}
+
+.stat-pill.approved{
+    border-color:#28a745;
+}
+
+.stat-pill.approved .stat-number{
+    color:#28a745;
+}
+
+.stat-pill.rejected{
+    border-color:#dc3545;
+}
+
+.stat-pill.rejected .stat-number{
+    color:#dc3545;
+}
+
 @media (max-width: 768px){
     
 
@@ -358,4 +422,27 @@ body{
     .event-card{
         margin-bottom: 12px;
     }
+
+    .header-row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .page-title{
+        width:100%;
+        text-align:left;
+    }
+
+    .stats-container{
+        width:100%;
+        justify-content:flex-start;
+        flex-wrap:wrap;
+    }
+
+    .stat-pill{
+        width:auto;
+    }
+
+
 }
