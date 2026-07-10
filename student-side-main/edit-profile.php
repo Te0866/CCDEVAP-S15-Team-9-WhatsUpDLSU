@@ -12,10 +12,12 @@
 
         <nav class="navbar">
 
-    <div class="nav-left"> 
-        <div><img class="logo" src="img/WhatsUpDLSULogo.png" alt="Logo"></div> 
-        <span class="logo-text">WhatsUpDLSU</span> 
-    </div>
+            <div class="nav-left"> 
+                <a href="dashboard.php" class="logo-link">
+                    <div><img class="logo" src="img/WhatsUpDLSULogo.png" alt="Logo"></div>
+                    <span class="logo-text">WhatsUpDLSU</span>
+                </a>
+            </div>
 
             <div class="nav-right">
 
