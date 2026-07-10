@@ -235,8 +235,8 @@ body{
 }
 
 #studentChart{
-    max-width:180px;
-    max-height:180px;
+    width:280px;
+    height:280px;
 }
 
 .category-box{
