@@ -26,13 +26,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["role"] = $user["ROLE"];
 
             if ($user["ROLE"] == "ADMIN") {
-                header("Location: admin-side-main/admin-dashboard.php");
+                header("Location: ../admin-side-main/admin-dashboard.php");
             }
             elseif ($user["ROLE"] == "OFFICER") {
-                header("Location: org-side-main/officer-dashboard.php");
+                header("Location: ../org-side-main/officer-dashboard.php");
             }
             else {
-                header("Location: student-side-main/dashboard.php");
+                header("Location: ../student-side-main/dashboard.php");
             }
 
             exit();
