@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $user = $result->fetch_assoc();
 
-        if (password_verify($password, $user["PASSWORD"])) {
+        if ($password == $user["PASSWORD"]) {
 
             $_SESSION["user_id"] = $user["USER_ID"];
             $_SESSION["username"] = $user["USER_NAME"];
