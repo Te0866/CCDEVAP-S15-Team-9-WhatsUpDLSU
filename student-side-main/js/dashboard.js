@@ -68,7 +68,8 @@ new Chart(chartCanvas, {
         }
     }
 }
-    const popularCanvas = document.getElementById("popularChart");
+});
+const popularCanvas = document.getElementById("popularChart");
 
 new Chart(popularCanvas, {
     type: "bar",
@@ -94,7 +95,7 @@ new Chart(popularCanvas, {
         }]
     },
     options: {
-        indexAxis: "y", // Horizontal bars
+        indexAxis: "y",
         responsive: true,
         maintainAspectRatio: false,
 
@@ -122,5 +123,4 @@ new Chart(popularCanvas, {
             }
         }
     }
-});
 });
