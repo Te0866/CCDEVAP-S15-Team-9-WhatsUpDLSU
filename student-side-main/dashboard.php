@@ -31,7 +31,7 @@
 
                 <div class="profile-section">
                     <button class="profile-btn" id="profileBtn">
-                        <img src="img/profile-test.jpg" alt="Profile" class="profile-pic" onerror="this.onerror=null; this.src='img/default-profile.png';">
+                        <img src="../profiles-pictures/profile-test.jpg" alt="Profile" class="profile-pic" onerror="this.onerror=null; this.src='img/default-profile.png';">
                     </button>
 
                     <div class="dropdown-menu" id="dropdownMenu">
