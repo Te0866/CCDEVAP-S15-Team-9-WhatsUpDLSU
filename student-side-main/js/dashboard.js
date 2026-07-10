@@ -60,7 +60,7 @@ new Chart(chartCanvas, {
                     boxHeight: 15,
                     padding: 15,
              font: {
-            s       size: 12
+                   size: 12
         }
     }
 }
