@@ -50,20 +50,22 @@ new Chart(chartCanvas, {
         }]
     },
     options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                    display: true,
-                     position: "bottom",
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: true,
+            position: "bottom",
+            align: "center",
             labels: {
-                    boxWidth: 15,
-                    boxHeight: 15,
-                    padding: 15,
-             font: {
-                   size: 12
+                boxWidth: 12,
+                boxHeight: 12,
+                padding: 10,
+                font: {
+                    size: 11
+                }
+            }
         }
     }
 }
-        }
-    }
 });
