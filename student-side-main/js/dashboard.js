@@ -53,8 +53,17 @@ new Chart(chartCanvas, {
         responsive: true,
         plugins: {
             legend: {
-                display: false
-            }
+                    display: true,
+                     position: "bottom",
+            labels: {
+                    boxWidth: 15,
+                    boxHeight: 15,
+                    padding: 15,
+             font: {
+            s       size: 12
+        }
+    }
+}
         }
     }
 });
