@@ -1,10 +1,7 @@
 <?php
-$con = mysqli_connect("localhost", "root", "");
+$conn = mysqli_connect("localhost", "root", "Password@1234", "whatsupdlsu");
 
-if(!$con) {
-die("Could not connect: ". mysqli_error());
-} else {
-    mysqli_select_db($con, "whatsupdlsu");
-    echo "qwertyz";
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 ?>
