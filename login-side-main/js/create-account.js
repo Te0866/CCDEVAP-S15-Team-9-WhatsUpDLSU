@@ -1,0 +1,47 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Show/Hide password toggles
+    document.querySelectorAll('.toggle-visibility').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const targetId = btn.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const isHidden = input.type === 'password';
+            input.type = isHidden ? 'text' : 'password';
+            btn.textContent = isHidden ? 'Hide' : 'Show';
+        });
+    });
+
+    // Confirm password live match check
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const matchMessage = document.getElementById('matchMessage');
+
+    function checkMatch() {
+        if (confirmPassword.value.length === 0) {
+            matchMessage.textContent = 'Must match the password above.';
+            matchMessage.className = 'hint';
+            confirmPassword.classList.remove('input-error');
+            return;
+        }
+        if (password.value === confirmPassword.value) {
+            matchMessage.textContent = 'Passwords match.';
+            matchMessage.className = 'hint hint-success';
+            confirmPassword.classList.remove('input-error');
+        } else {
+            matchMessage.textContent = 'Passwords do not match.';
+            matchMessage.className = 'hint hint-error';
+            confirmPassword.classList.add('input-error');
+        }
+    }
+
+    password.addEventListener('input', checkMatch);
+    confirmPassword.addEventListener('input', checkMatch);
+
+    // Block submit if passwords don't match
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+        if (password.value !== confirmPassword.value) {
+            e.preventDefault();
+            checkMatch();
+            confirmPassword.focus();
+        }
+    });
+});
