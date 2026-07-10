@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM USERS WHERE USER_NAME = ? AND STATUS = 'ACTIVE'";
+    $sql = "SELECT * FROM users WHERE user_name = ? AND STATUS = 'ACTIVE'";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -19,16 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $user = $result->fetch_assoc();
 
-        if (password_verify($password, $user["PASSWORD"])) {
+        if (password_verify($password, $user["passwor"])) {
 
-            $_SESSION["user_id"] = $user["USER_ID"];
-            $_SESSION["username"] = $user["USER_NAME"];
-            $_SESSION["role"] = $user["ROLE"];
+            $_SESSION["user_id"] = $user["user_id"];
+            $_SESSION["username"] = $user["user_name"];
+            $_SESSION["role"] = $user["role"];
 
-            if ($user["ROLE"] == "ADMIN") {
+            if ($user["role"] == "ADMIN") {
                 header("Location: admin-side-main/admin-dashboard.php");
             }
-            elseif ($user["ROLE"] == "OFFICER") {
+            elseif ($user["role"] == "OFFICER") {
                 header("Location: org-side-main/officer-dashboard.php");
             }
             else {
