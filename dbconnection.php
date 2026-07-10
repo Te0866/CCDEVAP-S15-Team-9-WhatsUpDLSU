@@ -5,5 +5,6 @@ if(!$con) {
 die("Could not connect: ". mysqli_error());
 } else {
     mysqli_select_db($con, "whatsupdlsu");
+    echo "qwertyz";
 }
 ?>
