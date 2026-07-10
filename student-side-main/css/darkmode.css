@@ -91,3 +91,7 @@ body.dark-mode .legend{
     background:#222;
     color:white;
 }
+
+body.dark-mode .profile-pic{
+    border: none;
+}
