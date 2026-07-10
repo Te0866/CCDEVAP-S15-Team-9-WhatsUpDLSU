@@ -68,4 +68,59 @@ new Chart(chartCanvas, {
         }
     }
 }
+    const popularCanvas = document.getElementById("popularChart");
+
+new Chart(popularCanvas, {
+    type: "bar",
+    data: {
+        labels: [
+            "Hackathon 2026",
+            "Career Fair",
+            "Anime Convention",
+            "Research Expo",
+            "Leadership Seminar"
+        ],
+        datasets: [{
+            label: "Interested Students",
+            data: [125, 98, 81, 67, 54],
+            backgroundColor: [
+                "#087f5b",
+                "#1fa67a",
+                "#39b88c",
+                "#63c9a7",
+                "#8edcc2"
+            ],
+            borderRadius: 8
+        }]
+    },
+    options: {
+        indexAxis: "y", // Horizontal bars
+        responsive: true,
+        maintainAspectRatio: false,
+
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: false
+            }
+        },
+
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: "Interested Students"
+                }
+            },
+            y: {
+                title: {
+                    display: false
+                }
+            }
+        }
+    }
+});
 });
