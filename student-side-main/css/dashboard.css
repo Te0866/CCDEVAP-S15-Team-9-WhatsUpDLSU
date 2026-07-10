@@ -244,6 +244,11 @@ body{
     height:280px;
 }
 
+#popularChart{
+    width:100%;
+    height:300px;
+}
+
 .category-box{
     background:#087f5b;
     color:white;
