@@ -41,64 +41,63 @@
             </div>
         </nav>
 
-        <main class="dashboard-layout">
+       <main class="dashboard-layout">
 
-            <section class="left-column">
-                <div class="banner">
-                    <h1>Hi Username, Discover What's Happening at DLSU</h1>
-                    <p>
-                        Stay updated with university events, organization activities,
-                        workshops, seminars, and campus announcements.
-                    </p>
+    <section class="banner">
+        <h1>Hi Username, Discover What's Happening at DLSU</h1>
+        <p>
+            Stay updated with university events, organization activities,
+            workshops, seminars, and campus announcements.
+        </p>
+    </section>
+
+    <section class="chart-container pie-chart">
+        <h2 class="chart-title">Distribution of Event Categories</h2>
+        <canvas id="studentChart"></canvas>
+    </section>
+
+    <section class="chart-container bar-chart">
+        <h2 class="chart-title">Most Popular Events</h2>
+        <canvas id="popularChart"></canvas>
+    </section>
+
+    <section class="carousel-section">
+        <h2>Interested Events!</h2>
+
+        <div class="carousel">
+            <button class="arrow">&lt;</button>
+
+            <div id="interestedEventsContainer">
+                <div class="event-card">
+                    <h3>No Events Yet</h3>
+                    <p>Add events from the Events page</p>
                 </div>
+            </div>
 
-                <div class="carousel-section">
-                    <h2>Interested Events!</h2>
+            <button class="arrow">&gt;</button>
+        </div>
+    </section>
 
-                    <div class="carousel">
-                        <button class="arrow">&lt;</button>
+    <section class="category-box">
+        <h2>Browse by Category</h2>
 
-                        <div id="interestedEventsContainer">
-                            <div class="event-card">
-                                <h3>No Events Yet</h3>
-                                <p>Add events from the Events page</p>
-                            </div>
-                        </div>
+        <div class="category-item" onclick="location.href='events.php?category=Academic'">
+            <span class="color academic"></span>
+            Academic
+        </div>
 
-                        <button class="arrow">&gt;</button>
-                    </div>
-                </div>
-            </section>
+        <div class="category-item" onclick="location.href='events.php?category=Non-Academic'">
+            <span class="color nonacademic"></span>
+            Non-academic
+        </div>
 
-            <section class="right-column">
+        <div class="category-item" onclick="location.href='events.php?category=Career'">
+            <span class="color career"></span>
+            Career
+        </div>
+    </section>
 
-                <div class="chart-container">
-                    <h2 class="chart-title">Distribution of Event Categories</h2>
-                        <canvas id="studentChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <h2 class="chart-title">Most Popular Events</h2>
-                    <canvas id="popularChart"></canvas>
-                </div>
-                <div class="category-box">
-                    <h2>Browse by Category</h2>
-                    <div class="category-item" onclick="location.href='events.php?category=Academic'">
-                        <span class="color academic"></span>
-                        Academic
-                    </div>
-                    <div class="category-item" onclick="location.href='events.php?category=Non-Academic'">
-                        <span class="color nonacademic"></span>
-                        Non-academic
-                    </div>
-                    <div class="category-item" onclick="location.href='events.php?category=Career'">
-                        <span class="color career"></span>
-                        Career
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
+</main>
         <script src="js/dashboard.js"></script>
         <script src="js/darkmode.js"></script>
     </body>
