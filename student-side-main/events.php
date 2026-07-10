@@ -22,11 +22,7 @@
                     <a href="events.php" class="nav-tab active">Events</a>
                     <a href="calendar.php" class="nav-tab">Calendar</a>
                 </div>
-<div class="back-container">
-    <button class="back-btn" onclick="window.location.href='dashboard.php'">
-        Back
-    </button>
-</div>
+
                 <div class="profile-section">
                     <button class="profile-btn" id="profileBtn">
                         <img src="img/default-profile.png" alt="Profile" class="profile-pic">
@@ -41,7 +37,11 @@
                 </div>
             </div>
         </nav>
-
+<div class="back-container">
+    <button class="back-btn" onclick="window.location.href='dashboard.php'">
+        Back
+    </button>
+</div>
         <section class="search-section">
             <input type="text" id="searchInput" placeholder="Search Events" class="search-input" >
             <input type="date" class="filter-box" >
