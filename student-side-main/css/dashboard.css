@@ -222,7 +222,8 @@ body{
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 320px;
+    min-width: 250px;
+    height: 340px;
 }
 
 .chart-title{
