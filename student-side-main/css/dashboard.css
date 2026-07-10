@@ -165,10 +165,11 @@ body{
 .carousel-section{
     background:#087f5b;
     color:white;
-    border-radius:20px;
-    margin-top:25px;
-    padding:25px;
-    grid-column:2;
+    width:180px;
+    height:140px;
+    background:white;
+    color:black;
+    border-radius:15px;
 }
 
 .carousel-section h2{
