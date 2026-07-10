@@ -95,3 +95,6 @@ body.dark-mode .legend{
 body.dark-mode .profile-pic{
     border: none;
 }
+body.dark-mode .profile-pic{
+    border:2px solid transparent;
+}
