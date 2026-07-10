@@ -76,7 +76,10 @@
                     <h2 class="chart-title">Distribution of Event Categories</h2>
                         <canvas id="studentChart"></canvas>
                 </div>
-
+                <div class="chart-container">
+                    <h2 class="chart-title">Most Popular Events</h2>
+                    <canvas id="popularChart"></canvas>
+                </div>
                 <div class="category-box">
                     <h2>Browse by Category</h2>
                     <div class="category-item" onclick="location.href='events.php?category=Academic'">
