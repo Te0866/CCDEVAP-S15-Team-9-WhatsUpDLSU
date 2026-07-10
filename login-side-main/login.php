@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM USERS WHERE USER_NAME  = ? AND STATUS = 'ACTIVE'";
+    $sql = "SELECT * FROM users WHERE USER_NAME  = ? AND STATUS = 'ACTIVE'";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
