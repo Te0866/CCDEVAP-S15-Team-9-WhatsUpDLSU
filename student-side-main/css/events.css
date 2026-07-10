@@ -87,6 +87,7 @@ body{
     cursor:pointer;
     position: relative;
     font-size:15px;
+    top: 5px;
 }
 
 .back-btn:hover{
