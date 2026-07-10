@@ -98,3 +98,7 @@ body.dark-mode .profile-pic{
 body.dark-mode .profile-pic{
     border:2px solid transparent;
 }
+
+body.dark-mode .profile-btn{
+    background: transparent;
+}
