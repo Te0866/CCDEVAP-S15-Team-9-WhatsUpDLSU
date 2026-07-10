@@ -20,9 +20,9 @@
 
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="officer-dashboard.html" class="nav-tab"> Home </a>
-                    <a href="create.html" class="nav-tab active"> Create </a>
-                    <a href="manage.html" class="nav-tab"> Manage </a>
+                    <a href="officer-dashboard.php" class="nav-tab"> Home </a>
+                    <a href="create.php" class="nav-tab active"> Create </a>
+                    <a href="manage.php" class="nav-tab"> Manage </a>
                 </div>
 
                 <div class="profile-section">
@@ -30,9 +30,9 @@
                         OrgName ▼ 
                     </button>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <button onclick="location.href='edit-organization.html'"> EDIT ORGANIZATION DETAILS </button>
+                        <button onclick="location.href='edit-organization.php'"> EDIT ORGANIZATION DETAILS </button>
                         <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
-                        <button onclick="window.location.href='../login-side-main/officer-login.html'"> LOG OUT </button>
+                        <button onclick="window.location.href='../login-side-main/officer-login.php'"> LOG OUT </button>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
             <div class="header-row">
 
-                <button class="back-btn" onclick="location.href='officer-dashboard.html'">
+                <button class="back-btn" onclick="location.href='officer-dashboard.php'">
                     ◀ Dashboard
                 </button>
 
