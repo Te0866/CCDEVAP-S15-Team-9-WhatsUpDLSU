@@ -39,7 +39,7 @@
         </nav>
 <div class="back-container">
     <button class="back-btn" onclick="window.location.href='dashboard.php'">
-        Back
+        Dashboard
     </button>
 </div>
         <section class="search-section">
