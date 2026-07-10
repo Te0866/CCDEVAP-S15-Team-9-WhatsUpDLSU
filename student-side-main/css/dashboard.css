@@ -489,18 +489,17 @@ body{
     }
 
     .carousel{
-        gap:8px;
-    }
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:25px;
+}
 
     .arrow{
-        width:auto;
-        height:auto;
-        border:none;
-        background:none;
-        color:black;
-        font-size:30px;
-        font-weight:bold;
-    }
+    width:50px;
+    height:50px;
+    font-size:25px;
+}
 
     #interestedEventsContainer{
         display:flex;
