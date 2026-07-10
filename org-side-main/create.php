@@ -32,7 +32,7 @@
                     <div class="dropdown-menu" id="dropdownMenu">
                         <button onclick="location.href='edit-organization.php'"> EDIT ORGANIZATION DETAILS </button>
                         <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
-                        <button onclick="window.location.href='../login-side-main/officer-login.php'"> LOG OUT </button>
+                        <button onclick="window.location.href='../login-side-main/officer-login.html'"> LOG OUT </button>
                     </div>
                 </div>
             </div>
