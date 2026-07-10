@@ -6,10 +6,9 @@
 
 body{
     min-height:100vh;
-    height:100vh;
-    overflow:hidden;
     background:#eef7ec;
     font-family:'Segoe UI', sans-serif;
+    overflow-x:hidden;
 }
 
 
