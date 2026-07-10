@@ -61,22 +61,6 @@
         <canvas id="popularChart"></canvas>
     </section>
 
-    <section class="carousel-section">
-        <h2>Interested Events!</h2>
-
-        <div class="carousel">
-            <button class="arrow">&lt;</button>
-
-            <div id="interestedEventsContainer">
-                <div class="event-card">
-                    <h3>No Events Yet</h3>
-                    <p>Add events from the Events page</p>
-                </div>
-            </div>
-
-            <button class="arrow">&gt;</button>
-        </div>
-    </section>
 
     <section class="category-box">
         <h2>Browse by Category</h2>
@@ -94,6 +78,22 @@
         <div class="category-item" onclick="location.href='events.php?category=Career'">
             <span class="color career"></span>
             Career
+        </div>
+    </section>
+           <section class="carousel-section">
+        <h2>Interested Events!</h2>
+
+        <div class="carousel">
+            <button class="arrow">&lt;</button>
+
+            <div id="interestedEventsContainer">
+                <div class="event-card">
+                    <h3>No Events Yet</h3>
+                    <p>Add events from the Events page</p>
+                </div>
+            </div>
+
+            <button class="arrow">&gt;</button>
         </div>
     </section>
 
