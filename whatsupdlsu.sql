@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2026 at 11:37 AM
+-- Generation Time: Jul 10, 2026 at 12:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -90,14 +90,23 @@ CREATE TABLE `organizations` (
 
 CREATE TABLE `users` (
   `USER_ID` int(11) NOT NULL,
-  `USER_NAME` int(11) NOT NULL,
-  `PASSWORD` int(11) NOT NULL,
+  `USER_NAME` varchar(50) NOT NULL,
+  `PASSWORD` varchar(50) NOT NULL,
   `ROLE` enum('ADMIN','USER','OFFICER') NOT NULL,
   `CREATED_AT` date NOT NULL,
   `STATUS` enum('ACTIVE','INACTIVE') NOT NULL,
-  `ORG_ID` int(8) NOT NULL,
-  `PROFILE_PIC` varchar(225) NOT NULL
+  `ORG_ID` int(8) DEFAULT NULL,
+  `PROFILE_PIC` varchar(225) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`USER_ID`, `USER_NAME`, `PASSWORD`, `ROLE`, `CREATED_AT`, `STATUS`, `ORG_ID`, `PROFILE_PIC`) VALUES
+(1, 'admin', 'admin@1234', 'ADMIN', '2026-07-10', 'ACTIVE', 0, ''),
+(2, 'officer', 'officer@1234', 'OFFICER', '2026-07-10', 'ACTIVE', 1, NULL),
+(3, 'user', 'user@1234', 'USER', '2026-07-10', 'ACTIVE', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -128,6 +137,12 @@ ALTER TABLE `organizations`
   ADD PRIMARY KEY (`ORG_ID`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`USER_ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -154,6 +169,12 @@ ALTER TABLE `notification`
 --
 ALTER TABLE `organizations`
   MODIFY `ORG_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
