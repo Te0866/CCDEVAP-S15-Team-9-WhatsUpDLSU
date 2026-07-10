@@ -1,36 +1,154 @@
+
+
+Skip to content
+Using De La Salle University Mail with screen readers
+
+1 of 8,260
+(no subject)
+Inbox
+
+Raymond Dale Sy
+Attachments
+8:15 PM (3 minutes ago)
+to me
+
+ETO JS CONTENT
+-----------------
+document.addEventListener('DOMContentLoaded', function () {
+    // Show/Hide password toggles
+    document.querySelectorAll('.toggle-visibility').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const targetId = btn.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const isHidden = input.type === 'password';
+            input.type = isHidden ? 'text' : 'password';
+            btn.textContent = isHidden ? 'Hide' : 'Show';
+        });
+    });
+
+    // Confirm password live match check
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const matchMessage = document.getElementById('matchMessage');
+
+    function checkMatch() {
+        if (confirmPassword.value.length === 0) {
+            matchMessage.textContent = 'Must match the password above.';
+            matchMessage.className = 'hint';
+            confirmPassword.classList.remove('input-error');
+            return;
+        }
+        if (password.value === confirmPassword.value) {
+            matchMessage.textContent = 'Passwords match.';
+            matchMessage.className = 'hint hint-success';
+            confirmPassword.classList.remove('input-error');
+        } else {
+            matchMessage.textContent = 'Passwords do not match.';
+            matchMessage.className = 'hint hint-error';
+            confirmPassword.classList.add('input-error');
+        }
+    }
+
+    password.addEventListener('input', checkMatch);
+    confirmPassword.addEventListener('input', checkMatch);
+
+    // Block submit if passwords don't match
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+        if (password.value !== confirmPassword.value) {
+            e.preventDefault();
+            checkMatch();
+            confirmPassword.focus();
+        }
+    });
+});
+ 2 Attachments
+  •  Scanned by Gmail Security Sandbox
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsUpDLSU - Create Account</title>
 
     <link rel="stylesheet" href="css/create-account.css">
 </head>
 <body>
-    <main class="register-page">
-        <h1 class="site-title">WhatsUpDLSU</h1>
-        <p class="site-description">
+
+    <header class="navbar">
+        <div class="nav-left">
+            <div>
+                <img class="logo" src="img/WhatsUpDLSULogo.png" alt="Logo">
+            </div>
+            <span class="logo-text">WhatsUpDLSU</span>
+        </div>
+    </header>
+
+    <main class="page-wrap">
+
+        <div class="page-header">
+            <a href="student-login.html" class="back-btn">◀ Login</a>
+            <h1>Create Account</h1>
+            <span class="spacer"></span>
+        </div>
+
+        <p class="page-description">
             Create your student account to receive updates on university events,
             organization activities, workshops, seminars, and campus announcements.
         </p>
-        <div class="register-container">
-            <h2>Create Account</h2>
-            <form>
+
+        <form id="registerForm" novalidate>
+
+            <section class="card">
+                <h2 class="card-title">Account Information</h2>
+
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Input Your Name">
+                    <label for="name">Full Name <span class="tag tag-required">Required</span></label>
+                    <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="juan.delacruz@dlsu.edu.ph">
+                    <label for="username">Username <span class="tag tag-required">Required</span></label>
+                    <input type="text" id="username" name="username" placeholder="juandelacruz" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="password123">
+                    <label for="email">DLSU Email <span class="tag tag-required">Required</span></label>
+                    <input type="email" id="email" name="email" placeholder="juan_delacruz@dlsu.edu.ph" required>
                 </div>
-                <button type="submit" class="create-btn"> CREATE ACCOUNT </button>
-            </form>
-        </div>
-        <a href="student-login.html" class="login-link"> Back to Login </a>
+            </section>
+
+            <section class="card">
+                <h2 class="card-title">Security</h2>
+
+                <div class="form-group">
+                    <label for="password">Password <span class="tag tag-required">Required</span></label>
+                    <div class="password-field">
+                        <input type="password" id="password" name="password" placeholder="Enter password" required minlength="8">
+                        <button type="button" class="toggle-visibility" data-target="password">Show</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password <span class="tag tag-required">Required</span></label>
+                    <div class="password-field">
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required>
+                        <button type="button" class="toggle-visibility" data-target="confirmPassword">Show</button>
+                    </div>
+                    <p id="matchMessage" class="hint">Must match the password above.</p>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <a href="student-login.html" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </div>
+
+        </form>
+
     </main>
+
+    <script src="js/create-account.js"></script>
 </body>
 </html>
+create-account.html
+Displaying create-account.html.
