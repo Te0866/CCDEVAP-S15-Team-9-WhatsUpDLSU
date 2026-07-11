@@ -1,43 +1,6 @@
 <?php
-session_start();
-require_once "dbconnection.php";
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login-side-main/login.html");
-    exit;
-}
-
-$userId = $_SESSION['user_id'];
-
-$stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE USER_ID = ?");
-mysqli_stmt_bind_param($stmt, "i", $userId);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$user = mysqli_fetch_assoc($result);
-
-if (!$user) {
-    die("User not found.");
-}
-
-$profileDir = __DIR__ . "/../profile-pictures/{$user['USER_ID']}/";
-$webProfileDir = "../profile-pictures/{$user['USER_ID']}/";
-
-// --- DEBUG: remove after checking ---
-var_dump($user['USER_ID']);
-echo "<br>Looking in: " . $profileDir;
-echo "<br>pfp.jpg exists: " . (file_exists($profileDir . "pfp.jpg") ? "YES" : "NO");
-echo "<br>pfp.png exists: " . (file_exists($profileDir . "pfp.png") ? "YES" : "NO");
+echo "TEST123";
 exit;
-// --- END DEBUG ---
-
-$profilePath = "../profile-pictures/default-profile.png"; // fallback
-
-foreach (["pfp.png", "pfp.jpg"] as $filename) {
-    if (file_exists($profileDir . $filename)) {
-        $profilePath = $webProfileDir . $filename;
-        break;
-    }
-}
 ?>
 
 <!DOCTYPE html>
