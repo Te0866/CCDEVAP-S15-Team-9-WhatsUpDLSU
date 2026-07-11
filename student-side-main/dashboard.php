@@ -1,7 +1,4 @@
 <?php
-echo "TEST123";
-exit;
-
 session_start();
 require_once "dbconnection.php";
 
@@ -22,22 +19,13 @@ if (!$user) {
     die("User not found.");
 }
 
-$profileDir = __DIR__ . "/../profile-pictures/{$user['USER_ID']}/";
-$webProfileDir = "../profile-pictures/{$user['USER_ID']}/";
-
-// --- DEBUG: remove after checking ---
-var_dump($user['USER_ID']);
-echo "<br>Looking in: " . $profileDir;
-echo "<br>pfp.jpg exists: " . (file_exists($profileDir . "pfp.jpg") ? "YES" : "NO");
-echo "<br>pfp.png exists: " . (file_exists($profileDir . "pfp.png") ? "YES" : "NO");
-exit;
-// --- END DEBUG ---
-
-$profilePath = "../profile-pictures/default-profile.png"; // fallback
+// Check for pfp.png then pfp.jpg in the user's folder
+$profileDir = "../profile-pictures/{$user['USER_ID']}/";
+$profilePath = "img/default-profile.png"; // fallback default, adjust below
 
 foreach (["pfp.png", "pfp.jpg"] as $filename) {
     if (file_exists($profileDir . $filename)) {
-        $profilePath = $webProfileDir . $filename;
+        $profilePath = $profileDir . $filename;
         break;
     }
 }
