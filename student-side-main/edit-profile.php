@@ -56,7 +56,7 @@ $activeTab = '';
     <div class="form-group">
         <label>Username</label>
         <div class="input-wrapper">
-            <input type="text" name="username" value="<?php echo htmlspecialchars($user['USER_NAME']); ?>">
+            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user['USER_NAME']); ?>">
         </div>
     </div>
     <div class="form-group">
