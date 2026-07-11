@@ -23,6 +23,8 @@ if (!$user) {
 }
 
 require_once __DIR__ . "/../profile-picture.php";
+
+$activeTab = 'home';
 ?>
 
 <!DOCTYPE html>
@@ -39,38 +41,9 @@ require_once __DIR__ . "/../profile-picture.php";
     
     <body>
 
-        <nav class="navbar">
+        <?php require_once __DIR__ . "/../navbar.php"; ?>
 
-            <div class="nav-left">
-                <a href="dashboard.php" class="nav-left">
-                    <div><img class="logo" src="img/WhatsUpDLSULogo.png" alt="Logo"></div>
-                    <span class="logo-text">WhatsUpDLSU</span>
-                </a>
-            </div>
-
-            <div class="nav-right">
-
-                <div class="nav-links">
-                    <a href="dashboard.php" class="nav-tab active">Home</a>
-                    <a href="events.php" class="nav-tab">Events</a>
-                    <a href="calendar.php" class="nav-tab">Calendar</a>
-                </div>
-
-                <div class="profile-section">
-                    <button class="profile-btn" id="profileBtn">
-                        <img src="<?php echo htmlspecialchars($profilePath); ?>" alt="Profile" class="profile-pic">
-                    </button>
-
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <button type="button" class="dark-mode-btn"> DARK/LIGHT MODE </button>
-                        <button onclick="window.location.href='edit-profile.php'"> EDIT USER DETAILS </button>
-                        <button onclick="window.location.href='../login-side-main/login.html'"> LOG OUT </button>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-       <main class="dashboard-layout">
+        <main class="dashboard-layout">
 
     <section class="banner">
         <h1>Hi Username, Discover What's Happening at DLSU</h1>
