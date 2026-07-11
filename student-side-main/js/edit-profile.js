@@ -51,11 +51,20 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
         return;
     }
 
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+
+    const file = profileImage.files[0];
+    if (file) {
+        formData.append("profileImage", file);
+    }
+
     try {
         const response = await fetch("update-profile.php", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
+            body: formData
+            // NOTE: no Content-Type header — the browser sets it automatically for FormData, including the required boundary string
         });
 
         const result = await response.json();
