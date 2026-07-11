@@ -52,7 +52,7 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch("update-profile.php", {
+        const response = await fetch("/../update-profile.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
