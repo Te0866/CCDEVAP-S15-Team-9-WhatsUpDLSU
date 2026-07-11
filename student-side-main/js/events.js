@@ -82,6 +82,8 @@ function renderSidebar(events) {
 }
 
 function showEventDetail(event) {
+    document.getElementById("interestedBtn").style.display = "inline-block";
+    document.getElementById("postCommentBtn").style.display = "inline-block";
     document.getElementById('eventTitle').textContent = event.title;
     document.getElementById('category').textContent = event.category;
     document.getElementById('duration').textContent =
@@ -320,6 +322,8 @@ function showNoEvent() {
     document.getElementById("organizer").textContent = "-";
     document.getElementById("description").textContent =
         "There are currently no approved events.";
+    document.getElementById("interestedBtn").style.display = "none";
+    document.getElementById("postCommentBtn").style.display = "none";
 
     renderImageCarousel([]);
     renderCommentsCarousel([]);
