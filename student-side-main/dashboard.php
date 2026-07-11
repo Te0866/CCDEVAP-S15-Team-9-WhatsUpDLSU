@@ -1,4 +1,7 @@
 <?php
+echo "TEST123";
+exit;
+
 session_start();
 require_once "dbconnection.php";
 
