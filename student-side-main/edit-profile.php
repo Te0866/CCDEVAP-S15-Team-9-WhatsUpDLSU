@@ -49,7 +49,7 @@ $activeTab = '';
     <div class="form-group profile-upload">
         <label>Profile Picture</label>
 
-        <img src="img/default-profile.png" alt="Profile Picture" id="profilePreview" class="profile-preview">
+        <img src="<?php echo htmlspecialchars($profilePath); ?>" alt="Profile" class="profile-pic">
         <input type="file" id="profileImage" accept="image/*" hidden>
         <button type="button"
                 class="upload-btn"
