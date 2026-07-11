@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../dbconnection.php";
+require_once __DIR__ . "/../dbconnection.php";
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login-side-main/login.html");
@@ -10,6 +10,9 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE USER_ID = ?");
+if (!$stmt) {
+    die("Prepare failed: " . mysqli_error($conn));
+}
 mysqli_stmt_bind_param($stmt, "i", $userId);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
@@ -19,17 +22,7 @@ if (!$user) {
     die("User not found.");
 }
 
-$profileDir = __DIR__ . "/../profile-pictures/{$user['USER_ID']}/";
-$webProfileDir = "../profile-pictures/{$user['USER_ID']}/";
-
-$profilePath = "../profile-pictures/default-profile.png"; // fallback
-
-foreach (["pfp.png", "pfp.jpg"] as $filename) {
-    if (file_exists($profileDir . $filename)) {
-        $profilePath = $webProfileDir . $filename;
-        break;
-    }
-}
+require_once __DIR__ . "/../profile-picture.php";
 ?>
 
 <!DOCTYPE html>
