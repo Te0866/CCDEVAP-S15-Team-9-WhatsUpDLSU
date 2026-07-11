@@ -46,7 +46,7 @@ $activeTab = 'home';
         <main class="dashboard-layout">
 
     <section class="banner">
-        <h1>Hi Username, Discover What's Happening at DLSU</h1>
+        <h1>Hi <?php echo htmlspecialchars($user['USER_NAME']); ?>, Discover What's Happening at DLSU</h1>
         <p>
             Stay updated with university events, organization activities,
             workshops, seminars, and campus announcements.
