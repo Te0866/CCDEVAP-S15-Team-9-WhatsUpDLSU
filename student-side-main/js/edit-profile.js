@@ -70,4 +70,3 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
         alert("Something went wrong while updating your profile.");
     }
 });
-});
