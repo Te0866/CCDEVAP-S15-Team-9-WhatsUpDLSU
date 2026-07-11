@@ -552,6 +552,13 @@ body{
     cursor:pointer;
 }
 
+.no-events {
+    padding: 20px;
+    text-align: center;
+    color: #777;
+    font-weight: bold;
+}
+
 @media(max-width:1000px){
 
     .events-layout{
