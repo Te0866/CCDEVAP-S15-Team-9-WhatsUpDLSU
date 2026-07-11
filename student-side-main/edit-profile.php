@@ -31,9 +31,8 @@ $activeTab = '';
         <link rel="stylesheet" href="css/edit-profile.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-
     <body>
-
+        
         <?php require_once __DIR__ . "/../navbar.php"; ?>
 
 <div class="back-container">
@@ -42,14 +41,11 @@ $activeTab = '';
     </button>
 </div>
         <main class="profile-page">
-
             <div class="profile-container">
                 <form id="profileForm">
-
     <div class="form-group profile-upload">
         <label>Profile Picture</label>
-
-        <img src="<?php echo htmlspecialchars($profilePath); ?>" alt="Profile" class="profile-pic">
+        <img src="<?php echo htmlspecialchars($profilePath); ?>" alt="Profile Picture" id="profilePreview" class="profile-preview">
         <input type="file" id="profileImage" accept="image/*" hidden>
         <button type="button"
                 class="upload-btn"
@@ -57,14 +53,12 @@ $activeTab = '';
             Upload Image
         </button>
     </div>
-
     <div class="form-group">
         <label>Username</label>
         <div class="input-wrapper">
             <input type="text" placeholder="Juan">
         </div>
     </div>
-
     <div class="form-group">
         <label>Password</label>
         <div class="input-wrapper">
@@ -74,13 +68,10 @@ $activeTab = '';
             </button>
         </div>
     </div>
-
 </form>
             </div>
-
             <button class="update-btn" id="updateBtn" > UPDATE </button>
         </main>
-
         <script src="js/edit-profile.js"></script>
         <script src="js/darkmode.js"></script>
     </body>
