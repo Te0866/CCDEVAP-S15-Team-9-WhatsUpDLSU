@@ -13,39 +13,61 @@ document.addEventListener("click", () => {
 let eventsData = [];
 let selectedEvent = null;
 
-fetch('get-events.php').then(res => res.json()).then(data => {
+fetch('get-events.php')
+    .then(res => res.json())
+    .then(data => {
+
         eventsData = data;
 
         const params = new URLSearchParams(window.location.search);
         const categoryParam = params.get('category');
 
+        let eventsToDisplay = eventsData;
+
         if (categoryParam) {
-            const categorySelect = document.querySelectorAll('.filter-box')[1]; 
+            const categorySelect = document.querySelectorAll('.filter-box')[1];
             categorySelect.value = categoryParam;
 
-            const filtered = eventsData.filter(e => e.category === categoryParam);
-            renderSidebar(filtered);
-            if (filtered.length > 0) {
-                selectedEvent = filtered[0];
-                showEventDetail(selectedEvent);
-            }
-        } else {
-            renderSidebar(eventsData);
-            if (eventsData.length > 0) {
-                selectedEvent = eventsData[0];
-                showEventDetail(selectedEvent);
-            }
+            eventsToDisplay = eventsData.filter(event =>
+                event.category.toUpperCase() === categoryParam.toUpperCase()
+            );
         }
+
+        renderSidebar(eventsToDisplay);
+
+        if (eventsToDisplay.length > 0) {
+            selectedEvent = eventsToDisplay[0];
+            showEventDetail(selectedEvent);
+        } else {
+            showNoEvent();
+        }
+    })
+    .catch(error => {
+        console.error("Error loading events:", error);
+        showNoEvent();
     });
 
 function renderSidebar(events) {
     const sidebar = document.getElementById('eventSidebar');
     sidebar.innerHTML = '';
 
+    if (events.length === 0) {
+        sidebar.innerHTML = `
+            <div class="no-events">
+                No Events Available
+            </div>
+        `;
+        return;
+    }
+
     events.forEach((event, index) => {
         const btn = document.createElement('button');
         btn.className = 'event-item';
-        if (index === 0) btn.classList.add('active');
+
+        if (index === 0) {
+            btn.classList.add('active');
+        }
+
         btn.textContent = event.title;
 
         btn.addEventListener('click', () => {
@@ -288,4 +310,18 @@ function addCommentLocally(comment) {
     renderCommentsCarousel(selectedEvent.comments);
 }
 
+function showNoEvent() {
+    document.getElementById("eventTitle").textContent = "No Events Available";
+    document.getElementById("category").textContent = "-";
+    document.getElementById("duration").textContent = "-";
+    document.getElementById("venue").textContent = "-";
+    document.getElementById("status").textContent = "-";
+    document.getElementById("registration").textContent = "-";
+    document.getElementById("organizer").textContent = "-";
+    document.getElementById("description").textContent =
+        "There are currently no approved events.";
+
+    renderImageCarousel([]);
+    renderCommentsCarousel([]);
+}
 /* post comment stuff is up here in case I can't find it */
