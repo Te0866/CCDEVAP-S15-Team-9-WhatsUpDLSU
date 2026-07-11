@@ -13,7 +13,7 @@ document.addEventListener("click", () => {
 let eventsData = [];
 let selectedEvent = null;
 
-fetch('events.json').then(res => res.json()).then(data => {
+fetch('get-events.php).then(res => res.json()).then(data => {
         eventsData = data;
 
         const params = new URLSearchParams(window.location.search);
