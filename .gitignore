@@ -1,4 +1,2 @@
-cat > .gitignore << 'EOF'
 profile-pictures/*
 !profile-pictures/default-profile.png
-EOF
