@@ -56,13 +56,13 @@ $activeTab = '';
     <div class="form-group">
         <label>Username</label>
         <div class="input-wrapper">
-            <input type="text" placeholder="Juan">
+            <input type="text" name="username" value="<?php echo htmlspecialchars($user['USERNAME']); ?>">
         </div>
     </div>
     <div class="form-group">
         <label>Password</label>
         <div class="input-wrapper">
-            <input type="password" id="password" placeholder="password123">
+            <input type="password" id="password" name="password" value="<?php echo htmlspecialchars($user['PASSWORD']); ?>">
             <button type="button" id="togglePassword" class="show-password-btn">
                 Show
             </button>
