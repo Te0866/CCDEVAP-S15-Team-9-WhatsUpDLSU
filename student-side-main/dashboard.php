@@ -67,20 +67,23 @@ $activeTab = 'home';
     <section class="category-box">
         <h2>Browse by Category</h2>
 
-        <div class="category-item" onclick="location.href='events.php?category=Academic'">
+        <div class="category-item"
+         onclick="location.href='events.php?category=ACADEMIC'">
             <span class="color academic"></span>
-            Academic
+                Academic
         </div>
 
-        <div class="category-item" onclick="location.href='events.php?category=Non-Academic'">
+        <div class="category-item"
+         onclick="location.href='events.php?category=NON-ACADEMIC'">
             <span class="color nonacademic"></span>
-            Non-academic
+                Non-academic
         </div>
 
-        <div class="category-item" onclick="location.href='events.php?category=Career'">
+        <div class="category-item"
+         onclick="location.href='events.php?category=CAREER'">
             <span class="color career"></span>
-            Career
-        </div>
+                Career
+    </div>
     </section>
            <section class="carousel-section">
         <h2>Interested Events!</h2>
