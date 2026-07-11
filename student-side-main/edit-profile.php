@@ -1,3 +1,30 @@
+<?php
+session_start();
+require_once __DIR__ . "/../dbconnection.php";
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login-side-main/login.html");
+    exit;
+}
+
+$userId = $_SESSION['user_id'];
+
+$stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE USER_ID = ?");
+if (!$stmt) {
+    die("Prepare failed: " . mysqli_error($conn));
+}
+mysqli_stmt_bind_param($stmt, "i", $userId);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$user = mysqli_fetch_assoc($result);
+
+if (!$user) {
+    die("User not found.");
+}
+
+require_once __DIR__ . "/../profile-picture.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
