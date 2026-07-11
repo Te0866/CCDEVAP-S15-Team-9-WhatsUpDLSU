@@ -30,6 +30,8 @@ foreach (["pfp.png", "pfp.jpg"] as $filename) {
         break;
     }
 }
+
+echo $profileDir;
 ?>
 
 <!DOCTYPE html>
