@@ -1,4 +1,6 @@
-<?php
+Let's start with events.php, since we have the full HTML/CSS/JS for it already. For calendar.php, I don't have the original file content — flag that at the end.
+events.php
+php<?php
 session_start();
 require_once __DIR__ . "/../dbconnection.php";
 
@@ -23,6 +25,8 @@ if (!$user) {
 }
 
 require_once __DIR__ . "/../profile-picture.php";
+
+$activeTab = 'events';
 ?>
 
 <!DOCTYPE html>
@@ -37,35 +41,8 @@ require_once __DIR__ . "/../profile-picture.php";
 
     <body>
 
-        <nav class="navbar">
-            <div class="nav-left">
-                <a href="dashboard.php" class="nav-left">
-                    <div><img class="logo" src="img/WhatsUpDLSULogo.png" alt="Logo"></div>
-                    <span class="logo-text">WhatsUpDLSU</span>
-                </a>
-            </div>
+        <?php require_once __DIR__ . "/../navbar.php"; ?>
 
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="dashboard.php" class="nav-tab">Home</a>
-                    <a href="events.php" class="nav-tab active">Events</a>
-                    <a href="calendar.php" class="nav-tab">Calendar</a>
-                </div>
-
-                <div class="profile-section">
-                    <button class="profile-btn" id="profileBtn">
-                        <img src="../profile-pictures/profile-test.jpg" alt="Profile" class="profile-pic" onerror="this.onerror=null; this.src='img/default-profile.png';">
-                    </button>
-
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <button type="button" class="dark-mode-btn"> DARK/LIGHT MODE </button>
-
-                        <button onclick="location.href='edit-profile.php'"> EDIT USER DETAILS </button>
-                        <button onclick="window.location.href='../login-side-main/student-login.html'"> LOG OUT </button>
-                    </div>
-                </div>
-            </div>
-        </nav>
 <div class="back-container">
     <button class="back-btn" onclick="window.location.href='dashboard.php'">
         Dashboard
