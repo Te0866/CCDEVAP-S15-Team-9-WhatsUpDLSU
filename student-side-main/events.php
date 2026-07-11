@@ -1,6 +1,4 @@
-Let's start with events.php, since we have the full HTML/CSS/JS for it already. For calendar.php, I don't have the original file content — flag that at the end.
-events.php
-php<?php
+<?php
 session_start();
 require_once __DIR__ . "/../dbconnection.php";
 
