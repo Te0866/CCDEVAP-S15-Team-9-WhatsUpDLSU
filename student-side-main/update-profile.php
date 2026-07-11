@@ -8,14 +8,45 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
-$username = trim($data['username'] ?? '');
-$password = $data['password'] ?? '';
+$username = trim($_POST['username'] ?? '');
+$password = $_POST['password'] ?? '';
 $userId = $_SESSION['user_id'];
 
 if ($username === '' || $password === '') {
     echo json_encode(["success" => false, "error" => "Missing fields"]);
     exit;
+}
+
+// Handle image upload if one was provided
+if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
+    $allowedTypes = ['image/png' => 'png', 'image/jpeg' => 'jpg'];
+    $mimeType = mime_content_type($_FILES['profileImage']['tmp_name']);
+
+    if (!isset($allowedTypes[$mimeType])) {
+        echo json_encode(["success" => false, "error" => "Only PNG and JPG images are allowed."]);
+        exit;
+    }
+
+    $extension = $allowedTypes[$mimeType];
+    $targetDir = __DIR__ . "/../profile-pictures/{$userId}/";
+
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0755, true);
+    }
+
+    // Remove any existing pfp (regardless of prior extension) to avoid stale duplicates
+    foreach (['png', 'jpg'] as $ext) {
+        $existing = $targetDir . "pfp.{$ext}";
+        if (file_exists($existing)) {
+            unlink($existing);
+        }
+    }
+
+    $targetPath = $targetDir . "pfp.{$extension}";
+    if (!move_uploaded_file($_FILES['profileImage']['tmp_name'], $targetPath)) {
+        echo json_encode(["success" => false, "error" => "Failed to save uploaded image."]);
+        exit;
+    }
 }
 
 $stmt = mysqli_prepare($conn, "UPDATE users SET USER_NAME = ?, PASSWORD = ? WHERE USER_ID = ?");
@@ -27,17 +58,8 @@ if (!$stmt) {
 mysqli_stmt_bind_param($stmt, "ssi", $username, $password, $userId);
 
 if (mysqli_stmt_execute($stmt)) {
-    $rowsAffected = mysqli_stmt_affected_rows($stmt);
-    echo json_encode([
-        "success" => true,
-        "debug_session_user_id" => $userId,
-        "debug_received_username" => $username,
-        "debug_rows_affected" => $rowsAffected
-    ]);
+    echo json_encode(["success" => true]);
 } else {
-    echo json_encode([
-        "success" => false,
-        "error" => mysqli_error($conn)
-    ]);
+    echo json_encode(["success" => false, "error" => mysqli_error($conn)]);
 }
 ?>
