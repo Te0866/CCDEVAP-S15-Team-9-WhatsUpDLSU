@@ -13,6 +13,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 $username = trim($data['username'] ?? '');
 $password = $data['password'] ?? '';
 
+// --- DEBUG ---
+error_log("Session user_id: " . ($_SESSION['user_id'] ?? 'NOT SET'));
+error_log("Received username: " . $username);
+error_log("Received password: " . $password);
+// --- END DEBUG ---
+
 if ($username === '' || $password === '') {
     echo json_encode(["success" => false, "error" => "Missing fields"]);
     exit;
