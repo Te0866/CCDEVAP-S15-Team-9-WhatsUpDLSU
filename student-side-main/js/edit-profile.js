@@ -42,6 +42,32 @@ profileImage.addEventListener("change", () => {
     reader.readAsDataURL(file);
 });
 
-document.getElementById("updateBtn").addEventListener("click", () => {
-    alert("Profile updated successfully.");
+document.getElementById("updateBtn").addEventListener("click", async () => {
+    const username = document.getElementById("username").value.trim();
+    const password = passwordInput.value;
+
+    if (!username || !password) {
+        alert("Username and password cannot be empty.");
+        return;
+    }
+
+    try {
+        const response = await fetch("update-profile.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("Profile updated successfully.");
+        } else {
+            alert("Update failed: " + (result.error || "Unknown error"));
+        }
+    } catch (err) {
+        console.error("Update error:", err);
+        alert("Something went wrong while updating your profile.");
+    }
+});
 });
