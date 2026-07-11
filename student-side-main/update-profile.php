@@ -43,10 +43,18 @@ if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOA
     }
 
     $targetPath = $targetDir . "pfp.{$extension}";
-    if (!move_uploaded_file($_FILES['profileImage']['tmp_name'], $targetPath)) {
-        echo json_encode(["success" => false, "error" => "Failed to save uploaded image."]);
-        exit;
-    }
+if (!move_uploaded_file($_FILES['profileImage']['tmp_name'], $targetPath)) {
+    $error = error_get_last();
+    echo json_encode([
+        "success" => false,
+        "error" => "Failed to save uploaded image.",
+        "debug_target_path" => $targetPath,
+        "debug_target_dir_exists" => is_dir($targetDir),
+        "debug_target_dir_writable" => is_writable($targetDir),
+        "debug_last_error" => $error['message'] ?? 'none'
+    ]);
+    exit;
+}
 }
 
 $stmt = mysqli_prepare($conn, "UPDATE users SET USER_NAME = ?, PASSWORD = ? WHERE USER_ID = ?");
