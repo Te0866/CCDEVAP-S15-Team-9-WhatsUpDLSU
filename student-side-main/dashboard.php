@@ -1,3 +1,37 @@
+<?php
+session_start();
+require_once "dbconnection.php";
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login-side-main/login.html");
+    exit;
+}
+
+$userId = $_SESSION['user_id'];
+
+$stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE USER_ID = ?");
+mysqli_stmt_bind_param($stmt, "i", $userId);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$user = mysqli_fetch_assoc($result);
+
+if (!$user) {
+    die("User not found.");
+}
+
+$profileDir = __DIR__ . "/../profile-pictures/{$user['USER_ID']}/";
+$webProfileDir = "../profile-pictures/{$user['USER_ID']}/";
+
+$profilePath = "../profile-pictures/default-profile.png";
+
+foreach (["pfp.png", "pfp.jpg"] as $filename) {
+    if (file_exists($profileDir . $filename)) {
+        $profilePath = $webProfileDir . $filename;
+        break;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +65,7 @@
 
                 <div class="profile-section">
                     <button class="profile-btn" id="profileBtn">
-                        <img src="../profile-pictures/profile-test.jpg" alt="Profile" class="profile-pic" onerror="this.onerror=null; this.src='img/default-profile.png';">
+                        <img src="<?php echo htmlspecialchars($profilePath); ?>" alt="Profile" class="profile-pic">
                     </button>
 
                     <div class="dropdown-menu" id="dropdownMenu">
