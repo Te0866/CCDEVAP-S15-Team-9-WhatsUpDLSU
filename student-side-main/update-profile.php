@@ -39,4 +39,11 @@ if (mysqli_stmt_execute($stmt)) {
 } else {
     echo json_encode(["success" => false, "error" => mysqli_error($conn)]);
 }
+
+if (mysqli_stmt_execute($stmt)) {
+    error_log("Rows affected: " . mysqli_stmt_affected_rows($stmt));
+    echo json_encode(["success" => true]);
+} else {
+    echo json_encode(["success" => false, "error" => mysqli_error($conn)]);
+}
 ?>
