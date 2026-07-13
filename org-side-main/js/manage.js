@@ -10,11 +10,6 @@ document.addEventListener("click", () => {
     dropdownMenu.classList.remove("show");
 });
 
-document.querySelectorAll(".event-card").forEach(card => {
-    card.addEventListener("click", () => {
-        window.location.href = "edit-event.html";
-    });
-});
 
 document.querySelectorAll(".status-badge").forEach(badge => {
     const status = badge.textContent.trim().toLowerCase();
