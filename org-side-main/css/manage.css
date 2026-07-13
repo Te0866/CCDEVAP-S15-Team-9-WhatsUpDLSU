@@ -275,7 +275,10 @@ body{
     background:#06694b;
 }
 
-/* ---------- STATUS SUMMARY ---------- */
+.clear-link{
+    text-decoration:none;
+    text-align:center;
+}
 
 .stats-container{
     display:flex;
