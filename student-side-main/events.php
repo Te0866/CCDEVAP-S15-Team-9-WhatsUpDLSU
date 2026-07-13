@@ -47,7 +47,10 @@ $activeTab = 'events';
     </button>
 </div>
         <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Search Events" class="search-input" >
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Search Events" class="search-input" autocomplete="off">
+                <div id="searchSuggestions" class="search-suggestions"></div>
+            </div>
             <input type="date" class="filter-box" >
 
             <select class="filter-box">
