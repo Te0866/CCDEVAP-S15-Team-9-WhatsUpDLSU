@@ -1,3 +1,44 @@
+<?php
+    session_start();
+    require_once __DIR__ . "/../dbconnection.php";
+
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'OFFICER') {
+        header("Location: ../login-side-main/officer-login.html");
+        exit;
+    }
+
+    $userId = $_SESSION['user_id'];
+
+    $stmt = mysqli_prepare($conn, "SELECT u.*, o.ORG_NAME FROM users u LEFT JOIN organizations o ON u.ORG_ID = o.ORG_ID WHERE u.USER_ID = ?");
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+
+    if (!$user) {
+        die("User not found.");
+    }
+
+    $orgId = $user['ORG_ID'];
+
+    if (!isset($_GET['event_id'])) {
+        header("Location: manage.php");
+        exit;
+    }
+
+    $eventId = $_GET['event_id'];
+
+    $stmt = mysqli_prepare($conn, "SELECT * FROM event WHERE EVENT_ID = ? AND ORG_ID = ?");
+    mysqli_stmt_bind_param($stmt, "ii", $eventId, $orgId);
+    mysqli_stmt_execute($stmt);
+    $eventResult = mysqli_stmt_get_result($stmt);
+    $event = mysqli_fetch_assoc($eventResult);
+
+    if (!$event) {
+        die("Event not found or you don't have permission to edit it.");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,18 +61,20 @@
         <div class="nav-right">
 
             <div class="nav-links">
-                <a href="officer-dashboard.html" class="nav-tab">Home</a>
-                <a href="create.html" class="nav-tab">Create</a>
-                <a href="manage.html" class="nav-tab active">Manage</a>
+                <a href="officer-dashboard.php" class="nav-tab">Home</a>
+                <a href="create.php" class="nav-tab">Create</a>
+                <a href="manage.php" class="nav-tab active">Manage</a>
             </div>
 
             <div class="profile-section">
                 <button class="profile-btn" id="profileBtn">
-                    OrgName ▼
+                    <?php 
+                        echo htmlspecialchars($user['ORG_NAME']); 
+                    ?> ▼
                 </button>
 
                 <div class="dropdown-menu" id="dropdownMenu">
-                    <button onclick="location.href='edit-organization.html'">
+                    <button onclick="location.href='edit-organization.php'">
                         EDIT ORGANIZATION DETAILS
                     </button>
 
@@ -52,7 +95,7 @@
 
         <div class="header-row">
 
-            <button class="back-btn" onclick="location.href='manage.html'">
+            <button class="back-btn" onclick="location.href='manage.php'">
                 ◀ Manage
             </button>
 
@@ -64,11 +107,16 @@
 
         </div>
 
-        <div class="form-card">
+        <form class="form-card" action="update-event-process.php" method="POST" enctype="multipart/form-data">
+
+            <input type="hidden" name="event_id" value="<?php 
+                                                            echo $event['EVENT_ID']; 
+                                                        ?>">
+            <input type="hidden" name="existing_image" value="<?php 
+                                                                    echo htmlspecialchars($event['BANNER_IMAGE']); 
+                                                              ?>">
 
             <div class="form-grid">
-
-                <!-- LEFT -->
 
                 <div class="form-left">
 
@@ -76,147 +124,116 @@
 
                     <div class="form-group">
                         <label>Event Name <span class="required-badge">required</span></label>
-                        <input type="text" value="Animusika 2026">
+                        <input type="text" name="event_name" value="<?php 
+                                                                        echo htmlspecialchars($event['TITLE']); 
+                                                                    ?>">
                     </div>
 
                     <div class="form-group">
                         <label>Category <span class="required-badge">required</span></label>
 
-                        <select>
-                            <option>Academic</option>
-                            <option selected>Non-Academic</option>
-                            <option>Career</option>
+                        <select name="category">
+                            <?php
+                                $categories = array("ACADEMIC", "NON-ACADEMIC", "CAREER");
+                                $categoryLabels = array("ACADEMIC" => "Academic", "NON-ACADEMIC" => "Non-Academic", "CAREER" => "Career");
+
+                                foreach ($categories as $categoryOption) {
+                                    $selected = "";
+                                    if ($event['CATEGORY'] === $categoryOption) {
+                                        $selected = "selected";
+                                    }
+                                    echo "<option value=\"" . $categoryOption . "\" " . $selected . ">" . $categoryLabels[$categoryOption] . "</option>";
+                                }
+                            ?>
                         </select>
                     </div>
 
-                    <h3 class="section-heading">
-                        Where is this happening?
-                    </h3>
+                    <h3 class="section-heading">Where is this happening?</h3>
 
                     <div class="form-group">
                         <label>Location <span class="required-badge">required</span></label>
 
-                        <select>
+                        <select name="location">
+                            <?php
+                                $locations = array(
+                                    "Andrew Gonzalez Hall (AG)", "Br. Connon Hall (CONNON)", "Br. Andrew Gonzalez FSC Sports Complex",
+                                    "Br. Miguel Hall (MIGUEL)", "Enrique M. Razon Sports Center", "Faculty Center (FACULTY)",
+                                    "Gokongwei Hall (GOKONGWEI)", "Henry Sy Sr. Hall (HSSH)", "John Gokongwei Hall (JGH)",
+                                    "LS Building (LS)", "Mutien Marie Hall", "St. Joseph Hall (SJ)",
+                                    "St. La Salle Hall (LS)", "STRC Building", "William Hall (WILLIAM)",
+                                    "Yuchengco Hall (YUCH)", "Online"
+                                );
 
-                            <option>Andrew Gonzalez Hall (AG)</option>
-                            <option>Br. Connon Hall (CONNON)</option>
-                            <option>Br. Andrew Gonzalez FSC Sports Complex</option>
-                            <option>Br. Miguel Hall (MIGUEL)</option>
-                            <option>Enrique M. Razon Sports Center</option>
-                            <option>Faculty Center (FACULTY)</option>
-                            <option>Gokongwei Hall (GOKONGWEI)</option>
-
-                            <option selected>
-                                Henry Sy Sr. Hall (HSSH)
-                            </option>
-
-                            <option>John Gokongwei Hall (JGH)</option>
-                            <option>LS Building (LS)</option>
-                            <option>Mutien Marie Hall</option>
-                            <option>St. Joseph Hall (SJ)</option>
-                            <option>St. La Salle Hall (LS)</option>
-                            <option>STRC Building</option>
-                            <option>William Hall (WILLIAM)</option>
-                            <option>Yuchengco Hall (YUCH)</option>
-
-                            <option>Online</option>
-
+                                foreach ($locations as $locationOption) {
+                                    $selected = "";
+                                    if ($event['LOCATION'] === $locationOption) {
+                                        $selected = "selected";
+                                    }
+                                    echo "<option " . $selected . ">" . $locationOption . "</option>";
+                                }
+                            ?>
                         </select>
-
                     </div>
 
                     <div class="form-group">
-                        <label>
-                            Room / Venue
-                            <span class="optional-badge">optional</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            value="807">
+                        <label>Room / Venue <span class="optional-badge">optional</span></label>
+                        <input type="text" name="room" value="<?php 
+                                                                    echo htmlspecialchars($event['VENUE']); 
+                                                                ?>">
                     </div>
 
-                    <h3 class="section-heading">
-                        When is this happening?
-                    </h3>
+                    <h3 class="section-heading">When is this happening?</h3>
 
                     <div class="form-row">
-
                         <div class="form-group">
                             <label>Date <span class="required-badge">required</span></label>
-
-                            <input
-                                type="date"
-                                value="2026-12-11">
+                            <input type="date" name="event_date" value="<?php 
+                                                                            echo $event['DATE']; 
+                                                                        ?>">
                         </div>
-
                     </div>
 
                     <div class="form-row">
-
                         <div class="form-group">
                             <label>Start Time <span class="required-badge">required</span></label>
-
-                            <input
-                                type="time"
-                                value="08:00">
+                            <input type="time" name="start_time" value="<?php 
+                                                                            echo substr($event['START_TIME'], 0, 5); 
+                                                                        ?>">
                         </div>
 
                         <div class="form-group">
                             <label>End Time <span class="required-badge">required</span></label>
-
-                            <input
-                                type="time"
-                                value="18:00">
+                            <input type="time" name="end_time" value="<?php 
+                                                                            echo substr($event['END_TIME'], 0, 5); 
+                                                                        ?>">
                         </div>
-
                     </div>
 
                 </div>
 
-                <!-- RIGHT -->
-
                 <div class="form-right">
 
                     <div class="form-group">
-
-                        <label>
-                            Event Poster / Image
-                            <span class="optional-badge">optional</span>
-                        </label>
+                        <label>Event Poster / Image <span class="optional-badge">optional</span></label>
 
                         <div class="upload-box">
+                            <?php if ($event['BANNER_IMAGE'] !== '') { ?>
+                                <div class="file-chip">
+                                    <?php echo htmlspecialchars($event['BANNER_IMAGE']); ?>
+                                </div>
+                            <?php } ?>
 
-                            <div class="file-chip">
-                                Example_Image.jpg
-                                <button id="removeFile">✕</button>
-                            </div>
-
-                            <div class="upload-icon">
-                                📁
-                            </div>
-
-                            <p>
-                                Click to upload or drag and drop
-                            </p>
-
-                            <input type="file" id="eventImage">
-
+                            <div class="upload-icon">📁</div>
+                            <p>Click to upload or drag and drop</p>
+                            <input type="file" id="eventImage" name="event_image">
                         </div>
-
                     </div>
 
                     <div class="form-group">
-
-                        <label>
-                            Description
-                            <span class="required-badge">required</span>
-                        </label>
-
-                        <textarea rows="8">
-Animusika descriptions...
-                        </textarea>
-
+                        <label>Description <span class="required-badge">required</span></label>
+                        <textarea name="description" rows="8"><?php 
+                                                                    echo htmlspecialchars($event['DESCRIPTION']); 
+                                                              ?></textarea>
                     </div>
 
                 </div>
@@ -224,18 +241,11 @@ Animusika descriptions...
             </div>
 
             <div class="button-group">
-
-                <button class="delete-btn" id="deleteBtn">
-                    Delete Event
-                </button>
-
-                <button class="submit-btn" id="submitBtn">
-                    Update Event
-                </button>
-
+                <button type="button" class="delete-btn" id="deleteBtn">Delete Event</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Update Event</button>
             </div>
 
-        </div>
+        </form>
 
     </main>
 
