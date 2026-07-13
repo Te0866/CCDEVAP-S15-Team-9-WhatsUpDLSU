@@ -82,11 +82,6 @@ ini_set('display_errors', 1);
         $location, $room, $eventDate, $startTime, $endTime, $approvalStatus, $status, $registrationStatus, $bannerImage
     );
 
-echo "<pre>";
-var_dump($status);
-var_dump($approvalStatus);
-var_dump($eventDate);
-exit;
 
    echo "<pre>";
 echo "orgId = "; var_dump($orgId);
