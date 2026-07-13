@@ -69,7 +69,6 @@ function renderSidebar(events) {
         }
 
         btn.textContent = event.title;
-        btn.dataset.id = event.id;
 
         btn.addEventListener('click', () => {
             document.querySelectorAll('.event-item').forEach(b => b.classList.remove('active'));
@@ -98,107 +97,6 @@ function showEventDetail(event) {
     renderImageCarousel(event.images);
     renderCommentsCarousel(event.comments);
 }
-
-/* search autocomplete stuff is down here in case I can't find it */
-
-const searchInput = document.getElementById('searchInput');
-const searchSuggestions = document.getElementById('searchSuggestions');
-let highlightedIndex = -1;
-
-searchInput.addEventListener('input', () => {
-    const query = searchInput.value.trim().toLowerCase();
-    highlightedIndex = -1;
-
-    if (!query) {
-        searchSuggestions.classList.remove('show');
-        searchSuggestions.innerHTML = '';
-        return;
-    }
-
-    const matches = eventsData
-        .filter(event => event.title.toLowerCase().includes(query))
-        .slice(0, 6);
-
-    if (matches.length === 0) {
-        searchSuggestions.classList.remove('show');
-        searchSuggestions.innerHTML = '';
-        return;
-    }
-
-    searchSuggestions.innerHTML = matches.map(event => {
-        const highlighted = highlightMatch(event.title, query);
-        return `<div class="suggestion-item" data-id="${event.id}">${highlighted}</div>`;
-    }).join('');
-
-    searchSuggestions.classList.add('show');
-
-    document.querySelectorAll('.suggestion-item').forEach(item => {
-        item.addEventListener('click', () => {
-            selectEventById(item.dataset.id);
-        });
-    });
-});
-
-function highlightMatch(title, query) {
-    const index = title.toLowerCase().indexOf(query);
-    if (index === -1) return title;
-    const before = title.slice(0, index);
-    const match = title.slice(index, index + query.length);
-    const after = title.slice(index + query.length);
-    return `${before}<strong>${match}</strong>${after}`;
-}
-
-function selectEventById(id) {
-    const event = eventsData.find(e => String(e.id) === String(id));
-    if (!event) return;
-
-    searchInput.value = event.title;
-    searchSuggestions.classList.remove('show');
-    searchSuggestions.innerHTML = '';
-
-    document.querySelectorAll('.event-item').forEach(b => b.classList.remove('active'));
-    const matchingBtn = document.querySelector(`.event-item[data-id="${event.id}"]`);
-    if (matchingBtn) matchingBtn.classList.add('active');
-
-    selectedEvent = event;
-    showEventDetail(event);
-}
-
-searchInput.addEventListener('keydown', (e) => {
-    const items = document.querySelectorAll('.suggestion-item');
-    if (items.length === 0) return;
-
-    if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        highlightedIndex = (highlightedIndex + 1) % items.length;
-        updateHighlight(items);
-    } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        highlightedIndex = (highlightedIndex - 1 + items.length) % items.length;
-        updateHighlight(items);
-    } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (highlightedIndex >= 0 && items[highlightedIndex]) {
-            selectEventById(items[highlightedIndex].dataset.id);
-        }
-    } else if (e.key === 'Escape') {
-        searchSuggestions.classList.remove('show');
-    }
-});
-
-function updateHighlight(items) {
-    items.forEach((item, i) => {
-        item.classList.toggle('highlighted', i === highlightedIndex);
-    });
-}
-
-document.addEventListener('click', (e) => {
-    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
-        searchSuggestions.classList.remove('show');
-    }
-});
-
-/* search autocomplete stuff is up here in case I can't find it */
 
 /* carousel stuff is down here in case I can't find it */
 
