@@ -324,51 +324,6 @@ body{
     font-size:15px;
 }
 
-.search-wrapper{
-    position:relative;
-    flex:1;
-}
-
-.search-suggestions{
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:white;
-    border-radius:12px;
-    margin-top:6px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
-    max-height:260px;
-    overflow-y:auto;
-    z-index:1000;
-    display:none;
-}
-
-.search-suggestions.show{
-    display:block;
-}
-
-.suggestion-item{
-    padding:12px 15px;
-    cursor:pointer;
-    font-size:14px;
-    border-bottom:1px solid #f0f0f0;
-    color:#333;
-}
-
-.suggestion-item:last-child{
-    border-bottom:none;
-}
-
-.suggestion-item:hover,
-.suggestion-item.highlighted{
-    background:#eef7ec;
-}
-
-.suggestion-item strong{
-    color:#087f5b;
-}
-
 .filter-box{
     height:45px;
     border:none;
