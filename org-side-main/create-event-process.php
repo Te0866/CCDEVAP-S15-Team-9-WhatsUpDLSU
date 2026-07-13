@@ -1,4 +1,3 @@
-
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -78,26 +77,11 @@ ini_set('display_errors', 1);
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
 
     mysqli_stmt_bind_param(
-        $stmt, "isssssssssiss", $orgId, $category, $eventName, $description,
+        $stmt, "issssssssssis", $orgId, $category, $eventName, $description,
         $location, $room, $eventDate, $startTime, $endTime, $approvalStatus, $status, $registrationStatus, $bannerImage
     );
 
-
-   echo "<pre>";
-echo "orgId = "; var_dump($orgId);
-echo "category = "; var_dump($category);
-echo "eventName = "; var_dump($eventName);
-echo "description = "; var_dump($description);
-echo "location = "; var_dump($location);
-echo "room = "; var_dump($room);
-echo "eventDate = "; var_dump($eventDate);
-echo "startTime = "; var_dump($startTime);
-echo "endTime = "; var_dump($endTime);
-echo "approvalStatus = "; var_dump($approvalStatus);
-echo "status = "; var_dump($status);
-echo "registrationStatus = "; var_dump($registrationStatus);
-echo "bannerImage = "; var_dump($bannerImage);
-exit;
+    $success = mysqli_stmt_execute($stmt);
 
     if ($success) {
         header("Location: officer-dashboard.php");
