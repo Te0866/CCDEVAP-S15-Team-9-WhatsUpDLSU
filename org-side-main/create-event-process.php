@@ -88,7 +88,21 @@ var_dump($approvalStatus);
 var_dump($eventDate);
 exit;
 
-    $success = mysqli_stmt_execute($stmt);
+   echo "<pre>";
+echo "orgId = "; var_dump($orgId);
+echo "category = "; var_dump($category);
+echo "eventName = "; var_dump($eventName);
+echo "description = "; var_dump($description);
+echo "location = "; var_dump($location);
+echo "room = "; var_dump($room);
+echo "eventDate = "; var_dump($eventDate);
+echo "startTime = "; var_dump($startTime);
+echo "endTime = "; var_dump($endTime);
+echo "approvalStatus = "; var_dump($approvalStatus);
+echo "status = "; var_dump($status);
+echo "registrationStatus = "; var_dump($registrationStatus);
+echo "bannerImage = "; var_dump($bannerImage);
+exit;
 
     if ($success) {
         header("Location: officer-dashboard.php");
