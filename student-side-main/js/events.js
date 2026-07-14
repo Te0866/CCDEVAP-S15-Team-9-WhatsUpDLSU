@@ -25,7 +25,7 @@ fetch('get-events.php')
         let eventsToDisplay = eventsData;
 
         if (categoryParam) {
-            const categorySelect = document.querySelectorAll('.filter-box')[1];
+            const categorySelect = document.getElementById("categoryFilter");
             categorySelect.value = categoryParam;
 
             eventsToDisplay = eventsData.filter(event =>
@@ -399,19 +399,20 @@ function filterEvents() {
         .toLowerCase()
         .trim();
 
-    const category = document.querySelectorAll(".filter-box")[1].value;
-    const sort = document.querySelectorAll(".filter-box")[2].value;
+   const category = document.getElementById("categoryFilter").value;
+const sort = document.getElementById("sortFilter").value;
+const selectedDate = document.getElementById("dateFilter").value;
 
     let filtered = [...eventsData];
 
     // Search by title, organizer, venue, description
     if (searchText !== "") {
-        filtered = filtered.filter(event =>
-            event.title.toLowerCase().includes(searchText) ||
-            event.organizer.toLowerCase().includes(searchText) ||
-            event.venue.toLowerCase().includes(searchText) ||
-            event.description.toLowerCase().includes(searchText)
-        );
+       filtered = filtered.filter(event =>
+    (event.title || "").toLowerCase().includes(searchText) ||
+    (event.organizer || "").toLowerCase().includes(searchText) ||
+    (event.venue || "").toLowerCase().includes(searchText) ||
+    (event.description || "").toLowerCase().includes(searchText)
+);
     }
 
     // Category filter
