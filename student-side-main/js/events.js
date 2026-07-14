@@ -401,7 +401,7 @@ const selectedDate = document.getElementById("dateFilter").value;
     let filtered = [...eventsData];
 
     if (searchText !== "") {
-        ffiltered = filtered.filter(event =>
+        filtered = filtered.filter(event =>
     (event.title || "").toLowerCase().includes(searchText) ||
     (event.organizer || "").toLowerCase().includes(searchText) ||
     (event.venue || "").toLowerCase().includes(searchText) ||
