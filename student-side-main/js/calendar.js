@@ -165,6 +165,9 @@ function openModal(day){
                 <p><strong>Category:</strong> ${categoryToDisplayName(event.category)}</p>
                 <p><strong>Time:</strong> ${formatTime(event.startTime)}</p>
                 <p><strong>Location:</strong> ${event.location}</p>
+                <button class="view-event-btn" onclick="window.location.href='events.php?id=${event.id}'">
+                    View Event
+                </button>
             </div>
         `;
     });
