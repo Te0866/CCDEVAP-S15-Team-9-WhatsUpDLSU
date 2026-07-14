@@ -142,7 +142,7 @@ function renderImageCarousel(images) {
     images.forEach((src, i) => {
         const slide = document.createElement('div');
         slide.className = 'carousel-slide';
-        slide.innerHTML = <img src="${src}" alt="Event image ${i + 1}">;
+        slide.innerHTML = `<img src="${src}" alt="Event image ${i + 1}">`;
         track.appendChild(slide);
 
         const dot = document.createElement('button');
