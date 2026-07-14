@@ -20,18 +20,22 @@ fetch('get-events.php')
         eventsData = data;
 
         const params = new URLSearchParams(window.location.search);
-        const categoryParam = params.get('category');
+const eventId = params.get("id");
 
-        let eventsToDisplay = eventsData;
+if (eventId) {
+    const selected = eventsToDisplay.find(e => e.id == eventId);
 
-        if (categoryParam) {
-            const categorySelect = document.querySelectorAll('.filter-box')[1];
-            categorySelect.value = categoryParam;
-
-            eventsToDisplay = eventsData.filter(event =>
-                event.category.toUpperCase() === categoryParam.toUpperCase()
-            );
-        }
+    if (selected) {
+        selectedEvent = selected;
+        showEventDetail(selected);
+    } else {
+        selectedEvent = eventsToDisplay[0];
+        showEventDetail(selectedEvent);
+    }
+} else {
+    selectedEvent = eventsToDisplay[0];
+    showEventDetail(selectedEvent);
+}
 
         renderSidebar(eventsToDisplay);
 
