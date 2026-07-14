@@ -36,14 +36,29 @@ class User
         return "img/default-profile.png";
     }
 
-    public static function updateProfile(int $userId, string $username, string $plainPassword): bool
+    public static function updateProfile(int $userId, string $username, string $plainPassword = ''): bool
     {
+        $conn = Database::connection();
+
+        if ($plainPassword === '') {
+            // No new password given — update the username only, leave the
+            // stored hash untouched.
+            $stmt = mysqli_prepare($conn, "UPDATE users SET USER_NAME = ? WHERE USER_ID = ?");
+
+            if (!$stmt) {
+                error_log("Prepare failed: " . mysqli_error($conn));
+                return false;
+            }
+
+            mysqli_stmt_bind_param($stmt, "si", $username, $userId);
+            return mysqli_stmt_execute($stmt);
+        }
+
         // Improvement over the original: hash the password instead of
         // storing it in plaintext. login.php will need to switch to
         // password_verify() to match.
         $hash = password_hash($plainPassword, PASSWORD_DEFAULT);
 
-        $conn = Database::connection();
         $stmt = mysqli_prepare(
             $conn,
             "UPDATE users SET USER_NAME = ?, PASSWORD = ? WHERE USER_ID = ?"
