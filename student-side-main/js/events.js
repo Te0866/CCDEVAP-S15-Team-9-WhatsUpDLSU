@@ -1,5 +1,8 @@
 const profileBtn = document.getElementById("profileBtn");
 const dropdownMenu = document.getElementById("dropdownMenu");
+const params = new URLSearchParams(window.location.search);
+const eventId = parseInt(params.get("id"));
+
 profileBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     dropdownMenu.classList.toggle("show");
@@ -13,23 +16,42 @@ document.addEventListener("click", () => {
 let eventsData = [];
 let selectedEvent = null;
 
-fetch('get-events.php')
-    .then(res => res.json())
-    .then(data => {
+fetch("get-events.php")
+.then(res => res.json())
+.then(data => {
+    eventsData = data;
+    if (eventId) {
 
-        eventsData = data;
+        renderSidebar(eventsData);
 
-        eventsData = data;
-clearFilters();
-    })
-    .catch(error => {
-        console.error("Error loading events:", error);
-        showNoEvent();
-    });
+        const event = eventsData.find(e => Number(e.id) === eventId);
 
+        if (event) {
+            selectedEvent = event;
+            showEventDetail(event);
+
+            document.querySelectorAll(".event-item").forEach(btn => {
+    btn.classList.toggle(
+        "active",
+        Number(btn.dataset.id) === event.id
+    );
+});
+        } else {
+            clearFilters();
+        }
+
+    } else {
+        clearFilters();
+    }
+
+})
+.catch(error => {
+    console.error(error);
+    showNoEvent();
+});
 function renderSidebar(events) {
-    const sidebar = document.getElementById('eventSidebar');
-    sidebar.innerHTML = '';
+    const sidebar = document.getElementById("eventSidebar");
+    sidebar.innerHTML = "";
 
     if (events.length === 0) {
         sidebar.innerHTML = `
@@ -41,24 +63,33 @@ function renderSidebar(events) {
     }
 
     events.forEach((event, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'event-item';
+
+        const btn = document.createElement("button");
+        btn.className = "event-item";
 
         if (index === 0) {
-            btn.classList.add('active');
+            btn.classList.add("active");
         }
 
         btn.textContent = event.title;
+        btn.dataset.id = event.id;
 
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.event-item').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        btn.addEventListener("click", () => {
+
+            document.querySelectorAll(".event-item").forEach(b =>
+                b.classList.remove("active")
+            );
+
+            btn.classList.add("active");
+
             selectedEvent = event;
             showEventDetail(event);
+
         });
 
         sidebar.appendChild(btn);
-    });
+
+    });  
 }
 
 function showEventDetail(event) {
@@ -386,7 +417,6 @@ const selectedDate = document.getElementById("dateFilter").value;
 
     let filtered = [...eventsData];
 
-    // Search by title, organizer, venue, description
     if (searchText !== "") {
        filtered = filtered.filter(event =>
     (event.title || "").toLowerCase().includes(searchText) ||
@@ -399,14 +429,12 @@ const selectedDate = document.getElementById("dateFilter").value;
     filtered = filtered.filter(event => event.date === selectedDate);
 }
 
-    // Category filter
     if (category !== "All") {
         filtered = filtered.filter(event =>
             event.category.toLowerCase() === category.toLowerCase()
         );
     }
 
-    // Sort
     filtered.sort((a, b) => {
         if (sort === "Newest") {
             return new Date(b.date) - new Date(a.date);
@@ -417,16 +445,31 @@ const selectedDate = document.getElementById("dateFilter").value;
 
     renderSidebar(filtered);
 
-    if (filtered.length > 0) {
-        selectedEvent = filtered[0];
-        showEventDetail(selectedEvent);
+if (filtered.length > 0) {
 
-        document.querySelector(".event-item")?.classList.add("active");
-    } else {
-        showNoEvent();
+    let eventToShow;
+
+    if (eventId) {
+        eventToShow = filtered.find(e => Number(e.id) === eventId);
     }
-}
 
+    if (!eventToShow) {
+        eventToShow = filtered[0];
+    }
+
+    selectedEvent = eventToShow;
+    showEventDetail(eventToShow);
+
+    document.querySelectorAll(".event-item").forEach(btn => {
+        btn.classList.toggle(
+            "active",
+            Number(btn.dataset.id) === Number(eventToShow.id)
+        );
+    });
+
+} else {
+    showNoEvent();
+}
 function clearFilters() {
     document.getElementById("searchInput").value = "";
     document.getElementById("dateFilter").value = "";
