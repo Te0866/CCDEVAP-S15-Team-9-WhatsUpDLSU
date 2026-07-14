@@ -197,7 +197,7 @@ function renderCommentsCarousel(comments) {
     comments.forEach((c) => {
         const slide = document.createElement('div');
         slide.className = 'carousel-slide comment-slide';
-        slide.innerHTML = <p class="comment-text">"${c.text}"</p><p class="comment-author">- ${c.author}</p>;
+        slide.innerHTML = `<p class="comment-text">"${c.text}"</p><p class="comment-author">- ${c.author}</p>`;
         track.appendChild(slide);
     });
 
@@ -219,7 +219,7 @@ function renderCommentsCarousel(comments) {
 
 function updateCommentsTrack() {
     const track = document.getElementById('commentsTrack');
-    track.style.transform = translateX(-${currentCommentIndex * 100}%);
+    track.style.transform = `translateX(-${currentCommentIndex * 100}%)`;
     document.querySelectorAll('#commentsDots .dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === currentCommentIndex);
     });
