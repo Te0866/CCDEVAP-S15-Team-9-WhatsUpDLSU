@@ -46,7 +46,7 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
     const username = document.getElementById("username").value.trim();
     const password = passwordInput.value;
 
-    if (!username || !password) {
+    if (!username) {
         alert("Username and password cannot be empty.");
         return;
     }
