@@ -47,21 +47,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <div class="input-wrapper">
-                            <input type="password" id="password" name="password" placeholder="Leave blank to keep current password">
-                            <button type="button" id="togglePassword" class="show-password-btn">
-                                Show
-                            </button>
-                            <div class="form-group">
-                                <label>Confirm Password</label>
-                            <div class="input-wrapper">
-                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Leave blank to keep current password">
-                            </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+    <label>Password</label>
+    <div class="input-wrapper">
+        <input type="password" id="password" name="password" placeholder="Leave blank to keep current password">
+        <button type="button" id="togglePassword" class="show-password-btn">
+            Show
+        </button>
+    </div>
+</div>
+<div class="form-group">
+    <label>Confirm Password</label>
+    <div class="input-wrapper">
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Leave blank to keep current password">
+    </div>
+</div>
+
                 </form>
             </div>
             <button class="update-btn" id="updateBtn"> UPDATE </button>
