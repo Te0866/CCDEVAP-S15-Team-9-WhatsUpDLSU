@@ -11,8 +11,8 @@
 
     <div class="nav-right">
         <div class="nav-links">
-            <a href="dashboard.php" class="nav-tab <?php echo ($activeTab ?? '') === 'home' ? 'active' : ''; ?>">Home</a>
-            <a href="events.php" class="nav-tab <?php echo ($activeTab ?? '') === 'events' ? 'active' : ''; ?>">Events</a>
+            <a href="?page=dashboard" class="nav-tab <?php echo ($activeTab ?? '') === 'home' ? 'active' : ''; ?>">Home</a>
+            <a href="?page=events" class="nav-tab <?php echo ($activeTab ?? '') === 'events' ? 'active' : ''; ?>">Events</a>
             <a href="calendar.php" class="nav-tab <?php echo ($activeTab ?? '') === 'calendar' ? 'active' : ''; ?>">Calendar</a>
         </div>
 
