@@ -97,7 +97,7 @@ function showEventDetail(event) {
         event.category || "-";
 
     document.getElementById("duration").textContent =
-        ${formatTime(event.startTime)} - ${formatTime(event.endTime)};
+        `${formatTime(event.startTime)} - ${formatTime(event.endTime)}`;
 
     document.getElementById("venue").textContent =
         event.venue || event.location || "-";
