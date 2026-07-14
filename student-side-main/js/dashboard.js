@@ -16,42 +16,64 @@ document.addEventListener("click", (event) => {
 
 
 const container = document.getElementById("interestedEventsContainer");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let events = [];
+let currentIndex = 0;
+
+function renderCarousel() {
+
+    container.innerHTML = "";
+
+    if (events.length === 0) {
+        container.innerHTML = `
+            <div class="event-card">
+                <h3>No Events Yet</h3>
+                <p>Add events from the Events page</p>
+            </div>
+        `;
+        return;
+    }
+
+    for (let i = 0; i < 2; i++) {
+
+        const index = currentIndex + i;
+
+        if (index >= events.length) break;
+
+        const event = events[index];
+
+        container.innerHTML += `
+            <div class="event-card" onclick="location.href='events.php?id=${event.id}'">
+                <h3>${event.title}</h3>
+                <p>${event.category}</p>
+                <small>${event.date}</small>
+            </div>
+        `;
+    }
+}
 
 fetch("get-interested-events.php")
     .then(res => res.json())
-    .then(interestedEvents => {
+    .then(data => {
+        events = data;
+        renderCarousel();
+    });
 
-        container.innerHTML = "";
+nextBtn.addEventListener("click", () => {
+    if (currentIndex + 2 < events.length) {
+        currentIndex += 2;
+        renderCarousel();
+    }
+});
 
-        if (interestedEvents.length === 0) {
-
-            container.innerHTML = `
-                <div class="event-card">
-                    <h3>No Events Yet</h3>
-                    <p>Add events from the Events page</p>
-                </div>
-            `;
-
-            return;
-        }
-
-        interestedEvents.forEach(event => {
-
-            container.innerHTML += `
-                <div class="event-card" onclick="location.href='events.php?id=${event.id}'">
-
-                    <h3>${event.title}</h3>
-
-                    <p>${event.category}</p>
-
-                    <small>${event.date}</small>
-
-                </div>
-            `;
-
-        });
-
-    })
+prevBtn.addEventListener("click", () => {
+    if (currentIndex - 2 >= 0) {
+        currentIndex -= 2;
+        renderCarousel();
+    }
+});
     .catch(err => console.error(err));
 
 const chartCanvas = document.getElementById("studentChart");
