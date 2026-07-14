@@ -56,11 +56,11 @@ function renderSidebar(events) {
     sidebar.innerHTML = '';
 
     if (events.length === 0) {
-        sidebar.innerHTML = 
+        sidebar.innerHTML = `
             <div class="no-events">
                 No Events Available
             </div>
-        ;
+        `;
         return;
     }
 
