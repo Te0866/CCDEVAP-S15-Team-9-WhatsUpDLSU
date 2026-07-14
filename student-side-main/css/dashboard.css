@@ -464,10 +464,13 @@ body{
     }
 
     #interestedEventsContainer{
-        width:150px;
-        justify-content:center;
-        align-items:center;
-    }
+    width:320px;
+    max-width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+}
 
     .event-card{
         width:150px;
