@@ -163,7 +163,7 @@ function openModal(day){
             <div class="event-card">
                 <h4>${event.title}</h4>
                 <p><strong>Category:</strong> ${categoryToDisplayName(event.category)}</p>
-                <p><strong>Time:</strong> ${formatTime(event.time)}</p>
+                <p><strong>Time:</strong> ${formatTime(event.startTime)}</p>
                 <p><strong>Location:</strong> ${event.location}</p>
             </div>
         `;
