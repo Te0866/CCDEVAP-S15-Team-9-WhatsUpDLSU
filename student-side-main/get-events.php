@@ -50,20 +50,4 @@ while ($row = mysqli_fetch_assoc($result)) {
         "id" => (int)$row["EVENT_ID"],
         "title" => $row["TITLE"],
         "category" => $row["CATEGORY"],
-        "description" => $row["DESCRIPTION"],
-        "venue" => $row["VENUE"],
-        "location" => $row["LOCATION"],
-        "date" => $row["DATE"],
-        "startTime" => $row["START_TIME"],
-        "endTime" => $row["END_TIME"],
-        "status" => $row["STATUS"],
-        "registration" => $row["REGISTRATION_STATUS"] ? "Open" : "Closed",
-        "organizer" => $row["ORG_NAME"],
-        "images" => $images,
-        "comments" => [],
-        "isInterested" => $row["INTEREST_ID"] !== null
-    ];
-}
-
-echo json_encode($events);
-?>
+        "description" =>
