@@ -2,12 +2,11 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 session_start();
 require_once __DIR__ . "/../dbconnection.php";
 header("Content-Type: application/json");
 
-$userId = $_SESSION['user_id'] ?? null;
+$userId = $_SESSION['user_id'] ?? 0;
 
 $sql = "
 SELECT
@@ -54,4 +53,20 @@ while ($row = mysqli_fetch_assoc($result)) {
         "id" => (int)$row["EVENT_ID"],
         "title" => $row["TITLE"],
         "category" => $row["CATEGORY"],
-        "description" =>
+        "description" => $row["DESCRIPTION"],
+        "venue" => $row["VENUE"],
+        "location" => $row["LOCATION"],
+        "date" => $row["DATE"],
+        "startTime" => $row["START_TIME"],
+        "endTime" => $row["END_TIME"],
+        "status" => $row["STATUS"],
+        "registration" => $row["REGISTRATION_STATUS"] ? "Open" : "Closed",
+        "organizer" => $row["ORG_NAME"],
+        "images" => $images,
+        "comments" => [],
+        "isInterested" => $row["INTEREST_ID"] !== null
+    ];
+}
+
+echo json_encode($events);
+?>
