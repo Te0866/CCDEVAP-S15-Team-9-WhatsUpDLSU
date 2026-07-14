@@ -379,18 +379,14 @@ body{
     }
 
     .dashboard-layout{
-        display:flex;
-        flex-direction:column;
-        gap:18px;
-        padding:12px;
-    }
+    display:flex;
+    flex-direction:column;
+}
 
-    .left-column,
-    .right-column{
-        display:flex;
-        flex-direction:column;
-        gap:18px;
-    }
+.left-column,
+.right-column{
+    display:contents;
+}
 
     .banner{
         order:1;
