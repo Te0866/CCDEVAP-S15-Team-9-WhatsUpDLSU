@@ -255,7 +255,7 @@ document.getElementById("interestedBtn").addEventListener("click", async () => {
 
         const result = await response.json();
 
-        alert(result.message);
+        showAlert("Interested Event", result.message);
 
     } catch (err) {
         console.error(err);
@@ -439,3 +439,25 @@ function clearFilters() {
 document.getElementById("clearFiltersBtn")
     .addEventListener("click", clearFilters);
 
+const alertModal = document.getElementById("alertModal");
+const alertTitle = document.getElementById("alertTitle");
+const alertMessage = document.getElementById("alertMessage");
+const alertOkBtn = document.getElementById("alertOkBtn");
+
+function showAlert(title, message) {
+    alertTitle.textContent = title;
+    alertMessage.textContent = message;
+    alertModal.classList.add("show");
+}
+
+function closeAlert() {
+    alertModal.classList.remove("show");
+}
+
+alertOkBtn.addEventListener("click", closeAlert);
+
+alertModal.addEventListener("click", (e) => {
+    if (e.target === alertModal) {
+        closeAlert();
+    }
+});
