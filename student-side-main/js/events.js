@@ -216,18 +216,31 @@ function formatTime(time24) {
     return `${displayHour}:${minute} ${ampm}`;
 }
 
-document.getElementById("interestedBtn").addEventListener("click", () => {
-    const interestedEvents = JSON.parse(localStorage.getItem("interestedEvents")) || [];
-    const eventData = { title: selectedEvent.title };
+document.getElementById("interestedBtn").addEventListener("click", async () => {
 
-    const exists = interestedEvents.some(event => event.title === eventData.title);
-    if (!exists) {
-        interestedEvents.push(eventData);
-        localStorage.setItem("interestedEvents", JSON.stringify(interestedEvents));
-        alert("Added to Interested Events!");
-    } else {
-        alert("Already added!");
+    if (!selectedEvent) return;
+
+    try {
+
+        const response = await fetch("add-interest.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                event_id: selectedEvent.id
+            })
+        });
+
+        const result = await response.json();
+
+        alert(result.message);
+
+    } catch (err) {
+        console.error(err);
+        alert("Unable to save interest.");
     }
+
 });
 
 /* post comment stuff is down here in case I can't find it */
