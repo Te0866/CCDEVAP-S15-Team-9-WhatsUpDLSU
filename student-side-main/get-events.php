@@ -18,7 +18,7 @@ SELECT
     e.BANNER_IMAGE,
     o.ORG_NAME
 FROM event e
-JOIN organization o
+JOIN organizations o
     ON e.ORG_ID = o.ORG_ID
 WHERE e.APPROVAL_STATUS = 'APPROVED'
 ORDER BY e.DATE ASC, e.START_TIME ASC
