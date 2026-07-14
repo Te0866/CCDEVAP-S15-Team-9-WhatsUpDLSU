@@ -60,7 +60,7 @@ fetch("get-interested-events.php")
         events = data;
         renderCarousel();
     });
-
+.catch(err => console.error(err));
 nextBtn.addEventListener("click", () => {
     if (currentIndex + 2 < events.length) {
         currentIndex += 2;
@@ -74,7 +74,7 @@ prevBtn.addEventListener("click", () => {
         renderCarousel();
     }
 });
-    .catch(err => console.error(err));
+    
 
 const chartCanvas = document.getElementById("studentChart");
 
