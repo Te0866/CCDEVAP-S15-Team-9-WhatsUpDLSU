@@ -30,15 +30,11 @@ const profilePreview = document.getElementById("profilePreview");
 
 profileImage.addEventListener("change", () => {
     const file = profileImage.files[0];
-
     if (!file) return;
-
     const reader = new FileReader();
-
     reader.onload = (e) => {
         profilePreview.src = e.target.result;
     };
-
     reader.readAsDataURL(file);
 });
 
@@ -61,16 +57,16 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch("update-profile.php", {
+        const response = await fetch("?page=update-profile", {
             method: "POST",
             body: formData
-            // NOTE: no Content-Type header — the browser sets it automatically for FormData, including the required boundary string
         });
 
         const result = await response.json();
 
         if (result.success) {
             alert("Profile updated successfully.");
+            window.location.href = "?page=dashboard";
         } else {
             alert("Update failed: " + (result.error || "Unknown error"));
         }
