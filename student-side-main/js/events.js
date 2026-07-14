@@ -2,6 +2,7 @@ const profileBtn = document.getElementById("profileBtn");
 const dropdownMenu = document.getElementById("dropdownMenu");
 const params = new URLSearchParams(window.location.search);
 const eventId = parseInt(params.get("id"));
+const categoryParam = params.get("category");
 
 profileBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -474,7 +475,8 @@ if (filtered.length > 0) {
 function clearFilters() {
     document.getElementById("searchInput").value = "";
     document.getElementById("dateFilter").value = "";
-    document.getElementById("categoryFilter").value = "All";
+    document.getElementById("categoryFilter").value =
+    categoryParam ? categoryParam : "All";
     document.getElementById("sortFilter").value = "Newest";
 
     filterEvents();
