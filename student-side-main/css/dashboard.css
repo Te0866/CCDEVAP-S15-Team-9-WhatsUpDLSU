@@ -318,7 +318,6 @@ body{
         padding:0;
     }
 
-    /* ================= NAVBAR ================= */
 
     .navbar{
         height:55px;
@@ -380,7 +379,6 @@ body{
         top:50px;
     }
 
-    /* ================= DASHBOARD ================= */
 
     .dashboard-layout{
     display:flex;
@@ -391,8 +389,6 @@ body{
 .right-column{
     display:contents;
 }
-
-    /* ================= BANNER ================= */
 
     .banner{
         order:1;
@@ -410,7 +406,6 @@ body{
         line-height:1.5;
     }
 
-    /* ================= CATEGORY ================= */
 
     .category-box{
         order:2;
@@ -436,7 +431,6 @@ body{
         height:14px;
     }
 
-    /* ================= CHARTS ================= */
 
     .chart-container{
         order:2;
@@ -457,7 +451,6 @@ body{
         max-height:220px;
     }
 
-    /* ================= CAROUSEL ================= */
 
     .carousel-section{
         order:4;
