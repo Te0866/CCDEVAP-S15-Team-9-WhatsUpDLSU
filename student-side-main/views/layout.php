@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <?php require_once __DIR__ . '/../navbar.php'; ?>
+    <?php require_once __DIR__ . '/../../navbar.php'; ?>
     <main class="dashboard-layout">
         <?php echo $content; ?>
     </main>
