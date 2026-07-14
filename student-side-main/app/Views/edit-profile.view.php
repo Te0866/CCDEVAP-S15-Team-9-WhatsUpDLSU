@@ -53,6 +53,13 @@
                             <button type="button" id="togglePassword" class="show-password-btn">
                                 Show
                             </button>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                            <div class="input-wrapper">
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Leave blank to keep current password">
+                            </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </form>
