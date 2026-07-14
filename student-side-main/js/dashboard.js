@@ -40,35 +40,39 @@ if (interestedEvents.length === 0) {
 
 const chartCanvas = document.getElementById("studentChart");
 
-new Chart(chartCanvas, {
-    type: "pie",
-    data: {
-        labels: ["Academic", "Career", "Non-academic"],
-        datasets: [{
-            data: [50, 26, 24],
-            backgroundColor: ["#3498db", "#f1c40f", "#9b59b6"]
-        }]
-    },
-    options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: {
-            display: true,
-            position: "bottom",
-            align: "center",
-            labels: {
-                boxWidth: 12,
-                boxHeight: 12,
-                padding: 10,
-                font: {
-                    size: 11
+fetch("get-category-stats.php")
+.then(res => res.json())
+.then(data => {
+
+    const labels = data.map(item => item.CATEGORY);
+    const values = data.map(item => item.total);
+
+    new Chart(chartCanvas, {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: values,
+                backgroundColor: [
+                    "#3498db",
+                    "#9b59b6",
+                    "#f1c40f"
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: "bottom"
                 }
             }
         }
-    }
-}
+    });
+
 });
+
 const popularCanvas = document.getElementById("popularChart");
 
 new Chart(popularCanvas, {
