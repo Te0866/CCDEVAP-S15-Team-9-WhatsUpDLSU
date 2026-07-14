@@ -63,3 +63,4 @@ class EventApiController
 
     echo json_encode(["success" => $success, "message" => $message, "interested" => $interested]);
 }
+}
