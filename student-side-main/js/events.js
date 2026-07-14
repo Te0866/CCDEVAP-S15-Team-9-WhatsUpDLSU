@@ -389,7 +389,7 @@ const searchInput = document.getElementById("searchInput");
 searchInput.addEventListener("input", filterEvents);
 
 function filterEvents() {
-
+console.log("Searching...");
     const searchText = document.getElementById("searchInput").value
         .toLowerCase()
         .trim();
