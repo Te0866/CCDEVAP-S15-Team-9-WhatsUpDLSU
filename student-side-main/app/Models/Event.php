@@ -143,10 +143,20 @@ class Event
             : [false, mysqli_error($conn), true];
     }
 
-    $stmt = mysqli_prepare($conn, "INSERT INTO event_interest(USER_ID, EVENT_ID) VALUES (?, ?)");
-    mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
-    return mysqli_stmt_execute($stmt)
-        ? [true, "Added to Interested Events!", true]
-        : [false, mysqli_error($conn), false];
+    $stmt = mysqli_prepare($conn,
+    "INSERT INTO event_interest(USER_ID, EVENT_ID) VALUES (?, ?)"
+);
+
+if (!$stmt) {
+    die(mysqli_error($conn));
+}
+
+mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
+
+if (!mysqli_stmt_execute($stmt)) {
+    die(mysqli_stmt_error($stmt));
+}
+
+return [true, "Added to Interested Events!", true];
 }
 }
