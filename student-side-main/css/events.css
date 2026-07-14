@@ -174,7 +174,26 @@ body{
     border-radius:12px;
 }
 
+.filter-clear-btn{
+    height:45px;
+    padding:0 18px;
+    border:none;
+    border-radius:12px;
+    background:#087f5b;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.2s;
+}
 
+.filter-clear-btn:hover{
+    background:#066a4b;
+}
+
+.filter-clear-btn:active{
+    transform:scale(0.98);
+}
 .events-layout{
     display:grid;
     grid-template-columns:280px 1fr;
