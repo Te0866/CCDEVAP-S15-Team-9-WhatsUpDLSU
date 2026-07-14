@@ -308,7 +308,6 @@ function updateInterestedButton(isInterested) {
     btn.classList.toggle("interested-active", isInterested);
 }
 
-/* post comment stuff is down here in case I can't find it */
 
 const commentModalOverlay = document.getElementById('commentModalOverlay');
 const commentForm = document.getElementById('commentForm');
