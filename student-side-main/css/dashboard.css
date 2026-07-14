@@ -277,7 +277,8 @@ body{
     background:white;
     color:black;
     border-radius:12px;
-    padding:8px;
+    padding:14px;
+    padding-right:6px;
     margin-bottom:12px;
     display:flex;
     align-items:center;
