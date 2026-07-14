@@ -286,8 +286,7 @@ document.getElementById("interestedBtn").addEventListener("click", async () => {
             })
         });
 
-      const text = await response.text();
-console.log(text);
+        const result = await response.json();
 
         if (result.success) {
             selectedEvent.isInterested = result.interested;
