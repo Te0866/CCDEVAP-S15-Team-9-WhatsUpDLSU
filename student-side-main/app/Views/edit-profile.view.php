@@ -50,7 +50,8 @@
     <label>Confirm Password</label>
     <div class="input-wrapper">
         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Leave blank to keep current password">
-        <button type="button" id="toggleConfirmPassword" class="show-password-btn">
+        <button type="button" id="toggleConfirmPassword" class="show-password-btn"> Show
+        </button>
     </div>
 </div>
 
