@@ -394,8 +394,9 @@ function filterEvents() {
         .toLowerCase()
         .trim();
 
-    const category = document.querySelectorAll(".filter-box")[1].value;
-    const sort = document.querySelectorAll(".filter-box")[2].value;
+    const category = document.getElementById("categoryFilter").value;
+const sort = document.getElementById("sortFilter").value;
+const selectedDate = document.getElementById("dateFilter").value;
 
     let filtered = [...eventsData];
 
@@ -413,6 +414,11 @@ function filterEvents() {
             event.category.toLowerCase() === category.toLowerCase()
         );
     }
+    const selectedDate = document.getElementById("dateFilter").value;
+
+if (selectedDate !== "") {
+    filtered = filtered.filter(event => event.date === selectedDate);
+}
 
     filtered.sort((a, b) => {
         if (sort === "Newest") {
@@ -434,3 +440,11 @@ function filterEvents() {
     }
 }
 
+document.getElementById("categoryFilter")
+    .addEventListener("change", filterEvents);
+
+document.getElementById("sortFilter")
+    .addEventListener("change", filterEvents);
+
+document.getElementById("dateFilter")
+    .addEventListener("change", filterEvents);
