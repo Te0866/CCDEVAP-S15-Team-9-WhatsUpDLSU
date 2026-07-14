@@ -352,10 +352,6 @@ commentForm.addEventListener('submit', async (e) => {
     const newComment = {
         event_id: selectedEvent.id,
         author: isAnonymous ? 'Anonymous' : username,
-        // Keep the real username server-side even when posted anonymously,
-        // so moderators/admins can still trace it back if needed. The
-        // PHP endpoint should store this separately and never expose it
-        // in public-facing comment reads when is_anonymous is true.
         posted_by: username,
         is_anonymous: isAnonymous,
         text: document.getElementById('commentMessage').value.trim(),
@@ -417,6 +413,8 @@ document.getElementById("sortFilter")
     .addEventListener("change", filterEvents);
 document.getElementById("dateFilter")
     .addEventListener("change", filterEvents);
+document.getElementById("statusFilter")
+    .addEventListener("change", filterEvents);
 
 function filterEvents() {
 
@@ -427,7 +425,7 @@ function filterEvents() {
    const category = document.getElementById("categoryFilter").value;
 const sort = document.getElementById("sortFilter").value;
 const selectedDate = document.getElementById("dateFilter").value;
-
+const status = document.getElementById("statusFilter").value;
     let filtered = [...eventsData];
 
     if (searchText !== "") {
@@ -454,6 +452,11 @@ const selectedDate = document.getElementById("dateFilter").value;
         } else {
             return new Date(a.date) - new Date(b.date);
         }
+    if (status !== "All") {
+    filtered = filtered.filter(event =>
+        (event.status || "").toLowerCase() === status.toLowerCase()
+    );
+}
     });
 
     renderSidebar(filtered);
