@@ -274,17 +274,17 @@ body{
 }
 
 .category-item{
-    background:white;
-    color:black;
-    border-radius:12px;
-    padding:14px;
-    padding-right:6px;
-    margin-bottom:12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    transition:.25s;
-    cursor:pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: black;
+    border-radius: 12px;
+    padding: 14px;
+    padding-right: 6px;
+    margin-bottom: 12px;
+    transition: .25s;
+    cursor: pointer;
 }
 
 .category-item:hover{
