@@ -17,7 +17,7 @@ document.addEventListener("click", () => {
 let eventsData = [];
 let selectedEvent = null;
 
-fetch("get-events.php")
+fetch("api/events.php")
 .then(res => res.json())
 .then(data => {
     eventsData = data;
