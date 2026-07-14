@@ -43,17 +43,17 @@
 
                 <div class="category-item" onclick="location.href='events.php?category=Academic'">
                     <span class="color academic"></span>
-                    Academic
+                    Academic Events
                 </div>
 
                 <div class="category-item" onclick="location.href='events.php?category=Non-academic'">
                     <span class="color nonacademic"></span>
-                    Non-academic
+                    Non-academic Events
                 </div>
 
                 <div class="category-item" onclick="location.href='events.php?category=Career'">
                     <span class="color career"></span>
-                    Career
+                    Career Events
                 </div>
             </section>
 
