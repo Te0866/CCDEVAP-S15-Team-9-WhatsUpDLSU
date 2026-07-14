@@ -58,6 +58,17 @@
                 </form>
             </div>
             <button class="update-btn" id="updateBtn"> UPDATE </button>
+
+            <div id="alertModal" class="modal-overlay">
+                <div class="modal-box">
+                    <h3 id="alertTitle">Notice</h3>
+                    <p id="alertMessage"></p>
+                        
+                    <div class="modal-actions">
+                        <button id="alertOkBtn" class="modal-submit-btn">OK</button>
+                    </div>
+                </div>
+            </div>
         </main>
         <script src="js/edit-profile.js"></script>
         <script src="js/darkmode.js"></script>
