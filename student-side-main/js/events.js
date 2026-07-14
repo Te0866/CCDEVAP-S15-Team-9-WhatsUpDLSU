@@ -389,8 +389,9 @@ const searchInput = document.getElementById("searchInput");
 searchInput.addEventListener("input", filterEvents);
 document.getElementById("categoryFilter")
     .addEventListener("change", filterEvents);
-
 document.getElementById("sortFilter")
+    .addEventListener("change", filterEvents);
+document.getElementById("dateFilter")
     .addEventListener("change", filterEvents);
 
 function filterEvents() {
@@ -414,6 +415,9 @@ const selectedDate = document.getElementById("dateFilter").value;
     (event.description || "").toLowerCase().includes(searchText)
 );
     }
+    if (selectedDate !== "") {
+    filtered = filtered.filter(event => event.date === selectedDate);
+}
 
     // Category filter
     if (category !== "All") {
