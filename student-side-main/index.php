@@ -76,3 +76,4 @@ switch($page) {
         header("Location: ?page=dashboard");
         exit;
 }
+?>
