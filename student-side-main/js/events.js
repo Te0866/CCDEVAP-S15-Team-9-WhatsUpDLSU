@@ -383,3 +383,54 @@ function showNoEvent() {
     renderImageCarousel([]);
     renderCommentsCarousel([]);
 }
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", filterEvents);
+
+function filterEvents() {
+
+    const searchText = document.getElementById("searchInput").value
+        .toLowerCase()
+        .trim();
+
+    const category = document.querySelectorAll(".filter-box")[1].value;
+    const sort = document.querySelectorAll(".filter-box")[2].value;
+
+    let filtered = [...eventsData];
+
+    if (searchText !== "") {
+        filtered = filtered.filter(event =>
+            event.title.toLowerCase().includes(searchText) ||
+            event.organizer.toLowerCase().includes(searchText) ||
+            event.venue.toLowerCase().includes(searchText) ||
+            event.description.toLowerCase().includes(searchText)
+        );
+    }
+
+    if (category !== "All") {
+        filtered = filtered.filter(event =>
+            event.category.toLowerCase() === category.toLowerCase()
+        );
+    }
+
+    filtered.sort((a, b) => {
+        if (sort === "Newest") {
+            return new Date(b.date) - new Date(a.date);
+        } else {
+            return new Date(a.date) - new Date(b.date);
+        }
+    });
+
+    renderSidebar(filtered);
+
+    if (filtered.length > 0) {
+        selectedEvent = filtered[0];
+        showEventDetail(selectedEvent);
+
+        document.querySelector(".event-item")?.classList.add("active");
+    } else {
+        showNoEvent();
+    }
+}
+
