@@ -68,19 +68,19 @@ $activeTab = 'home';
         <h2>Browse by Category</h2>
 
         <div class="category-item"
-         onclick="location.href='events.php?category=ACADEMIC'">
+         onclick="location.href='events.php?category=Academic'">
             <span class="color academic"></span>
                 Academic
         </div>
 
         <div class="category-item"
-         onclick="location.href='events.php?category=NON-ACADEMIC'">
+         onclick="location.href='events.php?category=Non-academic'">
             <span class="color nonacademic"></span>
                 Non-academic
         </div>
 
         <div class="category-item"
-         onclick="location.href='events.php?category=CAREER'">
+         onclick="location.href='events.php?category=Career'">
             <span class="color career"></span>
                 Career
     </div>
