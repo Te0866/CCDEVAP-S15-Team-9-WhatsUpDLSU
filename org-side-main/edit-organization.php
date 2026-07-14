@@ -16,7 +16,7 @@
 
         <div class="nav-right">
             <div class="nav-links">
-                <a href="officer-dashboard.html" class="nav-tab"> Home </a>
+                <a href="officer-dashboard.php" class="nav-tab"> Home </a>
                 <a href="create.html" class="nav-tab"> Create </a>
                 <a href="manage.html" class="nav-tab"> Manage </a>
             </div>
