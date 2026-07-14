@@ -143,6 +143,19 @@ body{
     background:#e5e5e5;
 }
 
+.filter-clear-btn{
+    padding:10px 16px;
+    border:none;
+    border-radius:8px;
+    background:#d9534f;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.filter-clear-btn:hover{
+    background:#c9302c;
+}
 
 .search-bar{
     display:flex;
