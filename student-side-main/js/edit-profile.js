@@ -76,13 +76,13 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
         const response = await fetch("update-profile.php", {
             method: "POST",
             body: formData
-            // NOTE: no Content-Type header — the browser sets it automatically for FormData, including the required boundary string
         });
 
         const result = await response.json();
 
         if (result.success) {
             alert("Profile updated successfully.");
+            window.location.href = "dashboard.php";
         } else {
             alert("Update failed: " + (result.error || "Unknown error"));
         }
