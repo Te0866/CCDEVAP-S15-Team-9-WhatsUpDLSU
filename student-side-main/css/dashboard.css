@@ -274,15 +274,16 @@ body{
 }
 
 .category-item{
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
     background: white;
     color: black;
     border-radius: 12px;
     padding: 14px;
     padding-right: 6px;
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
     transition: .25s;
     cursor: pointer;
 }
