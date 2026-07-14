@@ -41,6 +41,18 @@ switch($page) {
         $controller = new EventController();
         $controller->show($id);
         break;
+    case 'calendar':
+        $controller = new CalendarController();
+        $controller->index();
+        break;
+    case 'edit-profile':
+        $controller = new UserController();
+        $controller->edit();
+        break;
+    case 'update-profile':
+        $controller = new UserController();
+        $controller->update();
+        break;
     case 'api-interested':
         $controller = new DashboardController();
         $controller->getInterestedEvents();
