@@ -149,3 +149,4 @@ class Event
         ? [true, "Added to Interested Events!", true]
         : [false, mysqli_error($conn), false];
 }
+}
