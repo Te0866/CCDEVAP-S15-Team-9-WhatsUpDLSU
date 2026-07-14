@@ -389,9 +389,9 @@ body{
 }
 
     .banner{
-        order:1;
         padding:20px;
         border-radius:18px;
+        order:1;
     }
 
     .banner h1{
@@ -405,7 +405,7 @@ body{
     }
     
     .category-box{
-        order:2;
+        order:3;
         height:auto;
         padding:15px;
         border-radius:18px;
@@ -429,6 +429,7 @@ body{
     }
 
     .chart-container{
+        order:2;
         height:300px;
         padding:15px;
         border-radius:18px;
