@@ -47,24 +47,21 @@ $activeTab = 'events';
     </button>
 </div>
         <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Search Events" class="search-input" >
+            <input type="text" id="searchInput" class="search-input" placeholder="Search Events">
             <input type="date" id="dateFilter" class="filter-box">
+    
             <select id="categoryFilter" class="filter-box">
-            
-                <select id="sortFilter" class="filter-box">
                 <option>All</option>
                 <option>Academic</option>
                 <option>Career</option>
                 <option>Non-academic</option>
             </select>
 
-            <select class="filter-box">
-                <option>Newest</option>
-                <option>Oldest</option>
+          <select id="sortFilter" class="filter-box">
+            <option>Newest</option>
+            <option>Oldest</option>
             </select>
-
         </section>
-
         <main class="events-layout">
             <aside class="event-sidebar" id="eventSidebar"></aside>
             <section class="event-detail">
