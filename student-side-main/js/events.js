@@ -168,7 +168,7 @@ function goToImage(index) {
 
 function updateImageTrack() {
     const track = document.getElementById('imageTrack');
-    track.style.transform = translateX(-${currentImageIndex * 100}%);
+    track.style.transform = `translateX(-${currentImageIndex * 100}%)`;
     document.querySelectorAll('#imageDots .dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === currentImageIndex);
     });
