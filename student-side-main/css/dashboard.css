@@ -196,6 +196,18 @@ body{
     width:180px;
     height:140px;
     flex:0 0 180px;
+    background:#fff;
+    color:#333;
+    border-radius:15px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    cursor:pointer;
+    transition:.25s;
 }
 
 .event-card:hover{
