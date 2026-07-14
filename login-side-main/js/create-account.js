@@ -36,49 +36,54 @@ document.addEventListener('DOMContentLoaded', function () {
     password.addEventListener('input', checkMatch);
     confirmPassword.addEventListener('input', checkMatch);
 
-    // Submit to the backend instead of a native form submit
-    // Submit to the backend instead of a native form submit
-document.getElementById('registerForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
+    // Submit to the backend
+    document.getElementById('registerForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-    if (password.value !== confirmPassword.value) {
-        checkMatch();
-        confirmPassword.focus();
-        return;
-    }
-
-    const payload = {
-        username: document.getElementById('username').value.trim(),
-        password: password.value,
-        confirmPassword: confirmPassword.value
-    };
-
-    const submitBtn = document.querySelector('.btn-primary');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Creating account...';
-
-    try {
-        const response = await fetch('register.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            alert('Account created successfully! Please log in.');
-            window.location.href = 'login.html';
-        } else {
-            alert(result.error || 'Could not create account.');
+        if (password.value !== confirmPassword.value) {
+            checkMatch();
+            confirmPassword.focus();
+            return;
         }
-    } catch (err) {
-        console.error(err);
-        alert('Something went wrong while creating your account.');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Create Account';
-    }
+
+        const payload = {
+            username: document.getElementById('username').value.trim(),
+            password: password.value,
+            confirmPassword: confirmPassword.value
+        };
+
+        const submitBtn = document.querySelector('.btn-primary');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating account...';
+
+        try {
+            console.log('Sending payload:', payload);
+
+            const response = await fetch('register.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            console.log('Response status:', response.status);
+            
+            const result = await response.json();
+            console.log('Response data:', result);
+
+            if (result.success) {
+                alert('Account created successfully! Please log in.');
+                window.location.href = 'login.html';
+            } else {
+                alert(result.error || 'Could not create account.');
+            }
+        } catch (err) {
+            console.error('Fetch error:', err);
+            alert('Something went wrong while creating your account. Please check the console for details.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Create Account';
+        }
+    });
 });
