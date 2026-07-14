@@ -460,16 +460,16 @@ body{
     }
 
     .carousel{
-        gap:12px;
-    }
-
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
     #interestedEventsContainer{
-    width:320px;
-    max-width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
     .event-card{
@@ -490,9 +490,20 @@ body{
     }
 
     .arrow{
-        width:42px;
-        height:42px;
-        font-size:20px;
-    }
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+    #prevBtn{
+    left: 8px;
+}
+
+#nextBtn{
+    right: 8px;
+}
 
 }
