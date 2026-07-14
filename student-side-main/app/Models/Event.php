@@ -122,29 +122,30 @@ class Event
      * Equivalent to the old add-interest.php.
      */
     public static function markInterested(int $userId, int $eventId): array
-    {
-        if ($eventId <= 0) {
-            return [false, "Invalid event."];
-        }
-
-        $check = Database::query(
-            "SELECT INTEREST_ID FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?",
-            "ii",
-            [$userId, $eventId]
-        );
-
-        if (mysqli_num_rows($check) > 0) {
-            return [false, "Already marked as interested."];
-        }
-
-        $conn = Database::connection();
-        $stmt = mysqli_prepare($conn, "INSERT INTO event_interest(USER_ID, EVENT_ID) VALUES (?, ?)");
-        mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
-
-        if (mysqli_stmt_execute($stmt)) {
-            return [true, "Added to Interested Events!"];
-        }
-
-        return [false, mysqli_error($conn)];
+{
+    if ($eventId <= 0) {
+        return [false, "Invalid event.", false];
     }
+
+    $check = Database::query(
+        "SELECT INTEREST_ID FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?",
+        "ii",
+        [$userId, $eventId]
+    );
+
+    $conn = Database::connection();
+
+    if (mysqli_num_rows($check) > 0) {
+        $stmt = mysqli_prepare($conn, "DELETE FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?");
+        mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
+        return mysqli_stmt_execute($stmt)
+            ? [true, "Removed from Interested Events.", false]
+            : [false, mysqli_error($conn), true];
+    }
+
+    $stmt = mysqli_prepare($conn, "INSERT INTO event_interest(USER_ID, EVENT_ID) VALUES (?, ?)");
+    mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
+    return mysqli_stmt_execute($stmt)
+        ? [true, "Added to Interested Events!", true]
+        : [false, mysqli_error($conn), false];
 }
