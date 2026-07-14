@@ -1,6 +1,13 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+// Log errors to a file (optional but helpful)
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/error_log.txt');
+
+echo "<!-- Debug: Starting index.php -->\n";
+
 session_start();
 require_once __DIR__ . "/../dbconnection.php";
 
