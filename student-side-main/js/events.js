@@ -447,3 +447,16 @@ document.getElementById("sortFilter")
 
 document.getElementById("dateFilter")
     .addEventListener("change", filterEvents);
+
+const clearFiltersBtn = document.getElementById("clearFiltersBtn");
+
+clearFiltersBtn.addEventListener("click", () => {
+
+    document.getElementById("searchInput").value = "";
+    document.getElementById("dateFilter").value = "";
+    document.getElementById("categoryFilter").value = "All";
+    document.getElementById("sortFilter").value = "Newest";
+
+    filterEvents();
+
+});
