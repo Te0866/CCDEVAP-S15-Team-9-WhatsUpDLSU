@@ -414,7 +414,6 @@ const selectedDate = document.getElementById("dateFilter").value;
             event.category.toLowerCase() === category.toLowerCase()
         );
     }
-    const selectedDate = document.getElementById("dateFilter").value;
 
 if (selectedDate !== "") {
     filtered = filtered.filter(event => event.date === selectedDate);
