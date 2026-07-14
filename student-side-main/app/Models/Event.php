@@ -61,4 +61,91 @@ class Event
 
         return $events;
     }
+
+    /**
+     * All approved events with full detail, for the events page.
+     * Equivalent to the old get-events.php.
+     */
+    public static function allApproved(): array
+    {
+        $result = Database::query("
+            SELECT
+                e.EVENT_ID,
+                e.TITLE,
+                e.CATEGORY,
+                e.DESCRIPTION,
+                e.LOCATION,
+                e.VENUE,
+                e.DATE,
+                e.START_TIME,
+                e.END_TIME,
+                e.STATUS,
+                e.REGISTRATION_STATUS,
+                e.BANNER_IMAGE,
+                o.ORG_NAME
+            FROM event e
+            JOIN organizations o ON e.ORG_ID = o.ORG_ID
+            WHERE e.APPROVAL_STATUS = 'APPROVED'
+            ORDER BY e.DATE ASC, e.START_TIME ASC
+        ");
+
+        $events = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $images = [];
+            if (!empty($row["BANNER_IMAGE"])) {
+                $images[] = $row["BANNER_IMAGE"];
+            }
+
+            $events[] = [
+                "id" => (int) $row["EVENT_ID"],
+                "title" => $row["TITLE"],
+                "category" => $row["CATEGORY"],
+                "description" => $row["DESCRIPTION"],
+                "venue" => $row["VENUE"],
+                "location" => $row["LOCATION"],
+                "date" => $row["DATE"],
+                "startTime" => $row["START_TIME"],
+                "endTime" => $row["END_TIME"],
+                "status" => $row["STATUS"],
+                "registration" => $row["REGISTRATION_STATUS"] ? "Open" : "Closed",
+                "organizer" => $row["ORG_NAME"],
+                "images" => $images,
+                "comments" => [],
+            ];
+        }
+
+        return $events;
+    }
+
+    /**
+     * Records that a user is interested in an event. Returns
+     * [success, message] so the controller can turn it straight into JSON.
+     * Equivalent to the old add-interest.php.
+     */
+    public static function markInterested(int $userId, int $eventId): array
+    {
+        if ($eventId <= 0) {
+            return [false, "Invalid event."];
+        }
+
+        $check = Database::query(
+            "SELECT INTEREST_ID FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?",
+            "ii",
+            [$userId, $eventId]
+        );
+
+        if (mysqli_num_rows($check) > 0) {
+            return [false, "Already marked as interested."];
+        }
+
+        $conn = Database::connection();
+        $stmt = mysqli_prepare($conn, "INSERT INTO event_interest(USER_ID, EVENT_ID) VALUES (?, ?)");
+        mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return [true, "Added to Interested Events!"];
+        }
+
+        return [false, mysqli_error($conn)];
+    }
 }
