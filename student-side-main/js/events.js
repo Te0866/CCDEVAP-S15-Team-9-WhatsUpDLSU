@@ -17,7 +17,7 @@ document.addEventListener("click", () => {
 let eventsData = [];
 let selectedEvent = null;
 
-fetch("get-events.php")
+fetch("api/get-events.php")
 .then(res => res.json())
 .then(data => {
     eventsData = data;
@@ -275,7 +275,7 @@ document.getElementById("interestedBtn").addEventListener("click", async () => {
 
     try {
 
-        const response = await fetch("add-interest.php", {
+        const response = await fetch("api/add-interest.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
