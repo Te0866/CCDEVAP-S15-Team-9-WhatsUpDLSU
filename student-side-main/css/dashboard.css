@@ -472,14 +472,18 @@ body{
     }
 
     .carousel{
-        gap:12px;
-    }
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    #interestedEventsContainer{
-        width:150px;
-        justify-content:center;
-        align-items:center;
-    }
+   #interestedEventsContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
     .event-card{
         width:150px;
@@ -499,9 +503,12 @@ body{
     }
 
     .arrow{
-        width:42px;
-        height:42px;
-        font-size:20px;
-    }
-
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.4); 
+    color:#333;
+    cursor:pointer;
+}
 }
