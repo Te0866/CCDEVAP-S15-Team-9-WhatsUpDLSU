@@ -149,6 +149,16 @@ $activeTab = 'events';
                 </form>
             </div>
         </div>
+        <div id="alertModal" class="modal-overlay">
+    <div class="modal-box">
+        <h3 id="alertTitle">Notice</h3>
+        <p id="alertMessage"></p>
+
+        <div class="modal-actions">
+            <button id="alertOkBtn" class="modal-submit-btn">OK</button>
+        </div>
+    </div>
+</div>
         
         <script src="js/events.js"></script>
         <script src="js/darkmode.js"></script>
