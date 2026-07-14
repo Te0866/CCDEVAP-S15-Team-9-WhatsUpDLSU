@@ -16,27 +16,43 @@ document.addEventListener("click", (event) => {
 
 
 const container = document.getElementById("interestedEventsContainer");
-const interestedEvents = JSON.parse(localStorage.getItem("interestedEvents")) || [];
-container.innerHTML = "";
 
-if (interestedEvents.length === 0) {
-    container.innerHTML = `
-        <div class="event-card">
-            <h3>No Events Yet</h3>
-            <p>Add events from Events page</p>
-        </div>
-    `;
-} else {
-    interestedEvents.forEach(event => {
+fetch("get-interested-events.php")
+    .then(res => res.json())
+    .then(interestedEvents => {
 
-        container.innerHTML += `
-            <div class="event-card">
-                <h3>${event.title}</h3>
-                <p>Interested Event</p>
-            </div>
-        `;
-    });
-}
+        container.innerHTML = "";
+
+        if (interestedEvents.length === 0) {
+
+            container.innerHTML = `
+                <div class="event-card">
+                    <h3>No Events Yet</h3>
+                    <p>Add events from the Events page</p>
+                </div>
+            `;
+
+            return;
+        }
+
+        interestedEvents.forEach(event => {
+
+            container.innerHTML += `
+                <div class="event-card" onclick="location.href='events.php?id=${event.id}'">
+
+                    <h3>${event.title}</h3>
+
+                    <p>${event.category}</p>
+
+                    <small>${event.date}</small>
+
+                </div>
+            `;
+
+        });
+
+    })
+    .catch(err => console.error(err)); 
 
 const chartCanvas = document.getElementById("studentChart");
 
