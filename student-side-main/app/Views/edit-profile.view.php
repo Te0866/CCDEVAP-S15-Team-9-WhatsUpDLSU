@@ -1,13 +1,4 @@
 <?php
-// Expects $user, $profilePath, $activeTab in scope (passed by
-// EditProfileController::render() via extract()).
-//
-// NOTE: unlike the original, the password field is intentionally left
-// BLANK rather than pre-filled with $user['PASSWORD']. That column now
-// holds a bcrypt hash (see User::updateProfile()), not a plaintext
-// password, so displaying it would show gibberish. Leaving a new
-// password blank on submit now means "keep my current password" —
-// see ProfileController::update().
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +50,7 @@
     <label>Confirm Password</label>
     <div class="input-wrapper">
         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Leave blank to keep current password">
+        <button type="button" id="toggleConfirmPassword" class="show-password-btn">
     </div>
 </div>
 
