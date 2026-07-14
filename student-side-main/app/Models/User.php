@@ -93,4 +93,14 @@ class User
 
         return [true, null];
     }
+
+    public static function usernameExists(string $username, int $excludeUserId): bool
+    {
+        $conn = Database::connection();
+        $stmt = mysqli_prepare($conn, "SELECT USER_ID FROM users WHERE USER_NAME = ? AND USER_ID != ?");
+        mysqli_stmt_bind_param($stmt, "si", $username, $excludeUserId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        return mysqli_stmt_num_rows($stmt) > 0;
+    }
 }
