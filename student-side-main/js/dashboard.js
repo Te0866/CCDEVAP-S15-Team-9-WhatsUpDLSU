@@ -52,7 +52,7 @@ fetch("get-interested-events.php")
         });
 
     })
-    .catch(err => console.error(err)); 
+    .catch(err => console.error(err));
 
 const chartCanvas = document.getElementById("studentChart");
 
