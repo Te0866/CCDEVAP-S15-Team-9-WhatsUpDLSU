@@ -226,6 +226,21 @@ function updateCommentsTrack() {
 
 /* carousel stuff is up here in case I can't find it */
 
+function formatDate(dateString) {
+
+    if (!dateString) return "-";
+
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString("en-PH", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+
+}
+
 function formatTime(time24) {
 
     if (!time24)
@@ -354,6 +369,7 @@ function addCommentLocally(comment) {
 function showNoEvent() {
     document.getElementById("eventTitle").textContent = "No Events Available";
     document.getElementById("category").textContent = "-";
+    document.getElementById("eventDate").textContent = "-";
     document.getElementById("duration").textContent = "-";
     document.getElementById("venue").textContent = "-";
     document.getElementById("status").textContent = "-";
