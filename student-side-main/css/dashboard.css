@@ -277,9 +277,8 @@ body{
     background: white;
     color: black;
     border-radius: 12px;
-    padding: 14px;
-    padding-right: 6px;
-    margin-bottom: 12px;
+    padding: 14px 24px;
+    margin: 0 auto 12px;
     display: flex;
     align-items: center;
     gap: 10px;
