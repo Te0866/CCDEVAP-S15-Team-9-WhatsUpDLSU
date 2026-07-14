@@ -187,18 +187,15 @@ body{
 #interestedEventsContainer{
     display:flex;
     gap:15px;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+    width:375px;
 }
 
 .event-card{
     width:180px;
     height:140px;
-    background:white;
-    color:black;
-    border-radius:15px;
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-    transition:.25s;
+    flex:0 0 180px;
 }
 
 .event-card:hover{
