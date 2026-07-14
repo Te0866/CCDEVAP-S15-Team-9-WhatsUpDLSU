@@ -91,7 +91,10 @@ function showEventDetail(event) {
 
     document.getElementById("category").textContent =
         event.category || "-";
-
+    
+    document.getElementById("eventDate").textContent =
+        formatDate(event.date);
+    
     document.getElementById("duration").textContent =
         `${formatTime(event.startTime)} - ${formatTime(event.endTime)}`;
 
