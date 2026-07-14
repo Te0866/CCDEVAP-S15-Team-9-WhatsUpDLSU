@@ -61,7 +61,11 @@ $activeTab = 'events';
                 <option>Newest</option>
                 <option>Oldest</option>
             </select>
+            <button id="clearFiltersBtn" class="filter-clear-btn">
+                Clear
+            </button>
         </section>
+        
         <main class="events-layout">
             <aside class="event-sidebar" id="eventSidebar"></aside>
             <section class="event-detail">
