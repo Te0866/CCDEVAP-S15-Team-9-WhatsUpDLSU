@@ -470,6 +470,7 @@ if (filtered.length > 0) {
 } else {
     showNoEvent();
 }
+}
 function clearFilters() {
     document.getElementById("searchInput").value = "";
     document.getElementById("dateFilter").value = "";
