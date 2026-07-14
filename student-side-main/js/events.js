@@ -19,38 +19,31 @@ fetch('get-events.php')
 
         eventsData = data;
 
-        const params = new URLSearchParams(window.location.search);
+        eventsData = data;
+
+const params = new URLSearchParams(window.location.search);
 const eventId = params.get("id");
 
+renderSidebar(eventsData);
+
+if (eventsData.length === 0) {
+    showNoEvent();
+    return;
+}
+
 if (eventId) {
-    const selected = eventsToDisplay.find(e => e.id == eventId);
+    const selected = eventsData.find(e => e.id == eventId);
 
     if (selected) {
         selectedEvent = selected;
-        showEventDetail(selected);
     } else {
-        selectedEvent = eventsToDisplay[0];
-        showEventDetail(selectedEvent);
+        selectedEvent = eventsData[0];
     }
 } else {
-    selectedEvent = eventsToDisplay[0];
-    showEventDetail(selectedEvent);
+    selectedEvent = eventsData[0];
 }
 
-        renderSidebar(eventsToDisplay);
-
-        if (eventsToDisplay.length > 0) {
-            selectedEvent = eventsToDisplay[0];
-            showEventDetail(selectedEvent);
-        } else {
-            showNoEvent();
-        }
-    })
-    .catch(error => {
-        console.error("Error loading events:", error);
-        showNoEvent();
-    });
-
+showEventDetail(selectedEvent);
 function renderSidebar(events) {
     const sidebar = document.getElementById('eventSidebar');
     sidebar.innerHTML = '';
