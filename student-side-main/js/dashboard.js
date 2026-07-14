@@ -75,56 +75,62 @@ fetch("get-category-stats.php")
 
 const popularCanvas = document.getElementById("popularChart");
 
-new Chart(popularCanvas, {
-    type: "bar",
-    data: {
-        labels: [
-            "Hackathon 2026",
-            "Career Fair",
-            "Anime Convention",
-            "Research Expo",
-            "Leadership Seminar"
-        ],
-        datasets: [{
-            label: "Interested Students",
-            data: [125, 98, 81, 67, 54],
-            backgroundColor: [
-                "#087f5b",
-                "#1fa67a",
-                "#39b88c",
-                "#63c9a7",
-                "#8edcc2"
-            ],
-            borderRadius: 8
-        }]
-    },
-    options: {
-        indexAxis: "y",
-        responsive: true,
-        maintainAspectRatio: false,
+fetch("get-popular-events.php")
+.then(res => res.json())
+.then(data => {
 
-        plugins: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: false
-            }
+    const labels = data.map(item => item.TITLE);
+    const values = data.map(item => Number(item.interested));
+
+    new Chart(popularCanvas, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Interested Students",
+                data: values,
+                backgroundColor: [
+                    "#087f5b",
+                    "#1fa67a",
+                    "#39b88c",
+                    "#63c9a7",
+                    "#8edcc2"
+                ],
+                borderRadius: 8
+            }]
         },
+        options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
 
-        scales: {
-            x: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: "Interested Students"
-                }
-            },
-            y: {
+            plugins: {
+                legend: {
+                    display: false
+                },
                 title: {
                     display: false
                 }
+            },
+
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: "Interested Students"
+                    }
+                },
+                y: {
+                    title: {
+                        display: false
+                    }
+                }
             }
         }
-    }
+    });
+
+})
+.catch(error => {
+    console.error("Error loading popular events:", error);
 });
