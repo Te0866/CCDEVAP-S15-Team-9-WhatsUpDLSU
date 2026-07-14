@@ -55,13 +55,13 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (!username) {
-        alert("Username cannot be empty.");
+        showAlert("Error", "Username cannot be empty.");
         return;
     }
     if (password !== confirmPassword) {
-    alert("Passwords do not match.");
-    return;
-}
+        showAlert("Error", "Passwords do not match.");
+        return;
+    }
 
     const formData = new FormData();
     formData.append("username", username);
@@ -81,13 +81,38 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
         const result = await response.json();
 
         if (result.success) {
-            alert("Profile updated successfully.");
-            window.location.href = "dashboard.php";
+            showAlert("Success", "Profile updated successfully.");
+            setTimeout(() => {
+                window.location.href = "dashboard.php";
+            }, 1200);
         } else {
-            alert("Update failed: " + (result.error || "Unknown error"));
+            showAlert("Update Failed", result.error || "Unknown error");
         }
     } catch (err) {
         console.error("Update error:", err);
-        alert("Something went wrong while updating your profile.");
+        showAlert("Error", "Something went wrong while updating your profile.");
+    }
+});
+
+const alertModal = document.getElementById("alertModal");
+const alertTitle = document.getElementById("alertTitle");
+const alertMessage = document.getElementById("alertMessage");
+const alertOkBtn = document.getElementById("alertOkBtn");
+
+function showAlert(title, message) {
+    alertTitle.textContent = title;
+    alertMessage.textContent = message;
+    alertModal.classList.add("show");
+}
+
+function closeAlert() {
+    alertModal.classList.remove("show");
+}
+
+alertOkBtn.addEventListener("click", closeAlert);
+
+alertModal.addEventListener("click", (e) => {
+    if (e.target === alertModal) {
+        closeAlert();
     }
 });
