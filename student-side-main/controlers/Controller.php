@@ -17,7 +17,7 @@ class Controller {
         $content = ob_get_clean();
         
         require_once __DIR__ . '/../navbar.php';
-        include __DIR__ . "/../views/layouts/main.php";
+        include __DIR__ . "/../views/layout.php";
     }
     
     protected function json($data) {
