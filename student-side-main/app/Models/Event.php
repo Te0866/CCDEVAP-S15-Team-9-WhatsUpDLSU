@@ -67,56 +67,55 @@ class Event
      * Equivalent to the old get-events.php.
      */
     public static function allApproved(): array
-    {
-        $result = Database::query("
-            SELECT
-                e.EVENT_ID,
-                e.TITLE,
-                e.CATEGORY,
-                e.DESCRIPTION,
-                e.LOCATION,
-                e.VENUE,
-                e.DATE,
-                e.START_TIME,
-                e.END_TIME,
-                e.STATUS,
-                e.REGISTRATION_STATUS,
-                e.BANNER_IMAGE,
-                o.ORG_NAME
-            FROM event e
-            JOIN organizations o ON e.ORG_ID = o.ORG_ID
-            WHERE e.APPROVAL_STATUS = 'APPROVED'
-            ORDER BY e.DATE ASC, e.START_TIME ASC
-        ");
+{
+    $result = Database::query("
+        SELECT
+            e.EVENT_ID,
+            e.TITLE,
+            e.CATEGORY,
+            e.DESCRIPTION,
+            e.LOCATION,
+            e.VENUE,
+            e.DATE,
+            e.START_TIME,
+            e.END_TIME,
+            e.STATUS,
+            e.REGISTRATION_STATUS,
+            e.BANNER_IMAGE,
+            u.USER_NAME
+        FROM event e
+        JOIN users u ON e.USER_ID = u.USER_ID
+        WHERE e.APPROVAL_STATUS = 'APPROVED'
+        ORDER BY e.DATE ASC, e.START_TIME ASC
+    ");
 
-        $events = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $images = [];
-            if (!empty($row["BANNER_IMAGE"])) {
-                $images[] = $row["BANNER_IMAGE"];
-            }
-
-            $events[] = [
-                "id" => (int) $row["EVENT_ID"],
-                "title" => $row["TITLE"],
-                "category" => $row["CATEGORY"],
-                "description" => $row["DESCRIPTION"],
-                "venue" => $row["VENUE"],
-                "location" => $row["LOCATION"],
-                "date" => $row["DATE"],
-                "startTime" => $row["START_TIME"],
-                "endTime" => $row["END_TIME"],
-                "status" => $row["STATUS"],
-                "registration" => $row["REGISTRATION_STATUS"] ? "Open" : "Closed",
-                "organizer" => $row["ORG_NAME"],
-                "images" => $images,
-                "comments" => [],
-            ];
+    $events = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $images = [];
+        if (!empty($row["BANNER_IMAGE"])) {
+            $images[] = $row["BANNER_IMAGE"];
         }
 
-        return $events;
+        $events[] = [
+            "id" => (int) $row["EVENT_ID"],
+            "title" => $row["TITLE"],
+            "category" => $row["CATEGORY"],
+            "description" => $row["DESCRIPTION"],
+            "venue" => $row["VENUE"],
+            "location" => $row["LOCATION"],
+            "date" => $row["DATE"],
+            "startTime" => $row["START_TIME"],
+            "endTime" => $row["END_TIME"],
+            "status" => $row["STATUS"],
+            "registration" => $row["REGISTRATION_STATUS"] ? "Open" : "Closed",
+            "organizer" => $row["USER_NAME"],
+            "images" => $images,
+            "comments" => [],
+        ];
     }
 
+    return $events;
+}
     /**
      * Records that a user is interested in an event. Returns
      * [success, message] so the controller can turn it straight into JSON.
