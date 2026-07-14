@@ -82,23 +82,38 @@ function renderSidebar(events) {
 }
 
 function showEventDetail(event) {
+
     document.getElementById("interestedBtn").style.display = "inline-block";
     document.getElementById("postCommentBtn").style.display = "inline-block";
-    document.getElementById('eventTitle').textContent = event.title;
-    document.getElementById('category').textContent = event.category;
-    document.getElementById('duration').textContent =
-        formatTime(event.startTime) + ' - ' + formatTime(event.endTime);
-    document.getElementById('venue').textContent = event.venue;
-    document.getElementById('status').textContent = event.status;
-    document.getElementById('registration').textContent = event.registration;
-    document.getElementById('organizer').textContent = event.organizer;
-    document.getElementById('description').textContent = event.description;
 
-    renderImageCarousel(event.images);
-    renderCommentsCarousel(event.comments);
+    document.getElementById("eventTitle").textContent =
+        event.title || "-";
+
+    document.getElementById("category").textContent =
+        event.category || "-";
+
+    document.getElementById("duration").textContent =
+        `${formatTime(event.startTime)} - ${formatTime(event.endTime)}`;
+
+    document.getElementById("venue").textContent =
+        event.venue || event.location || "-";
+
+    document.getElementById("status").textContent =
+        event.status || "-";
+
+    document.getElementById("registration").textContent =
+        event.registration || "-";
+
+    document.getElementById("organizer").textContent =
+        event.organizer || "-";
+
+    document.getElementById("description").textContent =
+        event.description || "No description available.";
+
+    renderImageCarousel(event.images || []);
+
+    renderCommentsCarousel(event.comments || []);
 }
-
-/* carousel stuff is down here in case I can't find it */
 
 let currentImageIndex = 0;
 let currentCommentIndex = 0;
@@ -209,10 +224,18 @@ function updateCommentsTrack() {
 /* carousel stuff is up here in case I can't find it */
 
 function formatTime(time24) {
-    const [hour, minute] = time24.split(':');
+
+    if (!time24)
+        return "-";
+
+    const [hour, minute] = time24.split(":");
+
     const h = parseInt(hour);
-    const ampm = h >= 12 ? 'PM' : 'AM';
+
+    const ampm = h >= 12 ? "PM" : "AM";
+
     const displayHour = h % 12 === 0 ? 12 : h % 12;
+
     return `${displayHour}:${minute} ${ampm}`;
 }
 
