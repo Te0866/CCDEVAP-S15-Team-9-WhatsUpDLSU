@@ -502,14 +502,15 @@ body{
         font-size:12px;
     }
 
-    .arrow{
-    width:60px;
-    height:60px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,0.4); 
-    color:#333;
-    cursor:pointer;
+   .arrow{
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+       background: rgba(0,0,0,0.4);
 }
     #prevBtn{
     left: 8px;
