@@ -497,6 +497,7 @@ body{
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
+    background:rgba(255,255,255,0.4);
 }
     #prevBtn{
     left: 8px;
