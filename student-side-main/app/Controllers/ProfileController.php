@@ -26,6 +26,11 @@ class ProfileController
             return;
         }
 
+        if (User::usernameExists($username, $userId)) {
+            $this->json(["success" => false, "error" => "That username is already taken."]);
+            return;
+        }
+
         if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
             [$ok, $error] = User::saveProfileImage($userId, $_FILES['profileImage']);
 
