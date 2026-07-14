@@ -19,41 +19,48 @@ fetch('get-events.php')
 
         eventsData = data;
 
-        eventsData = data;
-
-const params = new URLSearchParams(window.location.search);
+        const params = new URLSearchParams(window.location.search);
 const eventId = params.get("id");
 
-renderSidebar(eventsData);
-
-if (eventsData.length === 0) {
-    showNoEvent();
-    return;
-}
-
 if (eventId) {
-    const selected = eventsData.find(e => e.id == eventId);
+    const selected = eventsToDisplay.find(e => e.id == eventId);
 
     if (selected) {
         selectedEvent = selected;
+        showEventDetail(selected);
     } else {
-        selectedEvent = eventsData[0];
+        selectedEvent = eventsToDisplay[0];
+        showEventDetail(selectedEvent);
     }
 } else {
-    selectedEvent = eventsData[0];
+    selectedEvent = eventsToDisplay[0];
+    showEventDetail(selectedEvent);
 }
 
-showEventDetail(selectedEvent);
+        renderSidebar(eventsToDisplay);
+
+        if (eventsToDisplay.length > 0) {
+            selectedEvent = eventsToDisplay[0];
+            showEventDetail(selectedEvent);
+        } else {
+            showNoEvent();
+        }
+    })
+    .catch(error => {
+        console.error("Error loading events:", error);
+        showNoEvent();
+    });
+
 function renderSidebar(events) {
     const sidebar = document.getElementById('eventSidebar');
     sidebar.innerHTML = '';
 
     if (events.length === 0) {
-        sidebar.innerHTML = `
+        sidebar.innerHTML = 
             <div class="no-events">
                 No Events Available
             </div>
-        `;
+        ;
         return;
     }
 
@@ -90,7 +97,7 @@ function showEventDetail(event) {
         event.category || "-";
 
     document.getElementById("duration").textContent =
-        `${formatTime(event.startTime)} - ${formatTime(event.endTime)}`;
+        ${formatTime(event.startTime)} - ${formatTime(event.endTime)};
 
     document.getElementById("venue").textContent =
         event.venue || event.location || "-";
@@ -135,7 +142,7 @@ function renderImageCarousel(images) {
     images.forEach((src, i) => {
         const slide = document.createElement('div');
         slide.className = 'carousel-slide';
-        slide.innerHTML = `<img src="${src}" alt="Event image ${i + 1}">`;
+        slide.innerHTML = <img src="${src}" alt="Event image ${i + 1}">;
         track.appendChild(slide);
 
         const dot = document.createElement('button');
@@ -161,7 +168,7 @@ function goToImage(index) {
 
 function updateImageTrack() {
     const track = document.getElementById('imageTrack');
-    track.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+    track.style.transform = translateX(-${currentImageIndex * 100}%);
     document.querySelectorAll('#imageDots .dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === currentImageIndex);
     });
@@ -190,7 +197,7 @@ function renderCommentsCarousel(comments) {
     comments.forEach((c) => {
         const slide = document.createElement('div');
         slide.className = 'carousel-slide comment-slide';
-        slide.innerHTML = `<p class="comment-text">"${c.text}"</p><p class="comment-author">- ${c.author}</p>`;
+        slide.innerHTML = <p class="comment-text">"${c.text}"</p><p class="comment-author">- ${c.author}</p>;
         track.appendChild(slide);
     });
 
@@ -212,7 +219,7 @@ function renderCommentsCarousel(comments) {
 
 function updateCommentsTrack() {
     const track = document.getElementById('commentsTrack');
-    track.style.transform = `translateX(-${currentCommentIndex * 100}%)`;
+    track.style.transform = translateX(-${currentCommentIndex * 100}%);
     document.querySelectorAll('#commentsDots .dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === currentCommentIndex);
     });
@@ -233,7 +240,7 @@ function formatTime(time24) {
 
     const displayHour = h % 12 === 0 ? 12 : h % 12;
 
-    return `${displayHour}:${minute} ${ampm}`;
+    return ${displayHour}:${minute} ${ampm};
 }
 
 document.getElementById("interestedBtn").addEventListener("click", async () => {
@@ -362,3 +369,4 @@ function showNoEvent() {
     renderCommentsCarousel([]);
 }
 /* post comment stuff is up here in case I can't find it */
+why is the event card from dashboard nor showing the event
