@@ -10,14 +10,12 @@ class RegisterController
 
         $data = json_decode(file_get_contents("php://input"), true) ?? [];
 
-        $name = trim($data['name'] ?? '');
         $username = trim($data['username'] ?? '');
         $password = $data['password'] ?? '';
         $confirmPassword = $data['confirmPassword'] ?? '';
 
-        // Same validation the front-end already does, re-checked here
-        // because client-side checks can always be bypassed.
-        if ($name === '' || $username === '' || $password === '') {
+        // Validation
+        if ($username === '' || $password === '') {
             $this->json(["success" => false, "error" => "All fields are required."]);
             return;
         }
@@ -37,7 +35,7 @@ class RegisterController
             return;
         }
 
-        $userId = User::create($name, $username, $password);
+        $userId = User::create($username, $password);
 
         if ($userId === false) {
             $this->json(["success" => false, "error" => "Could not create account. Please try again."]);
