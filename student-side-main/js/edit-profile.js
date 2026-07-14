@@ -45,11 +45,16 @@ profileImage.addEventListener("change", () => {
 document.getElementById("updateBtn").addEventListener("click", async () => {
     const username = document.getElementById("username").value.trim();
     const password = passwordInput.value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (!username) {
         alert("Username and password cannot be empty.");
         return;
     }
+    if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+}
 
     const formData = new FormData();
     formData.append("username", username);
