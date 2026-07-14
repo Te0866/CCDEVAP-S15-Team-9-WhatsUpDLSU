@@ -56,11 +56,11 @@ function renderSidebar(events) {
     sidebar.innerHTML = '';
 
     if (events.length === 0) {
-        sidebar.innerHTML = `
+        sidebar.innerHTML = 
             <div class="no-events">
                 No Events Available
             </div>
-        `;
+        ;
         return;
     }
 
@@ -368,5 +368,3 @@ function showNoEvent() {
     renderImageCarousel([]);
     renderCommentsCarousel([]);
 }
-/* post comment stuff is up here in case I can't find it */
-why is the event card from dashboard nor showing the event
