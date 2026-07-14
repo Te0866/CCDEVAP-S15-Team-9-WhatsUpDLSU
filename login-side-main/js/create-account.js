@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const payload = {
             name: document.getElementById('name').value.trim(),
             username: document.getElementById('username').value.trim(),
-            email: document.getElementById('email').value.trim(),
             password: password.value,
             confirmPassword: confirmPassword.value
         };
