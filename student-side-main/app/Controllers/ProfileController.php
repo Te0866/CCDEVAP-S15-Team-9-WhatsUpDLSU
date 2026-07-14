@@ -21,8 +21,8 @@ class ProfileController
         $password = $_POST['password'] ?? '';
         $userId = $_SESSION['user_id'];
 
-        if ($username === '' || $password === '') {
-            $this->json(["success" => false, "error" => "Missing fields"]);
+        if ($username === '') {
+            $this->json(["success" => false, "error" => "Username is required"]);
             return;
         }
 
