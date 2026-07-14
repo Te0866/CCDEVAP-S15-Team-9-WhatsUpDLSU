@@ -36,12 +36,49 @@ document.addEventListener('DOMContentLoaded', function () {
     password.addEventListener('input', checkMatch);
     confirmPassword.addEventListener('input', checkMatch);
 
-    // Block submit if passwords don't match
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
+    // Submit to the backend instead of a native form submit
+    document.getElementById('registerForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
         if (password.value !== confirmPassword.value) {
-            e.preventDefault();
             checkMatch();
             confirmPassword.focus();
+            return;
+        }
+
+        const payload = {
+            name: document.getElementById('name').value.trim(),
+            username: document.getElementById('username').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            password: password.value,
+            confirmPassword: confirmPassword.value
+        };
+
+        const submitBtn = document.querySelector('.btn-primary');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating account...';
+
+        try {
+            const response = await fetch('register.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert('Account created successfully! Please log in.');
+                window.location.href = 'login.html';
+            } else {
+                alert('Could not create account: ' + (result.error || 'Unknown error'));
+            }
+        } catch (err) {
+            console.error('Registration error:', err);
+            alert('Something went wrong while creating your account.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Create Account';
         }
     });
 });
