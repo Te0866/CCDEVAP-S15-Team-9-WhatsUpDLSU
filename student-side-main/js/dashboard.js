@@ -59,8 +59,9 @@ fetch("get-interested-events.php")
     .then(data => {
         events = data;
         renderCarousel();
-    });
-.catch(err => console.error(err));
+    })
+    .catch(err => console.error(err));
+
 nextBtn.addEventListener("click", () => {
     if (currentIndex + 2 < events.length) {
         currentIndex += 2;
