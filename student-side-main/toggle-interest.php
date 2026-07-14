@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../dbconnection.php";
+require_once __DIR__ . "/../dbconnection.php";
 header("Content-Type: application/json");
 
 if (!isset($_SESSION['user_id'])) {
@@ -25,7 +25,6 @@ mysqli_stmt_store_result($check);
 $alreadyInterested = mysqli_stmt_num_rows($check) > 0;
 
 if ($alreadyInterested) {
-    // Remove interest
     $stmt = mysqli_prepare($conn, "DELETE FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?");
     mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
 
@@ -35,7 +34,6 @@ if ($alreadyInterested) {
         echo json_encode(["success" => false, "message" => mysqli_error($conn)]);
     }
 } else {
-    // Add interest
     $stmt = mysqli_prepare($conn, "INSERT INTO event_interest (USER_ID, EVENT_ID) VALUES (?, ?)");
     mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
 
