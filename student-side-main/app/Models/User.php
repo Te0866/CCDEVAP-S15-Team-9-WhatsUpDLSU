@@ -28,12 +28,12 @@ class User
     {
         foreach (['png', 'jpg'] as $ext) {
             $relative = "profile-pictures/{$userId}/pfp.{$ext}";
-            if (file_exists(__DIR__ . "/../../{$relative}")) {
+            if (file_exists(__DIR__ . "/../../../profile-pictures/img/{$relative}")) {
                 return $relative;
             }
         }
 
-        return "img/default-profile.png";
+        return "/../../../profile-pictures/default-profile.png";
     }
 
     public static function updateProfile(int $userId, string $username, string $plainPassword = ''): bool
