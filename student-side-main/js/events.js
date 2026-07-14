@@ -19,29 +19,8 @@ fetch('get-events.php')
 
         eventsData = data;
 
-        const params = new URLSearchParams(window.location.search);
-        const categoryParam = params.get('category');
-
-        let eventsToDisplay = eventsData;
-
-        if (categoryParam) {
-            const categorySelect = document.getElementById("categoryFilter");
-            categorySelect.value = categoryParam;
-
-            eventsToDisplay = eventsData.filter(event =>
-                event.category.toUpperCase() === categoryParam.toUpperCase()
-            );
-        }
-
-        renderSidebar(eventsToDisplay);
-
-        if (eventsToDisplay.length > 0) {
-            selectedEvent = eventsToDisplay[0];
-            showEventDetail(selectedEvent);
-        } else {
-            showNoEvent();
-        }
-        clearFilters();
+        eventsData = data;
+clearFilters();
     })
     .catch(error => {
         console.error("Error loading events:", error);
