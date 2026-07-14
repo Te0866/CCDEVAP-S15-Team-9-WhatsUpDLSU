@@ -13,17 +13,24 @@ document.addEventListener("click", (event) => {
 });
 
 const passwordInput = document.getElementById("password");
-const togglePassword = document.getElementById("togglePassword");
 
-togglePassword.addEventListener("click", () => {
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePassword.textContent = "Hide";
-    } else {
-        passwordInput.type = "password";
-        togglePassword.textContent = "Show";
-    }
-});
+function setupPasswordToggle(inputId, buttonId) {
+    const input = document.getElementById(inputId);
+    const button = document.getElementById(buttonId);
+
+    button.addEventListener("click", () => {
+        if (input.type === "password") {
+            input.type = "text";
+            button.textContent = "Hide";
+        } else {
+            input.type = "password";
+            button.textContent = "Show";
+        }
+    });
+}
+
+setupPasswordToggle("password", "togglePassword");
+setupPasswordToggle("confirmPassword", "toggleConfirmPassword");
 
 const profileImage = document.getElementById("profileImage");
 const profilePreview = document.getElementById("profilePreview");
