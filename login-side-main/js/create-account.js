@@ -37,47 +37,48 @@ document.addEventListener('DOMContentLoaded', function () {
     confirmPassword.addEventListener('input', checkMatch);
 
     // Submit to the backend instead of a native form submit
-    document.getElementById('registerForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
+    // Submit to the backend instead of a native form submit
+document.getElementById('registerForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-        if (password.value !== confirmPassword.value) {
-            checkMatch();
-            confirmPassword.focus();
-            return;
+    if (password.value !== confirmPassword.value) {
+        checkMatch();
+        confirmPassword.focus();
+        return;
+    }
+
+    const payload = {
+        username: document.getElementById('username').value.trim(),
+        password: password.value,
+        confirmPassword: confirmPassword.value
+    };
+
+    const submitBtn = document.querySelector('.btn-primary');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating account...';
+
+    try {
+        const response = await fetch('register.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert('Account created successfully! Please log in.');
+            window.location.href = 'login.html';
+        } else {
+            alert(result.error || 'Could not create account.');
         }
-
-        const payload = {
-            name: document.getElementById('name').value.trim(),
-            username: document.getElementById('username').value.trim(),
-            password: password.value,
-            confirmPassword: confirmPassword.value
-        };
-
-        const submitBtn = document.querySelector('.btn-primary');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Creating account...';
-
-        try {
-            const response = await fetch('register.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                alert('Account created successfully! Please log in.');
-                window.location.href = 'login.html';
-            } else {
-                alert('Could not create account: ' + (result.error || 'Unknown error'));
-            }
-        } catch (err) {
-            console.error('Registration error:', err);
-            alert('Something went wrong while creating your account.');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Create Account';
-        }
-    });
+    } catch (err) {
+        console.error(err);
+        alert('Something went wrong while creating your account.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Account';
+    }
 });
