@@ -444,6 +444,11 @@ const status = document.getElementById("statusFilter").value;
             event.category.toLowerCase() === category.toLowerCase()
         );
     }
+     if (status !== "All") {
+    filtered = filtered.filter(event =>
+        (event.status || "").toLowerCase() === status.toLowerCase()
+    );
+}
 
     filtered.sort((a, b) => {
         if (sort === "Newest") {
@@ -451,11 +456,7 @@ const status = document.getElementById("statusFilter").value;
         } else {
             return new Date(a.date) - new Date(b.date);
         }
-    if (status !== "All") {
-    filtered = filtered.filter(event =>
-        (event.status || "").toLowerCase() === status.toLowerCase()
-    );
-}
+   
     });
 
     renderSidebar(filtered);
