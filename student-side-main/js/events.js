@@ -240,7 +240,7 @@ function formatTime(time24) {
 
     const displayHour = h % 12 === 0 ? 12 : h % 12;
 
-    return ${displayHour}:${minute} ${ampm};
+    return `${displayHour}:${minute} ${ampm}`;
 }
 
 document.getElementById("interestedBtn").addEventListener("click", async () => {
