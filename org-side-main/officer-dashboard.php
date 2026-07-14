@@ -96,7 +96,7 @@
                                                             ?> ▼ </button>
 
                 <div class="dropdown-menu" id="dropdownMenu">
-                    <button onclick="location.href='edit-organization.html'"> EDIT ORGANIZATION DETAILS </button>
+                    <button onclick="location.href='edit-organization.php'"> EDIT ORGANIZATION DETAILS </button>
                     <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
                     <button onclick="window.location.href='../login-side-main/officer-login.html'"> LOG OUT </button>
                 </div>
@@ -113,7 +113,7 @@
                                 ?>! </h1>
                 <p> Manage your events and track submissions. </p>
             </div>
-            <button class="create-btn" onclick="location.href='create.html'"> + Create event </button>
+            <button class="create-btn" onclick="location.href='create.php'"> + Create event </button>
         </section>
 
         <section class="stats-row">
