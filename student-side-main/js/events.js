@@ -41,6 +41,7 @@ fetch('get-events.php')
         } else {
             showNoEvent();
         }
+          clearFilters(); 
     })
     .catch(error => {
         console.error("Error loading events:", error);
@@ -448,15 +449,14 @@ document.getElementById("sortFilter")
 document.getElementById("dateFilter")
     .addEventListener("change", filterEvents);
 
-const clearFiltersBtn = document.getElementById("clearFiltersBtn");
-
-clearFiltersBtn.addEventListener("click", () => {
-
+function clearFilters() {
     document.getElementById("searchInput").value = "";
     document.getElementById("dateFilter").value = "";
     document.getElementById("categoryFilter").value = "All";
     document.getElementById("sortFilter").value = "Newest";
 
     filterEvents();
+}
 
-});
+document.getElementById("clearFiltersBtn")
+    .addEventListener("click", clearFilters);
