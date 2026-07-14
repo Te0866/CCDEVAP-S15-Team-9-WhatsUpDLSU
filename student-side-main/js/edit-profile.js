@@ -53,43 +53,35 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
     const username = document.getElementById("username").value.trim();
     const password = passwordInput.value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-
     if (!username) {
-        showAlert("Error", "Username cannot be empty.");
+        alert("Username cannot be empty.");
         return;
     }
     if (password !== confirmPassword) {
-        showAlert("Error", "Passwords do not match.");
-        return;
-    }
-
+    alert("Passwords do not match.");
+    return;
+}
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
-
     const file = profileImage.files[0];
     if (file) {
         formData.append("profileImage", file);
     }
-
     try {
         const response = await fetch("update-profile.php", {
             method: "POST",
             body: formData
         });
-
         const result = await response.json();
-
         if (result.success) {
-            showAlert("Success", "Profile updated successfully.");
-            setTimeout(() => {
-                window.location.href = "dashboard.php";
-            }, 1200);
+            alert("Profile updated successfully.");
+            window.location.href = "dashboard.php";
         } else {
-            showAlert("Update Failed", result.error || "Unknown error");
+            alert("Update failed: " + (result.error || "Unknown error"));
         }
     } catch (err) {
         console.error("Update error:", err);
-        showAlert("Error", "Something went wrong while updating your profile.");
+        alert("Something went wrong while updating your profile.");
     }
 });
