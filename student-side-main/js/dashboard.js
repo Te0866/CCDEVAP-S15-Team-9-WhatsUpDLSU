@@ -54,7 +54,7 @@ function renderCarousel() {
     }
 }
 
-fetch("get-interested-events.php")
+fetch("api/get-interested-events.php")
     .then(res => res.json())
     .then(data => {
         events = data;
@@ -79,7 +79,7 @@ prevBtn.addEventListener("click", () => {
 
 const chartCanvas = document.getElementById("studentChart");
 
-fetch("get-category-stats.php")
+fetch("api/get-category-stats.php")
 .then(res => res.json())
 .then(data => {
 
@@ -114,7 +114,7 @@ fetch("get-category-stats.php")
 
 const popularCanvas = document.getElementById("popularChart");
 
-fetch("get-popular-events.php")
+fetch("api/get-popular-events.php")
 .then(res => res.json())
 .then(data => {
 
