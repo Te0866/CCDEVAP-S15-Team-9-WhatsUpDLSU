@@ -321,6 +321,23 @@ body{
     background:#066447;
 }
 
+.view-event-btn{
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    padding:10px 16px;
+    background:#087f5b;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.view-event-btn:hover{
+    background:#066447;
+}
+
 @media screen and (max-width:768px){
 
     body{
