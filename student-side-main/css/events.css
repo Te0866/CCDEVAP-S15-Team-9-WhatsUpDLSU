@@ -144,17 +144,24 @@ body{
 }
 
 .filter-clear-btn{
-    padding:10px 16px;
+    height:45px;
+    padding:0 18px;
     border:none;
-    border-radius:8px;
-    background:#d9534f;
+    border-radius:12px;
+    background:#087f5b;
     color:white;
-    cursor:pointer;
+    font-size:15px;
     font-weight:600;
+    cursor:pointer;
+    transition:0.2s;
 }
 
 .filter-clear-btn:hover{
-    background:#c9302c;
+    background:#066a4b;
+}
+
+.filter-clear-btn:active{
+    transform:scale(0.98);
 }
 
 .search-bar{
