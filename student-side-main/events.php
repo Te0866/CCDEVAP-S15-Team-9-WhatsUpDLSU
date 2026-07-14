@@ -112,8 +112,8 @@ $activeTab = 'events';
                 <div class="image-column">
                     <div class="carousel image-carousel">
                         <div class="carousel-track" id="imageTrack"></div>
-                            <button id="prevBtn" class="arrow">&#10094;</button>
-                           <button id="nextBtn" class="arrow">&#10095;</button>
+                            <button class="carousel-btn prev" id="imgPrev">&#10094;</button>
+                            <button class="carousel-btn next" id="imgNext">&#10095;</button>
                             <div class="carousel-dots" id="imageDots"></div>
                         </div>
     
