@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../org-side-main/officer-dashboard.php");
             }
             else {
-                header("Location: ../student-side-main/dashboard.php");
+                header("Location: ../student-side-main/index.php");
             }
 
             exit();
