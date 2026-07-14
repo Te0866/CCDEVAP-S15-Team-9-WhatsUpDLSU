@@ -4,12 +4,6 @@ require_once __DIR__ . "/../Core/Database.php";
 
 /**
  * Registration-side queries against `users`.
- *
- * NOTE: I'm assuming your `users` table has a NAME column for full name
- * and a USER_TYPE column that distinguishes user roles (e.g. 'user' vs
- * 'admin' vs 'org'). If your actual column names differ, the ONLY places
- * that need updating are the SQL strings below — nothing in the
- * Controller needs to change.
  */
 class User
 {
@@ -26,32 +20,30 @@ class User
 
     /**
      * Creates a new user. Returns the new USER_ID on success, or false
-     * on failure. Password is stored as plaintext to match how the rest
-     * of the app currently handles it. USER_TYPE is always 'user' —
-     * this endpoint only ever creates ordinary student accounts.
+     * on failure.
      */
     public static function create(string $username, string $plainPassword): int|false
-{
-    $conn = Database::connection();
+    {
+        $conn = Database::connection();
 
-    $stmt = mysqli_prepare(
-        $conn,
-        "INSERT INTO users
-        (USER_NAME, PASSWORD, ROLE, CREATED_AT, STATUS)
-        VALUES (?, ?, 'USER', CURDATE(), 'ACTIVE')"
-    );
+        $stmt = mysqli_prepare(
+            $conn,
+            "INSERT INTO users (USER_NAME, PASSWORD, ROLE, CREATED_AT, STATUS) 
+             VALUES (?, ?, 'USER', CURDATE(), 'ACTIVE')"
+        );
 
-    if (!$stmt) {
-        error_log("Prepare failed: " . mysqli_error($conn));
-        return false;
+        if (!$stmt) {
+            error_log("Prepare failed: " . mysqli_error($conn));
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ss", $username, $plainPassword);
+
+        if (!mysqli_stmt_execute($stmt)) {
+            error_log("Insert failed: " . mysqli_error($conn));
+            return false;
+        }
+
+        return mysqli_insert_id($conn);
     }
-
-    mysqli_stmt_bind_param($stmt, "ss", $username, $plainPassword);
-
-    if (!mysqli_stmt_execute($stmt)) {
-        error_log("Insert failed: " . mysqli_error($conn));
-        return false;
-    }
-
-    return mysqli_insert_id($conn);
 }
