@@ -511,4 +511,11 @@ body{
     color:#333;
     cursor:pointer;
 }
+    #prevBtn{
+    left: 8px;
+}
+
+#nextBtn{
+    right: 8px;
+}
 }
