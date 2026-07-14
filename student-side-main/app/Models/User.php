@@ -20,20 +20,25 @@ class User
     }
 
     /**
-     * Returns the path to this user's profile picture, falling back to a
-     * default image if none has been uploaded. Mirrors the logic that used
-     * to live in profile-picture.php.
+     * Returns the browser-relative path to this user's profile picture,
+     * falling back to a default image if none has been uploaded. Mirrors
+     * the original profile-picture.php exactly: profile-pictures/ lives
+     * one level ABOVE student-side-main/ (shared with login-side-main
+     * etc.), not inside it — so the filesystem check goes up three levels
+     * from app/Models/, and the web-facing src needs a leading "../".
      */
     public static function profilePicturePath(int $userId): string
     {
-        foreach (['png', 'jpg'] as $ext) {
-            $relative = "profile-pictures/{$userId}/pfp.{$ext}";
-            if (file_exists(__DIR__ . "/../../../profile-pictures/img/{$relative}")) {
-                return $relative;
+        $diskDir = __DIR__ . "/../../../profile-pictures/{$userId}/";
+        $webDir = "../profile-pictures/{$userId}/";
+
+        foreach (['pfp.png', 'pfp.jpg'] as $filename) {
+            if (file_exists($diskDir . $filename)) {
+                return $webDir . $filename;
             }
         }
 
-        return "/../../../profile-pictures/default-profile.png";
+        return "../profile-pictures/default-profile.png";
     }
 
     public static function updateProfile(int $userId, string $username, string $plainPassword = ''): bool
@@ -87,7 +92,7 @@ class User
         }
 
         $extension = $allowedTypes[$mimeType];
-        $targetDir = __DIR__ . "/../../profile-pictures/{$userId}/";
+        $targetDir = __DIR__ . "/../../../profile-pictures/{$userId}/";
 
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0755, true);
