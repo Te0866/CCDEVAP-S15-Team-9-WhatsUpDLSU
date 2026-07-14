@@ -48,7 +48,7 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (!username) {
-        alert("Username and password cannot be empty.");
+        alert("Username cannot be empty.");
         return;
     }
     if (password !== confirmPassword) {
