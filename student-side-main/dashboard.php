@@ -89,17 +89,17 @@ $activeTab = 'home';
         <h2>Interested Events!</h2>
 
         <div class="carousel">
-            <button class="arrow">&lt;</button>
+    <button id="prevBtn" class="arrow">&lt;</button>
 
-            <div id="interestedEventsContainer">
-                <div class="event-card">
-                    <h3>No Events Yet</h3>
-                    <p>Add events from the Events page</p>
-                </div>
-            </div>
-
-            <button class="arrow">&gt;</button>
+    <div id="interestedEventsContainer">
+        <div class="event-card">
+            <h3>No Events Yet</h3>
+            <p>Add events from the Events page</p>
         </div>
+    </div>
+
+    <button id="nextBtn" class="arrow">&gt;</button>
+</div>
     </section>
 
 </main>
