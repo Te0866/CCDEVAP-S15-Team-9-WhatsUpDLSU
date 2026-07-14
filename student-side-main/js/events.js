@@ -493,6 +493,7 @@ function clearFilters() {
     document.getElementById("categoryFilter").value =
     categoryParam ? categoryParam : "All";
     document.getElementById("sortFilter").value = "Newest";
+    document.getElementById("statusFilter").value = "All";
 
     filterEvents();
 }
