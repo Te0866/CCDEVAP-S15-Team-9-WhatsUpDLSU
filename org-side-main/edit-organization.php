@@ -18,15 +18,15 @@
             <div class="nav-links">
                 <a href="officer-dashboard.php" class="nav-tab"> Home </a>
                 <a href="create.php" class="nav-tab"> Create </a>
-                <a href="manage.html" class="nav-tab"> Manage </a>
+                <a href="manage.php" class="nav-tab"> Manage </a>
             </div>
 
             <div class="profile-section">
                 <button class="profile-btn" id="profileBtn"> OrgName ▼ </button>
                 <div class="dropdown-menu" id="dropdownMenu">
-                    <button onclick="location.href='edit-organization.html'" class="active"> EDIT ORGANIZATION DETAILS </button>
+                    <button onclick="location.href='edit-organization.php'" class="active"> EDIT ORGANIZATION DETAILS </button>
                     <button class="dark-mode-btn"> DARK/LIGHT MODE </button>
-                    <button onclick="window.location.href='../login-side-main/officer-login.html'"> LOG OUT </button>
+                    <button onclick="window.location.href='../login-side-main/login.html'"> LOG OUT </button>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
         <div class="header-row">
 
-            <button class="back-btn" onclick="location.href='officer-dashboard.html'">
+            <button class="back-btn" onclick="location.href='officer-dashboard.php'">
                 ◀ Dashboard
             </button>
 
