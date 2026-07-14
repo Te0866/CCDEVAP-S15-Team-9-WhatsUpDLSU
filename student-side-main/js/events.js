@@ -17,7 +17,7 @@ document.addEventListener("click", () => {
 let eventsData = [];
 let selectedEvent = null;
 
-fetch("api/get-events.php")
+fetch("get-events.php")
 .then(res => res.json())
 .then(data => {
     eventsData = data;
@@ -275,7 +275,7 @@ document.getElementById("interestedBtn").addEventListener("click", async () => {
 
     try {
 
-        const response = await fetch("api/add-interest.php", {
+        const response = await fetch("toggle-interest.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -287,14 +287,25 @@ document.getElementById("interestedBtn").addEventListener("click", async () => {
 
         const result = await response.json();
 
-        showAlert("Interested Event", result.message);
+        if (result.success) {
+            selectedEvent.isInterested = result.interested;
+            updateInterestedButton(selectedEvent.isInterested);
+        }
+
+        showAlert("Interested Events", result.message);
 
     } catch (err) {
         console.error(err);
-        alert("Unable to save interest.");
+        alert("Unable to update interest.");
     }
 
 });
+
+function updateInterestedButton(isInterested) {
+    const btn = document.getElementById("interestedBtn");
+    btn.textContent = isInterested ? "Interested ✓" : "Interested!";
+    btn.classList.toggle("interested-active", isInterested);
+}
 
 /* post comment stuff is down here in case I can't find it */
 
