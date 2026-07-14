@@ -74,7 +74,11 @@ $activeTab = 'events';
                         <p><strong>Category:</strong>
                             <span id="category">Placeholder</span>
                         </p>
-
+                        
+                        <p><strong>Date:</strong>
+                            <span id="eventDate">Placeholder</span>
+                        </p>
+                        
                         <p><strong>Duration:</strong>
                             <span id="duration">Placeholder</span>
                         </p>
