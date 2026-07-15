@@ -443,12 +443,12 @@ const status = document.getElementById("statusFilter").value;
     filtered = filtered.filter(event => event.date === selectedDate);
 }
 
-    if (category !== "All") {
+    if (category !== "All Event Categories") {
         filtered = filtered.filter(event =>
             event.category.toLowerCase() === category.toLowerCase()
         );
     }
-     if (status !== "All") {
+     if (status !== "All Event Types") {
     filtered = filtered.filter(event =>
         (event.status || "").toLowerCase() === status.toLowerCase()
     );
