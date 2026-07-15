@@ -2,9 +2,6 @@
 
 require_once __DIR__ . "/../Core/Database.php";
 
-/**
- * All queries against `event` / `event_interest` live here.
- */
 class Event
 {
     public static function categoryStats(): array
@@ -21,8 +18,6 @@ class Event
 
     public static function popular(int $limit = 5): array
     {
-        // LIMIT can't be a bound param in all mysqli setups reliably as a
-        // string type, so we cast to int ourselves to stay injection-safe.
         $limit = (int) $limit;
 
         $result = Database::query("
@@ -63,8 +58,8 @@ class Event
     }
 
     /**
-     * All approved events with full detail, for the events page.
-     * Equivalent to the old get-events.php.
+     * All approved events with full detail for the events page
+     * Equivalent to the old get-events.php stuff
      */
     public static function allApproved(): array
 {
