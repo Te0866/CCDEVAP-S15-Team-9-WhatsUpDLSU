@@ -55,7 +55,3 @@ document.getElementById("clearBtn").addEventListener("click",()=>{
         }
     });
 });
-
-// The success modal now appears on officer-dashboard.php after the
-// server actually confirms the event was created (see officer-dashboard.js),
-// instead of alerting here before the form has even been submitted.
