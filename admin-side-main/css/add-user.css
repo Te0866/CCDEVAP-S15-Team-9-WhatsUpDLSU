@@ -306,9 +306,13 @@ body{
     background: #066647;
 }
 
-/* Dark mode support */
-body.dark-mode .modal-content { background: #222; color: #ddd; }
-body.dark-mode .modal-body { color: #ccc; }
+
+body.dark-mode .modal-content { 
+    background: #222; color: #ddd; 
+}
+body.dark-mode .modal-body { 
+    color: #ccc; 
+}
 
 @media screen and (max-width:768px){
 
