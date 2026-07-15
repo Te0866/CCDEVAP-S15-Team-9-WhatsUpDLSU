@@ -4,9 +4,6 @@ class Auth
 {
     public static function requireOfficer()
     {
-        // Prevent the browser (and its back/forward cache) from serving a
-        // cached copy of this authenticated page after the session is gone,
-        // e.g. after logout + back button.
         header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
         header("Pragma: no-cache");
 
