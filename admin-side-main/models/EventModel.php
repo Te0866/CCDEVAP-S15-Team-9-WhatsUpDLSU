@@ -1,26 +1,23 @@
 <?php
 require_once __DIR__ . '/Database.php';
 
-/**
- * EventModel
- *
- * Encapsulates all SQL for the `event` table needed by the admin
- * "Manage Events" dashboard and the event review screen.
- */
+
 class EventModel {
     private $conn;
+
+    private const STATUS_EXPR = "CASE
+        WHEN TIMESTAMP(e.DATE, e.END_TIME) <= NOW() THEN 'ENDED'
+        WHEN TIMESTAMP(e.DATE, e.START_TIME) <= NOW() THEN 'ONGOING'
+        ELSE 'UPCOMING'
+    END";
 
     public function __construct() {
         $this->conn = Database::getConnection();
     }
 
-    /**
-     * @param array $filters keys: search, date, category, status
-     * @return array
-     */
     public function getAllEvents($filters = []) {
         $sql = "SELECT e.EVENT_ID, e.TITLE, e.CATEGORY, e.VENUE, e.DATE, e.START_TIME,
-                       e.END_TIME, e.APPROVAL_STATUS, e.STATUS, e.REMARKS, e.USER_ID,
+                       e.END_TIME, e.APPROVAL_STATUS, " . self::STATUS_EXPR . " AS STATUS, e.REMARKS, e.USER_ID,
                        u.USER_NAME AS officer_name
                 FROM event e
                 LEFT JOIN users u ON e.USER_ID = u.USER_ID
@@ -73,7 +70,7 @@ class EventModel {
     }
 
     public function getEventById($eventId) {
-        $stmt = mysqli_prepare($this->conn, "SELECT e.*, u.USER_NAME AS officer_name
+        $stmt = mysqli_prepare($this->conn, "SELECT e.*, u.USER_NAME AS officer_name, " . self::STATUS_EXPR . " AS STATUS
             FROM event e
             LEFT JOIN users u ON e.USER_ID = u.USER_ID
             WHERE e.EVENT_ID = ?");
@@ -84,7 +81,6 @@ class EventModel {
         return mysqli_fetch_assoc($result) ?: null;
     }
 
-    /** @return array{PENDING:int, APPROVED:int, REJECTED:int} */
     public function getApprovalStatusCounts() {
         $counts = ['PENDING' => 0, 'APPROVED' => 0, 'REJECTED' => 0];
 
