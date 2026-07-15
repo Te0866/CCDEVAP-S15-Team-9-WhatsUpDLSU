@@ -61,7 +61,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         "endTime" => $row["END_TIME"],
         "status" => $row["STATUS"],
         "registration" => $row["REGISTRATION_STATUS"] ? "Open" : "Closed",
-        "organizer" => $row["ORG_NAME"],
+        "organizer" => $row["USER_NAME"],
         "images" => $images,
         "comments" => [],
         "isInterested" => $row["INTEREST_ID"] !== null
