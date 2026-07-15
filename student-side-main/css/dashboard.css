@@ -382,14 +382,14 @@ body{
 
 
     .dashboard-layout{
-    display:flex;
-    flex-direction:column;
-}
+        display:flex;
+        flex-direction:column;
+    }
 
-.left-column,
-.right-column{
-    display:contents;
-}
+    .left-column,
+    .right-column{
+        display:contents;
+    }
 
     .banner{
         order:1;
@@ -466,18 +466,18 @@ body{
     }
 
     .carousel{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
    #interestedEventsContainer{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
 
     .event-card{
         width:150px;
@@ -497,20 +497,21 @@ body{
     }
 
    .arrow{
-    position: absolute;
-    width: 56px;
-    height: 56px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
        background: rgba(0,0,0,0.4);
-}
+    }
+    
     #prevBtn{
-    left: 8px;
-}
+        left: 8px;
+    }
 
-#nextBtn{
-    right: 8px;
-}
+    #nextBtn{
+        right: 8px;
+    }
 }
