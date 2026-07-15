@@ -115,20 +115,82 @@ function showEventDetail(event) {
     renderImageCarousel(event.images || []);
 
     loadComments(event.id);
+
+    function loadComments(eventId) {
+    fetch(`get-comments.php?event_id=${eventId}`)
+        .then(res => res.json())
+        .then(comments => renderCommentsCarousel(comments))
+        .catch(err => {
+            console.error('Failed to load comments:', err);
+            renderCommentsCarousel([]);
+        });
+    }
+    
     /*fetch(`get-comments.php?event_id=${event.id}`)
         .then(res => res.json())
         .then(comments => renderCommentsCarousel(comments))
         .catch(err => {
             console.error('Failed to load comments:', err);
             renderCommentsCarousel([]);
-        });*/
-}
+        });
+    }*/
 
 let currentImageIndex = 0;
 let currentCommentIndex = 0;
 let commentsIntervalId = null;
 
-function renderImageCarousel(images) {
+function renderCommentsCarousel(comments) {
+    const track = document.getElementById('commentsTrack');
+    const dotsContainer = document.getElementById('commentsDots');
+    track.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    currentCommentIndex = 0;
+
+    if (commentsIntervalId) {
+        clearInterval(commentsIntervalId);
+        commentsIntervalId = null;
+    }
+
+    if (!comments || comments.length === 0) {
+        track.innerHTML = '<div class="carousel-slide comment-slide"><p class="comment-text">No comments yet.</p></div>';
+        return;
+    }
+
+    comments.forEach((c) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide comment-slide';
+
+        const editBtnHtml = c.isOwner
+            ? `<button class="comment-edit-btn" data-id="${c.id}" title="Edit comment">&#9998;</button>`
+            : '';
+
+        slide.innerHTML = `${editBtnHtml}<p class="comment-text">"${c.text}"</p><p class="comment-author">- ${c.author}</p>`;
+        track.appendChild(slide);
+
+        if (c.isOwner) {
+            slide.querySelector('.comment-edit-btn').addEventListener('click', () => {
+                openEditCommentModal(c.id, c.text);
+            });
+        }
+    });
+
+    comments.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dotsContainer.appendChild(dot);
+    });
+
+    updateCommentsTrack();
+
+    if (comments.length > 1) {
+        commentsIntervalId = setInterval(() => {
+            currentCommentIndex = (currentCommentIndex + 1) % comments.length;
+            updateCommentsTrack();
+        }, 3000);
+    }
+}
+    
+/*function renderImageCarousel(images) {
     const track = document.getElementById('imageTrack');
     const dotsContainer = document.getElementById('imageDots');
     const prevBtn = document.getElementById('imgPrev');
@@ -162,7 +224,7 @@ function renderImageCarousel(images) {
     dotsContainer.style.display = showControls ? 'flex' : 'none';
 
     updateImageTrack();
-}
+}*/
 
 function goToImage(index) {
     const track = document.getElementById('imageTrack');
@@ -357,7 +419,7 @@ commentForm.addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (result.success) {
-            addCommentLocally({ author: result.author, text: result.text });
+            loadComments(selectedEvent.id);
         } else {
             showAlert("Error", result.error || "Failed to post comment.");
         }
@@ -369,12 +431,89 @@ commentForm.addEventListener('submit', async (e) => {
 
     closeCommentModal();
 });
-
+/*
 function addCommentLocally(comment) {
     if (!selectedEvent.comments) selectedEvent.comments = [];
     selectedEvent.comments.push(comment);
     renderCommentsCarousel(selectedEvent.comments);
+}*/
+
+const editCommentModalOverlay = document.getElementById('editCommentModalOverlay');
+const editCommentForm = document.getElementById('editCommentForm');
+const editCommentMessage = document.getElementById('editCommentMessage');
+const cancelEditCommentBtn = document.getElementById('cancelEditCommentBtn');
+const deleteCommentBtn = document.getElementById('deleteCommentBtn');
+
+let editingCommentId = null;
+
+function openEditCommentModal(commentId, currentText) {
+    editingCommentId = commentId;
+    editCommentMessage.value = currentText;
+    editCommentModalOverlay.classList.add('show');
 }
+
+function closeEditCommentModal() {
+    editCommentModalOverlay.classList.remove('show');
+    editCommentForm.reset();
+    editingCommentId = null;
+}
+
+cancelEditCommentBtn.addEventListener('click', closeEditCommentModal);
+
+editCommentModalOverlay.addEventListener('click', (e) => {
+    if (e.target === editCommentModalOverlay) closeEditCommentModal();
+});
+
+editCommentForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = editCommentMessage.value.trim();
+    if (!text || !editingCommentId) return;
+
+    try {
+        const response = await fetch('edit-comment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ comment_id: editingCommentId, text })
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            loadComments(selectedEvent.id);
+        } else {
+            showAlert("Error", result.error || "Failed to update comment.");
+        }
+    } catch (err) {
+        console.error('Failed to edit comment:', err);
+        showAlert("Error", "Something went wrong updating your comment.");
+    }
+
+    closeEditCommentModal();
+});
+
+deleteCommentBtn.addEventListener('click', async () => {
+    if (!editingCommentId) return;
+    if (!confirm('Delete this comment? This cannot be undone.')) return;
+
+    try {
+        const response = await fetch('delete-comment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ comment_id: editingCommentId })
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            loadComments(selectedEvent.id);
+        } else {
+            showAlert("Error", result.error || "Failed to delete comment.");
+        }
+    } catch (err) {
+        console.error('Failed to delete comment:', err);
+        showAlert("Error", "Something went wrong deleting your comment.");
+    }
+
+    closeEditCommentModal();
+});
 
 function showNoEvent() {
     document.getElementById("eventTitle").textContent = "No Events Available";
