@@ -4,6 +4,12 @@ require_once __DIR__ . "/../Core/Database.php";
 
 class Event
 {
+    private const STATUS_EXPR = "CASE
+        WHEN TIMESTAMP(e.DATE, e.END_TIME) <= NOW() THEN 'ENDED'
+        WHEN TIMESTAMP(e.DATE, e.START_TIME) <= NOW() THEN 'ONGOING'
+        ELSE 'UPCOMING'
+    END";
+
     public static function categoryStats(): array
     {
         $result = Database::query("
@@ -79,7 +85,7 @@ class Event
                 e.DATE,
                 e.START_TIME,
                 e.END_TIME,
-                e.STATUS,
+                " . self::STATUS_EXPR . " AS STATUS,
                 e.REGISTRATION_STATUS,
                 e.BANNER_IMAGE,
                 u.USER_NAME,
@@ -121,7 +127,7 @@ class Event
 
         return $events;
     }
-    
+
     public static function markInterested(int $userId, int $eventId): array
     {
         if ($eventId <= 0) {
@@ -142,22 +148,6 @@ class Event
             return mysqli_stmt_execute($stmt)
                 ? [true, "Removed from Interested Events.", false]
                 : [false, mysqli_error($conn), true];
-        }
-
-
-        $statusResult = Database::query(
-            "SELECT STATUS FROM event WHERE EVENT_ID = ?",
-            "i",
-            [$eventId]
-        );
-        $eventRow = mysqli_fetch_assoc($statusResult);
-
-        if (!$eventRow) {
-            return [false, "Event not found.", false];
-        }
-
-        if ($eventRow["STATUS"] === "ENDED") {
-            return [false, "This event has already ended.", false];
         }
 
         $stmt = mysqli_prepare($conn, "INSERT INTO event_interest(USER_ID, EVENT_ID) VALUES (?, ?)");
