@@ -8,7 +8,7 @@ Step 3: Open the XAMPP Control Panel and start Apache and MySQL.
 
 Step 4: Open any browser and type localhost/phpmyadmin/
 
-Step 5: Then import the "whatsupdlsu.sql" found inside of the folder inside htdocs.
+Step 5: Then import the "CCDEVAP-S16-Team-9-WhatsUpDLSU.sql" found inside of the folder inside htdocs.
 
 Step 6: Then open another tab and type localhost/CCDEVAP-S16-Team-9-WhatsUpDLSU/
 
