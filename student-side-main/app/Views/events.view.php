@@ -24,7 +24,7 @@
         <section class="search-section">
             <input type="text" id="searchInput" placeholder="Search Events" class="search-input">
             <select id="statusFilter" class="filter-box">
-                <option>All</option>
+                <option>All Event Status</option>
                 <option>Upcoming</option>
                 <option>Ongoing</option>
                 <option>Ended</option>
@@ -32,7 +32,7 @@
             <input type="date" id="dateFilter" class="filter-box">
 
             <select id="categoryFilter" class="filter-box">
-                <option>All Event Status</option>
+                <option>All Event Categories</option>
                 <option>Academic</option>
                 <option>Career</option>
                 <option>Non-academic</option>
