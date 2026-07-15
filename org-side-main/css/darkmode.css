@@ -1,0 +1,138 @@
+body.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+
+body.dark-mode .navbar{
+    background:#1e1e1e;
+}
+
+
+body.dark-mode .banner,
+body.dark-mode .carousel-section,
+body.dark-mode .category-box,
+body.dark-mode .event-detail,
+body.dark-mode .form-container,
+body.dark-mode .profile-container,
+body.dark-mode .event-panel,
+body.dark-mode .action-panel,
+body.dark-mode .status-column{
+    background:#222;
+    color:white;
+}
+
+
+body.dark-mode ,
+body.dark-mode .event-item,
+body.dark-mode .image-box,
+body.dark-mode .image-placeholder,
+body.dark-mode .upload-box,
+body.dark-mode .category-item{
+    background:#333;
+    color:white;
+}
+
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select{
+    background:#444;
+    color:white;
+    border:none;
+}
+
+body.dark-mode .dropdown-menu{
+    background:#2d2d2d;
+}
+
+body.dark-mode .dropdown-menu button{
+    background:#444;
+    color:white;
+}
+
+
+
+body.dark-mode .profile-btn{
+    background:#444;
+}
+
+body.dark-mode .interested-btn,
+body.dark-mode .submit-btn,
+body.dark-mode .clear-btn,
+body.dark-mode .view-btn,
+body.dark-mode .update-btn,
+body.dark-mode .approve-btn,
+body.dark-mode .back-btn{
+    background:#666;
+    color:white;
+}
+
+body.dark-mode .page-title{
+    color:white;
+}
+
+body.dark-mode .stat-card,
+body.dark-mode .events-container,
+body.dark-mode .activity-box,
+body.dark-mode .chart-box{
+    background:#222;
+    color:white;
+    border-color:#333;
+}
+
+body.dark-mode .stat-label{
+    color:#b7c4be;
+}
+
+body.dark-mode .stat-value{
+    color:white;
+}
+
+body.dark-mode .event-card{
+    background:#2b2b2b;
+    border-color:#3a3a3a;
+}
+
+body.dark-mode .event-card h3{
+    color:white;
+}
+
+body.dark-mode .event-card p{
+    color:#b7c4be;
+}
+
+body.dark-mode .activity-text p{
+    color:white;
+}
+
+body.dark-mode .activity-time{
+    color:#9aa6a0;
+}
+
+body.dark-mode .legend-item{
+    color:#dfe7e2;
+}
+
+body.dark-mode .create-btn{
+    background:#3f3f3f;
+    color:white;
+}
+
+body.dark-mode .create-btn:hover{
+    background:#4d4d4d;
+}
+
+body.dark-mode .events-header h2{
+    color:white;
+}
+
+body.dark-mode .carousel-arrow{
+    background:#2b2b2b;
+    border-color:#3a3a3a;
+    color:white;
+}
+
+body.dark-mode .carousel-arrow:hover{
+    background:#3a3a3a;
+}
