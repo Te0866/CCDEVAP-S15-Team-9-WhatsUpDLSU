@@ -130,6 +130,23 @@
                 </form>
             </div>
         </div>
+
+        <div class="modal-overlay" id="editCommentModalOverlay">
+            <div class="modal-box">
+                <h3>Edit Comment</h3>
+                <form id="editCommentForm">
+                    <label for="editCommentMessage">Message</label>
+                    <textarea id="editCommentMessage" name="text" rows="4" required></textarea>
+
+                    <div class="modal-actions">
+                        <button type="button" id="deleteCommentBtn" class="modal-delete-btn">Delete</button>
+                        <button type="button" id="cancelEditCommentBtn" class="modal-cancel-btn">Cancel</button>
+                        <button type="submit" class="modal-submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         <div id="alertModal" class="modal-overlay">
             <div class="modal-box">
                 <h3 id="alertTitle">Notice</h3>
