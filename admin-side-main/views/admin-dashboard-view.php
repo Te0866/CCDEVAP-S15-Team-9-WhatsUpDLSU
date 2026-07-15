@@ -1,16 +1,3 @@
-<?php
-/**
- * Expects:
- * @var array  $events        rows from EventController::getDashboardData()['events']
- * @var array  $counts        ['PENDING'=>int,'APPROVED'=>int,'REJECTED'=>int]
- * @var int    $orgsCount
- * @var string $searchValue
- * @var string $dateValue
- * @var string $categoryValue
- * @var string $statusValue
- * @var string $adminName
- */
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
