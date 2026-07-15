@@ -1,17 +1,3 @@
-/**
- * Shared modal helper for org-side-main.
- * Replaces native alert()/confirm() with a styled modal, matching the
- * .modal-overlay / .modal-box visual language already used elsewhere
- * (e.g. the remarks modal on the officer dashboard), under the
- * "app-modal-*" class names defined in css/modal.css so it can't clash
- * with any existing modal markup on the page.
- *
- * Usage:
- *   showModal("Event updated successfully!");
- *   showModal("Something went wrong.", { type: "error", title: "Error" });
- *   const ok = await showConfirmModal("Are you sure you want to delete this event?");
- */
-
 function ensureAppModalRoot() {
     let overlay = document.getElementById("appModalOverlay");
     if (overlay) return overlay;
@@ -44,10 +30,6 @@ const ICONS = {
     confirm: "?",
 };
 
-/**
- * Shows a simple message modal with a single acknowledgement button.
- * Returns a Promise that resolves when the user dismisses it.
- */
 function showModal(message, options = {}) {
     const {
         title = options.type === "error" ? "Error" : "Success",
@@ -82,10 +64,6 @@ function showModal(message, options = {}) {
     });
 }
 
-/**
- * Shows a Yes/Cancel confirmation modal in place of window.confirm().
- * Returns a Promise<boolean> resolved true if confirmed, false if cancelled.
- */
 function showConfirmModal(message, options = {}) {
     const {
         title = "Please confirm",
