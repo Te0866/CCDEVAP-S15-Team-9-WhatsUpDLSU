@@ -14,7 +14,7 @@ if (profileBtn && dropdownMenu) {
     });
 }
 
-// Live Search & Filters (Improved)
+// Searching
 function filterTable() {
     const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
     const dateFilter = document.getElementById('filterDate')?.value || ''; // YYYY-MM-DD
