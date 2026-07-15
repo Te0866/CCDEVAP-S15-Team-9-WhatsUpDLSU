@@ -3,11 +3,6 @@ class EventModel
 {
     private $conn;
 
-    // Reusable SQL fragment: recomputes an event's real-time status from its
-    // DATE/START_TIME/END_TIME instead of trusting the (potentially stale)
-    // stored STATUS column. An event is ENDED once its end time has passed,
-    // ONGOING once its start time has passed but not yet its end time, and
-    // UPCOMING otherwise.
     private const STATUS_EXPR = "CASE
         WHEN TIMESTAMP(DATE, END_TIME) <= NOW() THEN 'ENDED'
         WHEN TIMESTAMP(DATE, START_TIME) <= NOW() THEN 'ONGOING'
@@ -19,12 +14,6 @@ class EventModel
         $this->conn = $conn;
     }
 
-    /**
-     * Same rule as STATUS_EXPR above, but evaluated in PHP for the
-     * create/update writes (so the stored STATUS column starts out correct
-     * too, e.g. an event created for today with an end time already in the
-     * past is stored as ENDED right away instead of ONGOING).
-     */
     private function computeStatus($eventDate, $startTime, $endTime)
     {
         $now = time();
