@@ -128,7 +128,13 @@ function showEventDetail(event) {
 
     renderImageCarousel(event.images || []);
 
-    renderCommentsCarousel(event.comments || []);
+    fetch(`get-comments.php?event_id=${event.id}`)
+        .then(res => res.json())
+        .then(comments => renderCommentsCarousel(comments))
+        .catch(err => {
+            console.error('Failed to load comments:', err);
+            renderCommentsCarousel([]);
+        });
 }
 
 let currentImageIndex = 0;
@@ -356,20 +362,23 @@ commentForm.addEventListener('submit', async (e) => {
     if (!newComment.text) return;
 
     try {
-        const response = await fetch('submit_comment.php', {
+        const response = await fetch('submit-comment.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newComment)
         });
 
-        if (!response.ok) throw new Error('Server responded with an error');
+        const result = await response.json();
 
-        const savedComment = await response.json();
-        addCommentLocally(savedComment);
+        if (result.success) {
+            addCommentLocally({ author: result.author, text: result.text });
+        } else {
+            showAlert("Error", result.error || "Failed to post comment.");
+        }
 
     } catch (err) {
-        console.warn('submit_comment.php not available yet, adding comment locally:', err);
-        addCommentLocally({ author: newComment.author, text: newComment.text });
+        console.error('Failed to submit comment:', err);
+        showAlert("Error", "Something went wrong posting your comment.");
     }
 
     closeCommentModal();
