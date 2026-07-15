@@ -476,6 +476,42 @@ body{
     transform:translateY(-2px);
 }
 
+.comment-slide{
+    position:relative;
+}
+
+.comment-edit-btn{
+    position:absolute;
+    top:8px;
+    right:8px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:14px;
+    color:#087f5b;
+    opacity:0.7;
+}
+
+.comment-edit-btn:hover{
+    opacity:1;
+}
+
+.modal-delete-btn{
+    background:#e03131;
+    color:white;
+    border:none;
+    border-radius:999px;
+    padding:10px 20px;
+    font-weight:600;
+    cursor:pointer;
+    font-size:14px;
+    margin-right:auto;
+}
+
+.modal-delete-btn:hover{
+    background:#c92a2a;
+}
+
 .modal-overlay{
     display:none;
     position:fixed;
