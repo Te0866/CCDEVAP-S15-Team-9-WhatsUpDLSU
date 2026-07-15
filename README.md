@@ -4,6 +4,8 @@ Step 1: Download the CCDEVAP-S16-Team-9-WhatsUpDLSU.zip file.
 
 Step 2: Unzip the file then input the folder inside the zip file into htdocs.
 
+Step 3: Remove the passwords inside the quotations marks located in "(PATH TO htdocs)\CCDEVAP-S15-Team-9-WhatsUpDLSU-main\student-side-main\app\Core\Database.php" and "dbconnection.php"
+
 Step 3: Open the XAMPP Control Panel and start Apache and MySQL.
 
 Step 4: Open any browser and type localhost/phpmyadmin/
