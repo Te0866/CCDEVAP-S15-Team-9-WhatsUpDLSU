@@ -18,7 +18,7 @@ class EventModel {
     public function getAllEvents($filters = []) {
         $sql = "SELECT e.EVENT_ID, e.TITLE, e.CATEGORY, e.VENUE, e.DATE, e.START_TIME,
                        e.END_TIME, e.APPROVAL_STATUS, " . self::STATUS_EXPR . " AS STATUS, e.REMARKS, e.USER_ID,
-                       u.USER_NAME AS officer_name
+                       u.USER_NAME AS ORG_NAME
                 FROM event e
                 LEFT JOIN users u ON e.USER_ID = u.USER_ID
                 WHERE 1 = 1";
@@ -70,7 +70,7 @@ class EventModel {
     }
 
     public function getEventById($eventId) {
-        $stmt = mysqli_prepare($this->conn, "SELECT e.*, u.USER_NAME AS officer_name, " . self::STATUS_EXPR . " AS STATUS
+        $stmt = mysqli_prepare($this->conn, "SELECT e.*, u.USER_NAME AS ORG_NAME, " . self::STATUS_EXPR . " AS STATUS
             FROM event e
             LEFT JOIN users u ON e.USER_ID = u.USER_ID
             WHERE e.EVENT_ID = ?");
