@@ -32,7 +32,7 @@
             <input type="date" id="dateFilter" class="filter-box">
 
             <select id="categoryFilter" class="filter-box">
-                <option>All Event Type</option>
+                <option>All Event Types</option>
                 <option>Academic</option>
                 <option>Career</option>
                 <option>Non-academic</option>
