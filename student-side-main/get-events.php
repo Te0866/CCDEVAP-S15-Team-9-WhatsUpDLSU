@@ -22,11 +22,11 @@ SELECT
     e.STATUS,
     e.REGISTRATION_STATUS,
     e.BANNER_IMAGE,
-    o.ORG_NAME,
+    u.USER_ID,
     ei.INTEREST_ID
 FROM event e
-JOIN organizations o
-    ON e.ORG_ID = o.ORG_ID
+JOIN users o
+    ON e.USER_ID = u.USER_ID
 LEFT JOIN event_interest ei
     ON ei.EVENT_ID = e.EVENT_ID AND ei.USER_ID = ?
 WHERE e.APPROVAL_STATUS = 'APPROVED'
