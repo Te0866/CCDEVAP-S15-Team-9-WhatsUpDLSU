@@ -1,12 +1,3 @@
-<?php
-/**
- * Expects (set by controllers):
- * @var array  $accounts      rows from AccountController::listAccounts()
- * @var string $searchValue   current search query
- * @var string $typeValue     current type filter ('all'|'student'|'organization')
- * @var string $adminName     display name for the profile button
- */
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
