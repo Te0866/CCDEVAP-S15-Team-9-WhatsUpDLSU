@@ -12,6 +12,27 @@ document.addEventListener("click", (event) => {
     }
 });
 
+const alertModal = document.getElementById("alertModal");
+const alertTitle = document.getElementById("alertTitle");
+const alertMessage = document.getElementById("alertMessage");
+const alertOkBtn = document.getElementById("alertOkBtn");
+
+function showAlert(title, message) {
+    alertTitle.textContent = title;
+    alertMessage.textContent = message;
+    alertModal.classList.add("show");
+}
+
+function closeAlert() {
+    alertModal.classList.remove("show");
+}
+
+alertOkBtn.addEventListener("click", closeAlert);
+
+alertModal.addEventListener("click", (e) => {
+    if (e.target === alertModal) closeAlert();
+});
+
 const passwordInput = document.getElementById("password");
 
 function setupPasswordToggle(inputId, buttonId) {
@@ -54,11 +75,11 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
     const password = passwordInput.value;
     const confirmPassword = document.getElementById("confirmPassword").value;
     if (!username) {
-        alert("Username cannot be empty.");
-        return;
-    }
-    if (password !== confirmPassword) {
-    alert("Passwords do not match.");
+    showAlert("Notice", "Username cannot be empty.");
+    return;
+}
+if (password !== confirmPassword) {
+    showAlert("Notice", "Passwords do not match.");
     return;
 }
     const formData = new FormData();
@@ -74,14 +95,14 @@ document.getElementById("updateBtn").addEventListener("click", async () => {
             body: formData
         });
         const result = await response.json();
-        if (result.success) {
-            alert("Profile updated successfully.");
-            window.location.href = "dashboard.php";
-        } else {
-            alert("Update failed: " + (result.error || "Unknown error"));
-        }
+        iif (result.success) {
+    showAlert("Profile Updated", "Profile updated successfully.");
+    setTimeout(() => window.location.href = "dashboard.php", 1200);
+} else {
+    showAlert("Update Failed", result.error || "Unknown error");
+}
     } catch (err) {
-        console.error("Update error:", err);
-        alert("Something went wrong while updating your profile.");
-    }
+    console.error("Update error:", err);
+    showAlert("Error", "Something went wrong while updating your profile.");
+}
 });
