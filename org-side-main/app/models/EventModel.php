@@ -3,22 +3,35 @@ class EventModel
 {
     private $conn;
 
+    private const STATUS_EXPR = "CASE
+        WHEN TIMESTAMP(DATE, END_TIME) <= NOW() THEN 'ENDED'
+        WHEN TIMESTAMP(DATE, START_TIME) <= NOW() THEN 'ONGOING'
+        ELSE 'UPCOMING'
+    END";
+
     public function __construct($conn)
     {
         $this->conn = $conn;
     }
 
+    private function computeStatus($eventDate, $startTime, $endTime)
+    {
+        $now = time();
+        $eventEnd = strtotime($eventDate . ' ' . $endTime);
+        $eventStart = strtotime($eventDate . ' ' . $startTime);
+
+        if ($eventEnd <= $now) {
+            return 'ENDED';
+        } else if ($eventStart <= $now) {
+            return 'ONGOING';
+        } else {
+            return 'UPCOMING';
+        }
+    }
+
     public function create($userId, $data)
     {
-        $today = date("Y-m-d");
-
-        if ($data['eventDate'] > $today) {
-            $status = 'UPCOMING';
-        } else if ($data['eventDate'] === $today) {
-            $status = 'ONGOING';
-        } else {
-            $status = 'ENDED';
-        }
+        $status = $this->computeStatus($data['eventDate'], $data['startTime'], $data['endTime']);
 
         $approvalStatus = 'PENDING';
         $registrationStatus = 1;
@@ -51,15 +64,7 @@ class EventModel
 
     public function update($eventId, $userId, $data)
     {
-        $today = date("Y-m-d");
-
-        if ($data['eventDate'] > $today) {
-            $status = 'UPCOMING';
-        } else if ($data['eventDate'] === $today) {
-            $status = 'ONGOING';
-        } else {
-            $status = 'ENDED';
-        }
+        $status = $this->computeStatus($data['eventDate'], $data['startTime'], $data['endTime']);
 
         $category = strtoupper($data['category']);
 
@@ -136,7 +141,7 @@ class EventModel
 
     public function activeCount($userId)
     {
-        $stmt = mysqli_prepare($this->conn, "SELECT COUNT(*) AS total FROM event WHERE USER_ID = ? AND STATUS IN ('ONGOING', 'UPCOMING') AND APPROVAL_STATUS = 'APPROVED'");
+        $stmt = mysqli_prepare($this->conn, "SELECT COUNT(*) AS total FROM event WHERE USER_ID = ? AND (" . self::STATUS_EXPR . ") IN ('ONGOING', 'UPCOMING') AND APPROVAL_STATUS = 'APPROVED'");
         mysqli_stmt_bind_param($stmt, "i", $userId);
         mysqli_stmt_execute($stmt);
         return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))['total'];
@@ -152,7 +157,7 @@ class EventModel
 
     public function pastCount($userId)
     {
-        $stmt = mysqli_prepare($this->conn, "SELECT COUNT(*) AS total FROM event WHERE USER_ID = ? AND STATUS = 'ENDED'");
+        $stmt = mysqli_prepare($this->conn, "SELECT COUNT(*) AS total FROM event WHERE USER_ID = ? AND (" . self::STATUS_EXPR . ") = 'ENDED'");
         mysqli_stmt_bind_param($stmt, "i", $userId);
         mysqli_stmt_execute($stmt);
         return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))['total'];
@@ -160,7 +165,7 @@ class EventModel
 
     public function upcomingForUser($userId, $limit = 10)
     {
-        $stmt = mysqli_prepare($this->conn, "SELECT EVENT_ID, TITLE, DATE, CATEGORY FROM event WHERE USER_ID = ? AND APPROVAL_STATUS = 'APPROVED' AND STATUS IN ('UPCOMING', 'ONGOING') ORDER BY DATE ASC LIMIT " . (int) $limit);
+        $stmt = mysqli_prepare($this->conn, "SELECT EVENT_ID, TITLE, DATE, CATEGORY FROM event WHERE USER_ID = ? AND APPROVAL_STATUS = 'APPROVED' AND (" . self::STATUS_EXPR . ") IN ('UPCOMING', 'ONGOING') ORDER BY DATE ASC LIMIT " . (int) $limit);
         mysqli_stmt_bind_param($stmt, "i", $userId);
         mysqli_stmt_execute($stmt);
         return mysqli_stmt_get_result($stmt);
