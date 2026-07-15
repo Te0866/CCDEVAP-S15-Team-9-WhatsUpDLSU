@@ -225,6 +225,74 @@ body.dark-mode #alertMessage{
     color:#fff;
 }
 
+body.dark-mode .calendar-section{
+    background:#222;
+    color:#fff;
+}
+
+body.dark-mode .legend{
+    background:#222;
+    color:#fff;
+}
+
+body.dark-mode .calendar-header{
+    color:#fff;
+}
+
+body.dark-mode #monthTitle{
+    color:#fff;
+}
+
+body.dark-mode .day-cell{
+    background:#333;
+    color:#fff;
+}
+
+body.dark-mode .day-number{
+    color:#fff;
+}
+
+body.dark-mode .today{
+    border:3px solid #087f5b;
+}
+
+body.dark-mode .month-btn{
+    background:#087f5b;
+    color:#fff;
+}
+
+body.dark-mode .month-btn:hover{
+    background:#0a9b70;
+}
+
+body.dark-mode .event-card{
+    background:#333;
+    color:#fff;
+    border-left:6px solid #087f5b;
+}
+
+body.dark-mode .view-event-btn{
+    background:#087f5b;
+    color:#fff;
+}
+
+body.dark-mode .view-event-btn:hover{
+    background:#0a9b70;
+}
+
+body.dark-mode .modal-content{
+    background:#222;
+    color:#fff;
+}
+
+body.dark-mode .close-btn{
+    color:#fff;
+}
+
+body.dark-mode #modalEvents{
+    color:#fff;
+}
+
 @media screen and (max-width:768px){
 
     body.dark-mode{
@@ -270,5 +338,45 @@ body.dark-mode #alertMessage{
 
     body.dark-mode .arrow{
         background:rgba(255,255,255,.15);
+    }
+}
+body.dark-mode .legend{
+        background:#222;
+        color:#fff;
+    }
+
+    body.dark-mode .calendar-section{
+        background:#222;
+    }
+
+    body.dark-mode .day-cell{
+        background:#333;
+    }
+
+    body.dark-mode .day-number{
+        color:#fff;
+    }
+
+    body.dark-mode .nav-tab{
+        background:#333;
+        color:#fff;
+    }
+
+    body.dark-mode .nav-tab.active{
+        background:#555;
+    }
+
+    body.dark-mode .dropdown-menu{
+        background:#222;
+    }
+
+    body.dark-mode .dropdown-menu button{
+        background:#333;
+        color:#fff;
+    }
+
+    body.dark-mode .dropdown-menu button:hover{
+        background:#444;
+        color:#fff;
     }
 }
