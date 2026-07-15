@@ -1,6 +1,3 @@
-/* Shared alert/confirm modal component for org-side-main.
-   Replaces native alert()/confirm() popups. Injected + controlled by js/modal.js. */
-
 .app-modal-overlay {
     position: fixed;
     inset: 0;
