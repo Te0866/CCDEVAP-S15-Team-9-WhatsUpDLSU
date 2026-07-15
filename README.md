@@ -1,11 +1,17 @@
 DATABASE SETUP
 
 Step 1: Download the CCDEVAP-S16-Team-9-WhatsUpDLSU.zip file.
+
 Step 2: Unzip the file then input the folder inside the zip file into htdocs.
+
 Step 3: Open the XAMPP Control Panel and start Apache and MySQL.
+
 Step 4: Open any browser and type localhost/phpmyadmin/
+
 Step 5: Then import the "whatsupdlsu.sql" found inside of the folder inside htdocs.
+
 Step 6: Then open another tab and type localhost/CCDEVAP-S16-Team-9-WhatsUpDLSU/
+
 Step 7: You will then be redirected to the Login Page
 
 LOGIN CREDENTIALS
@@ -26,11 +32,15 @@ After Logging in, Test the application!
 OVERVIEW OF FEATURES
 
 --- STUDENT ---
-Submit a Surrender Form
-Submit a Claim Request (For an item)
-Submit a Loss Report
-View dashboard
-Manage Account
+View Events
+Sort Events View
+Mark Events as Interested
+View Events In a Calendar View
+Edit Profile Details
+View Distribtion of Event Categories
+View Most Interested Event
+Browse by Category
+
 
 --- OFFICER ---
 Resolve/Close a Surrender Form
