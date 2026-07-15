@@ -114,13 +114,14 @@ function showEventDetail(event) {
 
     renderImageCarousel(event.images || []);
 
-    fetch(`get-comments.php?event_id=${event.id}`)
+    loadComments(event.id);
+    /*fetch(`get-comments.php?event_id=${event.id}`)
         .then(res => res.json())
         .then(comments => renderCommentsCarousel(comments))
         .catch(err => {
             console.error('Failed to load comments:', err);
             renderCommentsCarousel([]);
-        });
+        });*/
 }
 
 let currentImageIndex = 0;
