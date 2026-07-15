@@ -1,12 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/UserModel.php';
 
-/**
- * AccountController
- *
- * Now handles both Student and Officer accounts through the users table only.
- * Officers are simply users with ROLE = 'OFFICER'.
- */
+
 class AccountController {
     private $userModel;
 
@@ -14,13 +9,9 @@ class AccountController {
         $this->userModel = new UserModel();
     }
 
-    /**
-     * Builds the row data for the Account Management table.
-     * @return array list of ['id', 'type', 'name', 'created_at', 'status']
-     */
+    // Builds data for Account Management table
     public function listAccounts($search = null, $type = null) {
         $accounts = $this->userModel->getManagedAccounts($search, $type);
-
         $rows = [];
         foreach ($accounts as $account) {
             $isOrganization = $account['ROLE'] === 'OFFICER';
@@ -37,10 +28,7 @@ class AccountController {
         return $rows;
     }
 
-    /**
-     * Loads data needed to render the Create/Edit Officer form.
-     * @return array{mode:string, userId:?int, orgName:string, password:string}
-     */
+    // Loads data for Create/Edit Officer form
     public function getOrganizationFormData($userId = null) {
         if ($userId === null) {
             return ['mode' => 'create', 'userId' => null, 'orgName' => '', 'password' => ''];
@@ -60,10 +48,7 @@ class AccountController {
         ];
     }
 
-    /**
-     * Creates or updates an Officer account.
-     * @return array{success:bool, error:?string}
-     */
+    // Creates or updates an Officer account
     public function saveOrganization($userId, $orgName, $password) {
         $orgName = trim($orgName);
         $password = trim($password);
@@ -92,13 +77,10 @@ class AccountController {
         }
 
         $this->userModel->createUser($orgName, $password, 'OFFICER');
-
         return ['success' => true, 'error' => null];
     }
 
-    /**
-     * Loads data needed to render the Add/Edit Student form.
-     */
+    // Loads data for Add/Edit Student form
     public function getUserFormData($userId = null) {
         if ($userId === null) {
             return ['mode' => 'create', 'userId' => null, 'username' => '', 'password' => ''];
@@ -118,10 +100,7 @@ class AccountController {
         ];
     }
 
-    /**
-     * Creates or updates a student account.
-     * @return array{success:bool, error:?string}
-     */
+    // Creates or updates a student account.
     public function saveUser($userId, $username, $password) {
         $username = trim($username);
         $password = trim($password);
@@ -140,7 +119,6 @@ class AccountController {
             }
 
             $this->userModel->updateUser($userId, $username, $password);
-
             return ['success' => true, 'error' => null];
         }
 
@@ -149,17 +127,12 @@ class AccountController {
         }
 
         $this->userModel->createUser($username, $password, 'USER');
-
         return ['success' => true, 'error' => null];
     }
 
-    /**
-     * Deletes a student or officer account.
-     */
+    // Deletes a student or officer account
     public function deleteAccount($type, $id) {
         $id = (int) $id;
-
-        // For both students and officers, we just delete the user row
         return $this->userModel->deleteUser($id);
     }
 }
