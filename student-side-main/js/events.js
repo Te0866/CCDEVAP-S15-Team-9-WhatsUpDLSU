@@ -245,7 +245,7 @@ function updateImageTrack() {
 document.getElementById('imgPrev').addEventListener('click', () => goToImage(currentImageIndex - 1));
 document.getElementById('imgNext').addEventListener('click', () => goToImage(currentImageIndex + 1));
 
-function renderCommentsCarousel(comments) {
+/*function renderCommentsCarousel(comments) {
     const track = document.getElementById('commentsTrack');
     const dotsContainer = document.getElementById('commentsDots');
     track.innerHTML = '';
@@ -283,7 +283,7 @@ function renderCommentsCarousel(comments) {
             updateCommentsTrack();
         }, 3000 ); // just change if you want comments to go faster (ms)
     }
-}
+}*/
 
 function updateCommentsTrack() {
     const track = document.getElementById('commentsTrack');
