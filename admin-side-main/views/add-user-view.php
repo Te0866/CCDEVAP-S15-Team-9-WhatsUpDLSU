@@ -1,13 +1,4 @@
 <?php
-/**
- * Expects:
- * @var string  $mode      'create' | 'edit'
- * @var ?int    $userId
- * @var string  $username
- * @var string  $password
- * @var string  $adminName
- * @var ?string $errorMessage
- */
 $isEdit = $mode === 'edit';
 $pageTitle = $isEdit ? 'Edit User' : 'Add User';
 $submitLabel = $isEdit ? 'Save Changes' : 'Create User';
