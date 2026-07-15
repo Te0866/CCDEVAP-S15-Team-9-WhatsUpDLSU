@@ -20,15 +20,15 @@ LOGIN CREDENTIALS
 
 --- STUDENT ---
 
-username:
+username: juan.delacruz
 
-password:
+password: juan2026
 
 --- OFFICER ---
 
-username:
+username: LSCS
 
-password: 
+password: lscs2026
 
 --- ADMIN ---
 
@@ -63,6 +63,25 @@ Browse by Category
 
 --- OFFICER ---
 
+View Upcoming Events by Carousel
+
+View Notifications Base on Actions
+
+View Remarks by Admin
+
+View Statistics
+
+Create Events
+
+Update Event Details
+
+Delete Events
+
+Search / Browse by Category
+
+View Existing Events Details
+
+Edit Organization Details
 
 --- ADMIN ---
 
