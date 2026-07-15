@@ -17,7 +17,7 @@ successModal.className = 'modal';
 successModal.innerHTML = `
     <div class="modal-content">
         <div class="modal-header">
-            <h2 class="modal-title">✅ Success</h2>
+            <h2 class="modal-title">Success</h2>
         </div>
         <div class="modal-body" id="modalMessage"></div>
         <div class="modal-footer">
