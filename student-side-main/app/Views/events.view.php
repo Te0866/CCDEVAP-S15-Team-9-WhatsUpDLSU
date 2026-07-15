@@ -1,6 +1,5 @@
 <?php
-// Expects $user, $profilePath, $activeTab in scope (passed by
-// EventsController::render() via extract()).
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
