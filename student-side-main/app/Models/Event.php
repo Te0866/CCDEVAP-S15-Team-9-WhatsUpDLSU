@@ -4,6 +4,12 @@ require_once __DIR__ . "/../Core/Database.php";
 
 class Event
 {
+    private const STATUS_EXPR = "CASE
+        WHEN TIMESTAMP(e.DATE, e.END_TIME) <= NOW() THEN 'ENDED'
+        WHEN TIMESTAMP(e.DATE, e.START_TIME) <= NOW() THEN 'ONGOING'
+        ELSE 'UPCOMING'
+    END";
+
     public static function categoryStats(): array
     {
         $result = Database::query("
@@ -79,7 +85,7 @@ class Event
                 e.DATE,
                 e.START_TIME,
                 e.END_TIME,
-                e.STATUS,
+                " . self::STATUS_EXPR . " AS STATUS,
                 e.REGISTRATION_STATUS,
                 e.BANNER_IMAGE,
                 u.USER_NAME,
