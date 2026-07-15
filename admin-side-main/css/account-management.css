@@ -411,7 +411,7 @@ body{
         border-bottom:none;
         padding:6px 0;
         display:flex;
-        justify-content:space-between;
+        justify-content:flex-start;
         align-items:center;
         gap:10px;
         font-size:13px;
@@ -422,6 +422,7 @@ body{
         font-weight:bold;
         color:#087f5b;
         flex-shrink:0;
+        min-width:110px;
     }
 
     .actions-cell{
