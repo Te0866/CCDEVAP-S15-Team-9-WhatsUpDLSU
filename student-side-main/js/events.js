@@ -499,9 +499,9 @@ function clearFilters() {
     document.getElementById("searchInput").value = "";
     document.getElementById("dateFilter").value = "";
     document.getElementById("categoryFilter").value =
-    categoryParam ? categoryParam : "All";
+    categoryParam ? categoryParam : "All Event Categories";
     document.getElementById("sortFilter").value = "Oldest";
-    document.getElementById("statusFilter").value = "All";
+    document.getElementById("statusFilter").value = "All Event Status";
 
     filterEvents();
 }
