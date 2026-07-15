@@ -21,35 +21,13 @@ fetch("api/get-events.php")
 .then(res => res.json())
 .then(data => {
     eventsData = data;
-    if (eventId) {
-
-        renderSidebar(eventsData);
-
-        const event = eventsData.find(e => Number(e.id) === eventId);
-
-        if (event) {
-            selectedEvent = event;
-            showEventDetail(event);
-
-            document.querySelectorAll(".event-item").forEach(btn => {
-    btn.classList.toggle(
-        "active",
-        Number(btn.dataset.id) === event.id
-    );
-});
-        } else {
-            clearFilters();
-        }
-
-    } else {
-        clearFilters();
-    }
-
+    clearFilters();
 })
 .catch(error => {
     console.error(error);
     showNoEvent();
 });
+
 function renderSidebar(events) {
     const sidebar = document.getElementById("eventSidebar");
     sidebar.innerHTML = "";
