@@ -4,12 +4,6 @@ require_once __DIR__ . "/../Core/Database.php";
 
 class Event
 {
-    private const STATUS_EXPR = "CASE
-        WHEN TIMESTAMP(e.DATE, e.END_TIME) <= NOW() THEN 'ENDED'
-        WHEN TIMESTAMP(e.DATE, e.START_TIME) <= NOW() THEN 'ONGOING'
-        ELSE 'UPCOMING'
-    END";
-
     public static function categoryStats(): array
     {
         $result = Database::query("
@@ -85,7 +79,7 @@ class Event
                 e.DATE,
                 e.START_TIME,
                 e.END_TIME,
-                " . self::STATUS_EXPR . " AS STATUS,
+                e.STATUS,
                 e.REGISTRATION_STATUS,
                 e.BANNER_IMAGE,
                 u.USER_NAME,
@@ -143,8 +137,7 @@ class Event
         $conn = Database::connection();
 
         if (mysqli_num_rows($check) > 0) {
-            // Already interested — always allow removing, even if the
-            // event has since ended, so stale interest can be cleaned up.
+        
             $stmt = mysqli_prepare($conn, "DELETE FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?");
             mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
             return mysqli_stmt_execute($stmt)
@@ -152,8 +145,7 @@ class Event
                 : [false, mysqli_error($conn), true];
         }
 
-        // Not yet interested — trying to add. Block it if the event has
-        // already ended.
+       
         $statusResult = Database::query(
             "SELECT STATUS FROM event WHERE EVENT_ID = ?",
             "i",
