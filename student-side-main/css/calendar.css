@@ -338,13 +338,25 @@ body{
     background:#066447;
 }
 
+@media screen and (min-width:769px){
+    .calendar-header{
+        margin-bottom:10px;
+    }
+ 
+    .month-btn{
+        width:35px;
+        height:35px;
+        font-size:16px;
+    }
+}
+ 
 @media screen and (max-width:768px){
-
+ 
     body{
         background:#f5f4f0;
         padding:10px;
     }
-
+ 
     .navbar,
     .calendar-layout,
     .calendar-section,
@@ -354,7 +366,7 @@ body{
         max-width: 100% !important;
         box-sizing: border-box;
     }
-
+ 
     .navbar{
         margin-bottom:10px;
         padding:12px;
@@ -366,19 +378,19 @@ body{
         align-items:center;
         gap:10px;
     }
-
+ 
     .nav-right {
         flex: 1;
         display: flex;
         gap: 6px;
         align-items:center;
     }
-
+ 
     .nav-left{
         gap:8px;
         flex-shrink:0;
     }
-
+ 
     .logo-placeholder{
         width:35px;
         height:35px;
@@ -386,13 +398,13 @@ body{
         background:#d9d9d9;
         flex-shrink:0;
     }
-
+ 
     .logo-text{
         color:black;
         font-size:16px;
         white-space:nowrap;
     }
-
+ 
     .nav-links {
         display: flex;
         flex: 1;
@@ -411,18 +423,18 @@ body{
         text-decoration:none;
         white-space:nowrap;
     }
-
+ 
     .nav-tab.active{
         background:#555;
         color:white;
     }
-
+ 
     .profile-section {
         flex: 1;
         min-width: 0;
         position:relative;
     }
-
+ 
     .profile-btn{
     background: transparent;
     border: none;
@@ -464,13 +476,13 @@ body{
         z-index: 1000;
         white-space: nowrap;
     }
-
+ 
     .dropdown-menu.show {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
-
+ 
     .dropdown-menu button {
         border: none;
         border-radius: 10px;
@@ -485,16 +497,16 @@ body{
         min-width: 50px;
         transition: background 0.2s;
     }
-
+ 
     .dropdown-menu button:hover {
         background: #e8f5ee;
         color: #087f5b;
     }
-
+ 
     .dropdown-menu button:last-child {
         color: #dc3545;
     }
-
+ 
     .dropdown-menu button:last-child:hover {
         background: #fde8ea;
         color: #dc3545;
@@ -507,7 +519,7 @@ body{
         padding:0;
         margin:0;
     }
-
+ 
     .calendar-section{
         order:2;
         background:white;
@@ -516,70 +528,70 @@ body{
         overflow:hidden;
         width:100%;
     }
-
+ 
     .calendar-grid{
         width:100%;
         display:grid;
         grid-template-columns:repeat(7,1fr);
         gap:2px;
     }
-
+ 
     #monthTitle{
         font-size:18px;
         margin-bottom:10px;
         text-align:center;
     }
-
+ 
     .day-header{
         padding:6px;
         font-size:12px;
         text-align:center;
         font-weight:bold;
     }
-
+ 
     .day-header.sunday{
         color:red;
     }
-
+ 
     .day-cell{
         min-height:50px;
         padding:4px;
         border-radius:6px;
         background:#f7f7f7;
     }
-
+ 
     .day-number{
         font-size:12px;
         font-weight:bold;
     }
-
+ 
     .day-cell.sunday .day-number{
         color:red;
     }
-
+ 
     .event-dot{
         width:6px;
         height:6px;
         border-radius:2px;
         margin-top:3px;
     }
-
+ 
     .green{
         background:#28a745;
     }
-
+ 
     .yellow{
         background:#f1c40f;
     }
-
+ 
     .blue{
         background:#3498db;
     }
-
+ 
     .today{
         border:2px solid #087f5b;
     }
-
+ 
     .legend{
         order:1;
         display:flex;
@@ -593,11 +605,11 @@ body{
         padding:12px;
         width:100%;
     }
-
+ 
     .legend h3{
         display:none;
     }
-
+ 
     .legend-item{
         margin:0;
         font-size:13px;
@@ -605,33 +617,33 @@ body{
         align-items:center;
         gap:8px;
     }
-
+ 
     .box{
         width:14px;
         height:14px;
         border-radius:3px;
         flex-shrink:0;
     }
-
+ 
     .academic{
         background:#28a745;
     }
-
+ 
     .nonacademic{
         background:#f1c40f;
     }
-
+ 
     .career{
         background:#3498db;
     }
-}
-
-.calendar-header{
-    margin-bottom:10px;
-}
-
-.month-btn{
-    width:35px;
-    height:35px;
-    font-size:16px;
+ 
+    .calendar-header{
+        margin-bottom:10px;
+    }
+ 
+    .month-btn{
+        width:35px;
+        height:35px;
+        font-size:16px;
+    }
 }
