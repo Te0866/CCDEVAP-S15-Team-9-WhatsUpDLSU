@@ -1,2 +1,5 @@
 profile-pictures/*
 !profile-pictures/default-profile.png
+
+org-side-main/uploads/*
+!org-side-main/uploads/.gitkeep
