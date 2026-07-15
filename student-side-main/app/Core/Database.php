@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Single point of DB connection.
- * Replaces the old dbconnection.php require-everywhere pattern.
- * Every Model goes through here instead of touching mysqli_connect directly.
- */
 class Database
 {
     private static ?mysqli $instance = null;
