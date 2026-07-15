@@ -9,16 +9,18 @@ if ($eventId <= 0) {
     exit;
 }
 
-$stmt = mysqli_prepare($conn, "SELECT USERNAME, TEXT, IS_ANONYMOUS FROM comments WHERE EVENT_ID = ? ORDER BY COMMENT_ID ASC");
+$currentUsername = $_SESSION['username'] ?? null;
+$stmt = mysqli_prepare($conn, "SELECT COMMENT_ID, USERNAME, TEXT, IS_ANONYMOUS FROM comments WHERE EVENT_ID = ? ORDER BY COMMENT_ID ASC");
 mysqli_stmt_bind_param($stmt, "i", $eventId);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
-
 $comments = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $comments[] = [
+        "id" => (int)$row["COMMENT_ID"],
         "author" => $row["IS_ANONYMOUS"] ? "Anonymous" : $row["USERNAME"],
-        "text" => $row["TEXT"]
+        "text" => $row["TEXT"],
+        "isOwner" => $currentUsername !== null && $row["USERNAME"] === $currentUsername
     ];
 }
 
