@@ -46,6 +46,8 @@ Sort Events View
 
 Mark Events as Interested
 
+Add Comments to Events
+
 View Events In a Calendar View
 
 Edit Profile Details
