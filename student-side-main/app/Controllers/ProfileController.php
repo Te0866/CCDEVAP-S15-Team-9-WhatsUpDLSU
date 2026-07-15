@@ -4,9 +4,7 @@ require_once __DIR__ . "/../Models/User.php";
 
 class ProfileController
 {
-    /**
-     * Equivalent to the old update-profile.php. Always responds with JSON.
-     */
+    
     public function update(): void
     {
         session_start();
