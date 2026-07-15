@@ -39,7 +39,7 @@ class Event
         return null;
     }
 
-    return "../../org-side-main/uploads/{$filename}";
+    return "../org-side-main/uploads/{$filename}";
 }
     
 
