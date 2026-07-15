@@ -1,26 +1,13 @@
 <?php
 require_once __DIR__ . '/Database.php';
 
-/**
- * UserModel
- *
- * Encapsulates all SQL for the `users` table (students, officers,
- * and admins). Every method returns plain PHP arrays/values.
- */
 class UserModel {
     private $conn;
 
     public function __construct() {
         $this->conn = Database::getConnection();
     }
-
-    /**
-     * Accounts shown on the Account Management page.
-     * Excludes ADMIN accounts.
-     *
-     * @param string|null $search Filters by username
-     * @param string|null $type   'student' | 'organization' | null (all)
-     */
+    
     public function getManagedAccounts($search = null, $type = null) {
         $sql = "SELECT u.USER_ID, u.USER_NAME, u.ROLE, u.CREATED_AT, u.STATUS
                 FROM users u
@@ -69,9 +56,7 @@ class UserModel {
         return mysqli_fetch_assoc($result) ?: null;
     }
 
-    /**
-     * Check if username already exists (for create/edit validation)
-     */
+    // Check if Username exists
     public function usernameExists($username, $excludeUserId = null) {
         if ($excludeUserId !== null) {
             $stmt = mysqli_prepare($this->conn, "SELECT USER_ID FROM users WHERE USER_NAME = ? AND USER_ID != ?");
@@ -87,10 +72,7 @@ class UserModel {
         return mysqli_num_rows($result) > 0;
     }
 
-    /**
-     * Creates a USER or OFFICER account.
-     * @return int newly created USER_ID
-     */
+    // Creating users
     public function createUser($username, $password, $role, $status = 'ACTIVE') {
         $stmt = mysqli_prepare($this->conn, "INSERT INTO users 
             (USER_NAME, PASSWORD, ROLE, CREATED_AT, STATUS) 
@@ -101,9 +83,7 @@ class UserModel {
         return mysqli_insert_id($this->conn);
     }
 
-    /**
-     * Updates username, password, and status.
-     */
+    // Updating user info
     public function updateUser($userId, $username, $password = null, $status = null) {
         if ($password !== null && $password !== '') {
             $stmt = mysqli_prepare($this->conn, "UPDATE users 
@@ -126,7 +106,6 @@ class UserModel {
         return mysqli_stmt_execute($stmt);
     }
 
-    // Optional: Get count of officers (for dashboard stats)
     public function getTotalOfficers() {
         $result = mysqli_query($this->conn, "SELECT COUNT(*) AS total FROM users WHERE ROLE = 'OFFICER'");
         $row = mysqli_fetch_assoc($result);
