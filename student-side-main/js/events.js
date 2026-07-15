@@ -455,6 +455,7 @@ const status = document.getElementById("statusFilter").value;
 }else{
          iltered = filtered.filter(event =>
         (event.status || "").toLowerCase() !== "ended"
+        );
      }
 
     filtered.sort((a, b) => {
