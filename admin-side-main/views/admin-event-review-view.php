@@ -1,9 +1,4 @@
 <?php
-/**
- * Expects:
- * @var array  $event      row from EventController::getEventForReview()
- * @var string $adminName
- */
 $duration = date("g:i A", strtotime($event['START_TIME'])) . " - " . date("g:i A", strtotime($event['END_TIME']));
 $formattedDate = date("F j, Y", strtotime($event['DATE']));
 $category = ucwords(strtolower(str_replace('-', ' ', $event['CATEGORY'])));
