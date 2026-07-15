@@ -1,6 +1,4 @@
 <?php
-// Expects $activeTab and $profilePath to be in scope (passed by the
-// controller via extract(), same contract as the original navbar.php).
 ?>
 <nav class="navbar">
     <div class="nav-left">
