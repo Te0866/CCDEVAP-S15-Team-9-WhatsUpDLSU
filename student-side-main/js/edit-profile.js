@@ -95,7 +95,7 @@ if (password !== confirmPassword) {
             body: formData
         });
         const result = await response.json();
-        iif (result.success) {
+        if (result.success) {
     showAlert("Profile Updated", "Profile updated successfully.");
     setTimeout(() => window.location.href = "dashboard.php", 1200);
 } else {
