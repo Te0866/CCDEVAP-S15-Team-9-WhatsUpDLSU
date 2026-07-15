@@ -25,7 +25,7 @@ SELECT
     u.USER_ID,
     ei.INTEREST_ID
 FROM event e
-JOIN users o
+JOIN users u
     ON e.USER_ID = u.USER_ID
 LEFT JOIN event_interest ei
     ON ei.EVENT_ID = e.EVENT_ID AND ei.USER_ID = ?
