@@ -125,6 +125,7 @@ function showEventDetail(event) {
             renderCommentsCarousel([]);
         });
     }
+}
     
     /*fetch(`get-comments.php?event_id=${event.id}`)
         .then(res => res.json())
