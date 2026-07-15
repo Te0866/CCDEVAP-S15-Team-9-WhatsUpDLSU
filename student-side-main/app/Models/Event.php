@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 require_once __DIR__ . "/../Core/Database.php";
 
@@ -33,6 +33,16 @@ class Event
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
+    private static function bannerImageUrl(?string $filename): ?string
+{
+    if (empty($filename)) {
+        return null;
+    }
+
+    return "../../org-side-main/uploads/{$filename}";
+}
+    
+
     public static function interestedByUser(int $userId): array
     {
         $result = Database::query("
@@ -57,7 +67,7 @@ class Event
         return $events;
     }
 
-    public static function allApproved(): array
+   public static function allApproved(): array
 {
     $result = Database::query("
         SELECT
@@ -83,8 +93,9 @@ class Event
     $events = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $images = [];
-        if (!empty($row["BANNER_IMAGE"])) {
-            $images[] = $row["BANNER_IMAGE"];
+        $imageUrl = self::bannerImageUrl($row["BANNER_IMAGE"]);
+        if ($imageUrl !== null) {
+            $images[] = $imageUrl;
         }
 
         $events[] = [
