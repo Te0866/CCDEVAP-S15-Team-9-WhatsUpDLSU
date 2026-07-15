@@ -57,10 +57,6 @@ class Event
         return $events;
     }
 
-    /**
-     * All approved events with full detail for the events page
-     * Equivalent to the old get-events.php stuff
-     */
     public static function allApproved(): array
 {
     $result = Database::query("
@@ -114,7 +110,6 @@ class Event
     /**
      * Records that a user is interested in an event. Returns
      * [success, message] so the controller can turn it straight into JSON.
-     * Equivalent to the old add-interest.php.
      */
     public static function markInterested(int $userId, int $eventId): array
 {
