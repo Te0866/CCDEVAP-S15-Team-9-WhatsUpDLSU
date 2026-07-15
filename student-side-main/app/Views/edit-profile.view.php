@@ -9,16 +9,7 @@
         <link rel="stylesheet" href="css/edit-profile.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <div id="alertModal" class="modal-overlay">
-    <div class="modal-box">
-        <h3 id="alertTitle">Notice</h3>
-        <p id="alertMessage"></p>
-
-        <div class="modal-actions">
-            <button id="alertOkBtn" class="modal-submit-btn">OK</button>
-        </div>
-    </div>
-</div>
+    
     <body>
 
         <?php require __DIR__ . "/partials/navbar.view.php"; ?>
@@ -69,6 +60,17 @@
             </div>
             <button class="update-btn" id="updateBtn"> UPDATE </button>
         </main>
+
+        <div id="alertModal" class="modal-overlay">
+    <div class="modal-box">
+        <h3 id="alertTitle">Notice</h3>
+        <p id="alertMessage"></p>
+
+        <div class="modal-actions">
+            <button id="alertOkBtn" class="modal-submit-btn">OK</button>
+        </div>
+    </div>
+</div>
         <script src="js/edit-profile.js"></script>
         <script src="js/darkmode.js"></script>
     </body>
