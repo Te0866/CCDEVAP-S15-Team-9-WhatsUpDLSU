@@ -323,8 +323,7 @@ const commenterNameEl = document.getElementById('commenterName');
 const anonToggle = document.getElementById('anonToggle');
 
 function getLoggedInUsername() {
-    const stored = localStorage.getItem('loggedInUser');
-    return stored || 'Student Name';
+    return currentUsername || 'Student Name';
 }
 
 postCommentBtn.addEventListener('click', () => {
