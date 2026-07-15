@@ -6,17 +6,17 @@ Step 2: Unzip the file then input the folder inside the zip file into htdocs.
 
 Step 3: Remove the passwords inside the quotations marks located in "(PATH TO htdocs)\CCDEVAP-S15-Team-9-WhatsUpDLSU-main\student-side-main\app\Core\Database.php" and "dbconnection.php"
 
-Step 3: Open the XAMPP Control Panel and start Apache and MySQL.
+Step 4: Open the XAMPP Control Panel and start Apache and MySQL.
 
-Step 4: Open any browser and type localhost/phpmyadmin/
+Step 5: Open any browser and type localhost/phpmyadmin/
 
-Step 5: Create a database with a database name of "whatsupdlsu".
+Step 6: Create a database with a database name of "whatsupdlsu".
 
-Step 6: Then import the "CCDEVAP-S16-Team-9-WhatsUpDLSU.sql" found inside of the folder inside htdocs.
+Step 7: Then import the "CCDEVAP-S16-Team-9-WhatsUpDLSU.sql" found inside of the folder inside htdocs.
 
-Step 7: Then open another tab and type localhost/CCDEVAP-S16-Team-9-WhatsUpDLSU/
+Step 8: Then open another tab and type localhost/CCDEVAP-S16-Team-9-WhatsUpDLSU/
 
-Step 8: You will then be redirected to the Login Page
+Step 9: You will then be redirected to the Login Page
 
 LOGIN CREDENTIALS
 
