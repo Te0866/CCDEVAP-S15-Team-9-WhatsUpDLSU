@@ -142,6 +142,9 @@
             </div>
         </div>
 
+        <script>
+            const currentUsername = <?php echo json_encode($user['USER_NAME']); ?>;
+        </script>
         <script src="js/events.js"></script>
         <script src="js/darkmode.js"></script>
     </body>
