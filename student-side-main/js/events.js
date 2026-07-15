@@ -73,8 +73,16 @@ function renderSidebar(events) {
 
 function showEventDetail(event) {
 
-    document.getElementById("interestedBtn").style.display = "inline-block";
+   const interestedBtn = document.getElementById("interestedBtn");
+    const isEnded = (event.status || "").toLowerCase() === "ended";
+
+    if (isEnded && !event.isInterested) {
+        interestedBtn.style.display = "none";
+    } else {
+    interestedBtn.style.display = "inline-block";
     updateInterestedButton(event.isInterested);
+    }
+    
     document.getElementById("postCommentBtn").style.display = "inline-block";
 
     document.getElementById("eventTitle").textContent =
