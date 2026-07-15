@@ -453,7 +453,7 @@ const status = document.getElementById("statusFilter").value;
         (event.status || "").toLowerCase() === status.toLowerCase()
     );
 }else{
-         iltered = filtered.filter(event =>
+         filtered = filtered.filter(event =>
         (event.status || "").toLowerCase() !== "ended"
         );
      }
