@@ -12,16 +12,7 @@ document.addEventListener("click",(e)=>{
     }
 });
 
-
-/* Approve/Reject buttons are real submit buttons on the form in
-   admin-event-review-view.php (name="action" value="approve"/"reject"),
-   posting to update-event-status.php, so no client-side faking here.
-
-
-   Carousel: `eventImages` is declared inline in
-   admin-event-review-view.php from the event's BANNER_IMAGE column
-   before this script loads. */
-
+// Carousel
 let currentImageIndex = 0;
 
 function renderImageCarousel(images){
