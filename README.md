@@ -15,15 +15,18 @@ Step 6: Then open another tab and type localhost/CCDEVAP-S16-Team-9-WhatsUpDLSU/
 Step 7: You will then be redirected to the Login Page
 
 LOGIN CREDENTIALS
+
 --- STUDENT ---
 username:
 password:
 
 --- OFFICER ---
+
 username:
 password: 
 
 --- ADMIN ---
+
 username: admin 
 password: admin@1234
 
@@ -32,6 +35,7 @@ After Logging in, Test the application!
 OVERVIEW OF FEATURES
 
 --- STUDENT ---
+
 View Events
 Sort Events View
 Mark Events as Interested
@@ -43,6 +47,7 @@ Browse by Category
 
 
 --- OFFICER ---
+
 Resolve/Close a Surrender Form
 Resolve/Close a Claim Request
 Resolve/Close a Loss Report
@@ -50,6 +55,7 @@ View dashboard
 Manage Account
 
 --- ADMIN ---
+
 View Event Details
 Give Remarks on an Event
 Approve/Reject an Event
