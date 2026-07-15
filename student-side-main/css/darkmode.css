@@ -94,8 +94,7 @@ body.dark-mode .event-item.active{
     color:#fff;
 }
 
-body.dark-mode .image-box,
-body.dark-mode .carousel{
+body.dark-mode .image-box{
     background:#333;
 }
 
@@ -265,10 +264,19 @@ body.dark-mode .month-btn:hover{
     background:#0a9b70;
 }
 
-body.dark-mode .event-card{
-    background:#333;
-    color:#fff;
-    border-left:6px solid #087f5b;
+.event-card{
+    position:relative;
+    overflow:hidden;
+}
+
+body.dark-mode .event-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:6px;
+    height:100%;
+    background:#087f5b;
 }
 
 body.dark-mode .view-event-btn{
