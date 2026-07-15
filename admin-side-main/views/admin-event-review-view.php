@@ -9,7 +9,7 @@ $formattedDate = date("F j, Y", strtotime($event['DATE']));
 $category = ucwords(strtolower(str_replace('-', ' ', $event['CATEGORY'])));
 $statusLabel = ucfirst(strtolower($event['STATUS']));
 $registrationLabel = $event['REGISTRATION_STATUS'] ? 'Open' : 'Closed';
-$bannerImage = !empty($event['BANNER_IMAGE']) ? 'uploads/' . $event['BANNER_IMAGE'] : '';
+$bannerImage = !empty($event['BANNER_IMAGE']) ? '../org-side-main/uploads/' . $event['BANNER_IMAGE'] : '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
