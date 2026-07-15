@@ -121,7 +121,7 @@ class Event
 
         return $events;
     }
-
+    
     public static function markInterested(int $userId, int $eventId): array
     {
         if ($eventId <= 0) {
@@ -137,7 +137,6 @@ class Event
         $conn = Database::connection();
 
         if (mysqli_num_rows($check) > 0) {
-        
             $stmt = mysqli_prepare($conn, "DELETE FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?");
             mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
             return mysqli_stmt_execute($stmt)
@@ -145,7 +144,7 @@ class Event
                 : [false, mysqli_error($conn), true];
         }
 
-       
+
         $statusResult = Database::query(
             "SELECT STATUS FROM event WHERE EVENT_ID = ?",
             "i",
