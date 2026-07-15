@@ -452,11 +452,11 @@ const status = document.getElementById("statusFilter").value;
     filtered = filtered.filter(event =>
         (event.status || "").toLowerCase() === status.toLowerCase()
     );
-}else{
-         filtered = filtered.filter(event =>
+} else {
+    filtered = filtered.filter(event =>
         (event.status || "").toLowerCase() !== "ended"
-        );
-     }
+    );
+}
 
     filtered.sort((a, b) => {
         if (sort === "Newest") {
