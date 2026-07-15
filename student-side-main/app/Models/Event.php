@@ -143,11 +143,30 @@ class Event
         $conn = Database::connection();
 
         if (mysqli_num_rows($check) > 0) {
+            // Already interested — always allow removing, even if the
+            // event has since ended, so stale interest can be cleaned up.
             $stmt = mysqli_prepare($conn, "DELETE FROM event_interest WHERE USER_ID = ? AND EVENT_ID = ?");
             mysqli_stmt_bind_param($stmt, "ii", $userId, $eventId);
             return mysqli_stmt_execute($stmt)
                 ? [true, "Removed from Interested Events.", false]
                 : [false, mysqli_error($conn), true];
+        }
+
+        // Not yet interested — trying to add. Block it if the event has
+        // already ended.
+        $statusResult = Database::query(
+            "SELECT STATUS FROM event WHERE EVENT_ID = ?",
+            "i",
+            [$eventId]
+        );
+        $eventRow = mysqli_fetch_assoc($statusResult);
+
+        if (!$eventRow) {
+            return [false, "Event not found.", false];
+        }
+
+        if ($eventRow["STATUS"] === "ENDED") {
+            return [false, "This event has already ended.", false];
         }
 
         $stmt = mysqli_prepare($conn, "INSERT INTO event_interest(USER_ID, EVENT_ID) VALUES (?, ?)");
