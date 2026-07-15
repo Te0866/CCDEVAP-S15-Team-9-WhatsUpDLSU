@@ -23,6 +23,7 @@ SELECT
     e.REGISTRATION_STATUS,
     e.BANNER_IMAGE,
     u.USER_ID,
+    u.USER_NAME,
     ei.INTEREST_ID
 FROM event e
 JOIN users u
