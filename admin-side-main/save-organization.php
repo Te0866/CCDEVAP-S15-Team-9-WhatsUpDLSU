@@ -23,7 +23,7 @@ $hasUserId = $userId !== null && $userId !== '';
 
 if (!$result['success']) {
     $_SESSION['admin_create_error'] = $result['error'];
-    $redirect = $hasUserId ? "admin-create.php?id=" . urlencode($userId) : "admin-create.php";  // CHANGED
+    $redirect = $hasUserId ? "admin-create.php?id=" . urlencode($userId) : "admin-create.php";
     header("Location: " . $redirect);
     exit;
 }
@@ -32,5 +32,5 @@ $_SESSION['success_message'] = $hasUserId
     ? "Organization updated successfully!" 
     : "Organization created successfully!";
 
-header("Location: admin-create.php" . ($hasUserId ? "?id=" . urlencode($userId) : ""));  // CHANGED
+header("Location: admin-create.php" . ($hasUserId ? "?id=" . urlencode($userId) : ""));
 exit;
