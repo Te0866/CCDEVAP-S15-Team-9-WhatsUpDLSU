@@ -1,0 +1,77 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session_start();
+require_once __DIR__ . "/../dbconnection.php";
+header("Content-Type: application/json");
+
+$userId = $_SESSION['user_id'] ?? 0;
+
+$sql = "
+SELECT
+    e.EVENT_ID,
+    e.TITLE,
+    e.CATEGORY,
+    e.DESCRIPTION,
+    e.LOCATION,
+    e.VENUE,
+    e.DATE,
+    e.START_TIME,
+    e.END_TIME,
+    CASE
+        WHEN TIMESTAMP(e.DATE, e.END_TIME) <= NOW() THEN 'ENDED'
+        WHEN TIMESTAMP(e.DATE, e.START_TIME) <= NOW() THEN 'ONGOING'
+        ELSE 'UPCOMING'
+    END AS STATUS,
+    e.REGISTRATION_STATUS,
+    e.BANNER_IMAGE,
+    u.USER_ID,
+    u.USER_NAME,
+    ei.INTEREST_ID
+FROM event e
+JOIN users u
+    ON e.USER_ID = u.USER_ID
+LEFT JOIN event_interest ei
+    ON ei.EVENT_ID = e.EVENT_ID AND ei.USER_ID = ?
+WHERE e.APPROVAL_STATUS = 'APPROVED'
+ORDER BY e.DATE ASC, e.START_TIME ASC
+";
+
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $userId);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+
+if (!$result) {
+    echo json_encode(["error" => mysqli_error($conn)]);
+    exit;
+}
+
+$events = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $images = [];
+    if (!empty($row["BANNER_IMAGE"])) {
+        $images[] = $row["BANNER_IMAGE"];
+    }
+    $events[] = [
+        "id" => (int)$row["EVENT_ID"],
+        "title" => $row["TITLE"],
+        "category" => $row["CATEGORY"],
+        "description" => $row["DESCRIPTION"],
+        "venue" => $row["VENUE"],
+        "location" => $row["LOCATION"],
+        "date" => $row["DATE"],
+        "startTime" => $row["START_TIME"],
+        "endTime" => $row["END_TIME"],
+        "status" => $row["STATUS"],
+        "registration" => $row["REGISTRATION_STATUS"] ? "Open" : "Closed",
+        "organizer" => $row["USER_NAME"],
+        "images" => $images,
+        "comments" => [],
+        "isInterested" => $row["INTEREST_ID"] !== null
+    ];
+}
+
+echo json_encode($events);
+?>
