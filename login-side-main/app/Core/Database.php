@@ -28,6 +28,8 @@ class Database
                 die("A database error occurred.");
             }
 
+            mysqli_query($conn, "SET time_zone = '+08:00';");
+
             self::$instance = $conn;
         }
 
