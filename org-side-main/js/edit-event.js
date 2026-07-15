@@ -67,10 +67,6 @@ fileInput.addEventListener("change", () => {
     }
 });
 
-// The success modal now appears on manage.php after the server actually
-// confirms the event was updated (see manage.js), instead of alerting here
-// before the form has even been submitted.
-
 document.getElementById("deleteBtn").addEventListener("click", async () => {
     const confirmed = await showConfirmModal(
         "Are you sure you want to delete this event?",
@@ -104,9 +100,6 @@ document.getElementById("deleteBtn").addEventListener("click", async () => {
             return;
         }
 
-        // Redirect first, then flash the success modal on manage.php once the
-        // server has actually confirmed the delete (same pattern used for
-        // "updated=1" after a successful update).
         window.location.href = "manage.php?deleted=1";
     } catch (err) {
         await showModal("Something went wrong while deleting the event.", { type: "error" });
