@@ -448,7 +448,7 @@ const status = document.getElementById("statusFilter").value;
             event.category.toLowerCase() === category.toLowerCase()
         );
     }
-     if (status !== "All Event Types") {
+     if (status !== "All Event Status") {
     filtered = filtered.filter(event =>
         (event.status || "").toLowerCase() === status.toLowerCase()
     );
