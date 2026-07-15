@@ -191,7 +191,7 @@ function renderCommentsCarousel(comments) {
     }
 }
     
-/*function renderImageCarousel(images) {
+function renderImageCarousel(images) {
     const track = document.getElementById('imageTrack');
     const dotsContainer = document.getElementById('imageDots');
     const prevBtn = document.getElementById('imgPrev');
@@ -225,7 +225,7 @@ function renderCommentsCarousel(comments) {
     dotsContainer.style.display = showControls ? 'flex' : 'none';
 
     updateImageTrack();
-}*/
+}
 
 function goToImage(index) {
     const track = document.getElementById('imageTrack');
