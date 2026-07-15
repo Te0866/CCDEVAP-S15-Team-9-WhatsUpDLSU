@@ -14,15 +14,13 @@ if (profileBtn && dropdownMenu) {
     });
 }
 
-// ================= MODALS =================
+// Modal
 const successModal = document.getElementById("successModal");
 const deleteModal = document.getElementById("deleteModal");
 const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
 const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
-
 let selectedDeleteForm = null;
 
-// Open modal
 document.querySelectorAll(".delete-form .delete-btn").forEach(button => {
     button.addEventListener("click", function () {
         selectedDeleteForm = this.closest("form");
@@ -30,20 +28,19 @@ document.querySelectorAll(".delete-form .delete-btn").forEach(button => {
     });
 });
 
-// Confirm delete
+// Delete
 confirmDeleteBtn.addEventListener("click", () => {
     if (selectedDeleteForm) {
         selectedDeleteForm.submit();
     }
 });
 
-// Cancel delete
+// Cancel 
 cancelDeleteBtn.addEventListener("click", () => {
     deleteModal.classList.remove("show");
     selectedDeleteForm = null;
 });
 
-// Close when clicking outside
 deleteModal.addEventListener("click", (e) => {
     if (e.target === deleteModal) {
         deleteModal.classList.remove("show");
@@ -51,7 +48,7 @@ deleteModal.addEventListener("click", (e) => {
     }
 });
 
-// Live Search & Filter
+// Searching
 function filterAccountsTable() {
     const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
     const typeFilter = document.getElementById('typeFilter')?.value || 'all';
@@ -80,8 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeFilter) typeFilter.addEventListener('change', filterAccountsTable);
 
     filterAccountsTable();
-
-    // Auto show success message if present
+    
     const phpMsg = document.getElementById("php-success-msg");
     if (phpMsg) {
         showSuccessModal(phpMsg.dataset.message);
