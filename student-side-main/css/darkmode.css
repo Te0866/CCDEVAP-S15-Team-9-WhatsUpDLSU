@@ -1,104 +1,167 @@
 body.dark-mode{
     background:#121212;
-    color:white;
+    color:#fff;
 }
-
 
 body.dark-mode .navbar{
-    background:#1e1e1e;
+    background:#1b1b1b;
+    color:#fff;
 }
 
-
-body.dark-mode .banner,
-body.dark-mode .carousel-section,
-body.dark-mode .category-box,
-body.dark-mode .event-detail,
-body.dark-mode .form-container,
-body.dark-mode .profile-section,
-body.dark-mode .event-panel,
-body.dark-mode .action-panel{
-    background:#222;
-    color:white;
+body.dark-mode .logo-text,
+body.dark-mode .nav-tab{
+    color:#fff;
 }
 
-
-
-body.dark-mode,
-body.dark-mode .event-item,
-body.dark-mode .image-box,
-body.dark-mode .image-placeholder,
-body.dark-mode .upload-box,
-body.dark-mode .category-item,
-body.dark-mode .status-column{
+body.dark-mode .nav-tab.active{
     background:#333;
-    color:white;
 }
 
+body.dark-mode .event-sidebar,
+body.dark-mode .event-detail,
+body.dark-mode .calendar-section,
+body.dark-mode .legend,
+body.dark-mode .dropdown-menu,
+body.dark-mode .modal-box{
+    background:#222;
+    color:#fff;
+}
 
-
+body.dark-mode .search-input,
+body.dark-mode .filter-box,
+body.dark-mode .search-container input,
 body.dark-mode input,
 body.dark-mode textarea,
 body.dark-mode select{
-    background:#444;
-    color:white;
-    border:none;
+    background:#333;
+    color:#fff;
+    border:1px solid #555;
 }
 
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder{
+    color:#aaa;
+}
 
-body.dark-mode .dropdown-menu{
-    background:#2d2d2d;
+body.dark-mode .back-btn,
+body.dark-mode .filter-clear-btn,
+body.dark-mode .interested-btn,
+body.dark-mode .post-comment-btn,
+body.dark-mode .modal-submit-btn{
+    background:#087f5b;
+    color:#fff;
+}
+
+body.dark-mode .back-btn:hover,
+body.dark-mode .filter-clear-btn:hover,
+body.dark-mode .modal-submit-btn:hover{
+    background:#0b9b70;
+}
+
+body.dark-mode .modal-cancel-btn{
+    background:#444;
+    color:#fff;
+}
+
+body.dark-mode .profile-btn{
+    background:transparent;
+}
+
+body.dark-mode .event-item{
+    background:#333;
+    color:#fff;
+}
+
+body.dark-mode .event-item:hover{
+    background:#444;
+}
+
+body.dark-mode .event-item.active{
+    background:#087f5b;
+    color:#fff;
+}
+
+body.dark-mode .image-box,
+body.dark-mode .carousel{
+    background:#333;
+}
+
+body.dark-mode .carousel-btn{
+    background:rgba(255,255,255,.15);
+}
+
+body.dark-mode .carousel-btn:hover{
+    background:rgba(255,255,255,.3);
+}
+
+body.dark-mode .dot{
+    background:#666;
+}
+
+body.dark-mode .dot.active{
+    background:#087f5b;
+}
+
+body.dark-mode .comments-carousel{
+    background:#2a2a2a;
+    color:#fff;
+}
+
+body.dark-mode .comment-author{
+    color:#9bd3b8;
+}
+
+body.dark-mode .comment-text{
+    color:#eee;
 }
 
 body.dark-mode .dropdown-menu button{
-    background:#444;
-    color:white;
+    background:#333;
+    color:#fff;
 }
 
-
-
-body.dark-mode .profile-btn{
+body.dark-mode .dropdown-menu button:hover{
     background:#444;
 }
 
-body.dark-mode .interested-btn,
-body.dark-mode .submit-btn,
-body.dark-mode .update-btn,
-body.dark-mode .approve-btn,
-body.dark-mode .back-btn{
-    background:#666;
-    color:white;
-}
-
-
-body.dark-mode .calendar-section{
+body.dark-mode .modal-box{
     background:#222;
-    color:white;
+    color:#fff;
+}
+
+body.dark-mode .modal-box input,
+body.dark-mode .modal-box textarea{
+    background:#333;
+    color:#fff;
+    border:1px solid #555;
 }
 
 body.dark-mode .day-cell{
     background:#333;
-    color:white;
+    color:#fff;
 }
 
 body.dark-mode .day-header{
-    color:white;
+    color:#fff;
 }
+
 body.dark-mode .day-header.sunday{
     color:#ff6b6b;
 }
 
-body.dark-mode .legend{
-    background:#222;
-    color:white;
+body.dark-mode .anon-toggle,
+body.dark-mode .commenter-row{
+    color:#ddd;
 }
 
-body.dark-mode .profile-pic{
-    border: none;
+body.dark-mode .no-events{
+    color:#bbb;
 }
+
+body.dark-mode #alertMessage{
+    color:#fff;
+}
+
 body.dark-mode .profile-pic{
     border:2px solid transparent;
-}
-
-body.dark-mode .profile-btn{
-    background: transparent;
 }
