@@ -1,13 +1,4 @@
 <?php
-/**
- * Expects:
- * @var string  $mode      'create' | 'edit'
- * @var ?int    $orgId
- * @var string  $orgName
- * @var string  $password
- * @var string  $adminName
- * @var ?string $errorMessage
- */
 $isEdit = $mode === 'edit';
 $pageTitle = $isEdit ? 'Edit Organization' : 'Create Organization';
 $submitLabel = $isEdit ? 'Save Changes' : 'Create';
