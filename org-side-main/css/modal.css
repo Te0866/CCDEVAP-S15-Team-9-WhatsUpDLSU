@@ -1,0 +1,123 @@
+/* Shared alert/confirm modal component for org-side-main.
+   Replaces native alert()/confirm() popups. Injected + controlled by js/modal.js. */
+
+.app-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+    z-index: 3000;
+}
+
+.app-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.app-modal-box {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 32px 26px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .2);
+    transform: translateY(10px);
+    transition: transform .2s;
+}
+
+.app-modal-overlay.show .app-modal-box {
+    transform: translateY(0);
+}
+
+.app-modal-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.app-modal-icon.success {
+    background: #e3f6ea;
+    color: #087f5b;
+}
+
+.app-modal-icon.error {
+    background: #fde2e1;
+    color: #c0392b;
+}
+
+.app-modal-icon.confirm {
+    background: #fff3cd;
+    color: #946c00;
+}
+
+.app-modal-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin-bottom: 8px;
+}
+
+.app-modal-message {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 22px;
+    white-space: pre-wrap;
+}
+
+.app-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.app-modal-btn {
+    flex: 1;
+    padding: 11px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, opacity .15s;
+}
+
+.app-modal-btn.primary {
+    background: #087f5b;
+    color: white;
+}
+
+.app-modal-btn.primary:hover {
+    background: #066a4c;
+}
+
+.app-modal-btn.danger {
+    background: #dc3545;
+    color: white;
+}
+
+.app-modal-btn.danger:hover {
+    background: #c0392b;
+}
+
+.app-modal-btn.secondary {
+    background: #f1f3f5;
+    color: #333;
+}
+
+.app-modal-btn.secondary:hover {
+    background: #e2e5e8;
+}
