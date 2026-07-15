@@ -317,10 +317,6 @@ const commenterNameEl = document.getElementById('commenterName');
 const anonToggle = document.getElementById('anonToggle');
 
 function getLoggedInUsername() {
-    // TODO: once PHP sessions/login are in place, replace this with
-    // whatever mechanism actually identifies the logged-in student
-    // (e.g. a value rendered server-side into the page, or a session
-    // check endpoint) rather than localStorage.
     const stored = localStorage.getItem('loggedInUser');
     return stored || 'Student Name';
 }
