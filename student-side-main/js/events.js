@@ -115,8 +115,9 @@ function showEventDetail(event) {
     renderImageCarousel(event.images || []);
 
     loadComments(event.id);
+}
 
-    function loadComments(eventId) {
+function loadComments(eventId) {
     fetch(`get-comments.php?event_id=${eventId}`)
         .then(res => res.json())
         .then(comments => renderCommentsCarousel(comments))
@@ -124,7 +125,6 @@ function showEventDetail(event) {
             console.error('Failed to load comments:', err);
             renderCommentsCarousel([]);
         });
-    }
 }
     
     /*fetch(`get-comments.php?event_id=${event.id}`)
