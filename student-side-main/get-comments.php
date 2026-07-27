@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . "/../dbconnection.php";
 header("Content-Type: application/json");
 
