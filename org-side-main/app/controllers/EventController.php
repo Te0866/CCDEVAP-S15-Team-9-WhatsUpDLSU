@@ -4,12 +4,88 @@ class EventController
     private $conn;
     private $userModel;
     private $eventModel;
+    private $commentModel;
 
     public function __construct()
     {
         $this->conn = Database::connection();
         $this->userModel = new UserModel($this->conn);
         $this->eventModel = new EventModel($this->conn);
+        $this->commentModel = new CommentModel($this->conn);
+    }
+
+    public function getComments()
+    {
+        Auth::requireOfficer();
+        header("Content-Type: application/json");
+
+        $userId = Auth::currentUserId();
+        $eventId = (int) ($_GET['event_id'] ?? 0);
+
+        if ($eventId <= 0) {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'error' => 'Missing event ID.']);
+            exit;
+        }
+
+        $result = $this->commentModel->forEventOwnedByUser($eventId, $userId);
+
+        if ($result === false) {
+            http_response_code(404);
+            echo json_encode(['success' => false, 'error' => "Event not found or you don't have permission to view its comments."]);
+            exit;
+        }
+
+        $comments = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $comments[] = [
+                'id' => (int) $row['COMMENT_ID'],
+                'author' => $row['IS_ANONYMOUS'] ? 'Anonymous' : $row['USERNAME'],
+                'text' => $row['TEXT']
+            ];
+        }
+
+        echo json_encode(['success' => true, 'comments' => $comments]);
+        exit;
+    }
+
+    public function deleteComment()
+    {
+        Auth::requireOfficer();
+        header("Content-Type: application/json");
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['success' => false, 'error' => 'Invalid request method.']);
+            exit;
+        }
+
+        $userId = Auth::currentUserId();
+        $data = json_decode(file_get_contents("php://input"), true);
+        $commentId = (int) ($data['comment_id'] ?? 0);
+
+        if ($commentId <= 0) {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'error' => 'Missing comment ID.']);
+            exit;
+        }
+
+        $result = $this->commentModel->deleteForOfficer($commentId, $userId);
+
+        if ($result === false) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'error' => 'Delete failed: ' . $this->commentModel->lastError()]);
+            exit;
+        }
+
+        if ($result === 'no_match') {
+            http_response_code(404);
+            echo json_encode(['success' => false, 'error' => "Comment not found or you don't have permission to delete it."]);
+            exit;
+        }
+
+        echo json_encode(['success' => true]);
+        exit;
     }
 
     public function create()
@@ -163,7 +239,7 @@ class EventController
                 "Either the event doesn't exist, or it doesn't belong to your account.");
         }
 
-        header("Location: manage.php?updated=1");
+        header("Location: manage.php?updated=1&resubmitted=1");
         exit;
     }
 
