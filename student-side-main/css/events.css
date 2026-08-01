@@ -283,9 +283,10 @@ body{
 }
 
 .interested-btn{
-   margin-top:auto;
+  margin-top:auto;
+    margin-bottom:5px;
     align-self:center;
-    flex-shrink:0; 
+    flex-shrink:0;
     border:none;
     border-radius:999px;
     padding:14px 40px;
