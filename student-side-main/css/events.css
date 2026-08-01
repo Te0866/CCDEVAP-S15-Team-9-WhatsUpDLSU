@@ -626,6 +626,18 @@ body{
     color:#333;
 }
 
+.interested-btn.interested-active:hover{
+    background:#e03131;
+    color:white;
+    border:2px solid #e03131;
+}
+
+.interested-btn:not(.interested-active):hover{
+    background:#066a4b;
+    color:white;
+    transform:translateY(-2px);
+}
+
 @media screen and (max-width:768px){
 
     body{
