@@ -194,7 +194,7 @@ body{
 .filter-clear-btn:active{
     transform:scale(0.98);
 }
-.events-layout{
+..events-layout{
     display:grid;
     grid-template-columns:280px 1fr;
     gap:25px;
@@ -233,7 +233,7 @@ body{
 
 
 
-.event-detail{
+..event-detail{
     background:#087f5b;
     border-radius:25px;
     padding:35px;
@@ -242,12 +242,15 @@ body{
     grid-template-columns:2fr 1fr;
     gap:35px;
     height:100%;
-    overflow-y:auto;
+    overflow:hidden;        
+    min-height:0;
 }
 
 .event-info{
     display:flex;
     flex-direction:column;
+    min-height:0;
+    height:100%;
 }
 
 .event-info h1{
@@ -261,6 +264,7 @@ body{
     gap:12px;
     margin-bottom:25px;
     line-height:1.7;
+    flex-shrink:0;
 }
 
 .description{
