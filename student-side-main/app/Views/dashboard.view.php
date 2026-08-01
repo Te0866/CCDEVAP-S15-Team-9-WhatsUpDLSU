@@ -27,20 +27,20 @@
                 </p>
             </section>
 
-            <section class="chart-container pie-chart">
-                <h2 class="chart-title">Distribution of Event Categories</h2>
-                <canvas id="studentChart"></canvas>
-            </section>
-
-            <section class="chart-container bar-chart">
-                <h2 class="chart-title">Most Popular Events</h2>
-                <canvas id="popularChart"></canvas>
-            </section>
-
-            <section class="chart-container pie-chart">
-                <h2 class="chart-title">My Interests by Category</h2>
-                <canvas id="myInterestsChart"></canvas>
-            </section>
+            <div class="charts-row">
+    <section class="chart-container pie-chart">
+        <h2 class="chart-title">Distribution of Event Categories</h2>
+        <canvas id="studentChart"></canvas>
+    </section>
+    <section class="chart-container bar-chart">
+        <h2 class="chart-title">Most Popular Events</h2>
+        <canvas id="popularChart"></canvas>
+    </section>
+    <section class="chart-container pie-chart">
+        <h2 class="chart-title">My Interests by Category</h2>
+        <canvas id="myInterestsChart"></canvas>
+    </section>
+</div>
             
             <section class="category-box">
                 <h2>Browse by Category</h2>
