@@ -360,9 +360,25 @@ document.getElementById("interestedBtn").addEventListener("click", async () => {
 
 function updateInterestedButton(isInterested) {
     const btn = document.getElementById("interestedBtn");
-    btn.textContent = isInterested ? "Interested ✓" : "Interested!";
     btn.classList.toggle("interested-active", isInterested);
+    btn.dataset.interested = isInterested ? "true" : "false";
+    setInterestedLabel(btn);
 }
+
+function setInterestedLabel(btn) {
+    const isInterested = btn.dataset.interested === "true";
+    btn.textContent = isInterested ? "Interested ✓" : "Interested!";
+}
+
+document.getElementById("interestedBtn").addEventListener("mouseenter", () => {
+    const btn = document.getElementById("interestedBtn");
+    const isInterested = btn.dataset.interested === "true";
+    btn.textContent = isInterested ? "Remove Interest?" : "Mark Interested?";
+});
+
+document.getElementById("interestedBtn").addEventListener("mouseleave", () => {
+    setInterestedLabel(document.getElementById("interestedBtn"));
+});
 
 
 const commentModalOverlay = document.getElementById('commentModalOverlay');
