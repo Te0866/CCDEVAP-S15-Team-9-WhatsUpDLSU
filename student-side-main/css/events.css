@@ -19,6 +19,7 @@ body{
 .navbar{
     height:75px;
     background:#087f5b;
+    flex-shrink:0;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -150,6 +151,7 @@ body{
 
 .search-bar{
     display:flex;
+    flex-shrink:0;
     justify-content:space-between;
     align-items:center;
     padding:20px;
@@ -203,9 +205,9 @@ body{
     grid-template-columns:280px 1fr;
     gap:25px;
     padding:0 20px 20px;
-    height:calc(100vh - 160px);
+    flex:1;
+    min-height:0;
 }
-
 .event-sidebar{
     background:white;
     border-radius:20px;
