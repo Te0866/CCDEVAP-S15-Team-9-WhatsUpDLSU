@@ -13,9 +13,11 @@ body{
 
 
 .navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
     height:75px;
     background:#087f5b;
-    flex-shrink:0;
     display:flex;
     justify-content:space-between;
     align-items:center;
