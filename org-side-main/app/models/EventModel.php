@@ -68,14 +68,17 @@ class EventModel
 
         $category = strtoupper($data['category']);
 
+        $approvalStatus = 'PENDING';
+
         $stmt = mysqli_prepare($this->conn, "UPDATE event SET
             CATEGORY = ?, TITLE = ?, DESCRIPTION = ?, LOCATION = ?, VENUE = ?,
-            DATE = ?, START_TIME = ?, END_TIME = ?, STATUS = ?, BANNER_IMAGE = ?, UPDATED_AT = NOW()
+            DATE = ?, START_TIME = ?, END_TIME = ?, STATUS = ?, BANNER_IMAGE = ?,
+            APPROVAL_STATUS = ?, REMARKS = NULL, UPDATED_AT = NOW()
             WHERE EVENT_ID = ? AND USER_ID = ?");
 
         mysqli_stmt_bind_param(
             $stmt,
-            "ssssssssssii",
+            "sssssssssssii",
             $category,
             $data['eventName'],
             $data['description'],
@@ -86,6 +89,7 @@ class EventModel
             $data['endTime'],
             $status,
             $data['bannerImage'],
+            $approvalStatus,
             $eventId,
             $userId
         );
@@ -132,7 +136,7 @@ class EventModel
 
     public function allForUser($userId)
     {
-        $sql = "SELECT EVENT_ID, TITLE, DATE, LOCATION, VENUE, CATEGORY, APPROVAL_STATUS FROM event WHERE USER_ID = ? ORDER BY DATE DESC";
+        $sql = "SELECT EVENT_ID, TITLE, DATE, LOCATION, VENUE, CATEGORY, APPROVAL_STATUS, REMARKS FROM event WHERE USER_ID = ? ORDER BY UPDATED_AT DESC";
         $stmt = mysqli_prepare($this->conn, $sql);
         mysqli_stmt_bind_param($stmt, "i", $userId);
         mysqli_stmt_execute($stmt);
@@ -155,6 +159,61 @@ class EventModel
         }
 
         return $counts;
+    }
+
+    public function totalCount($userId)
+    {
+        $stmt = mysqli_prepare($this->conn, "SELECT COUNT(*) AS total FROM event WHERE USER_ID = ?");
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        mysqli_stmt_execute($stmt);
+        return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))['total'];
+    }
+
+    public function rejectedCount($userId)
+    {
+        $stmt = mysqli_prepare($this->conn, "SELECT COUNT(*) AS total FROM event WHERE USER_ID = ? AND APPROVAL_STATUS = 'REJECTED'");
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        mysqli_stmt_execute($stmt);
+        return mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))['total'];
+    }
+
+    public function locationCounts($userId)
+    {
+        $stmt = mysqli_prepare($this->conn, "SELECT LOCATION, COUNT(*) AS total FROM event WHERE USER_ID = ? GROUP BY LOCATION ORDER BY total DESC");
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $locations = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $locations[$row['LOCATION']] = (int) $row['total'];
+        }
+
+        return $locations;
+    }
+
+    public function totalInterestCount($userId)
+    {
+        $stmt = mysqli_prepare($this->conn, "SELECT COUNT(*) AS total FROM event_interest ei
+            INNER JOIN event e ON e.EVENT_ID = ei.EVENT_ID
+            WHERE e.USER_ID = ?");
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        mysqli_stmt_execute($stmt);
+        return (int) mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))['total'];
+    }
+
+    public function topInterestedEvents($userId, $limit = 5)
+    {
+        $stmt = mysqli_prepare($this->conn, "SELECT e.EVENT_ID, e.TITLE, COUNT(ei.INTEREST_ID) AS interest_total
+            FROM event e
+            LEFT JOIN event_interest ei ON ei.EVENT_ID = e.EVENT_ID
+            WHERE e.USER_ID = ?
+            GROUP BY e.EVENT_ID, e.TITLE
+            ORDER BY interest_total DESC, e.TITLE ASC
+            LIMIT " . (int) $limit);
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        mysqli_stmt_execute($stmt);
+        return mysqli_stmt_get_result($stmt);
     }
 
     public function activeCount($userId)
