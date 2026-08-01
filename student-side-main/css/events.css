@@ -249,6 +249,7 @@ body{
     color:white;
     display:grid;
     grid-template-columns:2fr 1fr;
+    align-items:stretch;
     gap:35px;
     height:100%;
     overflow:hidden;        
@@ -278,9 +279,9 @@ body{
 
 .description{
     margin-bottom:20px;
-    overflow-y:auto;        /* only the description scrolls now */
-    flex:1;
+    flex:1 1 auto;
     min-height:0;
+    overflow-y:auto;
 }
 
 .description h3{
