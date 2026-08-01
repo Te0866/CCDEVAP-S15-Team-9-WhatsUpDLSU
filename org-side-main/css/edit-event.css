@@ -457,3 +457,131 @@ body{
         width: 180px;
     }
 }
+.comments-card{
+    width:100%;
+    max-width:none;
+    margin:24px 0 0 0;
+    background:#fff;
+    border:1px solid #e8e8e8;
+    border-radius:18px;
+    padding:32px 55px;
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.comments-subtext{
+    font-size:13px;
+    color:#8a9791;
+    margin-bottom:18px;
+}
+
+.comments-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.comment-item{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+    background:#f5faf7;
+    border:1px solid #dcece4;
+    border-radius:12px;
+    padding:14px 16px;
+}
+
+.comment-text-wrap{
+    flex:1;
+}
+
+.comment-author{
+    display:block;
+    font-size:12px;
+    font-weight:bold;
+    color:#087f5b;
+    text-transform:uppercase;
+    margin-bottom:4px;
+}
+
+.comment-text{
+    font-size:14px;
+    color:#1c1c1c;
+    line-height:1.5;
+    white-space:pre-wrap;
+}
+
+.comment-delete-btn{
+    flex-shrink:0;
+    background:#fde2e1;
+    color:#dc3545;
+    border:none;
+    border-radius:8px;
+    padding:6px 14px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.comment-delete-btn:hover{
+    background:#dc3545;
+    color:#fff;
+}
+
+.comments-empty,
+.comments-loading{
+    font-size:14px;
+    color:#8a9791;
+    font-style:italic;
+    list-style:none;
+}
+
+@media (max-width: 900px){
+    .comments-card{
+        padding:24px;
+    }
+
+    .comment-item{
+        flex-direction:column;
+    }
+}
+
+.remarks-banner{
+    background:#fde2e1;
+    border:1px solid #f5b7b1;
+    border-radius:12px;
+    padding:14px 18px;
+    margin-bottom:24px;
+    color:#c0392b;
+}
+
+.remarks-banner strong{
+    display:block;
+    font-size:14px;
+    margin-bottom:4px;
+}
+
+.remarks-banner p{
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:8px;
+    color:#8a2e26;
+}
+
+.remarks-banner-note{
+    font-size:12px;
+    font-style:italic;
+    color:#946c00;
+    display:block;
+}
+
+.remarks-banner-info{
+    background:#e6f4ee;
+    border-color:#c3e6d6;
+    color:#087f5b;
+}
+
+.remarks-banner-info .remarks-banner-note{
+    color:#087f5b;
+}

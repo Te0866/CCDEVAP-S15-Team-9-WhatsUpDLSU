@@ -162,8 +162,14 @@ body{
 
 .stats-row{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(5, 1fr);
     gap:22px;
+}
+
+@media (max-width: 1100px){
+    .stats-row{
+        grid-template-columns:repeat(3, 1fr);
+    }
 }
 
 .stat-card{
@@ -194,6 +200,60 @@ body{
     align-items:stretch;
 }
 
+.insight-bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.insight-chip{
+    background:#e6f4ee;
+    color:#087f5b;
+    font-size:13px;
+    border-radius:999px;
+    padding:8px 16px;
+}
+
+.insight-chip strong{
+    font-weight:700;
+}
+
+.charts-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    margin-top:22px;
+}
+
+.chart-wrap{
+    position:relative;
+}
+
+.chart-empty{
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:13px;
+    color:#8a9791;
+    font-style:italic;
+    padding:0 20px;
+}
+
+.chart-empty.show{
+    display:flex;
+}
+
+.chart-wrap canvas.hide{
+    display:none;
+}
+
 .left-column,
 .right-column{
     display:flex;
@@ -215,10 +275,13 @@ body{
     flex:1 1 auto;
     display:flex;
     flex-direction:column;
+    max-height:420px;
 }
 
 .activity-box .activity-list{
     flex:1;
+    overflow-y:auto;
+    padding-right:4px;
 }
 
 .events-container{
@@ -463,17 +526,17 @@ body{
 
 .modal-status.status-approved{
     background:#e3f6ea;
-    color:#1a9c53;
+    color:#28a745;
 }
 
 .modal-status.status-pending{
     background:#fff3cd;
-    color:#946c00;
+    color:#f0a63a;
 }
 
 .modal-status.status-rejected{
     background:#fde2e1;
-    color:#c0392b;
+    color:#dc3545;
 }
 
 .modal-remarks-label{
@@ -514,7 +577,7 @@ body{
 }
 
 .icon-approved{
-    background:#2fb872;
+    background:#28a745;
 }
 
 .icon-pending{
@@ -522,7 +585,7 @@ body{
 }
 
 .icon-rejected{
-    background:#e05555;
+    background:#dc3545;
 }
 
 .activity-text p{
@@ -579,16 +642,28 @@ body{
     display:inline-block;
 }
 
-.blue{
-    background:#3498db;
+.status-approved-box{
+    background:#28a745;
 }
 
-.purple{
-    background:#9b59b6;
+.status-pending-box{
+    background:#f0a63a;
 }
 
-.yellow{
-    background:#f1c40f;
+.status-rejected-box{
+    background:#dc3545;
+}
+
+.category-academic-box{
+    background:#087f5b;
+}
+
+.category-nonacademic-box{
+    background:#c2661a;
+}
+
+.category-career-box{
+    background:#2563a6;
 }
 
 @media (max-width: 900px){
@@ -603,6 +678,10 @@ body{
 
     .event-grid{
         grid-template-columns:1fr 1fr;
+    }
+
+    .charts-grid{
+        grid-template-columns:1fr;
     }
 }
 
@@ -649,4 +728,13 @@ body{
     .event-grid{
         grid-template-columns:1fr;
     }
+}
+
+.activity-empty{
+    list-style:none;
+    font-size:13px;
+    color:#8a9791;
+    font-style:italic;
+    text-align:center;
+    padding:20px 0;
 }
