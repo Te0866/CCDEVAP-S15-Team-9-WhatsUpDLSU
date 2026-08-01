@@ -37,6 +37,11 @@
                 <canvas id="popularChart"></canvas>
             </section>
 
+            <section class="chart-container pie-chart">
+                <h2 class="chart-title">My Interests by Category</h2>
+                <canvas id="myInterestsChart"></canvas>
+            </section>
+            
             <section class="category-box">
                 <h2>Browse by Category</h2>
 
