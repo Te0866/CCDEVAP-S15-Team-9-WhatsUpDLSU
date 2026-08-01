@@ -11,17 +11,35 @@ class Event
     END";
 
     public static function categoryStats(): array
-    {
-        $result = Database::query("
-            SELECT CATEGORY, COUNT(*) AS total
-            FROM event
-            WHERE APPROVAL_STATUS = 'APPROVED'
-            GROUP BY CATEGORY
-        ");
+{
+    $result = Database::query("
+        SELECT CATEGORY, COUNT(*) AS total
+        FROM event e
+        WHERE APPROVAL_STATUS = 'APPROVED'
+        AND (" . self::STATUS_EXPR . ") != 'ENDED'
+        GROUP BY CATEGORY
+    ");
 
-        return mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
 
+public static function popular(int $limit = 5): array
+{
+    $limit = (int) $limit;
+
+    $result = Database::query("
+        SELECT e.TITLE, COUNT(ei.EVENT_ID) AS interested
+        FROM event e
+        LEFT JOIN event_interest ei ON e.EVENT_ID = ei.EVENT_ID
+        WHERE e.APPROVAL_STATUS = 'APPROVED'
+        AND (" . self::STATUS_EXPR . ") != 'ENDED'
+        GROUP BY e.EVENT_ID
+        ORDER BY interested DESC
+        LIMIT {$limit}
+    ");
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
     public static function popular(int $limit = 5): array
     {
         $limit = (int) $limit;
