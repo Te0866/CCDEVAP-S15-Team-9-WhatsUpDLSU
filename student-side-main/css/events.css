@@ -252,7 +252,7 @@ body{
     align-items:stretch;
     gap:35px;
     height:100%;
-    overflow:hidden;        
+    overflow-y:auto;      /* was overflow:hidden — now scrolls as last resort */
     min-height:0;
 }
 
