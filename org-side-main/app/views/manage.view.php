@@ -113,6 +113,11 @@
                                 <h3><?php echo htmlspecialchars($event['TITLE']); ?></h3>
                                 <p><?php echo $formattedDate; ?></p>
                                 <p><?php echo htmlspecialchars($venueText); ?></p>
+                                <?php if ($approvalStatus === 'REJECTED' && trim($event['REMARKS'] ?? '') !== '') { ?>
+                                    <p class="card-remarks">
+                                        <strong>Admin remarks:</strong> <?php echo htmlspecialchars($event['REMARKS']); ?>
+                                    </p>
+                                <?php } ?>
                             </div>
                             <div class="card-footer">
                                 <span class="status-badge <?php echo $badgeClass; ?>"><?php echo $badgeText; ?></span>

@@ -32,6 +32,18 @@
 
         <form class="form-card" action="update-event-process.php" method="POST" enctype="multipart/form-data">
 
+            <?php if ($event['APPROVAL_STATUS'] === 'REJECTED' && trim($event['REMARKS'] ?? '') !== '') { ?>
+                <div class="remarks-banner">
+                    <strong>This event was rejected.</strong>
+                    <p><?php echo htmlspecialchars($event['REMARKS']); ?></p>
+                    <span class="remarks-banner-note">Saving changes will resubmit this event for approval.</span>
+                </div>
+            <?php } else if ($event['APPROVAL_STATUS'] === 'APPROVED') { ?>
+                <div class="remarks-banner remarks-banner-info">
+                    <span class="remarks-banner-note">This event is approved. Saving changes will send it back to Pending for admin re-review.</span>
+                </div>
+            <?php } ?>
+
             <input type="hidden" name="event_id" value="<?php
                                                             echo $event['EVENT_ID'];
                                                         ?>">
@@ -172,7 +184,20 @@
 
         </form>
 
+        <section class="comments-card">
+            <h3 class="section-heading">Student Comments</h3>
+            <p class="comments-subtext">Remove comments that are spam, inappropriate, or off-topic.</p>
+
+            <ul class="comments-list" id="commentsList">
+                <li class="comments-loading">Loading comments...</li>
+            </ul>
+        </section>
+
     </main>
+
+    <script>
+        const currentEventId = <?php echo (int) $event['EVENT_ID']; ?>;
+    </script>
 
     <script src="js/modal.js"></script>
     <script src="js/edit-event.js"></script>

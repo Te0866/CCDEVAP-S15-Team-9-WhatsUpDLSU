@@ -28,6 +28,11 @@
 
         <section class="stats-row">
             <div class="stat-card">
+                <span class="stat-label"> Total events </span>
+                <span class="stat-value" id="statTotal"> <?php echo $totalCount; ?> </span>
+            </div>
+
+            <div class="stat-card">
                 <span class="stat-label"> Active events </span>
                 <span class="stat-value" id="statActive"> <?php echo $activeCount; ?> </span>
             </div>
@@ -38,10 +43,33 @@
             </div>
 
             <div class="stat-card">
-                <span class="stat-label"> Past events </span>
-                <span class="stat-value" id="statPast"> <?php echo $pastCount; ?> </span>
+                <span class="stat-label"> Rejected </span>
+                <span class="stat-value" id="statRejected"> <?php echo $rejectedCount; ?> </span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label"> Students interested </span>
+                <span class="stat-value" id="statInterest"> <?php echo $totalInterestCount; ?> </span>
             </div>
         </section>
+
+        <?php if ($totalCount > 0) { ?>
+        <section class="insight-bar">
+            <span class="insight-chip">
+                📌 Most active category: <strong><?php echo htmlspecialchars($topCategoryLabel); ?></strong>
+                (<?php echo $topCategoryCount; ?> event<?php echo $topCategoryCount === 1 ? '' : 's'; ?>)
+            </span>
+            <?php if ($topLocationLabel !== null) { ?>
+            <span class="insight-chip">
+                📍 Most used location: <strong><?php echo htmlspecialchars($topLocationLabel); ?></strong>
+                (<?php echo $topLocationCount; ?> event<?php echo $topLocationCount === 1 ? '' : 's'; ?>)
+            </span>
+            <?php } ?>
+            <span class="insight-chip">
+                💬 <strong><?php echo $totalInterestCount; ?></strong> student<?php echo $totalInterestCount === 1 ? '' : 's'; ?> interested across your events
+            </span>
+        </section>
+        <?php } ?>
 
         <div class="dashboard-grid">
 
@@ -102,7 +130,7 @@
                             $activityCount = mysqli_num_rows($activityResult);
 
                             if ($activityCount === 0) {
-                                echo "<p>No recent activity yet.</p>";
+                                echo "<li class=\"activity-empty\">No recent activity yet.</li>";
                             } else {
                                 while ($activity = mysqli_fetch_assoc($activityResult)) {
 
@@ -175,27 +203,47 @@
 
             <div class="right-column">
                 <section class="chart-box">
-                    <h2> Event status overview </h2>
+                    <h2> Approval status overview </h2>
                     <div class="chart-wrap">
                         <canvas id="statusChart"></canvas>
+                        <p class="chart-empty" id="statusChartEmpty">No events yet — this fills in once you create one.</p>
                     </div>
 
                     <div class="legend">
-                        <span class="legend-item"><span class="color-box blue"></span> Active</span>
-                        <span class="legend-item"><span class="color-box purple"></span> Pending</span>
-                        <span class="legend-item"><span class="color-box yellow"></span> Past</span>
-                    </div>
-                </section>
-
-                <section class="chart-box">
-                    <h2> Events by category </h2>
-                    <div class="chart-wrap">
-                        <canvas id="categoryChart"></canvas>
+                        <span class="legend-item"><span class="color-box status-approved-box"></span> Approved</span>
+                        <span class="legend-item"><span class="color-box status-pending-box"></span> Pending</span>
+                        <span class="legend-item"><span class="color-box status-rejected-box"></span> Rejected</span>
                     </div>
                 </section>
             </div>
 
         </div>
+
+        <section class="charts-grid">
+            <div class="chart-box">
+                <h2> Events by category </h2>
+                <div class="chart-wrap">
+                    <canvas id="categoryChart"></canvas>
+                    <p class="chart-empty" id="categoryChartEmpty">No category data yet.</p>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h2> Events per location </h2>
+                <div class="chart-wrap">
+                    <canvas id="locationChart"></canvas>
+                    <p class="chart-empty" id="locationChartEmpty">No location data yet.</p>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h2> Most interested events </h2>
+                <div class="chart-wrap">
+                    <canvas id="interestChart"></canvas>
+                    <p class="chart-empty" id="interestChartEmpty">No interest data yet.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div class="modal-overlay" id="remarksModalOverlay">
@@ -209,15 +257,31 @@
     </div>
 
     <script>
-        const activeCount = <?php echo $activeCount; ?>;
+        const approvedCount = <?php echo $totalCount - $pendingCount - $rejectedCount; ?>;
         const pendingCount = <?php echo $pendingCount; ?>;
-        const pastCount = <?php echo $pastCount; ?>;
+        const rejectedCount = <?php echo $rejectedCount; ?>;
 
         const academicCount = <?php echo $academicCount; ?>;
         const nonAcademicCount = <?php echo $nonAcademicCount; ?>;
         const careerCount = <?php echo $careerCount; ?>;
+
+        const locationLabels = <?php echo json_encode(array_keys($locationCounts)); ?>;
+        const locationData = <?php echo json_encode(array_values($locationCounts)); ?>;
+
+        const interestLabels = <?php
+            $topInterestedResult->data_seek(0);
+            $labels = [];
+            $data = [];
+            while ($row = mysqli_fetch_assoc($topInterestedResult)) {
+                $labels[] = $row['TITLE'];
+                $data[] = (int) $row['interest_total'];
+            }
+            echo json_encode($labels);
+        ?>;
+        const interestData = <?php echo json_encode($data); ?>;
     </script>
 
+    <script src="js/colors.js"></script>
     <script src="js/modal.js"></script>
     <script src="js/officer-dashboard.js"></script>
     <script src="js/darkmode.js"></script>
