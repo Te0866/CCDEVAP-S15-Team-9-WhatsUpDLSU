@@ -194,7 +194,7 @@ body{
 .filter-clear-btn:active{
     transform:scale(0.98);
 }
-..events-layout{
+.events-layout{
     display:grid;
     grid-template-columns:280px 1fr;
     gap:25px;
@@ -233,7 +233,7 @@ body{
 
 
 
-..event-detail{
+.event-detail{
     background:#087f5b;
     border-radius:25px;
     padding:35px;
