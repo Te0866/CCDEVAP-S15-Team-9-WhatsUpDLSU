@@ -8,6 +8,7 @@ require_once __DIR__ . "/core/ImageUploader.php";
 
 require_once __DIR__ . "/models/UserModel.php";
 require_once __DIR__ . "/models/EventModel.php";
+require_once __DIR__ . "/models/CommentModel.php";
 
 require_once __DIR__ . "/controllers/DashboardController.php";
 require_once __DIR__ . "/controllers/EventController.php";
