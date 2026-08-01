@@ -5,14 +5,18 @@
 }
 
 body{
-    min-height:100vh;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
     background:#eef7ec;
     font-family:'Segoe UI', sans-serif;
     overflow-x:hidden;
+    overflow-y:hidden;
 }
 
 
 .navbar{
+    flex-shrink:0;
     position:sticky;
     top:0;
     z-index:1000;
@@ -148,6 +152,7 @@ body{
 
 
 .search-bar{
+    flex-shrink:0;
     display:flex;
     justify-content:space-between;
     align-items:center;
