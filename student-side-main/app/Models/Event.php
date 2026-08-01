@@ -22,7 +22,21 @@ class Event
 
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+    
+public static function interestedCategoryStats(int $userId): array
+{
+    $result = Database::query("
+        SELECT e.CATEGORY, COUNT(*) AS total
+        FROM event_interest ei
+        INNER JOIN event e ON ei.EVENT_ID = e.EVENT_ID
+        WHERE ei.USER_ID = ?
+        AND e.APPROVAL_STATUS = 'APPROVED'
+        GROUP BY e.CATEGORY
+    ", "i", [$userId]);
 
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+    
 public static function popular(int $limit = 5): array
 {
     $limit = (int) $limit;
