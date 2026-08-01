@@ -5,21 +5,14 @@
 }
 
 body{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
+    min-height:100vh;
     background:#eef7ec;
     font-family:'Segoe UI', sans-serif;
     overflow-x:hidden;
-    overflow-y:hidden;
 }
 
 
 .navbar{
-    flex-shrink:0;
-    position:sticky;
-    top:0;
-    z-index:1000;
     height:75px;
     background:#087f5b;
     display:flex;
@@ -152,7 +145,6 @@ body{
 
 
 .search-bar{
-    flex-shrink:0;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -203,12 +195,11 @@ body{
     transform:scale(0.98);
 }
 .events-layout{
-   display:grid;
+    display:grid;
     grid-template-columns:280px 1fr;
     gap:25px;
     padding:0 20px 20px;
-    flex:1; 
-    min-height:0; 
+    height:calc(100vh - 160px);
 }
 
 .event-sidebar{
@@ -249,10 +240,9 @@ body{
     color:white;
     display:grid;
     grid-template-columns:2fr 1fr;
-    align-items:stretch;
     gap:35px;
     height:100%;
-    overflow-y:auto;      /* was overflow:hidden — now scrolls as last resort */
+    overflow:hidden;        
     min-height:0;
 }
 
@@ -279,9 +269,9 @@ body{
 
 .description{
     margin-bottom:20px;
-    flex:1 1 auto;
+    overflow-y:auto;        /* only the description scrolls now */
+    flex:1;
     min-height:0;
-    overflow-y:auto;
 }
 
 .description h3{
@@ -293,11 +283,10 @@ body{
 }
 
 .interested-btn{
-    margin-top:auto;
-    margin-bottom:5px;
+   margin-top:auto;
     align-self:center;
-    flex-shrink:0;
-    border:2px solid transparent;
+    flex-shrink:0; 
+    border:none;
     border-radius:999px;
     padding:14px 40px;
     background:white;
@@ -306,18 +295,13 @@ body{
     font-weight:600;
     cursor:pointer;
     transition:.2s;
-    min-width:180px;
-    white-space:nowrap;
-    text-align:center;
 }
-
 
 .interested-btn:hover{
     transform:translateY(-2px);
 }
 
 .interested-btn.interested-active{
-    border:2px solid transparent;
     background:#087f5b;
     color:white;
     border:2px solid white;
@@ -821,13 +805,11 @@ body{
         line-height:1.6;
     }
 
-   .description{
-    margin-bottom:20px;
-    overflow-y:auto;
-    flex:1;
-    min-height:0;
-    scrollbar-gutter:stable;
-   }
+    .description{
+        display:block;
+        width:100%;
+        margin-bottom:20px;
+    }
 
     .description h3{
         margin-bottom:10px;
