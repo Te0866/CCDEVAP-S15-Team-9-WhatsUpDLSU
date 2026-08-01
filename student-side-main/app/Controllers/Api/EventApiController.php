@@ -4,6 +4,17 @@ require_once __DIR__ . "/../../Models/Event.php";
 
 class EventApiController
 {   
+    public function myCategoryStats(): void
+{
+    header("Content-Type: application/json");
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        echo json_encode([]);
+        return;
+    }
+    echo json_encode(Event::interestedCategoryStats($_SESSION['user_id']));
+}
+    
     public function categoryStats(): void
     {
         header("Content-Type: application/json");
