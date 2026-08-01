@@ -11,6 +11,9 @@ body{
 
 
 .navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
     height:75px;
     background:#087f5b;
     display:flex;
