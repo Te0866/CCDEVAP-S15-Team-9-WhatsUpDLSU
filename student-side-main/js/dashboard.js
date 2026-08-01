@@ -173,3 +173,46 @@ fetch("api/get-popular-events.php")
 .catch(error => {
     console.error("Error loading popular events:", error);
 });
+const myInterestsCanvas = document.getElementById("myInterestsChart");
+
+fetch("api/get-my-category-stats.php")
+.then(res => res.json())
+.then(data => {
+
+    if (data.length === 0) {
+        myInterestsCanvas.parentElement.innerHTML =
+            "<h2 class='chart-title'>My Interests by Category</h2><p style='text-align:center;color:#777;'>No interested events yet.</p>";
+        return;
+    }
+
+    const labels = data.map(item => item.CATEGORY);
+    const values = data.map(item => Number(item.total));
+
+    new Chart(myInterestsCanvas, {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: values,
+                backgroundColor: [
+                    "#087f5b",
+                    "#1fa67a",
+                    "#39b88c"
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    });
+
+})
+.catch(error => {
+    console.error("Error loading personal interest stats:", error);
+});
