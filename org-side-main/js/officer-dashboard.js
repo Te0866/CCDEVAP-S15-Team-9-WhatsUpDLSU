@@ -20,15 +20,26 @@ document.addEventListener("click", (e) => {
     }
 });
 
+function sum(arr) {
+    return arr.reduce((total, n) => total + n, 0);
+}
+
+function markEmptyIfNoData(canvasEl, emptyEl, hasData) {
+    if (!hasData) {
+        canvasEl.classList.add("hide");
+        emptyEl.classList.add("show");
+    }
+}
+
 const statusCtx = document.getElementById("statusChart");
 
 new Chart(statusCtx, {
     type: "pie",
     data: {
-        labels: ["Active", "Pending", "Past"],
+        labels: ["Approved", "Pending", "Rejected"],
         datasets: [{
-            data: [activeCount, pendingCount, pastCount],
-            backgroundColor: ["#3498db", "#9b59b6", "#f1c40f"],
+            data: [approvedCount, pendingCount, rejectedCount],
+            backgroundColor: [STATUS_COLORS.APPROVED, STATUS_COLORS.PENDING, STATUS_COLORS.REJECTED],
             borderWidth: 0
         }]
     },
@@ -41,6 +52,7 @@ new Chart(statusCtx, {
         }
     }
 });
+markEmptyIfNoData(statusCtx, document.getElementById("statusChartEmpty"), sum([approvedCount, pendingCount, rejectedCount]) > 0);
 
 const categoryCtx = document.getElementById("categoryChart");
 
@@ -50,7 +62,7 @@ new Chart(categoryCtx, {
         labels: ["Academic", "Non-academic", "Career"],
         datasets: [{
             data: [academicCount, nonAcademicCount, careerCount],
-            backgroundColor: "#2fb872",
+            backgroundColor: [CATEGORY_COLORS.ACADEMIC, CATEGORY_COLORS["NON-ACADEMIC"], CATEGORY_COLORS.CAREER],
             borderRadius: 6,
             maxBarThickness: 45
         }]
@@ -74,6 +86,77 @@ new Chart(categoryCtx, {
         }
     }
 });
+markEmptyIfNoData(categoryCtx, document.getElementById("categoryChartEmpty"), sum([academicCount, nonAcademicCount, careerCount]) > 0);
+
+const locationCtx = document.getElementById("locationChart");
+
+new Chart(locationCtx, {
+    type: "bar",
+    data: {
+        labels: locationLabels,
+        datasets: [{
+            data: locationData,
+            backgroundColor: "#087f5b",
+            borderRadius: 6,
+            maxBarThickness: 32
+        }]
+    },
+    options: {
+        indexAxis: "y",
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                ticks: { stepSize: 1 },
+                grid: { color: "#eef2ef" }
+            },
+            y: {
+                grid: { display: false }
+            }
+        }
+    }
+});
+markEmptyIfNoData(locationCtx, document.getElementById("locationChartEmpty"), locationData.length > 0 && sum(locationData) > 0);
+
+const interestCtx = document.getElementById("interestChart");
+
+new Chart(interestCtx, {
+    type: "bar",
+    data: {
+        labels: interestLabels,
+        datasets: [{
+            data: interestData,
+            backgroundColor: "#2563a6",
+            borderRadius: 6,
+            maxBarThickness: 32
+        }]
+    },
+    options: {
+        indexAxis: "y",
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                ticks: { stepSize: 1 },
+                grid: { color: "#eef2ef" }
+            },
+            y: {
+                grid: { display: false }
+            }
+        }
+    }
+});
+markEmptyIfNoData(interestCtx, document.getElementById("interestChartEmpty"), interestData.length > 0 && sum(interestData) > 0);
 
 const eventGrid = document.getElementById("eventGrid");
 

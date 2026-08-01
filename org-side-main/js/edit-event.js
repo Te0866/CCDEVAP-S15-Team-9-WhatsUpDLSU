@@ -105,3 +105,96 @@ document.getElementById("deleteBtn").addEventListener("click", async () => {
         await showModal("Something went wrong while deleting the event.", { type: "error" });
     }
 });
+
+const commentsList = document.getElementById("commentsList");
+
+function renderComments(comments) {
+    commentsList.innerHTML = "";
+
+    if (comments.length === 0) {
+        const empty = document.createElement("li");
+        empty.className = "comments-empty";
+        empty.textContent = "No comments yet on this event.";
+        commentsList.appendChild(empty);
+        return;
+    }
+
+    comments.forEach((comment) => {
+        const item = document.createElement("li");
+        item.className = "comment-item";
+        item.dataset.commentId = comment.id;
+
+        const textWrap = document.createElement("div");
+        textWrap.className = "comment-text-wrap";
+
+        const author = document.createElement("span");
+        author.className = "comment-author";
+        author.textContent = comment.author;
+
+        const text = document.createElement("p");
+        text.className = "comment-text";
+        text.textContent = comment.text;
+
+        textWrap.appendChild(author);
+        textWrap.appendChild(text);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.type = "button";
+        deleteBtn.className = "comment-delete-btn";
+        deleteBtn.textContent = "Delete";
+        deleteBtn.addEventListener("click", () => deleteComment(comment.id, item));
+
+        item.appendChild(textWrap);
+        item.appendChild(deleteBtn);
+        commentsList.appendChild(item);
+    });
+}
+
+async function loadComments() {
+    try {
+        const response = await fetch("get-event-comments.php?event_id=" + encodeURIComponent(currentEventId));
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            commentsList.innerHTML = "<li class=\"comments-empty\">Couldn't load comments.</li>";
+            return;
+        }
+
+        renderComments(data.comments);
+    } catch (err) {
+        commentsList.innerHTML = "<li class=\"comments-empty\">Couldn't load comments.</li>";
+    }
+}
+
+async function deleteComment(commentId, itemEl) {
+    const confirmed = await showConfirmModal(
+        "Are you sure you want to delete this comment?",
+        { confirmText: "Delete", cancelText: "Cancel", danger: true, title: "Delete comment" }
+    );
+
+    if (!confirmed) return;
+
+    try {
+        const response = await fetch("delete-comment-process.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ comment_id: commentId }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            await showModal((data && data.error) || "Something went wrong while deleting the comment.", { type: "error" });
+            return;
+        }
+
+        itemEl.remove();
+        if (!commentsList.querySelector(".comment-item")) {
+            renderComments([]);
+        }
+    } catch (err) {
+        await showModal("Something went wrong while deleting the comment.", { type: "error" });
+    }
+}
+
+loadComments();

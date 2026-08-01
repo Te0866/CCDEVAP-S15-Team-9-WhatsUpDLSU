@@ -1,7 +1,11 @@
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get("updated") === "1") {
-    showModal("Event updated successfully!").then(() => {});
+    const message = urlParams.get("resubmitted") === "1"
+        ? "Event updated and resubmitted for admin approval."
+        : "Event updated successfully!";
+    showModal(message).then(() => {});
     urlParams.delete("updated");
+    urlParams.delete("resubmitted");
     const newQuery = urlParams.toString();
     history.replaceState({}, "", window.location.pathname + (newQuery ? "?" + newQuery : ""));
 }
