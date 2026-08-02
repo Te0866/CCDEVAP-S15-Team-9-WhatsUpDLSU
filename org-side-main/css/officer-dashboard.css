@@ -198,36 +198,112 @@ body{
     grid-template-columns:1.6fr 1fr;
     gap:22px;
     align-items:stretch;
+    margin-bottom:0;
 }
 
-.insight-bar{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-bottom:22px;
+.attention-bar{
+    background:white;
+    border:1px solid #e8e8e8;
+    border-radius:14px;
+    padding:16px 24px;
+    margin-bottom:0;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
 }
 
-.insight-chip{
-    background:#e6f4ee;
-    color:#087f5b;
+.attention-bar.has-items{
+    border-left:4px solid #f0a63a;
+}
+
+.attention-ok{
     font-size:13px;
-    border-radius:999px;
-    padding:8px 16px;
+    color:#5a6b63;
 }
 
-.insight-chip strong{
+.attention-heading{
+    font-size:13px;
     font-weight:700;
+    color:#1c1c1c;
+    margin-bottom:10px;
+}
+
+.attention-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.attention-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    font-size:13px;
+}
+
+.attention-item-text{
+    color:#5a6b63;
+}
+
+.attention-item-text strong{
+    color:#1c1c1c;
+    font-weight:600;
+}
+
+.attention-tag{
+    font-size:11px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:6px;
+    margin-right:6px;
+}
+
+.attention-tag.rejected{
+    background:#fde2e1;
+    color:#dc3545;
+}
+
+.attention-tag.pending{
+    background:#fff3cd;
+    color:#f0a63a;
+}
+
+.attention-link{
+    flex-shrink:0;
+    font-size:12px;
+    font-weight:600;
+    color:#087f5b;
+    text-decoration:none;
+    white-space:nowrap;
+}
+
+.attention-link:hover{
+    text-decoration:underline;
 }
 
 .charts-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
     gap:22px;
-    margin-top:22px;
+    margin-top:0;
 }
 
 .chart-wrap{
     position:relative;
+}
+
+.chart-subtext{
+    font-size:12px;
+    color:#8a9791;
+    text-align:center;
+    margin-top:-8px;
+    margin-bottom:14px;
+    line-height:1.4;
+}
+
+.chart-wrap-tall{
+    flex:1;
+    min-height:220px;
 }
 
 .chart-empty{
@@ -260,6 +336,12 @@ body{
     flex-direction:column;
     gap:22px;
     min-width:0;
+}
+
+.right-column .chart-box{
+    flex:1;
+    display:flex;
+    flex-direction:column;
 }
 
 .left-column{
@@ -617,6 +699,21 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+}
+
+.charts-grid .chart-box{
+    display:flex;
+    flex-direction:column;
+}
+
+.charts-grid .chart-wrap{
+    flex:1;
+    height:auto;
+}
+
+.right-column .chart-wrap{
+    height:auto;
+    flex:1;
 }
 
 .legend{
