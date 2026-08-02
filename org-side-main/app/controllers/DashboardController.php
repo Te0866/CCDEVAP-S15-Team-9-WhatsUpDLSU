@@ -33,25 +33,14 @@ class DashboardController
         $eventsResult = $this->eventModel->upcomingForUser($userId, 10);
         $activityResult = $this->eventModel->recentActivity($userId, 5);
 
-        $academicCount = $this->eventModel->countByCategory($userId, 'ACADEMIC');
-        $nonAcademicCount = $this->eventModel->countByCategory($userId, 'NON-ACADEMIC');
-        $careerCount = $this->eventModel->countByCategory($userId, 'CAREER');
+        $categoryApprovalBreakdown = $this->eventModel->categoryApprovalBreakdown($userId);
+        $scatterData = $this->eventModel->eventInterestScatter($userId);
 
         $locationCounts = $this->eventModel->locationCounts($userId);
         $totalInterestCount = $this->eventModel->totalInterestCount($userId);
         $topInterestedResult = $this->eventModel->topInterestedEvents($userId, 5);
 
-        $categoryTotals = [
-            'Academic' => $academicCount,
-            'Non-Academic' => $nonAcademicCount,
-            'Career' => $careerCount
-        ];
-        arsort($categoryTotals);
-        $topCategoryLabel = array_key_first($categoryTotals);
-        $topCategoryCount = $categoryTotals[$topCategoryLabel];
-
-        $topLocationLabel = $locationCounts === [] ? null : array_key_first($locationCounts);
-        $topLocationCount = $topLocationLabel !== null ? $locationCounts[$topLocationLabel] : 0;
+        $attentionItems = $this->eventModel->needsAttention($userId);
 
         require __DIR__ . "/../views/dashboard.view.php";
     }
