@@ -53,21 +53,24 @@
             </div>
         </section>
 
-        <?php if ($totalCount > 0) { ?>
-        <section class="insight-bar">
-            <span class="insight-chip">
-                📌 Most active category: <strong><?php echo htmlspecialchars($topCategoryLabel); ?></strong>
-                (<?php echo $topCategoryCount; ?> event<?php echo $topCategoryCount === 1 ? '' : 's'; ?>)
-            </span>
-            <?php if ($topLocationLabel !== null) { ?>
-            <span class="insight-chip">
-                📍 Most used location: <strong><?php echo htmlspecialchars($topLocationLabel); ?></strong>
-                (<?php echo $topLocationCount; ?> event<?php echo $topLocationCount === 1 ? '' : 's'; ?>)
-            </span>
-            <?php } ?>
-            <span class="insight-chip">
-                💬 <strong><?php echo $totalInterestCount; ?></strong> student<?php echo $totalInterestCount === 1 ? '' : 's'; ?> interested across your events
-            </span>
+        <?php if (empty($attentionItems)) { ?>
+        <section class="attention-bar">
+            <span class="attention-ok">Nothing needs your attention (no rejected events or approvals running out of time).</span>
+        </section>
+        <?php } else { ?>
+        <section class="attention-bar has-items">
+            <div class="attention-heading">Needs your attention</div>
+            <ul class="attention-list">
+                <?php foreach ($attentionItems as $item) { ?>
+                    <li class="attention-item">
+                        <span class="attention-item-text">
+                            <span class="attention-tag <?php echo strtolower($item['type']); ?>"><?php echo $item['type']; ?></span>
+                            <strong><?php echo htmlspecialchars($item['title']); ?></strong> <?php echo htmlspecialchars($item['message']); ?>
+                        </span>
+                        <a class="attention-link" href="edit-event.php?event_id=<?php echo (int) $item['event_id']; ?>">Review &rarr;</a>
+                    </li>
+                <?php } ?>
+            </ul>
         </section>
         <?php } ?>
 
@@ -203,10 +206,11 @@
 
             <div class="right-column">
                 <section class="chart-box">
-                    <h2> Approval status overview </h2>
-                    <div class="chart-wrap">
-                        <canvas id="statusChart"></canvas>
-                        <p class="chart-empty" id="statusChartEmpty">No events yet — this fills in once you create one.</p>
+                    <h2> Category vs. approval outcome </h2>
+                    <p class="chart-subtext">Approval breakdown by event category.</p>
+                    <div class="chart-wrap chart-wrap-tall">
+                        <canvas id="categoryApprovalChart"></canvas>
+                        <p class="chart-empty" id="categoryApprovalChartEmpty">No events yet — this fills in once you create one.</p>
                     </div>
 
                     <div class="legend">
@@ -221,14 +225,6 @@
 
         <section class="charts-grid">
             <div class="chart-box">
-                <h2> Events by category </h2>
-                <div class="chart-wrap">
-                    <canvas id="categoryChart"></canvas>
-                    <p class="chart-empty" id="categoryChartEmpty">No category data yet.</p>
-                </div>
-            </div>
-
-            <div class="chart-box">
                 <h2> Events per location </h2>
                 <div class="chart-wrap">
                     <canvas id="locationChart"></canvas>
@@ -241,6 +237,21 @@
                 <div class="chart-wrap">
                     <canvas id="interestChart"></canvas>
                     <p class="chart-empty" id="interestChartEmpty">No interest data yet.</p>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h2> Interest by event date </h2>
+                <p class="chart-subtext">Student interest plotted by event date.</p>
+                <div class="chart-wrap">
+                    <canvas id="scatterChart"></canvas>
+                    <p class="chart-empty" id="scatterChartEmpty">No interest data yet.</p>
+                </div>
+
+                <div class="legend">
+                    <span class="legend-item"><span class="color-box category-academic-box"></span> Academic</span>
+                    <span class="legend-item"><span class="color-box category-nonacademic-box"></span> Non-academic</span>
+                    <span class="legend-item"><span class="color-box category-career-box"></span> Career</span>
                 </div>
             </div>
         </section>
@@ -257,13 +268,22 @@
     </div>
 
     <script>
-        const approvedCount = <?php echo $totalCount - $pendingCount - $rejectedCount; ?>;
-        const pendingCount = <?php echo $pendingCount; ?>;
-        const rejectedCount = <?php echo $rejectedCount; ?>;
-
-        const academicCount = <?php echo $academicCount; ?>;
-        const nonAcademicCount = <?php echo $nonAcademicCount; ?>;
-        const careerCount = <?php echo $careerCount; ?>;
+        const categoryLabels = ["Academic", "Non-academic", "Career"];
+        const categoryApprovedData = [
+            <?php echo $categoryApprovalBreakdown['ACADEMIC']['APPROVED']; ?>,
+            <?php echo $categoryApprovalBreakdown['NON-ACADEMIC']['APPROVED']; ?>,
+            <?php echo $categoryApprovalBreakdown['CAREER']['APPROVED']; ?>
+        ];
+        const categoryPendingData = [
+            <?php echo $categoryApprovalBreakdown['ACADEMIC']['PENDING']; ?>,
+            <?php echo $categoryApprovalBreakdown['NON-ACADEMIC']['PENDING']; ?>,
+            <?php echo $categoryApprovalBreakdown['CAREER']['PENDING']; ?>
+        ];
+        const categoryRejectedData = [
+            <?php echo $categoryApprovalBreakdown['ACADEMIC']['REJECTED']; ?>,
+            <?php echo $categoryApprovalBreakdown['NON-ACADEMIC']['REJECTED']; ?>,
+            <?php echo $categoryApprovalBreakdown['CAREER']['REJECTED']; ?>
+        ];
 
         const locationLabels = <?php echo json_encode(array_keys($locationCounts)); ?>;
         const locationData = <?php echo json_encode(array_values($locationCounts)); ?>;
@@ -279,6 +299,11 @@
             echo json_encode($labels);
         ?>;
         const interestData = <?php echo json_encode($data); ?>;
+
+        const scatterDateLabels = <?php echo json_encode(array_values(array_unique(array_column($scatterData, 'date')))); ?>;
+        const scatterPoints = <?php echo json_encode(array_map(function ($p) {
+            return ['x' => $p['date'], 'y' => $p['interest'], 'category' => $p['category'], 'title' => $p['title']];
+        }, $scatterData)); ?>;
     </script>
 
     <script src="js/colors.js"></script>
