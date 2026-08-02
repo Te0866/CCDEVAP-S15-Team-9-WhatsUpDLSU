@@ -8,6 +8,7 @@ class CommentModel
         $this->conn = $conn;
     }
 
+    // Only returns comments if the event belongs to this officer.
     public function forEventOwnedByUser($eventId, $userId)
     {
         $ownerCheck = mysqli_prepare($this->conn, "SELECT EVENT_ID FROM event WHERE EVENT_ID = ? AND USER_ID = ?");
@@ -23,6 +24,7 @@ class CommentModel
         return mysqli_stmt_get_result($stmt);
     }
 
+    // Deletes a comment only if it belongs to an event this officer owns.
     public function deleteForOfficer($commentId, $userId)
     {
         $stmt = mysqli_prepare($this->conn, "DELETE c FROM comments c
