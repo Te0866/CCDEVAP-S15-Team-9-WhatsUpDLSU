@@ -31,41 +31,35 @@ function markEmptyIfNoData(canvasEl, emptyEl, hasData) {
     }
 }
 
-const statusCtx = document.getElementById("statusChart");
+const categoryApprovalCtx = document.getElementById("categoryApprovalChart");
 
-new Chart(statusCtx, {
-    type: "pie",
-    data: {
-        labels: ["Approved", "Pending", "Rejected"],
-        datasets: [{
-            data: [approvedCount, pendingCount, rejectedCount],
-            backgroundColor: [STATUS_COLORS.APPROVED, STATUS_COLORS.PENDING, STATUS_COLORS.REJECTED],
-            borderWidth: 0
-        }]
-    },
-    options: {
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            }
-        }
-    }
-});
-markEmptyIfNoData(statusCtx, document.getElementById("statusChartEmpty"), sum([approvedCount, pendingCount, rejectedCount]) > 0);
-
-const categoryCtx = document.getElementById("categoryChart");
-
-new Chart(categoryCtx, {
+new Chart(categoryApprovalCtx, {
     type: "bar",
     data: {
-        labels: ["Academic", "Non-academic", "Career"],
-        datasets: [{
-            data: [academicCount, nonAcademicCount, careerCount],
-            backgroundColor: [CATEGORY_COLORS.ACADEMIC, CATEGORY_COLORS["NON-ACADEMIC"], CATEGORY_COLORS.CAREER],
-            borderRadius: 6,
-            maxBarThickness: 45
-        }]
+        labels: categoryLabels,
+        datasets: [
+            {
+                label: "Approved",
+                data: categoryApprovedData,
+                backgroundColor: STATUS_COLORS.APPROVED,
+                borderRadius: 4,
+                maxBarThickness: 55
+            },
+            {
+                label: "Pending",
+                data: categoryPendingData,
+                backgroundColor: STATUS_COLORS.PENDING,
+                borderRadius: 4,
+                maxBarThickness: 55
+            },
+            {
+                label: "Rejected",
+                data: categoryRejectedData,
+                backgroundColor: STATUS_COLORS.REJECTED,
+                borderRadius: 4,
+                maxBarThickness: 55
+            }
+        ]
     },
     options: {
         maintainAspectRatio: false,
@@ -75,18 +69,24 @@ new Chart(categoryCtx, {
             }
         },
         scales: {
-            y: {
-                beginAtZero: true,
-                ticks: { stepSize: 4 },
-                grid: { color: "#eef2ef" }
-            },
             x: {
+                stacked: true,
                 grid: { display: false }
+            },
+            y: {
+                stacked: true,
+                beginAtZero: true,
+                ticks: { stepSize: 1, precision: 0 },
+                grid: { color: "#eef2ef" }
             }
         }
     }
 });
-markEmptyIfNoData(categoryCtx, document.getElementById("categoryChartEmpty"), sum([academicCount, nonAcademicCount, careerCount]) > 0);
+markEmptyIfNoData(
+    categoryApprovalCtx,
+    document.getElementById("categoryApprovalChartEmpty"),
+    sum([...categoryApprovedData, ...categoryPendingData, ...categoryRejectedData]) > 0
+);
 
 const locationCtx = document.getElementById("locationChart");
 
@@ -157,6 +157,53 @@ new Chart(interestCtx, {
     }
 });
 markEmptyIfNoData(interestCtx, document.getElementById("interestChartEmpty"), interestData.length > 0 && sum(interestData) > 0);
+
+const scatterCtx = document.getElementById("scatterChart");
+
+const scatterColors = scatterPoints.map((p) => CATEGORY_COLORS[p.category] || "#8a9791");
+
+new Chart(scatterCtx, {
+    type: "scatter",
+    data: {
+        datasets: [{
+            data: scatterPoints,
+            backgroundColor: scatterColors,
+            pointRadius: 6,
+            pointHoverRadius: 8
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => {
+                        const point = ctx.raw;
+                        return `${point.title}: ${point.y} interested`;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                type: "category",
+                labels: scatterDateLabels,
+                title: { display: true, text: "Event date", color: "#8a9791", font: { size: 12 } },
+                grid: { color: "#eef2ef" }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: { stepSize: 1, precision: 0 },
+                title: { display: true, text: "Students interested", color: "#8a9791", font: { size: 12 } },
+                grid: { color: "#eef2ef" }
+            }
+        }
+    }
+});
+markEmptyIfNoData(scatterCtx, document.getElementById("scatterChartEmpty"), scatterPoints.length > 0);
 
 const eventGrid = document.getElementById("eventGrid");
 
