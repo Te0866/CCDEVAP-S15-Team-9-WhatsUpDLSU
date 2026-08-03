@@ -5107,7 +5107,7 @@ body.s-admin-darkmode.dark-mode .category-legend-item {
 @media  screen and (max-width:768px) {
 body.s-admin-admin-dashboard {
         background:#eef7ec;
-        padding:10px;
+        padding:0;
     }
 .s-admin-admin-dashboard .navbar, .s-admin-admin-dashboard .page-header, .s-admin-admin-dashboard .search-section, .s-admin-admin-dashboard .manage-container, .s-admin-admin-dashboard .dropdown-menu, .s-admin-admin-dashboard .stats-section {
         width:100% !important;
@@ -5157,11 +5157,9 @@ body.s-admin-admin-dashboard {
         gap:6px;
         flex-shrink:0;
     }
-.s-admin-admin-dashboard .logo-placeholder {
+.s-admin-admin-dashboard .logo {
         width:32px;
         height:32px;
-        border-radius:4px;
-        background:#ffffff33;
         flex-shrink:0;
     }
 .s-admin-admin-dashboard .logo-text {
