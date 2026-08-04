@@ -35,8 +35,8 @@ class RegisterController
             return;
         }
 
-        $userId = User::create($username, $password);
-
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $userId = User::create($username, $hashedPassword);
         if ($userId === false) {
             $this->json(["success" => false, "error" => "Could not create account. Please try again."]);
             return;
