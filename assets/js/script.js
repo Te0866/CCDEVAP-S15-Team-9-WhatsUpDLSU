@@ -286,10 +286,12 @@ darkButtons.forEach(button => {
                         body: JSON.stringify(payload)
                     });
 
-                    console.log('Response status:', response.status);
-            
-                    const result = await response.json();
-                    console.log('Response data:', result);
+                   console.log('Response status:', response.status);
+
+const rawText = await response.text();
+console.log('Raw response:', rawText);
+const result = JSON.parse(rawText);
+console.log('Response data:', result);
 
                     if (result.success) {
                         alert('Account created successfully! Please log in.');
