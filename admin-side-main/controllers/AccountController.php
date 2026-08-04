@@ -44,7 +44,7 @@ class AccountController {
             'mode'    => 'edit',
             'userId'  => (int) $user['USER_ID'],
             'orgName' => $user['USER_NAME'],
-            'password'=> $user['PASSWORD'],
+            'password'=> '',
         ];
     }
 
@@ -96,7 +96,7 @@ class AccountController {
             'mode'     => 'edit',
             'userId'   => (int) $user['USER_ID'],
             'username' => $user['USER_NAME'],
-            'password' => $user['PASSWORD'],
+            'password' => '',
         ];
     }
 
