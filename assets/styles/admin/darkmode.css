@@ -1,0 +1,55 @@
+/* darkmode.css — admin (scope: .s-admin-darkmode)
+   Migrated from centralized assets/css/style.css */
+
+body.s-admin-darkmode.dark-mode {
+    background:#121212;
+    color:white;
+}
+body.s-admin-darkmode.dark-mode .navbar {
+    background:#1e1e1e;
+}
+body.s-admin-darkmode.dark-mode .banner, body.s-admin-darkmode.dark-mode .carousel-section, body.s-admin-darkmode.dark-mode .category-box, body.s-admin-darkmode.dark-mode .event-detail, body.s-admin-darkmode.dark-mode .form-container, body.s-admin-darkmode.dark-mode .profile-container, body.s-admin-darkmode.dark-mode .event-panel, body.s-admin-darkmode.dark-mode .action-panel, body.s-admin-darkmode.dark-mode .status-column, body.s-admin-darkmode.dark-mode .table-wrapper, body.s-admin-darkmode.dark-mode .event-row, body.s-admin-darkmode.dark-mode .user-row, body.s-admin-darkmode.dark-mode .stat-card, body.s-admin-darkmode.dark-mode .form-card {
+    background:#222;
+    color:white;
+}
+body.s-admin-darkmode.dark-mode .stat-label {
+    color:#bbb;
+}
+body.s-admin-darkmode.dark-mode .stat-count {
+    color:white;
+}
+body.s-admin-darkmode.dark-mode, body.s-admin-darkmode.dark-mode .event-item, body.s-admin-darkmode.dark-mode .image-box, body.s-admin-darkmode.dark-mode .image-placeholder, body.s-admin-darkmode.dark-mode .upload-box, body.s-admin-darkmode.dark-mode .category-item, body.s-admin-darkmode.dark-mode .carousel {
+    background:#333;
+    color:white;
+}
+body.s-admin-darkmode.dark-mode .events-table thead th, body.s-admin-darkmode.dark-mode .users-table thead th {
+    background:#066647;
+}
+body.s-admin-darkmode.dark-mode .event-row td, body.s-admin-darkmode.dark-mode .user-row td {
+    border-bottom-color:#444;
+}
+body.s-admin-darkmode.dark-mode .event-row:hover, body.s-admin-darkmode.dark-mode .user-row:hover {
+    background:#2a2a2a;
+}
+body.s-admin-darkmode.dark-mode .page-header h1, body.s-admin-darkmode.dark-mode .form-title, body.s-admin-darkmode.dark-mode .page-title, body.s-admin-darkmode.dark-mode .section-heading {
+    color:#4cd98a;
+}
+body.s-admin-darkmode.dark-mode input, body.s-admin-darkmode.dark-mode textarea, body.s-admin-darkmode.dark-mode select {
+    background:#444;
+    color:white;
+    border:none;
+}
+body.s-admin-darkmode.dark-mode .dropdown-menu {
+    background:#2d2d2d;
+}
+body.s-admin-darkmode.dark-mode .dropdown-menu button {
+    background:#444;
+    color:white;
+}
+body.s-admin-darkmode.dark-mode .profile-btn {
+    background:#444;
+}
+body.s-admin-darkmode.dark-mode .interested-btn, body.s-admin-darkmode.dark-mode .submit-btn, body.s-admin-darkmode.dark-mode .update-btn, body.s-admin-darkmode.dark-mode .approve-btn, body.s-admin-darkmode.dark-mode .back-btn {
+    background:#666;
+    color:white;
+}

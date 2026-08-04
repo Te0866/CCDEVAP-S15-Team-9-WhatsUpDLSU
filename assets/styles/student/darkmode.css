@@ -1,0 +1,278 @@
+/* darkmode.css — student (scope: .s-student-darkmode)
+   Migrated from centralized assets/css/style.css */
+
+body.s-student-darkmode.dark-mode {
+    background:#121212;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .navbar {
+    background:#1e1e1e;
+    color:#fff;
+    box-shadow:0 3px 10px rgba(0,0,0,.45);
+}
+body.s-student-darkmode.dark-mode .logo-text, body.s-student-darkmode.dark-mode .nav-tab {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .nav-tab:hover {
+    background:#333;
+}
+body.s-student-darkmode.dark-mode .nav-tab.active {
+    background:#444;
+}
+body.s-student-darkmode.dark-mode .profile-btn {
+    background:transparent;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .profile-pic {
+    border:2px solid transparent;
+}
+body.s-student-darkmode.dark-mode .banner, body.s-student-darkmode.dark-mode .carousel-section, body.s-student-darkmode.dark-mode .category-box, body.s-student-darkmode.dark-mode .chart-container {
+    background:#222;
+    color:#fff;
+    box-shadow:0 4px 12px rgba(0,0,0,.4);
+}
+body.s-student-darkmode.dark-mode .chart-title {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .event-card {
+    background:#333;
+    color:#fff;
+    box-shadow:0 6px 18px rgba(0,0,0,.45);
+}
+body.s-student-darkmode.dark-mode .event-card:hover {
+    box-shadow:0 12px 28px rgba(0,0,0,.6);
+}
+body.s-student-darkmode.dark-mode .category-item {
+    background:#333;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .category-item:hover {
+    background:#444;
+}
+body.s-student-darkmode.dark-mode .arrow {
+    background:#444;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .arrow:hover {
+    background:#555;
+}
+body.s-student-darkmode.dark-mode .event-sidebar, body.s-student-darkmode.dark-mode .event-detail, body.s-student-darkmode.dark-mode .calendar-section, body.s-student-darkmode.dark-mode .legend {
+    background:#222;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .event-item {
+    background:#333;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .event-item:hover {
+    background:#444;
+}
+body.s-student-darkmode.dark-mode .event-item.active {
+    background:#087f5b;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .image-box {
+    background:#333;
+}
+body.s-student-darkmode.dark-mode .comments-carousel {
+    background:#2d2d2d;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .comment-author {
+    color:#9fd7bf;
+}
+body.s-student-darkmode.dark-mode .comment-text {
+    color:#eee;
+}
+body.s-student-darkmode.dark-mode input, body.s-student-darkmode.dark-mode textarea, body.s-student-darkmode.dark-mode select, body.s-student-darkmode.dark-mode .search-input, body.s-student-darkmode.dark-mode .search-container input, body.s-student-darkmode.dark-mode .filter-box {
+    background:#333;
+    color:#fff;
+    border:1px solid #555;
+}
+body.s-student-darkmode.dark-mode input::placeholder, body.s-student-darkmode.dark-mode textarea::placeholder {
+    color:#aaa;
+}
+body.s-student-darkmode.dark-mode .dropdown-menu {
+    background:#222;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .dropdown-menu button {
+    background:#333;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .dropdown-menu button:hover {
+    background:#444;
+}
+body.s-student-darkmode.dark-mode .modal-box {
+    background:#222;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .modal-box input, body.s-student-darkmode.dark-mode .modal-box textarea {
+    background:#333;
+    color:#fff;
+    border:1px solid #555;
+}
+body.s-student-darkmode.dark-mode .interested-btn, body.s-student-darkmode.dark-mode .submit-btn, body.s-student-darkmode.dark-mode .update-btn, body.s-student-darkmode.dark-mode .approve-btn, body.s-student-darkmode.dark-mode .back-btn, body.s-student-darkmode.dark-mode .filter-clear-btn, body.s-student-darkmode.dark-mode .post-comment-btn, body.s-student-darkmode.dark-mode .modal-submit-btn {
+    background:#087f5b;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .interested-btn:hover, body.s-student-darkmode.dark-mode .submit-btn:hover, body.s-student-darkmode.dark-mode .update-btn:hover, body.s-student-darkmode.dark-mode .approve-btn:hover, body.s-student-darkmode.dark-mode .back-btn:hover, body.s-student-darkmode.dark-mode .filter-clear-btn:hover, body.s-student-darkmode.dark-mode .post-comment-btn:hover, body.s-student-darkmode.dark-mode .modal-submit-btn:hover {
+    background:#0a9b70;
+}
+body.s-student-darkmode.dark-mode .modal-cancel-btn {
+    background:#444;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .day-cell {
+    background:#333;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .day-header {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .day-header.sunday {
+    color:#ff6b6b;
+}
+body.s-student-darkmode.dark-mode .carousel-btn {
+    background:rgba(255,255,255,.15);
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .carousel-btn:hover {
+    background:rgba(255,255,255,.3);
+}
+body.s-student-darkmode.dark-mode .dot {
+    background:#666;
+}
+body.s-student-darkmode.dark-mode .dot.active {
+    background:#087f5b;
+}
+body.s-student-darkmode.dark-mode .anon-toggle, body.s-student-darkmode.dark-mode .commenter-row {
+    color:#ddd;
+}
+body.s-student-darkmode.dark-mode .no-events {
+    color:#bbb;
+}
+body.s-student-darkmode.dark-mode #alertMessage {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .calendar-section {
+    background:#222;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .legend {
+    background:#222;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .calendar-header {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode #monthTitle {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .day-cell {
+    background:#333;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .day-number {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .today {
+    border:3px solid #087f5b;
+}
+body.s-student-darkmode.dark-mode .month-btn {
+    background:#087f5b;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .month-btn:hover {
+    background:#0a9b70;
+}
+.s-student-darkmode .event-card {
+    position:relative;
+    overflow:hidden;
+}
+body.s-student-darkmode.dark-mode .view-event-btn {
+    background:#087f5b;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .view-event-btn:hover {
+    background:#0a9b70;
+}
+body.s-student-darkmode.dark-mode .modal-content {
+    background:#222;
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode .close-btn {
+    color:#fff;
+}
+body.s-student-darkmode.dark-mode #modalEvents {
+    color:#fff;
+}
+@media  screen and (max-width:768px) {
+body.s-student-darkmode.dark-mode {
+        background:#121212;
+    }
+body.s-student-darkmode.dark-mode .navbar {
+        background:#1e1e1e;
+        border-bottom:1px solid #333;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .logo-text {
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .nav-tab {
+        background:transparent;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .nav-tab:hover {
+        background:#333;
+    }
+body.s-student-darkmode.dark-mode .nav-tab.active {
+        background:#555;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .profile-btn {
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .banner, body.s-student-darkmode.dark-mode .carousel-section, body.s-student-darkmode.dark-mode .category-box, body.s-student-darkmode.dark-mode .chart-container, body.s-student-darkmode.dark-mode .event-detail, body.s-student-darkmode.dark-mode .event-sidebar {
+        background:#222;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .event-card, body.s-student-darkmode.dark-mode .event-item, body.s-student-darkmode.dark-mode .category-item, body.s-student-darkmode.dark-mode .image-box, body.s-student-darkmode.dark-mode .carousel {
+        background:#333;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .arrow {
+        background:rgba(255,255,255,.15);
+    }
+}
+body.s-student-darkmode.dark-mode .legend {
+        background:#222;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .calendar-section {
+        background:#222;
+    }
+body.s-student-darkmode.dark-mode .day-cell {
+        background:#333;
+    }
+body.s-student-darkmode.dark-mode .day-number {
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .nav-tab {
+        background:#333;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .nav-tab.active {
+        background:#555;
+    }
+body.s-student-darkmode.dark-mode .dropdown-menu {
+        background:#222;
+    }
+body.s-student-darkmode.dark-mode .dropdown-menu button {
+        background:#333;
+        color:#fff;
+    }
+body.s-student-darkmode.dark-mode .dropdown-menu button:hover {
+        background:#444;
+        color:#fff;
+    }

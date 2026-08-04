@@ -1,0 +1,718 @@
+/* officer-dashboard.css — org (scope: .s-org-officer-dashboard)
+   Migrated from centralized assets/css/style.css */
+
+.s-org-officer-dashboard, .s-org-officer-dashboard * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body.s-org-officer-dashboard {
+    font-family:Arial, sans-serif;
+    background:#eef7ec;
+}
+.s-org-officer-dashboard .navbar {
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#087f5b;
+    height:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+}
+.s-org-officer-dashboard .nav-left {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
+}
+.s-org-officer-dashboard .logo {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+}
+.s-org-officer-dashboard .logo-text {
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+.s-org-officer-dashboard .nav-right {
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+.s-org-officer-dashboard .nav-links {
+    display:flex;
+    gap:10px;
+}
+.s-org-officer-dashboard .nav-tab {
+    text-decoration:none;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+}
+.s-org-officer-dashboard .nav-tab.active {
+    background:#3f3f3f;
+}
+.s-org-officer-dashboard .profile-section {
+    position:relative;
+}
+.s-org-officer-dashboard .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+.s-org-officer-dashboard .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+.s-org-officer-dashboard .dropdown-menu {
+    position:absolute;
+    top:55px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:12px;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:.25s;
+    z-index:10;
+}
+.s-org-officer-dashboard .dropdown-menu.show {
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+.s-org-officer-dashboard .dropdown-menu button {
+    border:none;
+    background:#f2f2f2;
+    border-radius:10px;
+    padding:12px;
+    cursor:pointer;
+}
+.s-org-officer-dashboard .dashboard {
+    width:97%;
+    max-width:1800px;
+    margin:25px auto;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+.s-org-officer-dashboard .banner {
+    background:#087f5b;
+    color:white;
+    border-radius:20px;
+    padding:32px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+.s-org-officer-dashboard .banner h1 {
+    font-size:26px;
+    margin-bottom:6px;
+}
+.s-org-officer-dashboard .banner p {
+    opacity:.9;
+}
+.s-org-officer-dashboard .create-btn {
+    background:white;
+    color:#087f5b;
+    border:none;
+    border-radius:12px;
+    padding:14px 22px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+}
+.s-org-officer-dashboard .create-btn:hover {
+    background:#e6f4ee;
+}
+.s-org-officer-dashboard .stats-row {
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:22px;
+}
+@media  (max-width: 1100px) {
+.s-org-officer-dashboard .stats-row {
+        grid-template-columns:repeat(3, 1fr);
+    }
+}
+.s-org-officer-dashboard .stat-card {
+    background:white;
+    border-radius:16px;
+    padding:22px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.s-org-officer-dashboard .stat-label {
+    color:#5a6b63;
+    font-size:14px;
+}
+.s-org-officer-dashboard .stat-value {
+    font-size:32px;
+    font-weight:bold;
+    color:#1c1c1c;
+}
+.s-org-officer-dashboard .dashboard-grid {
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    gap:22px;
+    align-items:stretch;
+    margin-bottom:0;
+}
+.s-org-officer-dashboard .attention-bar {
+    background:white;
+    border:1px solid #e8e8e8;
+    border-radius:14px;
+    padding:16px 24px;
+    margin-bottom:0;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.s-org-officer-dashboard .attention-bar.has-items {
+    border-left:4px solid #f0a63a;
+}
+.s-org-officer-dashboard .attention-ok {
+    font-size:13px;
+    color:#5a6b63;
+}
+.s-org-officer-dashboard .attention-heading {
+    font-size:13px;
+    font-weight:700;
+    color:#1c1c1c;
+    margin-bottom:10px;
+}
+.s-org-officer-dashboard .attention-list {
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.s-org-officer-dashboard .attention-item {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    font-size:13px;
+}
+.s-org-officer-dashboard .attention-item-text {
+    color:#5a6b63;
+}
+.s-org-officer-dashboard .attention-item-text strong {
+    color:#1c1c1c;
+    font-weight:600;
+}
+.s-org-officer-dashboard .attention-tag {
+    font-size:11px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:6px;
+    margin-right:6px;
+}
+.s-org-officer-dashboard .attention-tag.rejected {
+    background:#fde2e1;
+    color:#dc3545;
+}
+.s-org-officer-dashboard .attention-tag.pending {
+    background:#fff3cd;
+    color:#f0a63a;
+}
+.s-org-officer-dashboard .attention-link {
+    flex-shrink:0;
+    font-size:12px;
+    font-weight:600;
+    color:#087f5b;
+    text-decoration:none;
+    white-space:nowrap;
+}
+.s-org-officer-dashboard .attention-link:hover {
+    text-decoration:underline;
+}
+.s-org-officer-dashboard .charts-grid {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    margin-top:0;
+}
+.s-org-officer-dashboard .chart-wrap {
+    position:relative;
+}
+.s-org-officer-dashboard .chart-subtext {
+    font-size:12px;
+    color:#8a9791;
+    text-align:center;
+    margin-top:-8px;
+    margin-bottom:14px;
+    line-height:1.4;
+}
+.s-org-officer-dashboard .chart-wrap-tall {
+    flex:1;
+    min-height:220px;
+}
+.s-org-officer-dashboard .chart-empty {
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:13px;
+    color:#8a9791;
+    font-style:italic;
+    padding:0 20px;
+}
+.s-org-officer-dashboard .chart-empty.show {
+    display:flex;
+}
+.s-org-officer-dashboard .chart-wrap canvas.hide {
+    display:none;
+}
+.s-org-officer-dashboard .left-column, .s-org-officer-dashboard .right-column {
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    min-width:0;
+}
+.s-org-officer-dashboard .right-column .chart-box {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+.s-org-officer-dashboard .left-column {
+    height:100%;
+}
+.s-org-officer-dashboard .events-container {
+    flex:0 0 auto;
+    min-width:0;
+}
+.s-org-officer-dashboard .activity-box {
+    flex:1 1 auto;
+    display:flex;
+    flex-direction:column;
+    max-height:420px;
+}
+.s-org-officer-dashboard .activity-box .activity-list {
+    flex:1;
+    overflow-y:auto;
+    padding-right:4px;
+}
+.s-org-officer-dashboard .events-container {
+    background:#087f5b;
+    border:1px solid #d9ece2;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.s-org-officer-dashboard .events-container h2 {
+    font-size:17px;
+    margin-bottom:16px;
+}
+.s-org-officer-dashboard .events-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+}
+.s-org-officer-dashboard .events-header h2 {
+    margin-bottom:0;
+    color: white;
+}
+.s-org-officer-dashboard .carousel-controls {
+    display:flex;
+    gap:8px;
+}
+.s-org-officer-dashboard .manage-events-btn {
+    background:white;
+    color:#087f5b;
+    border:none;
+    border-radius:20px;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.15s;
+}
+.s-org-officer-dashboard .manage-events-btn:hover {
+    background:#e6f4ee;
+}
+.s-org-officer-dashboard .carousel-arrow {
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    border:1px solid #d9ece2;
+    background:#f5faf7;
+    color:#087f5b;
+    font-size:18px;
+    font-weight:bold;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s, transform .15s;
+}
+.s-org-officer-dashboard .carousel-arrow:hover {
+    background:#e6f4ee;
+    transform:translateY(-1px);
+}
+.s-org-officer-dashboard .event-grid {
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+}
+.s-org-officer-dashboard .event-grid::-webkit-scrollbar {
+    display:none;
+}
+.s-org-officer-dashboard .event-card {
+    flex:0 0 220px;
+}
+.s-org-officer-dashboard .event-card {
+    background:#f5faf7;
+    border:1px solid #dcece4;
+    border-radius:14px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    transition:transform .15s, box-shadow .15s;
+}
+.s-org-officer-dashboard .event-card h3 {
+    font-size:15px;
+    color:#1c1c1c;
+}
+.s-org-officer-dashboard .event-card p {
+    font-size:13px;
+    color:#5a6b63;
+    margin-bottom:4px;
+}
+.s-org-officer-dashboard .tag {
+    align-self:flex-start;
+    font-size:12px;
+    font-weight:bold;
+    padding:4px 10px;
+    border-radius:20px;
+}
+.s-org-officer-dashboard .tag-academic {
+    background:#d6eaf8;
+    color:#3498db;
+}
+.s-org-officer-dashboard .tag-career {
+    background:#fdf3d0;
+    color:#f1c40f;
+}
+.s-org-officer-dashboard .tag-nonacademic {
+    background:#ecdff2;
+    color:#9b59b6;
+}
+.s-org-officer-dashboard .activity-box {
+    background:white;
+    border:1px solid #d9ece2;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.s-org-officer-dashboard .activity-box h2 {
+    font-size:17px;
+    margin-bottom:16px;
+}
+.s-org-officer-dashboard .activity-list {
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+.s-org-officer-dashboard .activity-item {
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+}
+.s-org-officer-dashboard .activity-item .activity-text {
+    flex:1;
+}
+.s-org-officer-dashboard .view-remarks-btn {
+    flex-shrink:0;
+    background:#f5faf7;
+    color:#087f5b;
+    border:1px solid #d9ece2;
+    border-radius:20px;
+    padding:6px 14px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.15s;
+    align-self:center;
+}
+.s-org-officer-dashboard .view-remarks-btn:hover {
+    background:#e6f4ee;
+}
+.s-org-officer-dashboard .modal-overlay {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.2s;
+    z-index:2000;
+}
+.s-org-officer-dashboard .modal-overlay.show {
+    opacity:1;
+    visibility:visible;
+}
+.s-org-officer-dashboard .modal-box {
+    background:white;
+    border-radius:16px;
+    padding:28px 30px;
+    width:90%;
+    max-width:420px;
+    position:relative;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+.s-org-officer-dashboard .modal-close-btn {
+    position:absolute;
+    top:14px;
+    right:16px;
+    border:none;
+    background:none;
+    font-size:22px;
+    line-height:1;
+    color:#8a9791;
+    cursor:pointer;
+}
+.s-org-officer-dashboard .modal-close-btn:hover {
+    color:#1c1c1c;
+}
+.s-org-officer-dashboard .modal-box h3 {
+    font-size:18px;
+    color:#1c1c1c;
+    margin-bottom:8px;
+    padding-right:20px;
+}
+.s-org-officer-dashboard .modal-status {
+    display:inline-block;
+    font-size:11px;
+    font-weight:bold;
+    text-transform:uppercase;
+    padding:3px 10px;
+    border-radius:999px;
+    margin-bottom:18px;
+}
+.s-org-officer-dashboard .modal-status.status-approved {
+    background:#e3f6ea;
+    color:#28a745;
+}
+.s-org-officer-dashboard .modal-status.status-pending {
+    background:#fff3cd;
+    color:#f0a63a;
+}
+.s-org-officer-dashboard .modal-status.status-rejected {
+    background:#fde2e1;
+    color:#dc3545;
+}
+.s-org-officer-dashboard .modal-remarks-label {
+    font-size:12px;
+    font-weight:bold;
+    color:#8a9791;
+    text-transform:uppercase;
+    margin-bottom:6px;
+}
+.s-org-officer-dashboard .modal-remarks-text {
+    font-size:14px;
+    color:#1c1c1c;
+    line-height:1.5;
+    background:#f5faf7;
+    border:1px solid #dcece4;
+    border-radius:12px;
+    padding:14px 16px;
+    white-space:pre-wrap;
+}
+.s-org-officer-dashboard .modal-remarks-text.no-remarks {
+    color:#8a9791;
+    font-style:italic;
+}
+.s-org-officer-dashboard .activity-icon {
+    width:26px;
+    height:26px;
+    min-width:26px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    font-weight:bold;
+    color:white;
+}
+.s-org-officer-dashboard .icon-approved {
+    background:#28a745;
+}
+.s-org-officer-dashboard .icon-pending {
+    background:#f0a63a;
+}
+.s-org-officer-dashboard .icon-rejected {
+    background:#dc3545;
+}
+.s-org-officer-dashboard .activity-text p {
+    font-size:14px;
+    color:#1c1c1c;
+}
+.s-org-officer-dashboard .activity-time {
+    font-size:12px;
+    color:#8a9791;
+}
+.s-org-officer-dashboard .chart-box {
+    background:white;
+    border:1px solid #d9ece2;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.s-org-officer-dashboard .chart-box h2 {
+    font-size:17px;
+    margin-bottom:14px;
+    text-align:center;
+}
+.s-org-officer-dashboard .chart-wrap {
+    height:200px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.s-org-officer-dashboard .charts-grid .chart-box {
+    display:flex;
+    flex-direction:column;
+}
+.s-org-officer-dashboard .charts-grid .chart-wrap {
+    flex:1;
+    height:auto;
+}
+.s-org-officer-dashboard .right-column .chart-wrap {
+    height:auto;
+    flex:1;
+}
+.s-org-officer-dashboard .legend {
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:14px;
+    flex-wrap:wrap;
+}
+.s-org-officer-dashboard .legend-item {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:13px;
+    color:#3f4b46;
+}
+.s-org-officer-dashboard .color-box {
+    width:12px;
+    height:12px;
+    border-radius:3px;
+    display:inline-block;
+}
+.s-org-officer-dashboard .status-approved-box {
+    background:#28a745;
+}
+.s-org-officer-dashboard .status-pending-box {
+    background:#f0a63a;
+}
+.s-org-officer-dashboard .status-rejected-box {
+    background:#dc3545;
+}
+.s-org-officer-dashboard .category-academic-box {
+    background:#3498db;
+}
+.s-org-officer-dashboard .category-nonacademic-box {
+    background:#9b59b6;
+}
+.s-org-officer-dashboard .category-career-box {
+    background:#f1c40f;
+}
+@media  (max-width: 900px) {
+.s-org-officer-dashboard .dashboard-grid {
+        grid-template-columns:1fr;
+    }
+.s-org-officer-dashboard .stats-row {
+        grid-template-columns:1fr;
+    }
+.s-org-officer-dashboard .event-grid {
+        grid-template-columns:1fr 1fr;
+    }
+.s-org-officer-dashboard .charts-grid {
+        grid-template-columns:1fr;
+    }
+}
+@media  (max-width: 768px) {
+.s-org-officer-dashboard .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+    }
+.s-org-officer-dashboard .nav-left, .s-org-officer-dashboard .nav-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+.s-org-officer-dashboard .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+.s-org-officer-dashboard .nav-tab {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+.s-org-officer-dashboard .profile-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+.s-org-officer-dashboard .logo-text {
+        font-size: 18px;
+    }
+.s-org-officer-dashboard .banner {
+        flex-direction:column;
+        text-align:center;
+    }
+.s-org-officer-dashboard .event-grid {
+        grid-template-columns:1fr;
+    }
+}
+.s-org-officer-dashboard .activity-empty {
+    list-style:none;
+    font-size:13px;
+    color:#8a9791;
+    font-style:italic;
+    text-align:center;
+    padding:20px 0;
+}
