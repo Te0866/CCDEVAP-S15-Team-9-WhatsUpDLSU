@@ -31,36 +31,33 @@ class User
         return "../profile-pictures/default-profile.png";
     }
 
-    public static function updateProfile(int $userId, string $username, string $plainPassword = ''): bool
+   public static function updateProfile(int $userId, string $username, string $plainPassword = ''): bool
 {
     $conn = Database::connection();
-
     if ($plainPassword === '') {
         // No new password given, update the username only.
         $stmt = mysqli_prepare($conn, "UPDATE users SET USER_NAME = ? WHERE USER_ID = ?");
-
         if (!$stmt) {
             error_log("Prepare failed: " . mysqli_error($conn));
             return false;
         }
-
         mysqli_stmt_bind_param($stmt, "si", $username, $userId);
         return mysqli_stmt_execute($stmt);
     }
+
+    $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
 
     $stmt = mysqli_prepare(
         $conn,
         "UPDATE users SET USER_NAME = ?, PASSWORD = ? WHERE USER_ID = ?"
     );
-
     if (!$stmt) {
         error_log("Prepare failed: " . mysqli_error($conn));
         return false;
     }
-
-    mysqli_stmt_bind_param($stmt, "ssi", $username, $plainPassword, $userId);
+    mysqli_stmt_bind_param($stmt, "ssi", $username, $hashedPassword, $userId);
     return mysqli_stmt_execute($stmt);
-}    
+}
     
     public static function saveProfileImage(int $userId, array $file): array
     {
