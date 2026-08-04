@@ -1685,6 +1685,7 @@ console.log('Response data:', result);
             successModal.classList.remove('show');
             window.location.href = 'comments-management.php';
         }
+       window.closeSuccessModal = closeSuccessModal;
 
         window.addEventListener('load', () => {
             const successMsg = document.getElementById('php-success-msg')?.dataset.message;
@@ -1739,6 +1740,7 @@ console.log('Response data:', result);
             successModal.classList.remove('show');
             window.location.href = 'admin-dashboard.php';
         }
+       window.closeSuccessModal = closeSuccessModal;
 
         window.addEventListener('load', () => {
             const successMsg = document.getElementById('php-success-msg')?.dataset.message;
@@ -1793,6 +1795,7 @@ console.log('Response data:', result);
             successModal.classList.remove('show');
             window.location.href = 'account-management.php';
         }
+       window.closeSuccessModal = closeSuccessModal;
 
         window.addEventListener('load', () => {
             const successMsg = document.getElementById('php-success-msg')?.dataset.message;
@@ -1888,10 +1891,11 @@ console.log('Response data:', result);
             successModal.classList.add('show');
         }
 
-        function closeSuccessModal() {
-            successModal.classList.remove('show');
-            window.location.href = 'account-management.php';
-        }
+       function closeSuccessModal() {
+    successModal.classList.remove('show');
+    window.location.href = 'account-management.php';
+}
+window.closeSuccessModal = closeSuccessModal;
 
         window.addEventListener('load', () => {
             const successMsg = document.getElementById('php-success-msg')?.dataset.message;
