@@ -50,36 +50,36 @@ class AccountController {
 
     // Creates or updates an Officer account
     public function saveOrganization($userId, $orgName, $password) {
-        $orgName = trim($orgName);
-        $password = trim($password);
+    $orgName = trim($orgName);
+    $password = trim($password);
 
-        if ($orgName === '' || $password === '') {
-            return ['success' => false, 'error' => 'Organization name and password are required.'];
+    $isEdit = $userId !== null && $userId !== '';
+
+    if ($orgName === '' || (!$isEdit && $password === '')) {
+        return ['success' => false, 'error' => 'Organization name and password are required.'];
+    }
+
+    $hashedPassword = $password !== '' ? password_hash($password, PASSWORD_DEFAULT) : '';
+
+    if ($isEdit) {
+        $userId = (int) $userId;
+
+        if ($this->userModel->usernameExists($orgName, $userId)) {
+            return ['success' => false, 'error' => 'That organization name is already taken.'];
         }
 
-        $isEdit = $userId !== null && $userId !== '';
-
-        if ($isEdit) {
-            $userId = (int) $userId;
-
-            if ($this->userModel->usernameExists($orgName, $userId)) {
-                return ['success' => false, 'error' => 'That organization name is already taken.'];
-            }
-
-            $this->userModel->updateUser($userId, $orgName, $password);
-
-            return ['success' => true, 'error' => null];
-        }
-
-        // Create new officer
-        if ($this->userModel->usernameExists($orgName)) {
-            return ['success' => false, 'error' => 'That username is already taken.'];
-        }
-
-        $this->userModel->createUser($orgName, $password, 'OFFICER');
+        $this->userModel->updateUser($userId, $orgName, $hashedPassword);
         return ['success' => true, 'error' => null];
     }
 
+    if ($this->userModel->usernameExists($orgName)) {
+        return ['success' => false, 'error' => 'That username is already taken.'];
+    }
+
+    $this->userModel->createUser($orgName, $hashedPassword, 'OFFICER');
+    return ['success' => true, 'error' => null];
+}
+    
     // Loads data for Add/Edit Student form
     public function getUserFormData($userId = null) {
         if ($userId === null) {
@@ -101,35 +101,36 @@ class AccountController {
     }
 
     // Creates or updates a student account.
-    public function saveUser($userId, $username, $password) {
-        $username = trim($username);
-        $password = trim($password);
+   public function saveUser($userId, $username, $password) {
+    $username = trim($username);
+    $password = trim($password);
 
-        if ($username === '' || $password === '') {
-            return ['success' => false, 'error' => 'Username and password are required.'];
-        }
+    $isEdit = $userId !== null && $userId !== '';
 
-        $isEdit = $userId !== null && $userId !== '';
+    if ($username === '' || (!$isEdit && $password === '')) {
+        return ['success' => false, 'error' => 'Username and password are required.'];
+    }
 
-        if ($isEdit) {
-            $userId = (int) $userId;
+    $hashedPassword = $password !== '' ? password_hash($password, PASSWORD_DEFAULT) : '';
 
-            if ($this->userModel->usernameExists($username, $userId)) {
-                return ['success' => false, 'error' => 'That username is already taken.'];
-            }
+    if ($isEdit) {
+        $userId = (int) $userId;
 
-            $this->userModel->updateUser($userId, $username, $password);
-            return ['success' => true, 'error' => null];
-        }
-
-        if ($this->userModel->usernameExists($username)) {
+        if ($this->userModel->usernameExists($username, $userId)) {
             return ['success' => false, 'error' => 'That username is already taken.'];
         }
 
-        $this->userModel->createUser($username, $password, 'USER');
+        $this->userModel->updateUser($userId, $username, $hashedPassword);
         return ['success' => true, 'error' => null];
     }
 
+    if ($this->userModel->usernameExists($username)) {
+        return ['success' => false, 'error' => 'That username is already taken.'];
+    }
+
+    $this->userModel->createUser($username, $hashedPassword, 'USER');
+    return ['success' => true, 'error' => null];
+}
     // Deletes a student or officer account
     public function deleteAccount($type, $id) {
         $id = (int) $id;
