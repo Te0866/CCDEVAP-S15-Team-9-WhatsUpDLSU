@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Comments - WhatsUpDLSU</title>
 <link rel="stylesheet" href="../assets/styles/student/darkmode.css">
 <link rel="stylesheet" href="../assets/styles/student/my-comments.css">
