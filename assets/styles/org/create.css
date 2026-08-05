@@ -374,7 +374,6 @@ body.s-org-create {
     }
 }
 
-/* Multi-image chips (aligned with edit-event / admin) */
 .s-org-create .file-chip {
     display: flex;
     align-items: center;
