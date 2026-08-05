@@ -1,6 +1,5 @@
 <?php
-// Available via extract() in BaseController::render():
-// $user, $comments, $profilePath, $activeTab
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
