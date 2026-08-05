@@ -38,7 +38,7 @@
             })
             .catch(err => {
                 console.error('Failed to load events:', err);
-                renderCalendar(); // still render an empty calendar rather than nothing
+                renderCalendar(); 
             });
 
         const profileBtn = document.getElementById("profileBtn");
