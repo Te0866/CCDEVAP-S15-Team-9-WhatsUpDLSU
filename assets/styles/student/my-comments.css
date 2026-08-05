@@ -289,7 +289,6 @@ body.s-my-comments {
 .s-my-comments .modal-btn-danger:hover {
     background:#c9302c;
 }
-
 .comment-actions {
     display: flex;
     gap: 12px;
@@ -298,23 +297,23 @@ body.s-my-comments {
 
 .edit-btn,
 .delete-btn {
-    min-width: 120px;
-    padding: 14px 24px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 16px;
-    font-size: 16px;
+    border-radius: 14px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+    transition: background-color .2s ease, transform .2s ease;
     color: white;
-    transition: 0.25s;
 }
 
 .edit-btn {
-    background: #087f5b;
+    background: #0b8f65;
 }
 
 .edit-btn:hover {
-    background: #0a9b70;
+    background: #087f5b;
+    transform: translateY(-2px);
 }
 
 .delete-btn {
@@ -322,7 +321,13 @@ body.s-my-comments {
 }
 
 .delete-btn:hover {
-    background: #bb2d3b;
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+.edit-btn:focus,
+.delete-btn:focus {
+    outline: none;
 }
 
 /* ---------- Mobile ---------- */
