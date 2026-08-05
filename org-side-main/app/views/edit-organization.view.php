@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label>Password <span class="required-badge">required</span></label>
                 <div class="input-wrapper">
-                    <input type="password" id="password" name="password" value="<?php echo htmlspecialchars($user['PASSWORD']); ?>" required>
+                   <input type="password" id="password" name="password" placeholder="Leave blank to keep current password">
                     <button type="button" id="togglePassword" class="show-password-btn">Show</button>
                 </div>
             </div>
