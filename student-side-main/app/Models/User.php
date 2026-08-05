@@ -35,7 +35,6 @@ class User
 {
     $conn = Database::connection();
     if ($plainPassword === '') {
-        // No new password given, update the username only.
         $stmt = mysqli_prepare($conn, "UPDATE users SET USER_NAME = ? WHERE USER_ID = ?");
         if (!$stmt) {
             error_log("Prepare failed: " . mysqli_error($conn));
