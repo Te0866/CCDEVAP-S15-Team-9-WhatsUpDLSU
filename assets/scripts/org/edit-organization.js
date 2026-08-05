@@ -27,7 +27,7 @@
             }
         });
 
-        // Retype password Show/Hide (same pattern as password field)
+        // Retype password Show/Hide
         const retypePasswordInput = document.getElementById("retypePassword");
         const toggleRetypePassword = document.getElementById("toggleRetypePassword");
 
@@ -41,7 +41,7 @@
             }
         });
 
-        // Retype password validation (1:1 from admin add-student.js)
+        // Retype password validation 
         const passwordMatchMessage = document.getElementById("passwordMatchMessage");
 
         function checkPasswordsMatch() {
@@ -116,7 +116,7 @@
                 return;
             }
 
-            // Password match check (adapted from admin form submit handler)
+            // Password match check 
             if (passwordInput.value !== retypePasswordInput.value) {
                 passwordMatchMessage.textContent = 'Passwords do not match';
                 passwordMatchMessage.classList.remove('success');
