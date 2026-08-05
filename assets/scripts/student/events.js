@@ -3,7 +3,7 @@
         const profileBtn = document.getElementById("profileBtn");
         const dropdownMenu = document.getElementById("dropdownMenu");
         const params = new URLSearchParams(window.location.search);
-        const eventId = parseInt(params.get("id"));
+        let eventId = parseInt(params.get("id"));
         const categoryParam = params.get("category");
 
         profileBtn.addEventListener("click", (e) => {
@@ -652,6 +652,13 @@
         }
         }
         function clearFilters() {
+            
+             eventId = null;
+            window.history.replaceState(
+            {},
+            "",
+            window.location.pathname
+        );
             document.getElementById("searchInput").value = "";
             document.getElementById("dateFilter").value = "";
             document.getElementById("categoryFilter").value =
