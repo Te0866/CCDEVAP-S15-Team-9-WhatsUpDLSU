@@ -32,9 +32,9 @@
                 </div>
                 <div class="comment-text"><?php echo htmlspecialchars($c['TEXT']); ?></div>
                 <div class="comment-actions">
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </div>
+                    <button type="button" class="edit-btn">Edit</button>
+                    <button type="button" class="delete-btn">Delete</button>
+            </div>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
