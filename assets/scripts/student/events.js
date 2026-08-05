@@ -613,9 +613,7 @@
    
             });
 
-            renderSidebar(filtered);
-
-            if (eventId) {
+             if (eventId) {
     const requestedEvent = eventsData.find(e => Number(e.id) === eventId);
 
     if (
@@ -625,6 +623,7 @@
         filtered.unshift(requestedEvent);
     }
 }
+            renderSidebar(filtered);
             
         if (filtered.length > 0) {
 
