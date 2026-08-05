@@ -178,21 +178,6 @@ body.s-my-comments {
     display:flex;
     gap:18px;
 }
-.s-my-comments .comment-actions button {
-    border:none;
-    background:none;
-    cursor:pointer;
-    font-size:13px;
-    font-weight:600;
-    color:#087f5b;
-    padding:0;
-}
-.s-my-comments .comment-actions button:hover {
-    text-decoration:underline;
-}
-.s-my-comments .comment-actions button.delete-btn {
-    color:#d9534f;
-}
 .s-my-comments .empty-state {
     background:white;
     border-radius:16px;
