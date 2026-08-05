@@ -359,18 +359,6 @@ body.s-student-darkmode.dark-mode .anon-badge {
     color: #fff;
 }
 
-body.s-student-darkmode.dark-mode .edit-btn,
-body.s-student-darkmode.dark-mode .delete-btn {
-    background: #333;
-    color: #fff;
-    border: 1px solid #555;
-}
-
-body.s-student-darkmode.dark-mode .edit-btn:hover,
-body.s-student-darkmode.dark-mode .delete-btn:hover {
-    background: #444;
-}
-
 body.s-student-darkmode.dark-mode .edit-box {
     background: #333;
     color: #fff;
