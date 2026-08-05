@@ -23,9 +23,9 @@
         <?php foreach ($comments as $c): ?>
             <div class="comment-card" data-comment-id="<?php echo (int)$c['COMMENT_ID']; ?>">
                 <div class="comment-meta">
-                    Posted on
-                    <a href="events.php?id=<?php echo (int)$c['EVENT_ID']; ?>"><?php echo htmlspecialchars($c['EVENT_TITLE']); ?></a>
-                    <!-- adjust the href above if events.php uses a different query param -->
+                    Posted on:
+                    <?php echo htmlspecialchars($c['EVENT_TITLE']); ?></a>
+                 
                     <?php if ($c['IS_ANONYMOUS']): ?>
                         <span class="anon-badge">Posted anonymously</span>
                     <?php endif; ?>
