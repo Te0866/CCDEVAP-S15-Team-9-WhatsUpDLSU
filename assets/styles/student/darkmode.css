@@ -207,6 +207,55 @@ body.s-student-darkmode.dark-mode .close-btn {
 body.s-student-darkmode.dark-mode #modalEvents {
     color:#fff;
 }
+body.s-student-darkmode.dark-mode .page-container {
+    background: transparent;
+}
+
+body.s-student-darkmode.dark-mode .page-title {
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .comment-card {
+    background: #222;
+    color: #fff;
+    border: 1px solid #444;
+    box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
+
+body.s-student-darkmode.dark-mode .comment-meta {
+    color: #bbb;
+}
+
+body.s-student-darkmode.dark-mode .comment-text {
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .anon-badge {
+    background: #444;
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .edit-btn,
+body.s-student-darkmode.dark-mode .delete-btn {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.s-student-darkmode.dark-mode .edit-btn:hover,
+body.s-student-darkmode.dark-mode .delete-btn:hover {
+    background: #444;
+}
+
+body.s-student-darkmode.dark-mode .edit-box {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.s-student-darkmode.dark-mode .empty-state {
+    color: #bbb;
+}
 @media  screen and (max-width:768px) {
 body.s-student-darkmode.dark-mode {
         background:#121212;
@@ -276,3 +325,52 @@ body.s-student-darkmode.dark-mode .dropdown-menu button:hover {
         background:#444;
         color:#fff;
     }
+body.s-student-darkmode.dark-mode .page-container {
+    background: transparent;
+}
+
+body.s-student-darkmode.dark-mode .page-title {
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .comment-card {
+    background: #222;
+    color: #fff;
+    border: 1px solid #444;
+    box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
+
+body.s-student-darkmode.dark-mode .comment-meta {
+    color: #bbb;
+}
+
+body.s-student-darkmode.dark-mode .comment-text {
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .anon-badge {
+    background: #444;
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .edit-btn,
+body.s-student-darkmode.dark-mode .delete-btn {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.s-student-darkmode.dark-mode .edit-btn:hover,
+body.s-student-darkmode.dark-mode .delete-btn:hover {
+    background: #444;
+}
+
+body.s-student-darkmode.dark-mode .edit-box {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.s-student-darkmode.dark-mode .empty-state {
+    color: #bbb;
+}
