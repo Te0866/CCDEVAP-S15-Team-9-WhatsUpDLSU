@@ -1,6 +1,3 @@
-/* darkmode.css — admin (scope: .s-admin-darkmode)
-   Migrated from centralized assets/css/style.css */
-
 body.s-admin-darkmode.dark-mode {
     background:#121212;
     color:white;
