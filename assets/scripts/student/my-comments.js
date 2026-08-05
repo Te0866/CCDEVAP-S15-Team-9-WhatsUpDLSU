@@ -59,13 +59,13 @@ document.querySelectorAll('.comment-card').forEach(card => {
         textarea.value = currentText;
 
         const saveBtn = document.createElement('button');
-        saveBtn.textContent = 'Save';
-        saveBtn.style.marginTop = '6px';
+            saveBtn.textContent = 'Save';
+            saveBtn.className = 'edit-btn';
 
         const cancelBtn = document.createElement('button');
-        cancelBtn.textContent = 'Cancel';
-        cancelBtn.style.marginLeft = '8px';
-
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.className = 'delete-btn';
+    
         textEl.replaceWith(textarea);
         textarea.insertAdjacentElement('afterend', saveBtn);
         saveBtn.insertAdjacentElement('afterend', cancelBtn);
