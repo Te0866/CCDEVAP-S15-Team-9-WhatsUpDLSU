@@ -1,0 +1,575 @@
+/* calendar.css — student (scope: .s-student-calendar)
+   Migrated from centralized assets/css/style.css */
+
+.s-student-calendar, .s-student-calendar * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body.s-student-calendar {
+    background:#eef7ec;
+    font-family:"Segoe UI",sans-serif;
+}
+.s-student-calendar .navbar {
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:75px;
+    background:#087f5b;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 2rem;
+    color:white;
+}
+.s-student-calendar .nav-left {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
+}
+.s-student-calendar .logo {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+}
+.s-student-calendar .logo-text {
+    font-size:1.3rem;
+    font-weight:700;
+}
+.s-student-calendar .nav-right {
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+.s-student-calendar .nav-links {
+    display:flex;
+    gap:10px;
+}
+.s-student-calendar .nav-tab {
+    color:white;
+    text-decoration:none;
+
+    padding:10px 18px;
+    border-radius:10px;
+}
+.s-student-calendar .nav-tab.active {
+    background:#3d3d3d;
+}
+.s-student-calendar .profile-section {
+    position:relative;
+}
+.s-student-calendar .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+.s-student-calendar .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+.s-student-calendar .dropdown-menu {
+    position:absolute;
+    top:60px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:12px;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:.25s;
+}
+.s-student-calendar .dropdown-menu.show {
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+.s-student-calendar .dropdown-menu button {
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    cursor:pointer;
+}
+.s-student-calendar .back-container {
+    padding: 15px 20px 0;
+}
+.s-student-calendar .back-btn {
+    background:#087f5b;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:10px 18px;
+    cursor:pointer;
+    font-size:15px;
+}
+.s-student-calendar .back-btn:hover {
+    background:#066a4b;
+}
+.s-student-calendar .calendar-layout {
+    display:grid;
+    grid-template-columns:3fr 1fr;
+    gap:25px;
+    padding:25px;
+}
+.s-student-calendar .calendar-section {
+    background:white;
+    border-radius:20px;
+    padding:20px;
+}
+.s-student-calendar #monthTitle {
+    text-align:center;
+    margin-bottom:20px;
+}
+.s-student-calendar .calendar-grid {
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+}
+.s-student-calendar .day-header {
+    text-align:center;
+    font-weight:bold;
+    padding:10px;
+}
+.s-student-calendar .day-header.sunday {
+    color:red;
+}
+.s-student-calendar .day-cell {
+    min-height:90px;
+    background:#f6f6f6;
+    border-radius:10px;
+    padding:8px;
+}
+.s-student-calendar .day-number {
+    font-weight:bold;
+}
+.s-student-calendar .today {
+    border:3px solid #087f5b;
+}
+.s-student-calendar .event-dot {
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    margin-top:6px;
+}
+.s-student-calendar .green {
+    background:#3498db;
+}
+.s-student-calendar .yellow {
+    background:#9b59b6;
+}
+.s-student-calendar .blue {
+    background:#f1c40f;
+}
+.s-student-calendar .legend {
+    background:#087f5b;
+    color:white;
+    border-radius:20px;
+    padding:20px;
+    height:fit-content;
+}
+.s-student-calendar .legend h3 {
+    margin-bottom:20px;
+}
+.s-student-calendar .legend-item {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+.s-student-calendar .box {
+    width:18px;
+    height:18px;
+}
+.s-student-calendar .academic {
+    background:#3498db;
+}
+.s-student-calendar .nonacademic {
+    background:#9b59b6;
+}
+.s-student-calendar .career {
+    background:#f1c40f;
+}
+.s-student-calendar .modal {
+    display:none;
+    position:fixed;
+    z-index:2000;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+
+    justify-content:center;
+    align-items:center;
+}
+.s-student-calendar .modal.show {
+    display:flex;
+}
+.s-student-calendar .modal-content {
+    background:white;
+    width:90%;
+    max-width:400px;
+    max-height:80vh;
+    border-radius:15px;
+    padding:25px;
+    animation:popup .2s ease;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    position:relative;
+}
+@keyframes  popup {
+    from{
+        transform:scale(.9);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+.s-student-calendar .close-btn {
+    position:absolute;
+    top:18px;
+    right:20px;
+    font-size:30px;
+    cursor:pointer;
+}
+.s-student-calendar #modalDate {
+    padding-right:30px;
+}
+.s-student-calendar #modalEvents {
+    overflow-y:auto;
+    flex:1;
+    min-height:0;
+    margin-top:15px;
+    padding-right:8px;
+}
+.s-student-calendar .event-card {
+    margin-top:15px;
+    padding:12px;
+    border-left:6px solid #087f5b;
+    background:#f6f6f6;
+    border-radius:8px;
+}
+.s-student-calendar .event-card h4 {
+    margin-bottom:5px;
+}
+.s-student-calendar .calendar-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+.s-student-calendar .month-btn {
+    background:#087f5b;
+    color:white;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.2s;
+}
+.s-student-calendar .month-btn:hover {
+    background:#066447;
+}
+.s-student-calendar .view-event-btn {
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    padding:10px 16px;
+    background:#087f5b;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+.s-student-calendar .view-event-btn:hover {
+    background:#066447;
+}
+@media  screen and (min-width:769px) {
+.s-student-calendar .calendar-header {
+        margin-bottom:10px;
+    }
+.s-student-calendar .month-btn {
+        width:35px;
+        height:35px;
+        font-size:16px;
+    }
+}
+@media  screen and (max-width:768px) {
+body.s-student-calendar {
+        background:#f5f4f0;
+        padding:10px;
+    }
+.s-student-calendar .navbar, .s-student-calendar .calendar-layout, .s-student-calendar .calendar-section, .s-student-calendar .legend, .s-student-calendar .dropdown-menu {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+.s-student-calendar .navbar {
+        margin-bottom:10px;
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+        background:#087f5b;
+        color:white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        border-bottom:none;
+    }
+.s-student-calendar .nav-left,
+.s-student-calendar .nav-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+.s-student-calendar .nav-left {
+        gap:8px;
+        flex-shrink:0;
+    }
+.s-student-calendar .logo-placeholder {
+        width:35px;
+        height:35px;
+        border-radius:0;
+        background:#d9d9d9;
+        flex-shrink:0;
+    }
+.s-student-calendar .logo-text {
+        color:white;
+        font-size: 18px;
+        white-space:nowrap;
+    }
+.s-student-calendar .nav-right {
+        gap:10px;
+    }
+.s-student-calendar .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap:6px;
+    }
+.s-student-calendar .nav-tab {
+        background:transparent;
+        color:white;
+        padding: 8px 12px;
+        border-radius:10px;
+        font-size: 14px;
+        text-align:center;
+        text-decoration:none;
+        white-space:nowrap;
+    }
+.s-student-calendar .nav-tab:hover {
+        background:rgba(255,255,255,.18);
+    }
+.s-student-calendar .nav-tab.active {
+        background:#3d3d3d;
+        color:white;
+    }
+.s-student-calendar .profile-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    font-size: 13px;
+    width: auto;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color:white;
+}
+.s-student-calendar .profile-pic {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid white;
+    display:block;
+}
+.s-student-calendar .dropdown-menu {
+        position: absolute;
+        right: 0;
+        top: 45px;
+        min-width: 200px;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: white;
+        border-radius: 12px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: .25s;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        z-index: 1000;
+        white-space: nowrap;
+    }
+.s-student-calendar .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+.s-student-calendar .dropdown-menu button {
+        border: none;
+        border-radius: 10px;
+        padding: 14px 20px;
+        cursor: pointer;
+        background: #f8f8f8;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+        min-width: 50px;
+        transition: background 0.2s;
+    }
+.s-student-calendar .dropdown-menu button:hover {
+        background: #e8f5ee;
+        color: #087f5b;
+    }
+.s-student-calendar .dropdown-menu button:last-child {
+        color: #dc3545;
+    }
+.s-student-calendar .dropdown-menu button:last-child:hover {
+        background: #fde8ea;
+        color: #dc3545;
+    }
+.s-student-calendar .back-container {
+        padding:12px 0 15px;
+    }
+.s-student-calendar .calendar-layout {
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+        padding:0;
+        margin:0;
+    }
+.s-student-calendar .calendar-section {
+        order:2;
+        background:white;
+        border-radius:12px;
+        padding:12px;
+        overflow:hidden;
+        width:100%;
+    }
+.s-student-calendar .calendar-grid {
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(7,1fr);
+        gap:2px;
+    }
+.s-student-calendar #monthTitle {
+        font-size:18px;
+        margin-bottom:10px;
+        text-align:center;
+    }
+.s-student-calendar .day-header {
+        padding:6px;
+        font-size:12px;
+        text-align:center;
+        font-weight:bold;
+    }
+.s-student-calendar .day-header.sunday {
+        color:red;
+    }
+.s-student-calendar .day-cell {
+        min-height:50px;
+        padding:4px;
+        border-radius:6px;
+        background:#f7f7f7;
+    }
+.s-student-calendar .day-number {
+        font-size:12px;
+        font-weight:bold;
+    }
+.s-student-calendar .day-cell.sunday .day-number {
+        color:red;
+    }
+.s-student-calendar .event-dot {
+        width:6px;
+        height:6px;
+        border-radius:2px;
+        margin-top:3px;
+    }
+.s-student-calendar .green {
+        background:#3498db;
+    }
+.s-student-calendar .yellow {
+        background:#9b59b6;
+    }
+.s-student-calendar .blue {
+        background:#f1c40f;
+    }
+.s-student-calendar .today {
+        border:2px solid #087f5b;
+    }
+.s-student-calendar .legend {
+        order:1;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+        gap:15px;
+        background:white;
+        color:black;
+        border-radius:12px;
+        padding:12px;
+        width:100%;
+    }
+.s-student-calendar .legend h3 {
+        display:none;
+    }
+.s-student-calendar .legend-item {
+        margin:0;
+        font-size:13px;
+        display:flex;
+        align-items:center;
+        gap:8px;
+    }
+.s-student-calendar .box {
+        width:14px;
+        height:14px;
+        border-radius:3px;
+        flex-shrink:0;
+    }
+.s-student-calendar .academic {
+        background:#3498db;
+    }
+.s-student-calendar .nonacademic {
+        background:#9b59b6;
+    }
+.s-student-calendar .career {
+        background:#f1c40f;
+    }
+.s-student-calendar .calendar-header {
+        margin-bottom:10px;
+    }
+.s-student-calendar .month-btn {
+        width:35px;
+        height:35px;
+        font-size:16px;
+    }
+}

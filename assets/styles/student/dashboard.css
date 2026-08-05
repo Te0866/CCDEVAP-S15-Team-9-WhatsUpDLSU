@@ -1,0 +1,548 @@
+/* dashboard.css — student (scope: .s-student-dashboard)
+   Migrated from centralized assets/css/style.css */
+
+.s-student-dashboard, .s-student-dashboard * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body.s-student-dashboard {
+    min-height:100vh;
+    background:linear-gradient(180deg,#f7fbf6,#eef7ec);
+    font-family:"Segoe UI",sans-serif;
+    color:#333;
+}
+.s-student-dashboard .navbar {
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:75px;
+    background:#087f5b;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 2rem;
+    color:white;
+}
+.s-student-dashboard .nav-left {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
+}
+.s-student-dashboard .logo {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+}
+.s-student-dashboard .logo-text {
+    font-size:1.3rem;
+    font-weight:700;
+}
+.s-student-dashboard .nav-right {
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+.s-student-dashboard .nav-links {
+    display:flex;
+    gap:10px;
+}
+.s-student-dashboard .nav-tab {
+    text-decoration:none;
+    color:white;
+    padding:10px 18px;
+    border-radius:10px;
+    transition:.25s;
+}
+.s-student-dashboard .nav-tab:hover {
+    background:rgba(255,255,255,.18);
+    transform:translateY(-2px);
+}
+.s-student-dashboard .nav-tab.active {
+    background:#3d3d3d;
+}
+.s-student-dashboard .profile-section {
+    position:relative;
+}
+.s-student-dashboard .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+.s-student-dashboard .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+.s-student-dashboard .dropdown-menu {
+    position:absolute;
+    top:60px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:12px;
+    padding:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:all 0.25s ease;
+    z-index:1000;
+}
+.s-student-dashboard .dropdown-menu.show {
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+.s-student-dashboard .dropdown-menu button {
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    background:#f3f3f3;
+    cursor:pointer;
+    font-weight:500;
+    transition:0.2s;
+}
+.s-student-dashboard .dropdown-menu button:hover {
+    background:#e5e5e5;
+}
+.s-student-dashboard .dashboard-layout {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    padding:25px;
+}
+.s-student-dashboard .banner {
+    background:#087f5b;
+    color:white;
+    border-radius:20px;
+    text-align:center;
+    padding:60px 30px;
+    grid-column:1 / 3;
+}
+.s-student-dashboard .banner h1 {
+    margin-bottom:15px;
+}
+.s-student-dashboard .banner p {
+    max-width:650px;
+    margin:auto;
+    line-height:1.6;
+}
+.s-student-dashboard .charts-row {
+    display:flex;
+    gap:25px;
+    grid-column:1 / 3;
+}
+.s-student-dashboard .charts-row .chart-container {
+    flex:1;
+    min-width:0;
+}
+.s-student-dashboard .bottom-row {
+    display:grid;
+    grid-template-columns:1fr 1.6fr;
+    gap:25px;
+    grid-column:1 / 3;
+    align-items:stretch;
+}
+
+/* Browse by category — clean list card (matches org-dashboard styling) */
+.s-student-dashboard .category-box {
+    background:#087f5b;
+    color:white;
+    border-radius:20px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+}
+.s-student-dashboard .category-box h2 {
+    font-size:17px;
+    margin-bottom:16px;
+}
+.s-student-dashboard .category-list {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+}
+.s-student-dashboard .category-item {
+    background:white;
+    color:#1c1c1c;
+    border-radius:12px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.2s;
+}
+.s-student-dashboard .category-item:hover {
+    transform:translateX(4px);
+    box-shadow:0 5px 14px rgba(0,0,0,.15);
+}
+.s-student-dashboard .category-left {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    font-size:14px;
+}
+.s-student-dashboard .category-count {
+    background:#eef7ec;
+    color:#087f5b;
+    font-weight:700;
+    font-size:13px;
+    padding:4px 12px;
+    border-radius:999px;
+    min-width:28px;
+    text-align:center;
+}
+.s-student-dashboard .category-item-all {
+    background:rgba(255,255,255,.14);
+    color:white;
+    border:1px dashed rgba(255,255,255,.5);
+}
+.s-student-dashboard .category-item-all:hover {
+    background:rgba(255,255,255,.22);
+}
+.s-student-dashboard .category-arrow {
+    font-size:16px;
+    font-weight:700;
+}
+.s-student-dashboard .color {
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    flex-shrink:0;
+}
+.s-student-dashboard .academic { background:#3498db; }
+.s-student-dashboard .nonacademic { background:#9b59b6; }
+.s-student-dashboard .career { background:#f1c40f; }
+
+/* Interested events carousel — matches org-dashboard events carousel */
+.s-student-dashboard .carousel-section {
+    background:#087f5b;
+    color:white;
+    border-radius:20px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+}
+.s-student-dashboard .carousel-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:16px;
+}
+.s-student-dashboard .carousel-header h2 {
+    font-size:17px;
+}
+.s-student-dashboard .carousel-controls {
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.s-student-dashboard .view-all-btn {
+    background:white;
+    color:#087f5b;
+    border:none;
+    border-radius:20px;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.15s;
+}
+.s-student-dashboard .view-all-btn:hover {
+    background:#e6f4ee;
+}
+.s-student-dashboard .carousel-arrow {
+    width:32px;
+    height:32px;
+    flex-shrink:0;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.4);
+    background:rgba(255,255,255,.14);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s, transform .15s;
+}
+.s-student-dashboard .carousel-arrow:hover {
+    background:rgba(255,255,255,.26);
+    transform:translateY(-1px);
+}
+.s-student-dashboard .event-grid {
+    display:flex;
+    gap:14px;
+    flex:1;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+}
+.s-student-dashboard .event-grid::-webkit-scrollbar {
+    display:none;
+}
+.s-student-dashboard .event-card {
+    flex:0 0 200px;
+    background:#f5faf7;
+    color:#1c1c1c;
+    border-radius:14px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+    gap:6px;
+    cursor:pointer;
+    transition:transform .15s, box-shadow .15s;
+}
+.s-student-dashboard .event-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(0,0,0,.18);
+}
+.s-student-dashboard .event-card h3 {
+    font-size:15px;
+    color:#1c1c1c;
+}
+.s-student-dashboard .event-card p {
+    font-size:12px;
+    color:#5a6b63;
+}
+.s-student-dashboard .event-tag {
+    align-self:flex-start;
+    font-size:11px;
+    font-weight:bold;
+    padding:4px 10px;
+    border-radius:20px;
+    margin-top:2px;
+}
+.s-student-dashboard .tag-academic { background:#d6eaf8; color:#3498db; }
+.s-student-dashboard .tag-nonacademic { background:#ecdff2; color:#9b59b6; }
+.s-student-dashboard .tag-career { background:#fdf3d0; color:#f1c40f; }
+.s-student-dashboard .event-card-empty {
+    flex:1 1 auto;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    cursor:default;
+}
+.s-student-dashboard .event-card-empty:hover {
+    transform:none;
+    box-shadow:none;
+}
+.s-student-dashboard .right-column {
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+.s-student-dashboard .chart-container {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 250px;
+    height: 340px;
+}
+.s-student-dashboard .chart-title {
+    text-align:center;
+    font-size:1.1rem;
+    font-weight:600;
+    color:#333;
+    margin:0;
+}
+.s-student-dashboard #studentChart, .s-student-dashboard #popularChart {
+    width:100% !important;
+    height:100% !important;
+}
+@media  screen and (max-width:768px) {
+body.s-student-dashboard {
+        background:#f5f4f0;
+        padding:0;
+    }
+.s-student-dashboard .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+        background:#087f5b;
+        color:white;
+        border-bottom:none;
+    }
+.s-student-dashboard .nav-left,
+.s-student-dashboard .nav-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+.s-student-dashboard .logo {
+        width:32px;
+        height:32px;
+    }
+.s-student-dashboard .logo-text {
+        font-size: 18px;
+        color:white;
+    }
+.s-student-dashboard .nav-right {
+        gap:10px;
+    }
+.s-student-dashboard .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap:6px;
+    }
+.s-student-dashboard .nav-tab {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding: 8px 12px;
+        background:transparent;
+        color:white;
+        border-radius:10px;
+        font-size: 14px;
+        font-weight:600;
+    }
+.s-student-dashboard .nav-tab:hover {
+        background:rgba(255,255,255,.18);
+    }
+.s-student-dashboard .nav-tab.active {
+        background:#3d3d3d;
+        color:white;
+    }
+.s-student-dashboard .profile-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+        background:none;
+        border:none;
+        color:white;
+    }
+.s-student-dashboard .profile-pic {
+        width:36px;
+        height:36px;
+        border:2px solid white;
+    }
+.s-student-dashboard .dropdown-menu {
+        width:180px;
+        top:50px;
+    }
+.s-student-dashboard .dashboard-layout {
+        display:flex;
+        flex-direction:column;
+    }
+.s-student-dashboard .left-column, .s-student-dashboard .right-column {
+        display:contents;
+    }
+.s-student-dashboard .banner {
+        order:1;
+        padding:20px;
+        border-radius:18px;
+    }
+.s-student-dashboard .banner h1 {
+        font-size:20px;
+        margin-bottom:10px;
+    }
+.s-student-dashboard .banner p {
+        font-size:13px;
+        line-height:1.5;
+    }
+.s-student-dashboard .bottom-row {
+        order:4;
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+.s-student-dashboard .category-box {
+        height:auto;
+        padding:16px;
+        border-radius:18px;
+    }
+.s-student-dashboard .category-box h2 {
+        font-size:18px;
+        margin-bottom:15px;
+    }
+.s-student-dashboard .category-item {
+        padding:12px 14px;
+        border-radius:12px;
+        font-size:14px;
+    }
+.s-student-dashboard .color {
+        width:14px;
+        height:14px;
+    }
+.s-student-dashboard .chart-container {
+        order:2;
+        height:300px;
+        padding:15px;
+        border-radius:18px;
+    }
+.s-student-dashboard .chart-title {
+        font-size:16px;
+        margin-bottom:10px;
+    }
+.s-student-dashboard .charts-row {
+        flex-direction: column;
+        gap: 15px;
+        order: 3;
+    }
+
+   .s-student-dashboard .charts-row .chart-container {
+    flex: none;   /* was inheriting flex:1 (flex-basis:0) from desktop, which overrode height:300px and fed the canvas-resize loop */
+    width: 100%;
+}
+
+.s-student-dashboard .carousel-section {
+        height:auto;
+        padding:18px;
+        border-radius:18px;
+    }
+.s-student-dashboard .carousel-header h2 {
+        font-size:18px;
+    }
+.s-student-dashboard .view-all-btn {
+        padding:7px 12px;
+        font-size:12px;
+    }
+.s-student-dashboard .carousel-arrow {
+        width:30px;
+        height:30px;
+        font-size:16px;
+    }
+.s-student-dashboard .event-card {
+        flex:0 0 160px;
+        padding:15px;
+        border-radius:16px;
+    }
+.s-student-dashboard .event-card h3 {
+        font-size:15px;
+        margin-bottom:4px;
+    }
+.s-student-dashboard .event-card p {
+        font-size:12px;
+    }
+}

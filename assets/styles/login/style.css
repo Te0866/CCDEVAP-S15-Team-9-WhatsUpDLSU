@@ -1,0 +1,194 @@
+/* style.css — login (scope: .s-login-style)
+   Migrated from centralized assets/css/style.css */
+
+.s-login-style, .s-login-style * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body.s-login-style {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(
+        135deg,
+        #e8f5e9 0%,
+        #d7f0db 50%,
+        #c8e6c9 100%
+    );
+    color: #1b4332;
+}
+.s-login-style .page-container {
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.s-login-style .main-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #0b6b3a;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.s-login-style .description {
+    max-width: 650px;
+    text-align: center;
+    line-height: 1.6;
+    color: #2d6a4f;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+.s-login-style .login-container {
+    width: 100%;
+    max-width: 520px;
+    background-color: #087f5b;
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.12),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.s-login-style .login-container h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+.s-login-style #loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.s-login-style .input-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.s-login-style .input-row label {
+    width: 95px;
+    color: white;
+    font-weight: 500;
+}
+.s-login-style .input-row input {
+    flex: 1;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+}
+.s-login-style .input-row input:focus {
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+}
+.s-login-style .password-wrapper {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+}
+.s-login-style .toggle-btn {
+    border: none;
+    background-color: #ffffff;
+    color: #087f5b;
+    padding: 0 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.s-login-style .toggle-btn:hover {
+    background-color: #f0f0f0;
+}
+.s-login-style .submit-btn {
+    margin: 1rem auto 2.5rem;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 999px;
+    background-color: white;
+    color: #087f5b;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+.s-login-style .submit-btn:hover {
+    transform: translateY(-2px);
+    background-color: #f1f8f4;
+}
+.s-login-style .officer-link {
+    position: absolute;
+    left: 2rem;
+    bottom: 1rem;
+    color: #d8f3dc;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.s-login-style .officer-link:hover {
+    text-decoration: underline;
+}
+.s-login-style .register-link {
+    margin-top: 12px;
+    margin-left: 140px;
+    align-self: flex-start;
+    color: #0b6b3a;
+    font-weight: 600;
+    text-decoration: none;
+}
+.s-login-style .register-link:hover {
+    text-decoration: underline;
+}
+
+.brand-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+}
+
+.brand-logo{
+    width:50px;
+    height:50px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #087f5b;
+}
+
+@media  (max-width: 600px) {
+.s-login-style .main-title {
+        font-size: 2.5rem;
+    }
+.s-login-style .login-container {
+        padding: 1.5rem;
+    }
+.s-login-style .input-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+.s-login-style .input-row label {
+        width: 100%;
+    }
+.s-login-style .password-wrapper {
+        width: 100%;
+    }
+.s-login-style .officer-link {
+        position: static;
+        display: block;
+        margin-top: 0.5rem;
+    }
+.s-login-style .register-link {
+        align-self: center;
+        margin-top: 1.5rem;
+        margin-left: 0;
+        font-size: 1.05rem;
+        padding: 10px 16px;
+    }
+body.s-login-style {
+        padding: 20px 0;
+    }
+}
