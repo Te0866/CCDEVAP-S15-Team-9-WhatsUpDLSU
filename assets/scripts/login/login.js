@@ -88,7 +88,7 @@
                 });
 
                 if (response.redirected) {
-                    await showLoginModal("Login successful! Redirecting...", "success");
+                    await showLoginModal("Login successful!", "success");
                     window.location.href = response.url;
                     return;
                 }
