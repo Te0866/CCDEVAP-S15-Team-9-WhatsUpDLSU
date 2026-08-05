@@ -1,6 +1,3 @@
-/* darkmode.css — org (scope: .s-org-darkmode)
-   Migrated from centralized assets/css/style.css */
-
 body.s-org-darkmode.dark-mode {
     background:#121212;
     color:white;
