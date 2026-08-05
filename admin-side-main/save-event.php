@@ -30,7 +30,7 @@ $fields = [
     'userId' => $_POST['user_id'] ?? 0,
 ];
 
-// --- Event images (reuse Organization-side uploads directory + ImageUploader) ---
+// Event images (reuse Organization-side uploads directory)
 $uploadDir = __DIR__ . '/../org-side-main/uploads/';
 $maxImages = 4;
 
@@ -46,7 +46,7 @@ if ($existingRaw !== '') {
     }
 }
 
-// Upload newly selected images (event_images[])
+// Upload newly selected images
 $newImages = [];
 if (isset($_FILES['event_images']) && is_array($_FILES['event_images']['name'])) {
     $count = count($_FILES['event_images']['name']);
