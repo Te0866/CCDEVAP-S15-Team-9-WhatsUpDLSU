@@ -67,12 +67,20 @@ public static function popular(int $limit = 5): array
     public static function interestedByUser(int $userId): array
     {
         $result = Database::query("
-            SELECT e.EVENT_ID, e.TITLE, e.CATEGORY, e.DATE, e.BANNER_IMAGE
-            FROM event_interest ei
-            INNER JOIN event e ON ei.EVENT_ID = e.EVENT_ID
-            WHERE ei.USER_ID = ?
-            ORDER BY e.DATE ASC
-        ", "i", [$userId]);
+    SELECT
+        e.EVENT_ID,
+        e.TITLE,
+        e.CATEGORY,
+        e.DATE,
+        e.BANNER_IMAGE
+    FROM event_interest ei
+    INNER JOIN event e
+        ON ei.EVENT_ID = e.EVENT_ID
+    WHERE ei.USER_ID = ?
+      AND e.APPROVAL_STATUS = 'APPROVED'
+      AND (" . self::STATUS_EXPR . ") != 'ENDED'
+    ORDER BY e.DATE ASC, e.START_TIME ASC
+", "i", [$userId]);
 
         $events = [];
         while ($row = mysqli_fetch_assoc($result)) {
