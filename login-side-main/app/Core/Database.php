@@ -16,7 +16,7 @@ class Database
             // .env file that is NOT committed to git, e.g. getenv('DB_PASS').
             $host = "localhost";
             $user = "root";
-            $pass = "";
+            $pass = "iPqfwfLp5FKk";
             $name = "whatsupdlsu";
 
             $conn = mysqli_connect($host, $user, $pass, $name);
