@@ -26,12 +26,17 @@ class UserModel
         return mysqli_num_rows($existing) > 0;
     }
 
-    public function updateOrganizationDetails($userId, $orgName, $password)
-    {
+   public function updateOrganizationDetails($userId, $orgName, $password = null)
+{
+    if ($password !== null) {
         $stmt = mysqli_prepare($this->conn, "UPDATE users SET USER_NAME = ?, PASSWORD = ? WHERE USER_ID = ?");
         mysqli_stmt_bind_param($stmt, "ssi", $orgName, $password, $userId);
-        return mysqli_stmt_execute($stmt);
+    } else {
+        $stmt = mysqli_prepare($this->conn, "UPDATE users SET USER_NAME = ? WHERE USER_ID = ?");
+        mysqli_stmt_bind_param($stmt, "si", $orgName, $userId);
     }
+    return mysqli_stmt_execute($stmt);
+}
 
     public function lastError()
     {
