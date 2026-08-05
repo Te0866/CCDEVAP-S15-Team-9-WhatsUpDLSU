@@ -7,32 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>My Comments - WhatsUpDLSU</title>
-<style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; }
-    .container { max-width: 700px; margin: 30px auto; padding: 0 15px; }
-    h1 { font-size: 22px; margin-bottom: 20px; }
-    .comment-card {
-        background: #fff; border-radius: 8px; padding: 14px 16px;
-        margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .comment-meta { font-size: 12px; color: #777; margin-bottom: 6px; }
-    .comment-meta a { color: #007bff; text-decoration: none; }
-    .comment-text { font-size: 15px; white-space: pre-wrap; margin-bottom: 8px; }
-    .comment-actions button {
-        border: none; background: none; cursor: pointer; font-size: 13px;
-        color: #007bff; margin-right: 12px; padding: 0;
-    }
-    .comment-actions button.delete-btn { color: #d9534f; }
-    .empty-state { color: #777; text-align: center; margin-top: 40px; }
-    textarea.edit-box { width: 100%; box-sizing: border-box; padding: 6px; font-size: 14px; }
-</style>
+<link rel="stylesheet" href="../assets/styles/student/darkmode.css">
+<link rel="stylesheet" href="../assets/styles/student/my-comments.css">
 </head>
-<body>
+<body class="s-my-comments">
 
 <?php include __DIR__ . "/partials/navbar.view.php"; ?>
 
-<div class="container">
-    <h1>My Comments</h1>
+<div class="page-container">
+    <h1 class="page-title">My Comments</h1>
 
     <?php if (empty($comments)): ?>
         <p class="empty-state">You haven't posted any comments yet.</p>
@@ -40,9 +23,12 @@
         <?php foreach ($comments as $c): ?>
             <div class="comment-card" data-comment-id="<?php echo (int)$c['COMMENT_ID']; ?>">
                 <div class="comment-meta">
-                    Posted <?php echo $c['IS_ANONYMOUS'] ? 'anonymously ' : ''; ?>on
+                    Posted on
                     <a href="events.php?id=<?php echo (int)$c['EVENT_ID']; ?>">event #<?php echo (int)$c['EVENT_ID']; ?></a>
                     <!-- adjust the href above if events.php uses a different query param -->
+                    <?php if ($c['IS_ANONYMOUS']): ?>
+                        <span class="anon-badge">Posted anonymously</span>
+                    <?php endif; ?>
                 </div>
                 <div class="comment-text"><?php echo htmlspecialchars($c['TEXT']); ?></div>
                 <div class="comment-actions">
