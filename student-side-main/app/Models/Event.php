@@ -23,20 +23,9 @@ class Event
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
     
-    private static function cleanupExpiredInterests(): void
-{
-    Database::query("
-        DELETE ei
-        FROM event_interest ei
-        INNER JOIN event e
-            ON ei.EVENT_ID = e.EVENT_ID
-        WHERE TIMESTAMP(e.DATE, e.END_TIME) <= NOW()
-    ");
-}
     
 public static function interestedCategoryStats(int $userId): array
 {
-    cleanupExpiredInterests();
     $result = Database::query("
         SELECT
             e.CATEGORY,
