@@ -396,15 +396,21 @@ body.s-student-dashboard {
         margin-bottom:10px;
     }
 .s-student-dashboard .charts-row {
-        flex-direction: column; 
+        flex-direction: column;
         gap: 15px;
-        order: 3;       
+        order: 3;
     }
 
     .s-student-dashboard .charts-row .chart-container {
         width: 100%;
     }
 
+    .s-student-dashboard .carousel-section {
+        order:4;
+        height:auto;
+        padding:18px;
+        border-radius:18px;
+    }
 .s-student-dashboard .carousel-section {
         order:4;
         height:auto;
