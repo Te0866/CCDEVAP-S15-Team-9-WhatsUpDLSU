@@ -16,7 +16,7 @@
 
         <div class="back-container">
             <button class="back-btn" onclick="window.location.href='dashboard.php'">
-                Back
+                ◀ Back
             </button>
         </div>
         <main class="profile-page">
