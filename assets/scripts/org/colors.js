@@ -1,6 +1,4 @@
-// Single source of truth for colors used across charts, badges, and tags.
-// If a color needs to change, change it here so every page stays in sync.
-
+//  Colors for the categories and status
 const CATEGORY_COLORS = {
     "ACADEMIC": "#3498db",
     "NON-ACADEMIC": "#9b59b6",
