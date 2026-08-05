@@ -244,6 +244,24 @@ body.s-student-darkmode.dark-mode .edit-box {
 body.s-student-darkmode.dark-mode .empty-state {
     color: #bbb;
 }
+
+body.s-student-darkmode.dark-mode .edit-btn {
+    background: #0b8f65;
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .edit-btn:hover {
+    background: #087f5b;
+}
+
+body.s-student-darkmode.dark-mode .delete-btn {
+    background: #dc3545;
+    color: #fff;
+}
+
+body.s-student-darkmode.dark-mode .delete-btn:hover {
+    background: #c82333;
+}
 @media  screen and (max-width:768px) {
 body.s-student-darkmode.dark-mode {
         background:#121212;
