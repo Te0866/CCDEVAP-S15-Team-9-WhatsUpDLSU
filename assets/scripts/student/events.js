@@ -651,14 +651,20 @@
             showNoEvent();
         }
         }
+
+function clearFiltersAndRedirect() {
+    eventId = null;
+
+    window.history.replaceState(
+        {},
+        "",
+        window.location.pathname
+    );
+
+    clearFilters();
+}
+        
         function clearFilters() {
-            
-             eventId = null;
-            window.history.replaceState(
-            {},
-            "",
-            window.location.pathname
-        );
             document.getElementById("searchInput").value = "";
             document.getElementById("dateFilter").value = "";
             document.getElementById("categoryFilter").value =
@@ -670,7 +676,7 @@
         }
 
         document.getElementById("clearFiltersBtn")
-            .addEventListener("click", clearFilters);
+            .addEventListener("click", clearFiltersAndRedirect);
 
         const alertModal = document.getElementById("alertModal");
         const alertTitle = document.getElementById("alertTitle");
