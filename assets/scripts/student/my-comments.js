@@ -43,7 +43,7 @@ function showConfirm(message, onConfirm) {
     ]);
 }
 
-// ---------- Comment cards ----------
+// Comment cards
 document.querySelectorAll('.comment-card').forEach(card => {
     const commentId = card.dataset.commentId;
     const textEl = card.querySelector('.comment-text');
