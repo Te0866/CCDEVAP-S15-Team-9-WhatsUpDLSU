@@ -401,9 +401,10 @@ body.s-student-dashboard {
         order: 3;
     }
 
-    .s-student-dashboard .charts-row .chart-container {
-        width: 100%;
-    }
+   .s-student-dashboard .charts-row .chart-container {
+    flex: none;   /* was inheriting flex:1 (flex-basis:0) from desktop, which overrode height:300px and fed the canvas-resize loop */
+    width: 100%;
+}
 
     .s-student-dashboard .carousel-section {
         order:4;
