@@ -11,12 +11,12 @@
 <link rel="stylesheet" href="../assets/styles/student/my-comments.css">
 </head>
 <body class="s-my-comments">
-
+ 
 <?php include __DIR__ . "/partials/navbar.view.php"; ?>
-
+ 
 <div class="page-container">
     <h1 class="page-title">My Comments</h1>
-
+ 
     <?php if (empty($comments)): ?>
         <p class="empty-state">You haven't posted any comments yet.</p>
     <?php else: ?>
@@ -24,7 +24,7 @@
             <div class="comment-card" data-comment-id="<?php echo (int)$c['COMMENT_ID']; ?>">
                 <div class="comment-meta">
                     Posted on
-                    <a href="events.php?id=<?php echo (int)$c['EVENT_ID']; ?>">event #<?php echo (int)$c['EVENT_ID']; ?></a>
+                    <a href="events.php?id=<?php echo (int)$c['EVENT_ID']; ?>"><?php echo htmlspecialchars($c['EVENT_TITLE']); ?></a>
                     <!-- adjust the href above if events.php uses a different query param -->
                     <?php if ($c['IS_ANONYMOUS']): ?>
                         <span class="anon-badge">Posted anonymously</span>
@@ -39,36 +39,36 @@
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
-
+ 
 <script>
 document.querySelectorAll('.comment-card').forEach(card => {
     const commentId = card.dataset.commentId;
     const textEl = card.querySelector('.comment-text');
     const editBtn = card.querySelector('.edit-btn');
     const deleteBtn = card.querySelector('.delete-btn');
-
+ 
     editBtn.addEventListener('click', () => {
         if (card.querySelector('.edit-box')) return; // already editing
-
+ 
         const currentText = textEl.textContent;
         const textarea = document.createElement('textarea');
         textarea.className = 'edit-box';
         textarea.value = currentText;
-
+ 
         const saveBtn = document.createElement('button');
         saveBtn.textContent = 'Save';
         saveBtn.style.marginTop = '6px';
-
+ 
         const cancelBtn = document.createElement('button');
         cancelBtn.textContent = 'Cancel';
         cancelBtn.style.marginLeft = '8px';
-
+ 
         textEl.replaceWith(textarea);
         textarea.insertAdjacentElement('afterend', saveBtn);
         saveBtn.insertAdjacentElement('afterend', cancelBtn);
         editBtn.style.display = 'none';
         deleteBtn.style.display = 'none';
-
+ 
         cancelBtn.addEventListener('click', () => {
             textarea.replaceWith(textEl);
             saveBtn.remove();
@@ -76,11 +76,11 @@ document.querySelectorAll('.comment-card').forEach(card => {
             editBtn.style.display = '';
             deleteBtn.style.display = '';
         });
-
+ 
         saveBtn.addEventListener('click', async () => {
             const newText = textarea.value.trim();
             if (newText === '') return;
-
+ 
             try {
                 const res = await fetch('edit-comment.php', {
                     method: 'POST',
@@ -103,10 +103,10 @@ document.querySelectorAll('.comment-card').forEach(card => {
             }
         });
     });
-
+ 
     deleteBtn.addEventListener('click', async () => {
         if (!confirm('Delete this comment?')) return;
-
+ 
         try {
             const res = await fetch('delete-comment.php', {
                 method: 'POST',
@@ -125,6 +125,6 @@ document.querySelectorAll('.comment-card').forEach(card => {
     });
 });
 </script>
-
+ 
 </body>
 </html>
