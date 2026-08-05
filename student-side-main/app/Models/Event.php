@@ -26,11 +26,15 @@ class Event
 public static function interestedCategoryStats(int $userId): array
 {
     $result = Database::query("
-        SELECT e.CATEGORY, COUNT(*) AS total
+        SELECT
+            e.CATEGORY,
+            COUNT(*) AS total
         FROM event_interest ei
-        INNER JOIN event e ON ei.EVENT_ID = e.EVENT_ID
+        INNER JOIN event e
+            ON ei.EVENT_ID = e.EVENT_ID
         WHERE ei.USER_ID = ?
-        AND e.APPROVAL_STATUS = 'APPROVED'
+          AND e.APPROVAL_STATUS = 'APPROVED'
+          AND (" . self::STATUS_EXPR . ") != 'ENDED'
         GROUP BY e.CATEGORY
     ", "i", [$userId]);
 
