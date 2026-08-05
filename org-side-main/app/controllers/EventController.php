@@ -106,7 +106,6 @@ class EventController
 
     /**
      * Collect kept + newly uploaded event images (max 4).
-     * Filenames are stored comma-separated in BANNER_IMAGE (same convention as admin).
      */
     private function collectBannerImages($existing = [])
     {
@@ -141,7 +140,7 @@ class EventController
             }
         }
 
-        // Backward compatibility: single-file field from older forms
+        // Backward compatibility
         if (count($images) < $maxImages) {
             $legacy = ImageUploader::storeIfPresent($_FILES['event_image'] ?? null, $uploadDir);
             if ($legacy !== null) {
@@ -252,7 +251,7 @@ class EventController
         $userId = Auth::currentUserId();
         $eventId = $_POST['event_id'];
 
-        // Kept existing images (comma-separated); empty if user removed all
+        // Kept existing images 
         $existingRaw = trim($_POST['existing_images'] ?? $_POST['existing_image'] ?? '');
         $existing = [];
         if ($existingRaw !== '' && !(isset($_POST['remove_image']) && $_POST['remove_image'] === '1')) {
