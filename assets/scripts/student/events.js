@@ -616,7 +616,7 @@ console.log("eventId:", eventId);
    
             });
 
-             if (eventId) {
+            if (eventId) {
     const requestedEvent = eventsData.find(e => Number(e.id) === eventId);
 
     if (
@@ -636,6 +636,7 @@ console.log("eventId:", eventId);
                 console.log("Filtered IDs:", filtered.map(e => e.id));
 console.log("Looking for:", eventId);
                 eventToShow = filtered.find(e => Number(e.id) === eventId);
+                console.log("Found event:", eventToShow);
             }
 
             if (!eventToShow) {
