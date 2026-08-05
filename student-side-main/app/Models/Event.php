@@ -76,7 +76,7 @@ public static function popular(int $limit = 5): array
             $filename = basename(str_replace('\\', '/', $filename));
         }
 
-        // Public URL relative to student-side pages (dashboard.php, events.php, ...)
+        // Public URL relative to student-side pages 
         return "../org-side-main/uploads/" . str_replace("%2F", "/", rawurlencode($filename));
     }
 
