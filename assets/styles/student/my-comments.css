@@ -298,14 +298,15 @@ body.s-my-comments {
 
 .edit-btn,
 .delete-btn {
-    padding: 10px 22px;
+    min-width: 120px;
+    padding: 14px 24px;
     border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 15px;
+    border-radius: 16px;
+    font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
     color: white;
-    transition: all 0.2s ease;
+    transition: 0.25s;
 }
 
 .edit-btn {
@@ -314,7 +315,6 @@ body.s-my-comments {
 
 .edit-btn:hover {
     background: #0a9b70;
-    transform: translateY(-1px);
 }
 
 .delete-btn {
@@ -323,12 +323,6 @@ body.s-my-comments {
 
 .delete-btn:hover {
     background: #bb2d3b;
-    transform: translateY(-1px);
-}
-
-.edit-btn:focus,
-.delete-btn:focus {
-    outline: none;
 }
 
 /* ---------- Mobile ---------- */
