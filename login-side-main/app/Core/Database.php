@@ -3,7 +3,6 @@
 /**
  * Single point of DB connection.
  * Replaces the old dbconnection.php require-everywhere pattern.
- * Every Model goes through here instead of touching mysqli_connect directly.
  */
 class Database
 {
@@ -12,8 +11,7 @@ class Database
     public static function connection(): mysqli
     {
         if (self::$instance === null) {
-            // In a real deploy, pull these from environment variables / a
-            // .env file that is NOT committed to git, e.g. getenv('DB_PASS').
+            
             $host = "localhost";
             $user = "root";
             $pass = "iPqfwfLp5FKk";
@@ -22,8 +20,6 @@ class Database
             $conn = mysqli_connect($host, $user, $pass, $name);
 
             if (!$conn) {
-                // Don't leak connection details to the browser in production;
-                // log the real error and show a generic message instead.
                 error_log("DB connection failed: " . mysqli_connect_error());
                 die("A database error occurred.");
             }
@@ -36,10 +32,6 @@ class Database
         return self::$instance;
     }
 
-    /**
-     * Convenience helper: prepare + bind + execute + get_result in one call.
-     * $types is the mysqli bind_param type string, e.g. "is".
-     */
     public static function query(string $sql, string $types = "", array $params = []): mysqli_result|bool
     {
         $conn = self::connection();
