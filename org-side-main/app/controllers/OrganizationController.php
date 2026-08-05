@@ -38,8 +38,9 @@ class OrganizationController
     $userId = $_SESSION['user_id'];
     $orgName = trim($_POST['orgName'] ?? '');
     $password = $_POST['password'] ?? '';
-    if ($orgName === '' || $password === '') {
-        $this->respond(["success" => false, "error" => "Organization name and password are required."]);
+
+    if ($orgName === '') {
+        $this->respond(["success" => false, "error" => "Organization name is required."]);
     }
     if ($this->userModel->isUsernameTakenByAnotherUser($orgName, $userId)) {
         $this->respond(["success" => false, "error" => "That organization name is already taken. Please choose another."]);
@@ -67,9 +68,9 @@ class OrganizationController
         }
     }
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $hashedPassword = $password !== '' ? password_hash($password, PASSWORD_DEFAULT) : null;
 
-   $success = $this->userModel->updateOrganizationDetails($userId, $orgName, $hashedPassword);
+    $success = $this->userModel->updateOrganizationDetails($userId, $orgName, $hashedPassword);
     if ($success) {
         $_SESSION['username'] = $orgName;
         $this->respond(["success" => true]);
