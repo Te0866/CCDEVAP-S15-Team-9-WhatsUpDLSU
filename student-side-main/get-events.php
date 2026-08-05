@@ -57,7 +57,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             if ($filename === "") {
                 continue;
             }
-            // Public URL relative to student-side pages (events.php, calendar.php, etc.)
+            // Public URL relative to student-side pages
             $images[] = "../org-side-main/uploads/" . str_replace("%2F", "/", rawurlencode($filename));
         }
     }
