@@ -209,6 +209,70 @@ body.s-login-create-account {
 .s-login-create-account .btn-secondary:hover {
     background: #f4f9f4;
 }
+.s-login-create-account .app-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.s-login-create-account .app-modal-overlay.show {
+    display: flex;
+}
+.s-login-create-account .app-modal-box {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,.08);
+}
+.s-login-create-account .app-modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.s-login-create-account .app-modal-success .app-modal-icon {
+    color: #087f5b;
+}
+.s-login-create-account .app-modal-error .app-modal-icon {
+    color: #c0392b;
+}
+.s-login-create-account .app-modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #087f5b;
+    margin-bottom: 8px;
+}
+.s-login-create-account .app-modal-message {
+    font-size: 14px;
+    color: #55695c;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+.s-login-create-account .app-modal-actions {
+    display: flex;
+    justify-content: center;
+}
+.s-login-create-account .app-modal-btn.primary {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 34px;
+    background: #087f5b;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .15s;
+}
+.s-login-create-account .app-modal-btn.primary:hover {
+    background: #066647;
+}
 @media  (max-width: 768px)  {
 .s-login-create-account .navbar {
         flex-direction: column;
