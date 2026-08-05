@@ -48,7 +48,7 @@
 </div>
 
     <script src="../assets/scripts/student/my-comments.js"></script>
-    
+    <script src="../assets/scripts/student/darkmode.js"></script>
 
 </body>
 </html>
