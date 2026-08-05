@@ -1,7 +1,7 @@
 (function () {
     try {
         document.addEventListener('DOMContentLoaded', function () {
-            // Show/Hide password toggles
+            // Show/hide password toggles
             document.querySelectorAll('.toggle-visibility').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     const targetId = btn.getAttribute('data-target');
@@ -38,7 +38,27 @@
             password.addEventListener('input', checkMatch);
             confirmPassword.addEventListener('input', checkMatch);
 
-            // Submit to the backend
+            // Modal helper stuff
+            function showSuccess(message) {
+                document.getElementById("successMessage").textContent = message;
+                document.getElementById("successModal").classList.add("show");
+            }
+
+            function showError(message) {
+                document.getElementById("errorMessage").textContent = message;
+                document.getElementById("errorModal").classList.add("show");
+            }
+
+            document.getElementById("successOkBtn").addEventListener("click", () => {
+                document.getElementById("successModal").classList.remove("show");
+                window.location.href = 'login.html';
+            });
+
+            document.getElementById("errorOkBtn").addEventListener("click", () => {
+                document.getElementById("errorModal").classList.remove("show");
+            });
+
+            // Send to the backend
             document.getElementById('registerForm').addEventListener('submit', async function (e) {
                 e.preventDefault();
 
@@ -69,22 +89,21 @@
                         body: JSON.stringify(payload)
                     });
 
-                   console.log('Response status:', response.status);
+                    console.log('Response status:', response.status);
 
-const rawText = await response.text();
-console.log('Raw response:', rawText);
-const result = JSON.parse(rawText);
-console.log('Response data:', result);
+                    const rawText = await response.text();
+                    console.log('Raw response:', rawText);
+                    const result = JSON.parse(rawText);
+                    console.log('Response data:', result);
 
                     if (result.success) {
-                        alert('Account created successfully! Please log in.');
-                        window.location.href = 'login.html';
+                        showSuccess('Account created successfully! Please log in.');
                     } else {
-                        alert(result.error || 'Could not create account.');
+                        showError(result.error || 'Could not create account.');
                     }
                 } catch (err) {
                     console.error('Fetch error:', err);
-                    alert('Something went wrong while creating your account. Please check the console for details.');
+                    showError('Something went wrong while creating your account. Please check the console for details.');
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Create Account';
