@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/styles/student/darkmode.css">
 <link rel="stylesheet" href="../assets/styles/student/my-comments.css">
 </head>
-<body class="s-my-comments">
+<body class="s-my-comments s-student-darkmode">
 
 <?php include __DIR__ . "/partials/navbar.view.php"; ?>
 
