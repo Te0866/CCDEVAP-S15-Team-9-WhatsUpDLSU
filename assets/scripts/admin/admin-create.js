@@ -15,7 +15,7 @@
             }
         });
 
-        // Password Show/Hide + Retype matching (1:1 from add-student.js / edit-organization.js)
+        // Password Show/Hide and Retype matching
         const passwordInput = document.getElementById('passwordInput');
         const retypePasswordInput = document.getElementById('retypePasswordInput');
         const passwordMatchMessage = document.getElementById('passwordMatchMessage');
