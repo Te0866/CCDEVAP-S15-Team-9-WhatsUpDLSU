@@ -377,3 +377,148 @@ body.s-my-comments {
         font-size:14px;
     }
 }
+@media screen and (max-width:768px) {
+    body.s-my-comments {
+        background:#f5f4f0;
+        padding:0;
+    }
+    .s-my-comments .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+        background:#087f5b;
+        color:white;
+        border-bottom:none;
+    }
+    .s-my-comments .nav-left,
+    .s-my-comments .nav-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .s-my-comments .logo {
+        width:32px;
+        height:32px;
+    }
+    .s-my-comments .logo-text {
+        font-size: 18px;
+        color:white;
+    }
+    .s-my-comments .nav-right {
+        gap:10px;
+    }
+    .s-my-comments .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap:6px;
+    }
+    .s-my-comments .nav-tab {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding: 8px 12px;
+        background:transparent;
+        color:white;
+        border-radius:10px;
+        font-size: 14px;
+        font-weight:600;
+    }
+    .s-my-comments .nav-tab:hover {
+        background:rgba(255,255,255,.18);
+    }
+    .s-my-comments .nav-tab.active {
+        background:#3d3d3d;
+        color:white;
+    }
+    .s-my-comments .profile-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+        background:none;
+        border:none;
+        color:white;
+    }
+    .s-my-comments .profile-pic {
+        width:36px;
+        height:36px;
+        border:2px solid white;
+    }
+    .s-my-comments .dropdown-menu {
+        width:180px;
+        top:50px;
+    }
+    .s-my-comments .page-container {
+        padding:0 15px 40px;
+        margin:20px auto;
+    }
+    .s-my-comments .page-title {
+        font-size:1.3rem;
+        margin-bottom:16px;
+    }
+    .s-my-comments .comment-card {
+        padding:14px 16px;
+        border-radius:14px;
+    }
+    .s-my-comments .comment-card:hover {
+        transform:none;
+        box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+    .s-my-comments .comment-meta {
+        flex-wrap:wrap;
+        font-size:12px;
+        row-gap:4px;
+    }
+    .s-my-comments .anon-badge {
+        font-size:10.5px;
+        padding:2px 7px;
+    }
+    .s-my-comments .comment-text {
+        font-size:14px;
+    }
+    .s-my-comments .comment-actions {
+        gap:0;
+        border-top:1px solid #eee;
+        margin-top:10px;
+        padding-top:8px;
+    }
+    .s-my-comments .comment-actions button {
+        flex:1;
+        text-align:center;
+        padding:10px 0;
+        font-size:13.5px;
+    }
+    .s-my-comments .comment-actions button:not(.delete-btn) {
+        border-right:1px solid #eee;
+    }
+    .s-my-comments .edit-box {
+        font-size:16px; /* prevents iOS auto-zoom on focus */
+    }
+ 
+    /* Modal becomes a bottom sheet on small screens - easier thumb reach */
+    .s-my-comments .modal-overlay {
+        align-items:flex-end;
+    }
+    .s-my-comments .modal-box {
+        width:100%;
+        max-width:100%;
+        border-radius:20px 20px 0 0;
+        padding:22px 20px calc(20px + env(safe-area-inset-bottom));
+        transform:translateY(100%);
+    }
+    .s-my-comments .modal-overlay.show .modal-box {
+        transform:translateY(0);
+    }
+    .s-my-comments .modal-message {
+        font-size:14.5px;
+        text-align:center;
+    }
+    .s-my-comments .modal-actions {
+        flex-direction:column-reverse;
+        gap:8px;
+    }
+    .s-my-comments .modal-actions button {
+        width:100%;
+        padding:13px 0;
+    }
+}
+
