@@ -13,7 +13,6 @@ class ImageUploader
         }
 
         $originalName = basename($file['name']);
-        // microtime keeps names unique when multiple files are uploaded in one request
         $newFileName = str_replace('.', '', sprintf('%.6f', microtime(true))) . "_" . $originalName;
         $targetPath = $uploadDir . $newFileName;
 
