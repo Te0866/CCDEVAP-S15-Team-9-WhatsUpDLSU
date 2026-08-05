@@ -54,7 +54,7 @@
         const passwordMatchMessage = document.getElementById('passwordMatchMessage');
         const studentForm = document.getElementById('studentForm');
 
-        // Show/Hide Password toggles (1:1 from edit-organization.js)
+        // Show/Hide Password toggles
         const togglePassword = document.getElementById('togglePassword');
         const toggleRetypePassword = document.getElementById('toggleRetypePassword');
 
