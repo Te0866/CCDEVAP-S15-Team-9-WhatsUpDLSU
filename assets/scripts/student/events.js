@@ -128,15 +128,6 @@
                     renderCommentsCarousel([]);
                 });
         }
-    
-            /*fetch(`get-comments.php?event_id=${event.id}`)
-                .then(res => res.json())
-                .then(comments => renderCommentsCarousel(comments))
-                .catch(err => {
-                    console.error('Failed to load comments:', err);
-                    renderCommentsCarousel([]);
-                });
-            }*/
 
         let currentImageIndex = 0;
         let currentCommentIndex = 0;
@@ -200,11 +191,9 @@
             const s = String(src).trim();
             if (!s) return s;
             if (/^(https?:)?\/\//i.test(s) || s.startsWith('data:')) return s;
-            // Already points at uploads
+            
             if (s.includes('uploads/')) {
-                // If multiple comma-joined slipped through, take first
                 if (s.includes(',') && !s.includes('uploads/,')) {
-                    // e.g. "../org-side-main/uploads/a.png,b.png"
                     const marker = 'uploads/';
                     const idx = s.lastIndexOf(marker);
                     const prefix = s.slice(0, idx + marker.length);
@@ -214,7 +203,7 @@
                 }
                 return s;
             }
-            // Bare filename (or comma-separated bare names)
+            // Bare filename
             const first = s.split(',')[0].trim();
             return '../org-side-main/uploads/' + first;
         }
@@ -273,45 +262,6 @@
         document.getElementById('imgPrev').addEventListener('click', () => goToImage(currentImageIndex - 1));
         document.getElementById('imgNext').addEventListener('click', () => goToImage(currentImageIndex + 1));
 
-        /*function renderCommentsCarousel(comments) {
-            const track = document.getElementById('commentsTrack');
-            const dotsContainer = document.getElementById('commentsDots');
-            track.innerHTML = '';
-            dotsContainer.innerHTML = '';
-            currentCommentIndex = 0;
-
-            if (commentsIntervalId) {
-                clearInterval(commentsIntervalId);
-                commentsIntervalId = null;
-            }
-
-            if (!comments || comments.length === 0) {
-                track.innerHTML = '<div class="carousel-slide comment-slide"><p class="comment-text">No comments yet.</p></div>';
-                return;
-            }
-
-            comments.forEach((c) => {
-                const slide = document.createElement('div');
-                slide.className = 'carousel-slide comment-slide';
-                slide.innerHTML = `<p class="comment-text">"${c.text}"</p><p class="comment-author">- ${c.author}</p>`;
-                track.appendChild(slide);
-            });
-
-            comments.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.className = 'dot' + (i === 0 ? ' active' : '');
-                dotsContainer.appendChild(dot);
-            });
-
-            updateCommentsTrack();
-
-            if (comments.length > 1) {
-                commentsIntervalId = setInterval(() => {
-                    currentCommentIndex = (currentCommentIndex + 1) % comments.length;
-                    updateCommentsTrack();
-                }, 3000 ); // just change if you want comments to go faster (ms)
-            }
-        }*/
 
         function updateCommentsTrack() {
             const track = document.getElementById('commentsTrack');
@@ -476,12 +426,6 @@
 
             closeCommentModal();
         });
-        /*
-        function addCommentLocally(comment) {
-            if (!selectedEvent.comments) selectedEvent.comments = [];
-            selectedEvent.comments.push(comment);
-            renderCommentsCarousel(selectedEvent.comments);
-        }*/
 
         const editCommentModalOverlay = document.getElementById('editCommentModalOverlay');
         const editCommentForm = document.getElementById('editCommentForm');
