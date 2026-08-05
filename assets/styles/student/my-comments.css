@@ -290,6 +290,47 @@ body.s-my-comments {
     background:#c9302c;
 }
 
+.comment-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.edit-btn {
+    background: #087f5b;
+}
+
+.edit-btn:hover {
+    background: #0a9b70;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #bb2d3b;
+    transform: translateY(-1px);
+}
+
+.edit-btn:focus,
+.delete-btn:focus {
+    outline: none;
+}
+
 /* ---------- Mobile ---------- */
 @media screen and (max-width:768px) {
     body.s-my-comments {
