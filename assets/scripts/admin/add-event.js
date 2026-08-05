@@ -64,7 +64,6 @@
 
         if (uploadBox && fileInput) {
             uploadBox.addEventListener("click", (e) => {
-                // Don't open file picker when clicking remove on a chip
                 if (e.target.closest(".file-chip button")) return;
                 fileInput.click();
             });
@@ -157,7 +156,7 @@
             fileInput.files = dt.files;
         }
 
-        // Show existing image chips on load (edit mode)
+        // Show existing image chips on load
         renderChips();
     } catch (err) {
         console.error("[script.js] error in admin/js/add-event.js:", err);
