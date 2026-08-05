@@ -156,6 +156,7 @@ body.s-login-style {
     height:50px;
     object-fit:cover;
     border-radius:50%;
+    border:3px solid #087f5b;
 }
 
 @media  (max-width: 600px) {
