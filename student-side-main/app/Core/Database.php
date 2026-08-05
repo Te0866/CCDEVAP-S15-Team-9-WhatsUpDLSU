@@ -9,7 +9,7 @@ class Database
         if (self::$instance === null) {
             $host = "localhost";
             $user = "root";
-            $pass = "";
+            $pass = "iPqfwfLp5FKk";
             $name = "whatsupdlsu";
 
             $conn = mysqli_connect($host, $user, $pass, $name);
