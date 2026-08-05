@@ -1,3 +1,6 @@
+DEPLOYED WEB APPLICATION LINK 
+http://ccscloud.dlsu.edu.ph:60151 
+
 DATABASE SETUP
 
 Step 1: Download the CCDEVAP-S16-Team-9-WhatsUpDLSU.zip file.
