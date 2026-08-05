@@ -4,9 +4,6 @@
         const dropdownMenu = document.getElementById("dropdownMenu");
         const params = new URLSearchParams(window.location.search);
         const eventId = parseInt(params.get("id"));
-console.log("URL:", window.location.href);
-console.log("eventId:", eventId);
-        
         const categoryParam = params.get("category");
 
         profileBtn.addEventListener("click", (e) => {
@@ -633,10 +630,7 @@ console.log("eventId:", eventId);
             let eventToShow;
 
             if (eventId) {
-                console.log("Filtered IDs:", filtered.map(e => e.id));
-console.log("Looking for:", eventId);
                 eventToShow = filtered.find(e => Number(e.id) === eventId);
-                console.log("Found event:", eventToShow);
             }
 
             if (!eventToShow) {
