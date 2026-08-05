@@ -594,14 +594,15 @@
                 );
             }
              if (status !== "All Event Status") {
-            filtered = filtered.filter(event =>
-                (event.status || "").toLowerCase() === status.toLowerCase()
+        filtered = filtered.filter(event =>
+        (event.status || "").toLowerCase() === status.toLowerCase()
             );
-        } else {
-            filtered = filtered.filter(event =>
-                (event.status || "").toLowerCase() !== "ended"
-            );
-        }
+    } else {
+    filtered = filtered.filter(event =>
+        (event.status || "").toLowerCase() !== "ended" ||
+        Number(event.id) === eventId
+    );
+}
 
             filtered.sort((a, b) => {
                 if (sort === "Newest") {
@@ -614,6 +615,17 @@
 
             renderSidebar(filtered);
 
+            if (eventId) {
+    const requestedEvent = eventsData.find(e => Number(e.id) === eventId);
+
+    if (
+        requestedEvent &&
+        !filtered.some(e => Number(e.id) === eventId)
+    ) {
+        filtered.unshift(requestedEvent);
+    }
+}
+            
         if (filtered.length > 0) {
 
             let eventToShow;
